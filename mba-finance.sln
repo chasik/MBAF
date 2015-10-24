@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24606.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-client", "mba-client\mba-client.csproj", "{ABEC4127-2042-44C1-B3DF-859E53CBD30C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mba-services", "mba-services", "{17FC5AAB-99A3-4748-84FD-FA0BC0626135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcf-authentication", "wcf-authentication\wcf-authentication.csproj", "{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070} = {17FC5AAB-99A3-4748-84FD-FA0BC0626135}
+	EndGlobalSection
+EndGlobal
