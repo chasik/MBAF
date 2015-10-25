@@ -11,16 +11,8 @@ namespace mba_client.components
         private static Registry instance;
         public Registry (DockLayoutManager layoutManager)
         {
-                 //       < dxdo:LayoutGroup >
-                 //< dxdo:DocumentGroup >
-                 //     < dxdo:DocumentPanel Caption = "Document" >
-                 //          < Grid />
-                 //      </ dxdo:DocumentPanel >
-                 //       < dxdo:DocumentPanel Caption = "Document" >
-                 //            < Grid />
-                 //        </ dxdo:DocumentPanel >
-                 //     </ dxdo:DocumentGroup >
-                 //  </ dxdo:LayoutGroup >
+
+
         }
 
         public static Registry GetInstance(DockLayoutManager layoutManager)
