@@ -7,31 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-//using System.Windows;
-
 namespace mba_client.components
 {
     class TreeListFileExplorer
     {
+        public TreeListControl treeListControl;
         private TreeListView treeListView;
-        public TreeListFileExplorer(TreeListView _treeListView)
+        public delegate void SelectExcelFileDelegate(object sender, String fullFileName);
+        public event SelectExcelFileDelegate SelectExcelFile;
+        public TreeListFileExplorer()
         {
-            _treeListView.NodeExpanding += this.treeListView1_NodeExpanding;
-            _treeListView.RowDoubleClick += _treeListView_MouseDoubleClick;
+            treeListControl = new TreeListControl { FontSize = 10, SelectionMode = MultiSelectMode.Row };
 
-            treeListView = _treeListView;
+            treeListView = new TreeListView { AllowPerPixelScrolling = true, ShowTotalSummary = true, AutoWidth = true };
+            treeListView.NodeExpanding += treeListView_NodeExpanding;
+            treeListView.RowDoubleClick += treeListView_MouseDoubleClick;
+
+            treeListControl.Columns.Add(new TreeListColumn { FieldName = "Name", ReadOnly = true });
+            treeListControl.View = treeListView;
+
             Helper = new FileSystemHelper();
             InitDrives();
         }
 
-        private void _treeListView_MouseDoubleClick(object sender, RowDoubleClickEventArgs e)
+        private void treeListView_MouseDoubleClick(object sender, RowDoubleClickEventArgs e)
         {
-            var s = (TreeListFileExplorer.FileSystemItem) ((TreeListView) sender).FocusedNode.Content;
-            string filename = s.FullName;
+            var s = (FileSystemItem) ((TreeListView) sender).FocusedNode.Content;
+            // TODO: сделать проверку через регулярное выражение
+            if (SelectExcelFile != null && (s.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1
+                                            || s.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1)
+               )
+            {
+                SelectExcelFile(this, s.FullName);
+            }
         }
 
-        private void treeListView1_NodeExpanding(object sender, DevExpress.Xpf.Grid.TreeList.TreeListNodeAllowEventArgs e)
+        private void treeListView_NodeExpanding(object sender, DevExpress.Xpf.Grid.TreeList.TreeListNodeAllowEventArgs e)
         {
             TreeListNode node = e.Node;
             if (node.Tag == null || (bool)node.Tag == false)

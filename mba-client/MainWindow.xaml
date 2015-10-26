@@ -48,25 +48,6 @@
         </dxnb:NavBarControl>
 
         <dxdo:DockLayoutManager x:Name="mainDockManager" Grid.Column="1" Grid.RowSpan="2">
-            <dxdo:LayoutGroup Orientation="Vertical" ItemWidth="1.09*">
-                <dxdo:LayoutGroup Orientation="Horizontal" ItemHeight="1.11*">
-                    <dxdo:LayoutPanel Caption="Panel" ItemWidth="0.63*" FontSize="9.333">
-                        <dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" FontSize="10.667" SelectionMode="Row">
-                            <dxg:TreeListControl.Columns>
-                                <dxg:TreeListColumn FieldName="Name" ReadOnly="true"/>
-                            </dxg:TreeListControl.Columns>
-                            <dxg:TreeListControl.View>
-                                <dxg:TreeListView Name="treeListView1" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True"/>
-                            </dxg:TreeListControl.View>
-                        </dxg:TreeListControl>
-                    </dxdo:LayoutPanel>
-
-                    <dxdo:LayoutPanel Caption="Panel" ItemWidth="1.28*" ItemHeight="1.5*"/>
-                </dxdo:LayoutGroup>
-                <dxdo:LayoutPanel Caption="Panel" ItemWidth="1.57*" ItemHeight="0.39*">
-                    <dxsps:SpreadsheetControl Grid.Column="1"/>
-                </dxdo:LayoutPanel>
-            </dxdo:LayoutGroup>
 
         </dxdo:DockLayoutManager>
 

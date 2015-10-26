@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\Registry.cs" />
+    <Compile Include="components\RegistryParser.cs" />
     <Compile Include="components\TreeListFileExplorer.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

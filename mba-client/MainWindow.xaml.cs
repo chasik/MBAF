@@ -16,12 +16,9 @@ namespace mba_client
 {
     public partial class MainWindow : DevExpress.Xpf.Core.DXWindow
     {
-        private TreeListFileExplorer tristFileExplorer;
         public MainWindow()
         {
             InitializeComponent();
-
-            tristFileExplorer = new TreeListFileExplorer(this.treeListView1);
         }
 
         private void addRegistryMenuItem_Click(object sender, EventArgs e)
