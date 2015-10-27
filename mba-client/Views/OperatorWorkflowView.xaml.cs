@@ -9,24 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using mba_client.components;
 
-namespace mba_client
+namespace mba_client.Views
 {
-    public partial class MainWindow : DevExpress.Xpf.Core.DXWindow
+    /// <summary>
+    /// Interaction logic for OperatorWorkflowView.xaml
+    /// </summary>
+    public partial class OperatorWorkflowView : UserControl
     {
-        public MainWindow()
+        public OperatorWorkflowView()
         {
             InitializeComponent();
         }
-
-        private void addRegistryMenuItem_Click(object sender, EventArgs e)
-        {
-            addRegistry = Registry.GetInstance(mainDockManager);
-        }
-
-        private Registry addRegistry;
     }
-
 }

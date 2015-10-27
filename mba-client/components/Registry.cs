@@ -27,7 +27,15 @@ namespace mba_client.components
             panelExplorer.SetValue(ContentItem.ContentProperty, fileExplorer.treeListControl);
 
             layoutManager.DockController.Dock(panelExplorer, layoutGroupRoot, DockType.Left);
-            layoutManager.DockController.Dock(new LayoutPanel { Caption = "Результаты" }, layoutGroupRoot, DockType.Top);
+
+            DocumentGroup docGroupResult = layoutManager.DockController.AddDocumentGroup(DockType.Top);
+            layoutManager.DockController.Dock(docGroupResult, layoutGroupRoot, DockType.Top);
+
+            DocumentPanel docPanelResult = new DocumentPanel { Caption = "Результаты" };
+            layoutManager.DockController.Dock(docPanelResult, docGroupResult, DockType.Fill);
+            layoutManager.DockController.Dock(new DocumentPanel { Caption = "Результаты2" }, docGroupResult, DockType.Fill);
+
+            docPanelResult.IsActive = true;
 
             excelControl = new SpreadsheetControl();
 
@@ -40,21 +48,15 @@ namespace mba_client.components
         private void FileExplorer_SelectExcelFile(object sender, string fullFileName)
         {
             excelControl.LoadDocument(fullFileName);
+
             RegistryParser regParser = new RegistryParser { WorkBook = excelControl.Document };
-
             regParser.Analysis();
-
         }
 
         public static Registry GetInstance(DockLayoutManager layoutManager)
         {
             instance = instance ?? new Registry(layoutManager);
             return instance;
-        }
-
-        internal void Show()
-        {
-
         }
     }
 }
