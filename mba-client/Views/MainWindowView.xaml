@@ -11,11 +11,15 @@
 	xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
 	xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
 	xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+    xmlns:ViewModel="clr-namespace:mba_client.ViewModels"
 	x:Class="mba_client.MainWindow"
 	Title="MBA Finance" Height="700" Width="1100"
 	SnapsToDevicePixels="True" UseLayoutRounding="True"
     >
-
+    <dx:DXWindow.DataContext>
+        <ViewModel:MainWindowViewModel/>
+    </dx:DXWindow.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,7 +40,7 @@
                 <dxnb:NavBarItem x:Name="navBarItem2" Content="Поиск"/>
             </dxnb:NavBarGroup>
             <dxnb:NavBarGroup x:Name="navBarGroup2" Header="Реестры" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=ConvertToRange_32x32.png}">
-                <dxnb:NavBarItem x:Name="addRegistryMenuItem" Content="Загрузка" Click="addRegistryMenuItem_Click"/>
+                <dxnb:NavBarItem x:Name="addRegistryMenuItem" Content="Загрузка"/>
             </dxnb:NavBarGroup>
             <dxnb:NavBarGroup x:Name="navBarGroup4" Header="Отчеты" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=DesignReport_32x32.png}">
                 <dxnb:NavBarItem x:Name="navBarItem41" Content="Отчеты"/>
@@ -48,14 +52,15 @@
             </dxnb:NavBarGroup>
         </dxnb:NavBarControl>
 
-        <dxdo:DockLayoutManager x:Name="mainDockManager" Grid.Column="1" Grid.RowSpan="2">
-            <dxdo:LayoutGroup>
-                <dxdo:LayoutPanel Caption="Panel"/>
-            </dxdo:LayoutGroup>
-
-        </dxdo:DockLayoutManager>
+        <ContentControl Content="{Binding CurrentWorkFlow}">
+            
+        </ContentControl>
+        
+        <!--dxdo:DockLayoutManager x:Name="mainDockManager" Grid.Column="1" Grid.RowSpan="2">
+        </dxdo:DockLayoutManager-->
 
         <dxb:StatusBarControl Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <dxe:TextEdit Text="{Binding }" Grid.Column="1" HorizontalAlignment="Left" Margin="238,135,0,0" VerticalAlignment="Top" Width="150"/>
     </Grid>
 
 </dx:DXWindow>
