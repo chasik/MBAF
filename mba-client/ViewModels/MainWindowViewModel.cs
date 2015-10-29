@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Mvvm;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace mba_client.ViewModels
 {
@@ -11,33 +13,21 @@ namespace mba_client.ViewModels
     {
         public string Name { get; set; }
     }
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-        public IEnumerable<Employee> Employees
+        public DelegateCommand<string> AutoUpdateCommand { get; private set; }
+        private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
+        public MainWindowViewModel()
         {
-            get { return GetProperty(() => Employees); }
-            private set { SetProperty(() => Employees, value); }
+            AutoUpdateCommand = new DelegateCommand<string>(AutoUpdateCommandExecute);
         }
-        protected override void OnInitializeInDesignMode()
+        public void OnViewLoaded()
         {
-            base.OnInitializeInDesignMode();
-            Employees = new List<Employee>() {
-            new Employee() { Name = "Employee 1" }
-        };
+            NavigationService.Navigate("OperatorWorkFlowView", null, this);
         }
-        protected override void OnInitializeInRuntime()
+        void AutoUpdateCommandExecute(string parameter)
         {
-            base.OnInitializeInRuntime();
-            Employees = new List<Employee>() {
-            new Employee() { Name = "Employee 1" }
-            };
-            //Employees = DatabaseController.GetEmployees();
+            NavigationService.Navigate(parameter, null, this);
         }
-        //private void addRegistryMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    // addRegistry = Registry.GetInstance(mainDockManager);
-        //}
-
-        // private Registry addRegistry;
     }
 }
