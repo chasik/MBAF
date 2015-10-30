@@ -20,7 +20,7 @@
 
 	Title="MBA Finance" Height="700" Width="1100"
 	SnapsToDevicePixels="True" UseLayoutRounding="True"
-    DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:MainWindowViewModel}}">
+    DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:MainWindowViewModel}}" Loaded="DXWindow_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>

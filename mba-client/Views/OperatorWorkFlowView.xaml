@@ -10,7 +10,9 @@
     <UserControl.DataContext>
         <ViewModels:OperatorWorkFlowViewModel/>
     </UserControl.DataContext>
-
-    <dxsps:SpreadsheetControl/>
+    <Grid>
+        <dxsps:SpreadsheetControl Margin="0,0,10,247"/>
+        <Button x:Name="buttonTest" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="32,212,0,0" Click="buttonTest_Click"/>
+    </Grid>
 
 </UserControl>

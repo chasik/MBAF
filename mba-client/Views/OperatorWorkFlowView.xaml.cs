@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mba_client.components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace mba_client.Views
         public OperatorWorkFlowView()
         {
             InitializeComponent();
+        }
+
+        private void buttonTest_Click(object sender, RoutedEventArgs e)
+        {
+            PhonePjsip4net p = new PhonePjsip4net();
         }
     }
 }
