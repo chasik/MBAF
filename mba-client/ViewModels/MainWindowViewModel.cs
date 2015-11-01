@@ -9,23 +9,19 @@ using System.Windows.Controls;
 
 namespace mba_client.ViewModels
 {
-    class Employee
-    {
-        public string Name { get; set; }
-    }
     public class MainWindowViewModel : ViewModelBase
     {
-        public DelegateCommand<string> AutoUpdateCommand { get; private set; }
+        public DelegateCommand<string> MenuItemClick { get; private set; }
         private INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
         public MainWindowViewModel()
         {
-            AutoUpdateCommand = new DelegateCommand<string>(AutoUpdateCommandExecute);
+            MenuItemClick = new DelegateCommand<string>(MenuItemClickExecute);
         }
         public void OnViewLoaded()
         {
-            NavigationService.Navigate("OperatorWorkFlowView", null, this);
+            NavigationService.Navigate("RegistryAddView", null, this);
         }
-        void AutoUpdateCommandExecute(string parameter)
+        void MenuItemClickExecute(string parameter)
         {
             NavigationService.Navigate(parameter, null, this);
         }

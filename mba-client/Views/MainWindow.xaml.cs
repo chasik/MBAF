@@ -22,7 +22,7 @@ namespace mba_client
 {
     public partial class MainWindow : DevExpress.Xpf.Core.DXWindow
     {
-        private ISipUserAgent ua;
+        //private ISipUserAgent ua;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,8 +30,8 @@ namespace mba_client
 
         private void DXWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var cfg = Configure.Pjsip4Net().FromConfig();//read configuration from .config file 
-            ua = cfg.Build().Start();//build and start
+            //var cfg = Configure.Pjsip4Net().FromConfig();//read configuration from .config file 
+            //ua = cfg.Build().Start();//build and start
             //ua.CallManager.MakeCall("sip:117@aster.mbaru.ru:5060");
         }
     }

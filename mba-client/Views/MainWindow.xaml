@@ -1,4 +1,4 @@
-﻿<dx:DXWindow x:Class="mba_client.MainWindow"
+﻿<dx:DXWindow
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
@@ -17,6 +17,8 @@
 	xmlns:local="clr-namespace:mba_client"
     xmlns:Views="clr-namespace:mba_client.Views"
     xmlns:ViewModels="clr-namespace:mba_client.ViewModels"
+
+	xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" x:Class="mba_client.MainWindow"
 
 	Title="MBA Finance" Height="700" Width="1100"
 	SnapsToDevicePixels="True" UseLayoutRounding="True"
@@ -39,17 +41,15 @@
             </dxnb:NavBarControl.View>
             <dxnb:NavBarGroup x:Name="navBarGroup1" Header="Процессинг" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=Show_32x32.png}">
                 <dxnb:NavBarItem x:Name="navBarItem2" Content="Поиск" DisplayMode="ImageAndText" 
-                                 Command="{Binding AutoUpdateCommand}"
-                                 CommandParameter="OperatorWorkFlowView"
-                                 ImageSource="{dx:DXImage Image=FindCustomers_16x16.png}"/>
+					Command="{Binding MenuItemClick}" CommandParameter="OperatorWorkFlowView"
+					ImageSource="{dx:DXImage Image=FindCustomers_16x16.png}"/>
                 <dxnb:NavBarItem x:Name="navBarItem1" Content="Выборки" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=MergeAcross_16x16.png}"/>
             </dxnb:NavBarGroup>
             <dxnb:NavBarGroup x:Name="navBarGroup2" Header="Реестры" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=ConvertToRange_32x32.png}">
                 <dxnb:NavBarItem x:Name="addRegistryMenuItem" 
-                                 Content="Загрузка" 
-                                 Command="{Binding AutoUpdateCommand}"
-                                 CommandParameter="RegistryAddView"
-                                 ImageSource="{dx:DXImage Image=AddChartPane_16x16.png}"/>
+					Content="Загрузка" 
+					Command="{Binding MenuItemClick}" CommandParameter="RegistryAddView"
+					ImageSource="{dx:DXImage Image=AddChartPane_16x16.png}"/>
             </dxnb:NavBarGroup>
             <dxnb:NavBarGroup x:Name="navBarGroup4" Header="Отчеты" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=DesignReport_32x32.png}">
                 <dxnb:NavBarItem x:Name="navBarItem41" Content="Отчеты"/>

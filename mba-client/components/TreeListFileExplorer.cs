@@ -11,35 +11,12 @@ namespace mba_client.components
 {
     class TreeListFileExplorer
     {
-        public TreeListControl treeListControl;
-        private TreeListView treeListView;
-        public delegate void SelectExcelFileDelegate(object sender, String fullFileName);
-        public event SelectExcelFileDelegate SelectExcelFile;
-        public TreeListFileExplorer()
+        public TreeListFileExplorer(TreeListView _treeListView)
         {
-            treeListControl = new TreeListControl { FontSize = 10, SelectionMode = MultiSelectMode.Row };
-
-            treeListView = new TreeListView { AllowPerPixelScrolling = true, ShowTotalSummary = true, AutoWidth = true };
-            treeListView.NodeExpanding += treeListView_NodeExpanding;
-            treeListView.RowDoubleClick += treeListView_MouseDoubleClick;
-
-            treeListControl.Columns.Add(new TreeListColumn { FieldName = "Name", ReadOnly = true });
-            treeListControl.View = treeListView;
+            _treeListView.NodeExpanding += treeListView_NodeExpanding;
 
             Helper = new FileSystemHelper();
-            InitDrives();
-        }
-
-        private void treeListView_MouseDoubleClick(object sender, RowDoubleClickEventArgs e)
-        {
-            var s = (FileSystemItem) ((TreeListView) sender).FocusedNode.Content;
-            // TODO: сделать проверку через регулярное выражение
-            if (SelectExcelFile != null && (s.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1
-                                            || s.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1)
-               )
-            {
-                SelectExcelFile(this, s.FullName);
-            }
+            InitDrives(_treeListView);
         }
 
         private void treeListView_NodeExpanding(object sender, DevExpress.Xpf.Grid.TreeList.TreeListNodeAllowEventArgs e)
@@ -54,7 +31,7 @@ namespace mba_client.components
 
         FileSystemDataProvider Helper { get; set; }
 
-        public void InitDrives()
+        public void InitDrives(TreeListView _treeListView)
         {
             try
             {
@@ -63,7 +40,7 @@ namespace mba_client.components
                 foreach (string s in root)
                 {
                     TreeListNode node = new TreeListNode() { Content = new FileSystemItem(s, "Drive", "<Drive>", s) };
-                    treeListView.Nodes.Add(node);
+                    _treeListView.Nodes.Add(node);
                     node.IsExpandButtonVisible = DefaultBoolean.True;
                 }
             }
@@ -162,20 +139,19 @@ namespace mba_client.components
                 return new FileInfo(path).Length;
             }
         }
-
-        public class FileSystemItem
+    }
+    public class FileSystemItem
+    {
+        public FileSystemItem(string name, string type, string size, string fullName)
         {
-            public FileSystemItem(string name, string type, string size, string fullName)
-            {
-                Name = name;
-                ItemType = type;
-                Size = size;
-                FullName = fullName;
-            }
-            public string Name { get; set; }
-            public string ItemType { get; set; }
-            public string Size { get; set; }
-            public string FullName { get; set; }
+            Name = name;
+            ItemType = type;
+            Size = size;
+            FullName = fullName;
         }
+        public string Name { get; set; }
+        public string ItemType { get; set; }
+        public string Size { get; set; }
+        public string FullName { get; set; }
     }
 }
