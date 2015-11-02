@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    
              xmlns:ViewModels="clr-namespace:mba_client.ViewModels"
-             xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet" x:Class="mba_client.Views.RegistryAddView"
+             xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="mba_client.Views.RegistryAddView"
              mc:Ignorable="d"  d:DesignHeight="500" d:DesignWidth="800" 
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:RegistryAddViewModel}}">
 
@@ -20,8 +23,8 @@
                         <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True">
                             <dxmvvm:Interaction.Triggers>
                                 <dxmvvm:EventToCommand EventName="RowDoubleClick" 
-                                               Command="{Binding DblClickExplorerCommand}"
-                                               CommandParameter="{Binding ElementName=FileExplorerView, Path=FocusedNode.Content}"/>
+									                                     Command="{Binding DblClickExplorerCommand}"
+									                                     CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
                             </dxmvvm:Interaction.Triggers>
                         </dxg:TreeListView>
                     </dxg:TreeListControl.View>
@@ -29,13 +32,34 @@
             </dxdo:LayoutPanel>
             <dxdo:LayoutGroup Orientation="Vertical" ItemWidth="1.39*">
                 <dxdo:DocumentGroup ItemHeight="1.11*" CaptionLocation="Bottom" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
-                    <dxdo:DocumentPanel Caption="Document" ItemHeight="1.08*">
+                    <dxdo:DocumentPanel Caption="Информация" ItemHeight="1.08*">
+                        <dxlc:LayoutControl Orientation="Vertical" >
+                            <dxe:ProgressBarEdit x:Name="editor" ContentDisplayMode="Content" Visibility="{Binding ShowProgressBar}" Minimum="0" Maximum="125" Value="65" Height="17">
+                                <sys:String>sdfa{0:p}</sys:String>
+                            </dxe:ProgressBarEdit>
+                            <dxlc:LayoutGroup Orientation="Vertical" Header="{Binding WorkSheetsCount}" View="GroupBox" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <dxlc:LayoutGroup View="Group" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <dxe:ListBoxEdit HorizontalAlignment="Stretch" ItemsSource="{Binding WorkSheetsInBook}">
+                                        <dxe:ListBoxEdit.ItemTemplate>
+                                            <DataTemplate>
+                                                <dxlc:LayoutGroup Header="{Binding WorkSheetName}" View="GroupBox" HorizontalAlignment="Stretch" >
+                                                    <dxe:TextEdit Text="asdfsdf"/>
+                                                </dxlc:LayoutGroup>
+                                            </DataTemplate>
+                                        </dxe:ListBoxEdit.ItemTemplate>
+                                    </dxe:ListBoxEdit>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+
+                    </dxdo:DocumentPanel>
+                    <dxdo:DocumentPanel Caption="Должники" ItemHeight="0.92*">
                         <Grid/>
                     </dxdo:DocumentPanel>
-                    <dxdo:DocumentPanel Caption="Document" ItemHeight="0.92*">
+                    <dxdo:DocumentPanel Caption="Адреса">
                         <Grid/>
                     </dxdo:DocumentPanel>
-                    <dxdo:DocumentPanel Caption="Document">
+                    <dxdo:DocumentPanel Caption="Телефоны">
                         <Grid/>
                     </dxdo:DocumentPanel>
                 </dxdo:DocumentGroup>
@@ -43,8 +67,8 @@
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" DocumentSource="{Binding SourceFilePath}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
-                                               Command="{Binding DocumentLoadedCommand}"
-                                               CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+								Command="{Binding DocumentLoadedCommand}"
+								CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
                         </dxmvvm:Interaction.Triggers>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>

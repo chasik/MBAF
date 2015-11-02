@@ -31,7 +31,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="190"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -58,6 +58,10 @@
                 <dxnb:NavBarItem x:Name="navBarItem31" Content="Пользователи" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=Customer_16x16.png}"/>
                 <dxnb:NavBarItem x:Name="navBarItem32" Content="Группы" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=UserGroup_16x16.png}"/>
                 <dxnb:NavBarItem x:Name="navBarItem33" Content="Мониторинг" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=GaugeStyleThreeForthCircular_16x16.png}"/>
+            </dxnb:NavBarGroup>
+            <dxnb:NavBarGroup x:Name="navBarGroup5" Header="Настройки" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=InitialState_32x32.png}">
+                <dxnb:NavBarItem x:Name="navBarItem51" Content="Общие" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=CustomizeGrid_16x16.png}"/>
+                <dxnb:NavBarItem x:Name="navBarItem52" Content="Интерфейс" DisplayMode="ImageAndText" ImageSource="{dx:DXImage Image=Format_16x16.png}"/>
             </dxnb:NavBarGroup>
         </dxnb:NavBarControl>
 
