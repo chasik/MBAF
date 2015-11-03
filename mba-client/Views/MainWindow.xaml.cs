@@ -17,7 +17,6 @@ using pjsip4net.Interfaces;
 
 using mba_client.components;
 
-
 namespace mba_client
 {
     public partial class MainWindow : DevExpress.Xpf.Core.DXWindow

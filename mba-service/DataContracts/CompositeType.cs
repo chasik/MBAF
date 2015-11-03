@@ -1,27 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
-namespace wcf_authentication
+namespace mba_services.DataContracts
 {
-    [ServiceContract]
-    public interface IAuthNTLM
-    {
-
-        [OperationContract]
-        string GetData(int value);
-
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
-    }
-
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
+    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "mba_service.ContractType".
     [DataContract]
     public class CompositeType
     {

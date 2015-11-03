@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
+using mba_services.DataContracts;
+using mba_services.ServiceConstracts;
 
-namespace wcf_authentication
+namespace mba_services
 {
-    // NOTE: In order to launch WCF Test Client for testing this service, please select AuthNTLM.svc or AuthNTLM.svc.cs at the Solution Explorer and start debugging.
-    public class AuthNTLM : IAuthNTLM
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+    public partial class MbaService : IService1
     {
         public string GetData(int value)
         {

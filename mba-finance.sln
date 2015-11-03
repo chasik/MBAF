@@ -5,11 +5,9 @@ VisualStudioVersion = 14.0.24606.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-client", "mba-client\mba-client.csproj", "{ABEC4127-2042-44C1-B3DF-859E53CBD30C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mba-services", "mba-services", "{17FC5AAB-99A3-4748-84FD-FA0BC0626135}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-model", "mba-model\mba-model.csproj", "{920797AE-3B59-4295-8E48-FCF8318E3093}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcf-authentication", "wcf-authentication\wcf-authentication.csproj", "{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contracts", "contracts", "{45F31981-BF6B-4ABD-BF3B-3117B0EBBBC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-services", "mba-service\mba-services.csproj", "{EBEEE260-B1FB-4034-B999-4746C6CF73DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,15 +19,16 @@ Global
 		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABEC4127-2042-44C1-B3DF-859E53CBD30C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{920797AE-3B59-4295-8E48-FCF8318E3093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{920797AE-3B59-4295-8E48-FCF8318E3093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{920797AE-3B59-4295-8E48-FCF8318E3093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{920797AE-3B59-4295-8E48-FCF8318E3093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6DDED3E1-B4DD-42BC-8E47-7B5EF1347070} = {17FC5AAB-99A3-4748-84FD-FA0BC0626135}
 	EndGlobalSection
 EndGlobal
