@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-client", "mba-client\mb
 		{EBEEE260-B1FB-4034-B999-4746C6CF73DC} = {EBEEE260-B1FB-4034-B999-4746C6CF73DC}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-application", "mba-application\mba-application.csproj", "{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBEEE260-B1FB-4034-B999-4746C6CF73DC} = {EBEEE260-B1FB-4034-B999-4746C6CF73DC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +35,10 @@ Global
 		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
