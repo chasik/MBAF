@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ABEC4127-2042-44C1-B3DF-859E53CBD30C}</ProjectGuid>
+    <ProjectGuid>{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mba_client</RootNamespace>
