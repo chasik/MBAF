@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+﻿using DevExpress.Xpf.Core;
 using System.Windows;
 
 namespace mba_application
@@ -15,18 +11,19 @@ namespace mba_application
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
+            DXSplashScreen.Show<SplashScreenView>();
+            ApplicationThemeHelper.UpdateApplicationThemeName();
         }
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-            DevExpress.Xpf.Core.ApplicationThemeHelper.SaveApplicationThemeName();
+            ApplicationThemeHelper.SaveApplicationThemeName();
         }
 
         private void OnAppStartup_UpdateThemeName(object sender, StartupEventArgs e)
         {
 
-            DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
+            ApplicationThemeHelper.UpdateApplicationThemeName();
         }
     }
 }

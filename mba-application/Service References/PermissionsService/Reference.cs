@@ -25,6 +25,9 @@ namespace mba_application.PermissionsService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string[] PermissionsField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -44,6 +47,19 @@ namespace mba_application.PermissionsService {
                 if ((object.ReferenceEquals(this.PermissionsField, value) != true)) {
                     this.PermissionsField = value;
                     this.RaisePropertyChanged("Permissions");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
                 }
             }
         }

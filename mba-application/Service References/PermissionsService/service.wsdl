@@ -73,7 +73,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:33700/mba_services.PermissionsService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>NEWPROG\ich</Upn>
+          <Upn>Ivan_Chasov@mbaru.ru</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

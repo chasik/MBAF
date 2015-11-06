@@ -19,7 +19,7 @@
 
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
-                <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDock="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False">
+                <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
                     <dxnb:NavBarControl HorizontalAlignment="Left">
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
@@ -39,7 +39,7 @@
                         <Grid/>
                     </dxdo:DocumentPanel>
                 </dxdo:DocumentGroup>
-                <dxdo:LayoutPanel ItemWidth="180" Caption="Инструменты" AllowClose="False" AllowContextMenu="False" AllowDock="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowMaximize="False" AllowMinimize="False" AllowRename="False" AllowRestore="False" AllowSizing="False">
+                <dxdo:LayoutPanel ItemWidth="180" Caption="Инструменты" AllowClose="False" AllowContextMenu="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowSizing="False" AllowMove="False" AllowMaximize="False" AllowMinimize="False" AllowFloat="False" AllowDock="False" AllowRestore="False" AllowHide="False">
                     <dxnb:NavBarControl HorizontalAlignment="Right">
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>

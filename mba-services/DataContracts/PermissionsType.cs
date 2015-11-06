@@ -12,5 +12,8 @@ namespace mba_services.DataContracts
         }
         [DataMember]
         public List<string> Permissions;
+
+        [DataMember]
+        public string UserName;
     }
 }

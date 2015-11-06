@@ -12,12 +12,12 @@ namespace mba_model
 
         static void Main(string[] args)
         {
-            using (ModelContext mcontext = new ModelContext())
-            {
-                Role r = new Role { Name = "administrator", ScreenName = "Администратор системы" };
-                mcontext.Roles.Add(r);
-                mcontext.SaveChanges();
-            }
+            //using (ModelContext mcontext = new ModelContext())
+            //{
+            //    Role r = new Role { Name = "administrator", ScreenName = "Администратор системы" };
+            //    mcontext.Roles.Add(r);
+            //    mcontext.SaveChanges();
+            //}
         }
     }
 }
