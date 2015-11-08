@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace mba_model
 {
@@ -26,5 +22,6 @@ namespace mba_model
         public byte[] Photo { get; set; }
 
         public virtual List<Role> Roles { get; set; }
+        public virtual List<Permission> Permissions { get; set; }
     }
 }

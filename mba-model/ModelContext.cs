@@ -4,11 +4,13 @@ namespace mba_model
 {
     public class ModelContext : DbContext
     {
-        public ModelContext() : base ("name=mbafDB")
-        { }
+        public ModelContext() : base("name=mbafDB")
+        {
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
 
         static void Main(string[] args)
         {
