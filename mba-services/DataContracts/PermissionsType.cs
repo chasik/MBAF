@@ -10,6 +10,7 @@ namespace mba_services.DataContracts
         {
             Permissions = new List<string>();
         }
+
         [DataMember]
         public List<string> Permissions;
 

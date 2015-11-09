@@ -7,6 +7,6 @@ namespace mba_services.ServiceContracts
     public interface IPermissionsService
     {
         [OperationContract]
-        PermissionsType GetPermission();
+        PermissionsType GetPermissions();
     }
 }

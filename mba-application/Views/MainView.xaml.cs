@@ -3,16 +3,16 @@ using DevExpress.Xpf.Core;
 
 namespace mba_application
 {
-    public partial class MainWindow : DXWindow
+    public partial class MainView : DXWindow
     {
-        public MainWindow()
+        public MainView()
         {
             InitializeComponent();
             Loaded += OnLoaded;
-            var p = new PermissionsService.PermissionsServiceClient();
-            var z = p.GetPermission();
+            //var p = new MBAPermissionsService.PermissionsServiceClient();
+            //var z = p.GetPermissions();
 
-            var k = z.UserName;
+            //var k = z.UserName;
 
         }
 

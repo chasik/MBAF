@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mba_application.PermissionsService {
+namespace mba_application.MBAPermissionsService {
     using System.Runtime.Serialization;
     using System;
     
@@ -75,50 +75,50 @@ namespace mba_application.PermissionsService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PermissionsService.IPermissionsService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAPermissionsService.IPermissionsService")]
     public interface IPermissionsService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/GetPermission", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionResponse")]
-        mba_application.PermissionsService.PermissionsType GetPermission();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/GetPermissions", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionsResponse")]
+        mba_application.MBAPermissionsService.PermissionsType GetPermissions();
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/GetPermission", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionResponse")]
-        System.IAsyncResult BeginGetPermission(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/GetPermissions", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionsResponse")]
+        System.IAsyncResult BeginGetPermissions(System.AsyncCallback callback, object asyncState);
         
-        mba_application.PermissionsService.PermissionsType EndGetPermission(System.IAsyncResult result);
+        mba_application.MBAPermissionsService.PermissionsType EndGetPermissions(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPermissionsServiceChannel : mba_application.PermissionsService.IPermissionsService, System.ServiceModel.IClientChannel {
+    public interface IPermissionsServiceChannel : mba_application.MBAPermissionsService.IPermissionsService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetPermissionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetPermissionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetPermissionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetPermissionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public mba_application.PermissionsService.PermissionsType Result {
+        public mba_application.MBAPermissionsService.PermissionsType Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.PermissionsService.PermissionsType)(this.results[0]));
+                return ((mba_application.MBAPermissionsService.PermissionsType)(this.results[0]));
             }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PermissionsServiceClient : System.ServiceModel.ClientBase<mba_application.PermissionsService.IPermissionsService>, mba_application.PermissionsService.IPermissionsService {
+    public partial class PermissionsServiceClient : System.ServiceModel.ClientBase<mba_application.MBAPermissionsService.IPermissionsService>, mba_application.MBAPermissionsService.IPermissionsService {
         
-        private BeginOperationDelegate onBeginGetPermissionDelegate;
+        private BeginOperationDelegate onBeginGetPermissionsDelegate;
         
-        private EndOperationDelegate onEndGetPermissionDelegate;
+        private EndOperationDelegate onEndGetPermissionsDelegate;
         
-        private System.Threading.SendOrPostCallback onGetPermissionCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetPermissionsCompletedDelegate;
         
         public PermissionsServiceClient() {
         }
@@ -139,54 +139,54 @@ namespace mba_application.PermissionsService {
                 base(binding, remoteAddress) {
         }
         
-        public event System.EventHandler<GetPermissionCompletedEventArgs> GetPermissionCompleted;
+        public event System.EventHandler<GetPermissionsCompletedEventArgs> GetPermissionsCompleted;
         
-        public mba_application.PermissionsService.PermissionsType GetPermission() {
-            return base.Channel.GetPermission();
+        public mba_application.MBAPermissionsService.PermissionsType GetPermissions() {
+            return base.Channel.GetPermissions();
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetPermission(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetPermission(callback, asyncState);
+        public System.IAsyncResult BeginGetPermissions(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPermissions(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.PermissionsService.PermissionsType EndGetPermission(System.IAsyncResult result) {
-            return base.Channel.EndGetPermission(result);
+        public mba_application.MBAPermissionsService.PermissionsType EndGetPermissions(System.IAsyncResult result) {
+            return base.Channel.EndGetPermissions(result);
         }
         
-        private System.IAsyncResult OnBeginGetPermission(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return this.BeginGetPermission(callback, asyncState);
+        private System.IAsyncResult OnBeginGetPermissions(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetPermissions(callback, asyncState);
         }
         
-        private object[] OnEndGetPermission(System.IAsyncResult result) {
-            mba_application.PermissionsService.PermissionsType retVal = this.EndGetPermission(result);
+        private object[] OnEndGetPermissions(System.IAsyncResult result) {
+            mba_application.MBAPermissionsService.PermissionsType retVal = this.EndGetPermissions(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetPermissionCompleted(object state) {
-            if ((this.GetPermissionCompleted != null)) {
+        private void OnGetPermissionsCompleted(object state) {
+            if ((this.GetPermissionsCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetPermissionCompleted(this, new GetPermissionCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetPermissionsCompleted(this, new GetPermissionsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetPermissionAsync() {
-            this.GetPermissionAsync(null);
+        public void GetPermissionsAsync() {
+            this.GetPermissionsAsync(null);
         }
         
-        public void GetPermissionAsync(object userState) {
-            if ((this.onBeginGetPermissionDelegate == null)) {
-                this.onBeginGetPermissionDelegate = new BeginOperationDelegate(this.OnBeginGetPermission);
+        public void GetPermissionsAsync(object userState) {
+            if ((this.onBeginGetPermissionsDelegate == null)) {
+                this.onBeginGetPermissionsDelegate = new BeginOperationDelegate(this.OnBeginGetPermissions);
             }
-            if ((this.onEndGetPermissionDelegate == null)) {
-                this.onEndGetPermissionDelegate = new EndOperationDelegate(this.OnEndGetPermission);
+            if ((this.onEndGetPermissionsDelegate == null)) {
+                this.onEndGetPermissionsDelegate = new EndOperationDelegate(this.OnEndGetPermissions);
             }
-            if ((this.onGetPermissionCompletedDelegate == null)) {
-                this.onGetPermissionCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPermissionCompleted);
+            if ((this.onGetPermissionsCompletedDelegate == null)) {
+                this.onGetPermissionsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPermissionsCompleted);
             }
-            base.InvokeAsync(this.onBeginGetPermissionDelegate, null, this.onEndGetPermissionDelegate, this.onGetPermissionCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetPermissionsDelegate, null, this.onEndGetPermissionsDelegate, this.onGetPermissionsCompletedDelegate, userState);
         }
     }
 }

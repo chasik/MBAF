@@ -8,19 +8,18 @@ namespace mba_services
 {
     public class PermissionsService : IPermissionsService
     {
-        public PermissionsType GetPermission()
+        public PermissionsType GetPermissions()
         {
             PermissionsType permission = new PermissionsType();
-            permission.UserName = ServiceSecurityContext.Current.WindowsIdentity.Name;
+            //permission.UserName = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+            permission.UserName = ServiceSecurityContext.Current.PrimaryIdentity.AuthenticationType;
+            //permission.UserName = ServiceSecurityContext.Current.WindowsIdentity.Name;
 
 
             using (ModelContext mcontext = new ModelContext())
             {
-                Role r = new Role { Name = "operator", ScreenName = "Оператор" };
-                mcontext.Roles.Add(r);
-                mcontext.SaveChanges();
+                
             }
-
 
             return permission;
         }

@@ -26,7 +26,7 @@ namespace mba_model.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NEWPROG;Initial Catalog=mbaf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=testpc2.mbaru.ru;Initial Catalog=mbaf;Integrated Security=True")]
         public string mbafDB {
             get {
                 return ((string)(this["mbafDB"]));

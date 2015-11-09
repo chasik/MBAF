@@ -42,6 +42,7 @@
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Charts.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Controls.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Docking.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Grid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -104,13 +105,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\SplashScreenView.xaml.cs">
-      <DependentUpon>SplashScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\PermissionsService\Reference.cs">
+    <Compile Include="Service References\MBAPermissionsService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\SplashScreenView.xaml.cs">
+      <DependentUpon>SplashScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="Views\FirstView.xaml.cs">
@@ -118,8 +120,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -147,29 +149,29 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\PermissionsService\Arrays.xsd">
+    <None Include="Service References\MBAPermissionsService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PermissionsService\mba_application.PermissionsService.PermissionsType.datasource">
+    <None Include="Service References\MBAPermissionsService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAPermissionsService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAPermissionsService\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAPermissionsService\mba_application.MBAPermissionsService.PermissionsType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\PermissionsService\mba_services.DataContracts.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PermissionsService\service.wsdl" />
-    <None Include="Service References\PermissionsService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PermissionsService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\MBAPermissionsService\PermissionsService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\SplashScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -191,16 +193,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\PermissionsService\" />
+    <WCFMetadataStorage Include="Service References\MBAPermissionsService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PermissionsService\configuration91.svcinfo" />
+    <None Include="Service References\MBAPermissionsService\item.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PermissionsService\configuration.svcinfo" />
+    <None Include="Service References\MBAPermissionsService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PermissionsService\Reference.svcmap">
+    <None Include="Service References\MBAPermissionsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAPermissionsService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
