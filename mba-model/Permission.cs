@@ -9,6 +9,7 @@ namespace mba_model
         public string Name { get; set; }
         public string ScreenName { get; set; }
         public string Tooltip { get; set; }
+        public string ImageSource { get; set; }
 
         public virtual List<Role> Roles { get; set; }
         public virtual List<User> Users { get; set; }

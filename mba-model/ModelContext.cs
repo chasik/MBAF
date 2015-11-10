@@ -4,14 +4,6 @@ namespace mba_model
 {
     public class ModelContext : DbContext
     {
-        public ModelContext() : base("name=mbafDB")
-        {
-        }
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
-
         static void Main(string[] args)
         {
             //using (ModelContext mcontext = new ModelContext())
@@ -20,6 +12,33 @@ namespace mba_model
             //    mcontext.Roles.Add(r);
             //    mcontext.SaveChanges();
             //}
+        }
+
+        public ModelContext() : base("name=mbafDB")
+        {
+        }
+
+        public DbSet<User>       Users       { get; set; }
+        public DbSet<Role>       Roles       { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Action>     Actions     { get; set; }
+        public DbSet<UserAction> UserActions { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //configure model with fluent API
+            modelBuilder.Entity<UserAction>()
+                        .HasKey(ua => new { ua.UserId, ua.ActionId, ua.Created});
+
+            modelBuilder.Entity<User>()
+                        .HasMany(u => u.UserActions)
+                        .WithRequired()
+                        .HasForeignKey(ua => ua.UserId);
+
+            modelBuilder.Entity<Action>()
+                        .HasMany(a => a.UserActions)
+                        .WithRequired()
+                        .HasForeignKey(ua => ua.ActionId);
         }
     }
 }

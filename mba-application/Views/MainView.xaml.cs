@@ -9,10 +9,10 @@ namespace mba_application
         {
             InitializeComponent();
             Loaded += OnLoaded;
-            //var p = new MBAPermissionsService.PermissionsServiceClient();
-            //var z = p.GetPermissions();
+            var p = new MBAPermissionsService.PermissionsServiceClient();
+            var z = p.GetPermissions();
 
-            //var k = z.UserName;
+            var k = z.Login;
 
         }
 

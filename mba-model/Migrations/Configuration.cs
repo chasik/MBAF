@@ -1,7 +1,5 @@
 namespace mba_model.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -30,15 +28,40 @@ namespace mba_model.Migrations
 
             context.Permissions.AddOrUpdate(
                 p => p.Id,
-                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора" },
-                new Permission { Id = 2, ParentId = null, Name = "menu-head", ScreenName = "Старший", Tooltip = "Раздел меню для работы старшего" },
-                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей" },
-                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики" },
-                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности" },
-                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска" },
-                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства" },
-                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы" }
+                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", ImageSource = "" },
+                new Permission { Id = 2, ParentId = null, Name = "menu-head", ScreenName = "Старший", Tooltip = "Раздел меню для работы старшего", ImageSource = "" },
+                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", ImageSource = "" },
+                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", ImageSource = "" },
+                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", ImageSource = "" },
+                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", ImageSource = "" },
+                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", ImageSource = "" },
+                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", ImageSource = "" }
                 );
+
+            context.Actions.AddOrUpdate(
+                a => a.Id, 
+                new mba_model.Action { Id = 1, Name = "create", Description = "Создание пользователя" },
+                new mba_model.Action { Id = 2, Name = "try_enter", Description = "Попытка входа пользователя в систему" },
+                new mba_model.Action { Id = 3, Name = "enter", Description = "Вход пользователя в систему" },
+                new mba_model.Action { Id = 4, Name = "exit", Description = "Выход пользователя из системы" },
+                new mba_model.Action { Id = 5, Name = "freezing", Description = "'Заморозка' пользователя" },
+                new mba_model.Action { Id = 6, Name = "defrost", Description = "'Разморозка' пользователя" }
+                );
+
+            context.Users.AddOrUpdate(
+                u => u.Id,
+                new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" }
+                );
+
+            Role adminRole = context.Roles.Find(1);
+
+            adminRole.Users.Add(context.Users.Find(1));
+
+            context.Permissions.ToList().ForEach( p => { 
+                adminRole.Permissions.Add(p);
+            });
+            context.SaveChanges();
+
         }
     }
 }

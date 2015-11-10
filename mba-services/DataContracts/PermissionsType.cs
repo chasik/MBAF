@@ -4,17 +4,26 @@ using System.Runtime.Serialization;
 namespace mba_services.DataContracts
 {
     [DataContract]
-    public class PermissionsType
+    public struct PermissionDC
     {
-        public PermissionsType()
+        [DataMember] public int Id;
+        [DataMember] public int? ParentId;
+        [DataMember] public string Name;
+        [DataMember] public string ScreenName;
+        [DataMember] public string Tooltip;
+        [DataMember] public string Description;
+        [DataMember] public string ImageSource;
+    }
+
+    [DataContract]
+    public class PermissionListDC
+    {
+        public PermissionListDC()
         {
-            Permissions = new List<string>();
+            Permissions = new HashSet<PermissionDC>();
         }
 
-        [DataMember]
-        public List<string> Permissions;
-
-        [DataMember]
-        public string UserName;
+        [DataMember] public IEnumerable<PermissionDC> Permissions;
+        [DataMember] public string Login;
     }
 }

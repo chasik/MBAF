@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mba_model
 {
     public class User
     {
         public int Id { get; set; }
+
+        [Column(TypeName = "datetime2"), Display(Name = "Freezed")]
+        public DateTime? Freezed { get; set; }
+
         [Display(Name = "Login")]
         public string Login { get; set; }
         [Display(Name = "First Name")]
@@ -23,5 +29,6 @@ namespace mba_model
 
         public virtual List<Role> Roles { get; set; }
         public virtual List<Permission> Permissions { get; set; }
+        public virtual ICollection<UserAction> UserActions { get; private set; }
     }
 }
