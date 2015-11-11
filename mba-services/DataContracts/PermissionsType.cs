@@ -8,6 +8,7 @@ namespace mba_services.DataContracts
     {
         [DataMember] public int Id;
         [DataMember] public int? ParentId;
+        [DataMember] public string GroupName;
         [DataMember] public string Name;
         [DataMember] public string ScreenName;
         [DataMember] public string Tooltip;
@@ -16,14 +17,14 @@ namespace mba_services.DataContracts
     }
 
     [DataContract]
-    public class PermissionListDC
+    public class PermissionsDC
     {
-        public PermissionListDC()
+        public PermissionsDC()
         {
-            Permissions = new HashSet<PermissionDC>();
+            PermissionsHashSet = new HashSet<PermissionDC>();
         }
 
-        [DataMember] public IEnumerable<PermissionDC> Permissions;
+        [DataMember] public IEnumerable<PermissionDC> PermissionsHashSet;
         [DataMember] public string Login;
     }
 }

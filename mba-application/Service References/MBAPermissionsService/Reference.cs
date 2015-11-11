@@ -15,9 +15,9 @@ namespace mba_application.MBAPermissionsService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PermissionListDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PermissionsDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
     [System.SerializableAttribute()]
-    public partial class PermissionListDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class PermissionsDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -26,7 +26,7 @@ namespace mba_application.MBAPermissionsService {
         private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.PermissionDC[] PermissionsField;
+        private mba_application.MBAPermissionsService.PermissionDC[] PermissionsHashSetField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -52,14 +52,14 @@ namespace mba_application.MBAPermissionsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.PermissionDC[] Permissions {
+        public mba_application.MBAPermissionsService.PermissionDC[] PermissionsHashSet {
             get {
-                return this.PermissionsField;
+                return this.PermissionsHashSetField;
             }
             set {
-                if ((object.ReferenceEquals(this.PermissionsField, value) != true)) {
-                    this.PermissionsField = value;
-                    this.RaisePropertyChanged("Permissions");
+                if ((object.ReferenceEquals(this.PermissionsHashSetField, value) != true)) {
+                    this.PermissionsHashSetField = value;
+                    this.RaisePropertyChanged("PermissionsHashSet");
                 }
             }
         }
@@ -85,6 +85,9 @@ namespace mba_application.MBAPermissionsService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -122,6 +125,19 @@ namespace mba_application.MBAPermissionsService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupName {
+            get {
+                return this.GroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupNameField, value) != true)) {
+                    this.GroupNameField = value;
+                    this.RaisePropertyChanged("GroupName");
                 }
             }
         }
@@ -219,12 +235,12 @@ namespace mba_application.MBAPermissionsService {
     public interface IPermissionsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/GetPermissions", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionsResponse")]
-        mba_application.MBAPermissionsService.PermissionListDC GetPermissions();
+        mba_application.MBAPermissionsService.PermissionsDC GetPermissions();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/GetPermissions", ReplyAction="http://tempuri.org/IPermissionsService/GetPermissionsResponse")]
         System.IAsyncResult BeginGetPermissions(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAPermissionsService.PermissionListDC EndGetPermissions(System.IAsyncResult result);
+        mba_application.MBAPermissionsService.PermissionsDC EndGetPermissions(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -242,10 +258,10 @@ namespace mba_application.MBAPermissionsService {
             this.results = results;
         }
         
-        public mba_application.MBAPermissionsService.PermissionListDC Result {
+        public mba_application.MBAPermissionsService.PermissionsDC Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAPermissionsService.PermissionListDC)(this.results[0]));
+                return ((mba_application.MBAPermissionsService.PermissionsDC)(this.results[0]));
             }
         }
     }
@@ -281,7 +297,7 @@ namespace mba_application.MBAPermissionsService {
         
         public event System.EventHandler<GetPermissionsCompletedEventArgs> GetPermissionsCompleted;
         
-        public mba_application.MBAPermissionsService.PermissionListDC GetPermissions() {
+        public mba_application.MBAPermissionsService.PermissionsDC GetPermissions() {
             return base.Channel.GetPermissions();
         }
         
@@ -291,7 +307,7 @@ namespace mba_application.MBAPermissionsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAPermissionsService.PermissionListDC EndGetPermissions(System.IAsyncResult result) {
+        public mba_application.MBAPermissionsService.PermissionsDC EndGetPermissions(System.IAsyncResult result) {
             return base.Channel.EndGetPermissions(result);
         }
         
@@ -300,7 +316,7 @@ namespace mba_application.MBAPermissionsService {
         }
         
         private object[] OnEndGetPermissions(System.IAsyncResult result) {
-            mba_application.MBAPermissionsService.PermissionListDC retVal = this.EndGetPermissions(result);
+            mba_application.MBAPermissionsService.PermissionsDC retVal = this.EndGetPermissions(result);
             return new object[] {
                     retVal};
         }

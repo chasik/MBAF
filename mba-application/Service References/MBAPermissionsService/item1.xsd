@@ -9,7 +9,7 @@
   <xs:element name="GetPermissionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="GetPermissionsResult" nillable="true" type="q1:PermissionListDC" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="GetPermissionsResult" nillable="true" type="q1:PermissionsDC" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

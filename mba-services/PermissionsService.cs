@@ -17,11 +17,11 @@ namespace mba_services
             AutoMapper.Mapper.CreateMap<mba_model.Permission, mba_services.DataContracts.PermissionDC>();
         }
 
-        public PermissionListDC GetPermissions()
+        public PermissionsDC GetPermissions()
         {
             listPermissions = new HashSet<Permission>();
 
-            PermissionListDC permissions = new PermissionListDC();
+            PermissionsDC permissions = new PermissionsDC();
             permissions.Login = ServiceSecurityContext.Current.PrimaryIdentity.Name;
 
             using (ModelContext mcontext = new ModelContext())
@@ -35,7 +35,7 @@ namespace mba_services
                 // и подтянули остальные разрешения, задаваемые отдельно для пользователя
                 listPermissions.UnionWith(currentUser.Permissions.ToList());
                 // мапим на datacontracttype для передачи клиенту
-                permissions.Permissions = AutoMapper.Mapper.Map<IEnumerable<Permission>, IEnumerable<PermissionDC>>(listPermissions);
+                permissions.PermissionsHashSet = AutoMapper.Mapper.Map<IEnumerable<Permission>, IEnumerable<PermissionDC>>(listPermissions);
             }
             return permissions;
         }

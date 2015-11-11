@@ -20,32 +20,35 @@
     
     DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}"
     >
-
+    
+    <dxmvvm:Interaction.Triggers>
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}" />
+    </dxmvvm:Interaction.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="34" />
         </Grid.RowDefinitions>
-
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
                 <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
-                    <dxnb:NavBarControl HorizontalAlignment="Left">
+                    <dxnb:NavBarControl Name="leftNavBarControl"  GroupDescription="ScreenName" ItemsSource="{Binding UserPermissions}">
+                        <dxnb:NavBarControl.Resources>
+                            <Style TargetType="dxnb:NavBarGroup">
+                                <Setter Property="Header" Value="{Binding}"/>
+                            </Style>
+                            <Style TargetType="dxnb:NavBarItem">
+                                <Setter Property="Content" Value="{Binding Name}"/>
+                            </Style>
+                        </dxnb:NavBarControl.Resources>
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
                         </dxnb:NavBarControl.View>
-                        <dxnb:NavBarGroup Header="Group 1">
-                            <dxnb:NavBarItem Content="Item 1"/>
-                            <dxnb:NavBarItem Content="Item 2"/>
-                        </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Group 2" DisplayMode="ImageAndText">
-                            <dxnb:NavBarItem Content="Item 1"/>
-                            <dxnb:NavBarItem Content="Item 2"/>
-                        </dxnb:NavBarGroup>
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>
                 <dxdo:LayoutPanel AllowClose="False" AllowContextMenu="False" AllowDock="False" AllowDrag="False" AllowFloat="False" AllowHide="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowRename="False" AllowRestore="False">
-                    <dxwui:NavigationFrame AnimationType="Fade" NavigationCacheMode="Required" Grid.Column="1" Grid.RowSpan="2">
+                    <dxwui:NavigationFrame AnimationType="SlideHorizontal" NavigationCacheMode="Required" Grid.Column="1" Grid.RowSpan="2">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnViewLoadedCommand}" />
                         </dxmvvm:Interaction.Triggers>
@@ -59,8 +62,8 @@
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
                         </dxnb:NavBarControl.View>
-                        <dxnb:NavBarGroup Header="Group 1">
-                            <dxnb:NavBarItem Content="Item 1"/>
+                        <dxnb:NavBarGroup Header="Group 1" ImageSource="{dx:DXImage Image=BOContact_32x32.png}">
+                            <dxnb:NavBarItem Content="Item 1" ImageSource="{dx:DXImage Image=ImportImage_32x32.png}"/>
                             <dxnb:NavBarItem Content="Item 2"/>
                         </dxnb:NavBarGroup>
                         <dxnb:NavBarGroup Header="Group 2" DisplayMode="ImageAndText">
@@ -74,6 +77,5 @@
         <dxb:StatusBarControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
     </Grid>
-
 
 </dx:DXWindow>

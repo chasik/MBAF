@@ -35,7 +35,13 @@ namespace mba_model.Migrations
                 new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", ImageSource = "" },
                 new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", ImageSource = "" },
                 new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", ImageSource = "" },
-                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", ImageSource = "" }
+                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", ImageSource = "" },
+
+                new Permission { Id = 9, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", ImageSource = "" },
+                new Permission { Id = 10, ParentId = 1, Name = "menu-processing-table", ScreenName = "Табели", Tooltip = "Дополнительные табели для операторов", ImageSource = "" },
+                new Permission { Id = 11, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", ImageSource = "" },
+                new Permission { Id = 12, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "" }
+
                 );
 
             context.Actions.AddOrUpdate(
