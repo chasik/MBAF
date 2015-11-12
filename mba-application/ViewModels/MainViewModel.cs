@@ -20,7 +20,7 @@ namespace mba_application.ViewModels
         }
         public void OnViewLoaded()
         {
-            NavigationService.Navigate("FirstView", null, this);
+            NavigationService.Navigate("RegistryAddView", null, this);
         }
         public void OnInitMainView()
         {
