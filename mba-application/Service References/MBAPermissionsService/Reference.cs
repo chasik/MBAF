@@ -99,7 +99,7 @@ namespace mba_application.MBAPermissionsService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ParentIdField;
+        private int PermissionGroupIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ScreenNameField;
@@ -182,14 +182,14 @@ namespace mba_application.MBAPermissionsService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ParentId {
+        public int PermissionGroupId {
             get {
-                return this.ParentIdField;
+                return this.PermissionGroupIdField;
             }
             set {
-                if ((this.ParentIdField.Equals(value) != true)) {
-                    this.ParentIdField = value;
-                    this.RaisePropertyChanged("ParentId");
+                if ((this.PermissionGroupIdField.Equals(value) != true)) {
+                    this.PermissionGroupIdField = value;
+                    this.RaisePropertyChanged("PermissionGroupId");
                 }
             }
         }

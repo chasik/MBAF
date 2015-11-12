@@ -2,6 +2,7 @@
 using mba_application.MBAComponents;
 using mba_application.MBAPermissionsService;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace mba_application.ViewModels
 {
@@ -34,6 +35,10 @@ namespace mba_application.ViewModels
             {
 
             }
+        }
+        public void MenuItemClick()
+        {
+            MessageBox.Show("!");
         }
     }
 }

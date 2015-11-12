@@ -26,7 +26,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ImageSource" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PermissionGroupId" type="xs:int" />
       <xs:element minOccurs="0" name="ScreenName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Tooltip" nillable="true" type="xs:string" />
     </xs:sequence>

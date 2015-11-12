@@ -34,13 +34,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201511101428017_1.cs" />
-    <Compile Include="Migrations\201511101428017_1.Designer.cs">
-      <DependentUpon>201511101428017_1.cs</DependentUpon>
+    <Compile Include="Migrations\201511120910285_1.cs" />
+    <Compile Include="Migrations\201511120910285_1.Designer.cs">
+      <DependentUpon>201511120910285_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="ModelContext.cs" />
+    <Compile Include="PermissionGroup.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -81,8 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511101428017_1.resx">
-      <DependentUpon>201511101428017_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511120910285_1.resx">
+      <DependentUpon>201511120910285_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using pjsip4net.Configuration;
+//using pjsip4net.Core.Configuration;
 
-using pjsip4net.Configuration;
-using pjsip4net.Core.Configuration;
-
-namespace mba_client.components
+namespace mba_application.MBAComponents
 {
     class PhonePjsip4net
     {
         public PhonePjsip4net()
         { 
-            var cfg = Configure.Pjsip4Net().FromConfig();//read configuration from .config file 
-            var ua = cfg.Build().Start();//build and start
+            //var cfg = Configure.Pjsip4Net().FromConfig();//read configuration from .config file 
+            //var ua = cfg.Build().Start();//build and start
         }
         //private static ISoftPhone softphone;   // softphone object
         //private static IPhoneLine phoneLine;   // phoneline object

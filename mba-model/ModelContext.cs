@@ -6,23 +6,18 @@ namespace mba_model
     {
         static void Main(string[] args)
         {
-            //using (ModelContext mcontext = new ModelContext())
-            //{
-            //    Role r = new Role { Name = "administrator", ScreenName = "Администратор системы" };
-            //    mcontext.Roles.Add(r);
-            //    mcontext.SaveChanges();
-            //}
         }
 
         public ModelContext() : base("name=mbafDB")
         {
         }
 
-        public DbSet<User>       Users       { get; set; }
-        public DbSet<Role>       Roles       { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
-        public DbSet<Action>     Actions     { get; set; }
-        public DbSet<UserAction> UserActions { get; set; }
+        public DbSet<User>            Users       { get; set; }
+        public DbSet<Role>            Roles       { get; set; }
+        public DbSet<Permission>      Permissions { get; set; }
+        public DbSet<PermissionGroup> PermissionGroup { get; set; }
+        public DbSet<Action>          Actions     { get; set; }
+        public DbSet<UserAction>      UserActions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

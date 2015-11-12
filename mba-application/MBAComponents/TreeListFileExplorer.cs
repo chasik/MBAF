@@ -1,13 +1,8 @@
 ﻿using DevExpress.Utils;
 using DevExpress.Xpf.Grid;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace mba_client.components
+namespace mba_application.MBAComponents
 {
     class TreeListFileExplorer
     {

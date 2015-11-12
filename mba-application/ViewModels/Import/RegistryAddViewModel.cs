@@ -1,12 +1,12 @@
 ﻿using System;
 using DevExpress.Mvvm;
 using DevExpress.Xpf.Spreadsheet;
-using mba_client.components;
 using DevExpress.Spreadsheet;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using mba_application.MBAComponents;
 
-namespace mba_client.ViewModels
+namespace mba_application.ViewModels.Import
 {
     public class RegistryAddViewModel : ViewModelBase
     {

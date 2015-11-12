@@ -33,13 +33,15 @@
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
                 <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
-                    <dxnb:NavBarControl Name="leftNavBarControl"  GroupDescription="ScreenName" ItemsSource="{Binding UserPermissions}">
+                    <dxnb:NavBarControl Name="leftNavBarControl"  GroupDescription="PermissionGroupId" ItemsSource="{Binding UserPermissions}">
                         <dxnb:NavBarControl.Resources>
                             <Style TargetType="dxnb:NavBarGroup">
                                 <Setter Property="Header" Value="{Binding}"/>
                             </Style>
                             <Style TargetType="dxnb:NavBarItem">
-                                <Setter Property="Content" Value="{Binding Name}"/>
+                                <Setter Property="Content" Value="{Binding ScreenName}"/>
+                                <Setter Property="Command" Value="{Binding MenuItemClickCommand}"/>
+                                <Setter Property="CommandParameter" Value="RegistryAddView"/>
                             </Style>
                         </dxnb:NavBarControl.Resources>
                         <dxnb:NavBarControl.View>

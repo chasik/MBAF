@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using mba_client.components;
+using mba_application.MBAComponents;
 
-namespace mba_client.Views
+namespace mba_application.Views.Import
 {
     public partial class RegistryAddView : UserControl
     {

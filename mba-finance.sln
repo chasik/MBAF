@@ -7,19 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-model", "mba-model\mba-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-services", "mba-services\mba-services.csproj", "{EBEEE260-B1FB-4034-B999-4746C6CF73DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-client", "mba-client\mba-client.csproj", "{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EBEEE260-B1FB-4034-B999-4746C6CF73DC} = {EBEEE260-B1FB-4034-B999-4746C6CF73DC}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mba-application", "mba-application\mba-application.csproj", "{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EBEEE260-B1FB-4034-B999-4746C6CF73DC} = {EBEEE260-B1FB-4034-B999-4746C6CF73DC}
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mba-services-hosts", "mba-services-hosts", "{8A4DF8DE-B62D-43D9-AE6A-2CC068EE8910}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionsService", "mba-services-hosts\PermissionsService\PermissionsService.csproj", "{4ECA167A-A097-43B8-956F-5223F1848301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,23 +26,12 @@ Global
 		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBEEE260-B1FB-4034-B999-4746C6CF73DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BEDA75E-5655-4377-80B8-C99C97C6E6EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B6D5CD6-9375-4A4F-9D8C-E3770481DAB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ECA167A-A097-43B8-956F-5223F1848301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ECA167A-A097-43B8-956F-5223F1848301}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ECA167A-A097-43B8-956F-5223F1848301}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ECA167A-A097-43B8-956F-5223F1848301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4ECA167A-A097-43B8-956F-5223F1848301} = {8A4DF8DE-B62D-43D9-AE6A-2CC068EE8910}
 	EndGlobalSection
 EndGlobal
