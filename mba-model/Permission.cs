@@ -14,8 +14,8 @@ namespace mba_model
         public string ImageSource { get; set; }
         public string CommandParam { get; set; }
 
-        public virtual List<Role> Roles { get; set; }
-        public virtual List<User> Users { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
         public virtual PermissionGroup PermissionGroup { get; set; }
     }

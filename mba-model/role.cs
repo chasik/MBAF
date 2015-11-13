@@ -8,7 +8,7 @@ namespace mba_model
         public string Name { get; set; }
         public string ScreenName{ get; set; }
 
-        public virtual List<User> Users { get; set; }
-        public virtual List<Permission> Permissions { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

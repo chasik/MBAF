@@ -27,8 +27,8 @@ namespace mba_model
         [Display(Name = "User Photo")]
         public byte[] Photo { get; set; }
 
-        public virtual List<Role> Roles { get; set; }
-        public virtual List<Permission> Permissions { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
         public virtual ICollection<UserAction> UserActions { get; private set; }
     }
 }

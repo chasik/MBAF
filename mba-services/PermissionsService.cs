@@ -31,7 +31,7 @@ namespace mba_services
                 currentUser = currentUser ?? AddUserToBD(mcontext, permissions.Login);
 
                 // собрали все разрешения по ролям
-                currentUser.Roles.ForEach(r => listPermissions.UnionWith(r.Permissions.ToList()));
+                currentUser.Roles.ToList().ForEach(r => listPermissions.UnionWith(r.Permissions.ToList()));
                 // и подтянули остальные разрешения, задаваемые отдельно для пользователя
                 listPermissions.UnionWith(currentUser.Permissions.ToList());
                 // мапим на datacontracttype для передачи клиенту

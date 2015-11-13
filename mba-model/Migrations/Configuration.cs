@@ -43,7 +43,8 @@ namespace mba_model.Migrations
                 new Permission { Id = 1, PermissionGroupId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", ImageSource = "", CommandParam="" },
                 new Permission { Id = 2, PermissionGroupId = 1, Name = "menu-processing-table", ScreenName = "Табели", Tooltip = "Дополнительные табели для операторов", ImageSource = "", CommandParam = "" },
                 new Permission { Id = 3, PermissionGroupId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 4, PermissionGroupId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "", CommandParam = "" }
+                new Permission { Id = 4, PermissionGroupId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "", CommandParam = "" },
+                new Permission { Id = 5, PermissionGroupId = 3, Name = "menu-import-registry", ScreenName = "Реестры", Tooltip = "Импорт реестров", ImageSource = "", CommandParam = "" }
                 );
 
             context.Actions.AddOrUpdate(

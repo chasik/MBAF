@@ -14,6 +14,6 @@ namespace mba_model
         public string Tooltip { get; set; }
         public string ImageSource { get; set; }
 
-        public virtual List<Permission> Permissions { get; set; }
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

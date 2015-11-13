@@ -113,6 +113,7 @@
     </Compile>
     <Compile Include="MBAComponents\Employee.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
+    <Compile Include="MBAComponents\SIPUserAgent.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
     <Compile Include="Service References\MBAPermissionsService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -224,7 +225,17 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="VAXSIPUSERAGENTCOMLib">
+      <Guid>{B63B0AE6-3427-4552-974E-A4CBA0C60883}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
