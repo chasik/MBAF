@@ -84,6 +84,9 @@ namespace mba_application.MBAPermissionsService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommandParamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -113,6 +116,19 @@ namespace mba_application.MBAPermissionsService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommandParam {
+            get {
+                return this.CommandParamField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommandParamField, value) != true)) {
+                    this.CommandParamField = value;
+                    this.RaisePropertyChanged("CommandParam");
+                }
             }
         }
         

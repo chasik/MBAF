@@ -34,13 +34,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201511120910285_1.cs" />
-    <Compile Include="Migrations\201511120910285_1.Designer.cs">
-      <DependentUpon>201511120910285_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511121310441_2.cs" />
-    <Compile Include="Migrations\201511121310441_2.Designer.cs">
-      <DependentUpon>201511121310441_2.cs</DependentUpon>
+    <Compile Include="Migrations\201511140945303_1.cs" />
+    <Compile Include="Migrations\201511140945303_1.Designer.cs">
+      <DependentUpon>201511140945303_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permission.cs" />
@@ -86,11 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511120910285_1.resx">
-      <DependentUpon>201511120910285_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511121310441_2.resx">
-      <DependentUpon>201511121310441_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511140945303_1.resx">
+      <DependentUpon>201511140945303_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

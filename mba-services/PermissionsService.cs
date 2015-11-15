@@ -30,12 +30,19 @@ namespace mba_services
 
                 currentUser = currentUser ?? AddUserToBD(mcontext, permissions.Login);
 
+                var q = from p in mcontext.Permissions
+                        join pg in mcontext.PermissionGroup on p.PermissionGroupId equals pg.Id
+                        where p.Roles.Any(r => r.Users.Select(u => u.Id).Contains(currentUser.Id)) 
+                                || p.Users.Any(u => u.Id == currentUser.Id)
+                        select new PermissionDC { Id = p.Id, GroupName = pg.ScreenName, Name = p.Name, ScreenName = p.ScreenName, CommandParam = p.CommandParam};
+
+                permissions.PermissionsHashSet = q.ToList();
                 // собрали все разрешения по ролям
-                currentUser.Roles.ToList().ForEach(r => listPermissions.UnionWith(r.Permissions.ToList()));
+                //currentUser.Roles.ToList().ForEach(r => listPermissions.UnionWith(r.Permissions.ToList()));
                 // и подтянули остальные разрешения, задаваемые отдельно для пользователя
-                listPermissions.UnionWith(currentUser.Permissions.ToList());
+                //listPermissions.UnionWith(currentUser.Permissions.ToList());
                 // мапим на datacontracttype для передачи клиенту
-                permissions.PermissionsHashSet = AutoMapper.Mapper.Map<IEnumerable<Permission>, IEnumerable<PermissionDC>>(listPermissions);
+                //permissions.PermissionsHashSet = AutoMapper.Mapper.Map<IEnumerable<Permission>, IEnumerable<PermissionDC>>(listPermissions);
             }
             return permissions;
         }

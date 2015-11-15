@@ -57,6 +57,7 @@ namespace mba_model.Migrations
                         ScreenName = c.String(),
                         Tooltip = c.String(),
                         ImageSource = c.String(),
+                        CommandParam = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.PermissionGroups", t => t.PermissionGroupId, cascadeDelete: true)

@@ -40,11 +40,11 @@ namespace mba_model.Migrations
 
             context.Permissions.AddOrUpdate(
                 p => p.Id,
-                new Permission { Id = 1, PermissionGroupId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", ImageSource = "", CommandParam="" },
-                new Permission { Id = 2, PermissionGroupId = 1, Name = "menu-processing-table", ScreenName = "Табели", Tooltip = "Дополнительные табели для операторов", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 3, PermissionGroupId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 4, PermissionGroupId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 5, PermissionGroupId = 3, Name = "menu-import-registry", ScreenName = "Реестры", Tooltip = "Импорт реестров", ImageSource = "", CommandParam = "" }
+                new Permission { Id = 1, PermissionGroupId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", ImageSource = "", CommandParam= "MenuItemClickCommand" },
+                new Permission { Id = 2, PermissionGroupId = 1, Name = "menu-processing-table", ScreenName = "Табели", Tooltip = "Дополнительные табели для операторов", ImageSource = "", CommandParam = "MenuItemClickCommand" },
+                new Permission { Id = 3, PermissionGroupId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", ImageSource = "", CommandParam = "MenuItemClickCommand" },
+                new Permission { Id = 4, PermissionGroupId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "", CommandParam = "MenuItemClickCommand" },
+                new Permission { Id = 5, PermissionGroupId = 3, Name = "menu-import-registry", ScreenName = "Реестры", Tooltip = "Импорт реестров", ImageSource = "", CommandParam = "MenuItemClickCommand" }
                 );
 
             context.Actions.AddOrUpdate(
@@ -59,12 +59,16 @@ namespace mba_model.Migrations
 
             context.Users.AddOrUpdate(
                 u => u.Id,
-                new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" }
+                new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" },
+                new User { Id = 2, Login = "NEWPROG\\ich", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" }
                 );
+
+            context.SaveChanges();
 
             Role adminRole = context.Roles.Find(1);
 
             adminRole.Users.Add(context.Users.Find(1));
+            adminRole.Users.Add(context.Users.Find(2));
 
             context.Permissions.ToList().ForEach(p => {
                 adminRole.Permissions.Add(p);

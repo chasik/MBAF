@@ -21,6 +21,7 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
+      <xs:element minOccurs="0" name="CommandParam" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace mba_services.DataContracts
 {
     [DataContract]
-    public struct PermissionDC
+    public class PermissionDC
     {
         [DataMember] public int Id;
         [DataMember] public int PermissionGroupId;
