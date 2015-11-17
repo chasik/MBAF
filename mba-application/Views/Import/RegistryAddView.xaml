@@ -29,8 +29,8 @@
                         <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True">
                             <dxmvvm:Interaction.Triggers>
                                 <dxmvvm:EventToCommand EventName="RowDoubleClick" 
-									                                     Command="{Binding DblClickExplorerCommand}"
-									                                     CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
+									                   Command="{Binding DblClickExplorerCommand}"
+									                   CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
                             </dxmvvm:Interaction.Triggers>
                         </dxg:TreeListView>
                     </dxg:TreeListControl.View>

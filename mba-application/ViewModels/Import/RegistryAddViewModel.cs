@@ -75,7 +75,8 @@ namespace mba_application.ViewModels.Import
                                 if (ws.Cells[i, j].Value.Type == CellValueType.Text)
                                 {
                                     var captionValue = ws.Cells[i, j].Value.ToString().ToLower()
-                                                        .Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ").Replace("\n", " ").Replace("  ", " ");
+                                                        .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
+                                                        .Replace("\n", " ").Replace("  ", " ");
                                     if (!sheetInfo.ColumnCaptionList.Contains(captionValue))
                                         sheetInfo.ColumnCaptionList.Add(captionValue);
                                 }

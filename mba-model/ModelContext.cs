@@ -12,12 +12,16 @@ namespace mba_model
         {
         }
 
-        public DbSet<User>            Users       { get; set; }
-        public DbSet<Role>            Roles       { get; set; }
-        public DbSet<Permission>      Permissions { get; set; }
+        //Permission
+        public DbSet<User>            Users           { get; set; }
+        public DbSet<Role>            Roles           { get; set; }
+        public DbSet<Permission>      Permissions     { get; set; }
         public DbSet<PermissionGroup> PermissionGroup { get; set; }
-        public DbSet<Action>          Actions     { get; set; }
-        public DbSet<UserAction>      UserActions { get; set; }
+        public DbSet<Action>          Actions         { get; set; }
+        public DbSet<UserAction>      UserActions     { get; set; }
+
+        //Import
+        public DbSet<ColumnHeader>    ColumnHeaders   { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
