@@ -44,17 +44,48 @@
                                 <sys:String>sdfa{0:p}</sys:String>
                             </dxe:ProgressBarEdit>
                             <dxlc:LayoutGroup Orientation="Vertical" Header="{Binding WorkSheetsCount}" View="GroupBox" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                                <dxlc:LayoutGroup View="Group" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                    <dxe:ListBoxEdit HorizontalAlignment="Stretch" ItemsSource="{Binding WorkSheetsInBook}">
-                                        <dxe:ListBoxEdit.ItemTemplate>
-                                            <DataTemplate>
-                                                <dxlc:LayoutGroup Header="{Binding WorkSheetName}" View="GroupBox" HorizontalAlignment="Stretch" >
-                                                    <dxe:TextEdit Text="asdfsdf"/>
-                                                </dxlc:LayoutGroup>
-                                            </DataTemplate>
-                                        </dxe:ListBoxEdit.ItemTemplate>
-                                    </dxe:ListBoxEdit>
-                                </dxlc:LayoutGroup>
+                                <dxe:ListBoxEdit HorizontalAlignment="Stretch" ItemsSource="{Binding WorkSheetsInBook}" HorizontalContentAlignment="Stretch">
+                                    <dxe:ListBoxEdit.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="5" BorderThickness="1" BorderBrush="Orange" CornerRadius="3">
+                                                <dxlc:LayoutGroup Header="{Binding WorkSheetName}" View="GroupBox">
+                                                    <Grid Margin="3">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <TextBlock Grid.Row="0" HorizontalAlignment="Stretch" Text="{Binding ColumnsCount}" FontWeight="Bold"/>
+                                                        <dxe:ComboBoxEdit Grid.Row="1" HorizontalAlignment="Stretch" ItemsSource="{Binding ColumnCaptionList}" HorizontalContentAlignment="Stretch">
+                                                            <dxe:ComboBoxEdit.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock FontWeight="Bold" Text="{Binding}"/>
+                                                                </DataTemplate>
+                                                            </dxe:ComboBoxEdit.ItemTemplate>                                                            
+                                                        </dxe:ComboBoxEdit>
+                                                        <dxe:ListBoxEdit Grid.Row ="2" HorizontalAlignment="Stretch" ItemsSource="{Binding SummRowsInfo}" HorizontalContentAlignment="Stretch">
+                                                            <dxe:ListBoxEdit.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="auto"/>
+                                                                            <ColumnDefinition Width="auto"/>
+                                                                            <ColumnDefinition/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <TextBlock FontWeight="Bold" Grid.Column="0" Text="{Binding Value}"/>
+                                                                        <TextBlock Grid.Column="1" Text=" - "/>
+                                                                        <TextBlock Grid.Column="2" HorizontalAlignment="Stretch" Text="{Binding Key}"/>
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </dxe:ListBoxEdit.ItemTemplate>
+                                                        </dxe:ListBoxEdit>
+                                                    </Grid>
+                                                </dxlc:LayoutGroup>    
+                                            </Border>
+                                        </DataTemplate>
+                                    </dxe:ListBoxEdit.ItemTemplate>
+                                </dxe:ListBoxEdit>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
                     </dxdo:DocumentPanel>

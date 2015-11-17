@@ -68,7 +68,19 @@ namespace mba_application.ViewModels.Import
                         for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
                             sheetInfo.CurrentRowInfo.AddCell(ws.Cells[i, j]);
 
-                        sheetInfo.GetStatisticForRow();
+                        if (sheetInfo.GetStatisticForRow())
+                        {
+                            for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
+                            {
+                                if (ws.Cells[i, j].Value.Type == CellValueType.Text)
+                                {
+                                    var captionValue = ws.Cells[i, j].Value.ToString().ToLower()
+                                                        .Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ").Replace("\n", " ").Replace("  ", " ");
+                                    if (!sheetInfo.ColumnCaptionList.Contains(captionValue))
+                                        sheetInfo.ColumnCaptionList.Add(captionValue);
+                                }
+                            }
+                        }
                     }
                     WorkSheetsInBook.Add(sheetInfo);
                 }
@@ -79,7 +91,7 @@ namespace mba_application.ViewModels.Import
 
     public class RowStruct
     {
-        private int columnsCount;
+        internal int columnsCount;
         private int count;
         internal int Count { get { return count; } set { Percent = value * 100 / columnsCount; count = value; } }
         internal float Percent;
@@ -93,30 +105,51 @@ namespace mba_application.ViewModels.Import
     public class SheetInfo : BindableBase
     {
         private List<RowInfo> rangeRows;
-        private int columnsCount;
-        public string WorkSheetName
-        {
-            get { return GetProperty(() => WorkSheetName); }
-            set { SetProperty(() => WorkSheetName, value); }
-        }
+        public int ColumnsCount { get; set; }
+        public string WorkSheetName { get; set; }
+
         public RowInfo CurrentRowInfo { get; private set; }
+
+        public Dictionary<string, int> SummRowsInfo { get; set; }
+
+        public List<string> ColumnCaptionList { get; set; }
 
         public SheetInfo(int _columnsCount)
         {
             rangeRows = new List<RowInfo>();
-            columnsCount = _columnsCount;
+            ColumnsCount = _columnsCount;
+
+            SummRowsInfo = new Dictionary<string, int>();
+            ColumnCaptionList = new List<string>();
         }
         public void AddNewRow()
         {
-            CurrentRowInfo = new RowInfo(columnsCount);
+            CurrentRowInfo = new RowInfo(ColumnsCount);
             rangeRows.Add(CurrentRowInfo);
         }
-        internal void GetStatisticForRow()
+        internal bool GetStatisticForRow()
         {
+            bool isShapka = false;
+            CurrentRowInfo.RowInfoStr = string.Empty;
+            var countTypes = CurrentRowInfo.cellTypesDictionary.Count;
             foreach (var cellType in CurrentRowInfo.cellTypesDictionary)
             {
+                //CurrentRowInfo.RowInfoStr += "Тип: " + cellType.Key.ToString() + " - " + cellType.Value.Percent.ToString() + "% (" + cellType.Value.Count + "/" + cellType.Value.columnsCount + ") || ";
+                //CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " " + cellType.Value.Percent.ToString() + "% || ";
+                CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " || ";
 
+                // есть ли признаки, указывающие на то, что данная строка "шапка"
+                if ((cellType.Key == CellValueType.Text && cellType.Value.Percent > 95 && countTypes < 3 && ColumnsCount > 2)
+                    || (cellType.Key == CellValueType.Text && cellType.Value.Percent > 10 && countTypes == 1))
+                    isShapka = true;
             }
+
+            if (SummRowsInfo.ContainsKey(CurrentRowInfo.RowInfoStr))
+                SummRowsInfo[CurrentRowInfo.RowInfoStr] += 1;
+            else
+                SummRowsInfo.Add(CurrentRowInfo.RowInfoStr, 1);
+
+            return isShapka;
         }
     }
 
@@ -124,6 +157,7 @@ namespace mba_application.ViewModels.Import
     {
         public Dictionary<CellValueType, RowStruct> cellTypesDictionary;
         private int columnsCount;
+        public string RowInfoStr;
         public RowInfo(int _columnsCount)
         {
             columnsCount = _columnsCount;
@@ -132,6 +166,9 @@ namespace mba_application.ViewModels.Import
         internal void AddCell(Cell cell)
         {
             CellValueType cellType = cell.Value.Type;
+            if (cellType == CellValueType.None)
+                return;
+
             if (cellTypesDictionary.ContainsKey(cellType))
                 cellTypesDictionary[cellType].Count += 1;
             else
