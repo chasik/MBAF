@@ -1,5 +1,6 @@
 namespace mba_model.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -66,6 +67,38 @@ namespace mba_model.Migrations
                 u => u.Id,
                 new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" },
                 new User { Id = 2, Login = "NEWPROG\\ich", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" }
+                );
+
+            context.Clients.AddOrUpdate(
+                c => c.Id,
+                new Client { Id = 1, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", ScreenName = "ПАО \"Уральский банк реконструкции и развития\" г. Екатеринбург", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 2, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", ScreenName = "ОАО \"МТС-Банк\"", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 3, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", ScreenName = "ОАО \"МТС-Банк\"", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 4, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", ScreenName = "ООО КБ \"Ренессанс Кредит\"", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 5, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", ScreenName = "ООО КБ \"Ренессанс Кредит\"", Created = DateTime.Now, CreatedBy = 1 }
+                );
+
+            context.GoodColumns.AddOrUpdate(
+                gc => gc.Id,
+                new GoodColumn { Id = 1, Name = "Фамилия", ScreenName = "Фамилия должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 2, Name = "Имя", ScreenName = "Имя должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 3, Name = "Отчество", ScreenName = "Отчество должника", Created = DateTime.Now, CreatedBy = 1 },
+
+                new GoodColumn { Id = 4, Name = "Серия паспорта", ScreenName = "Серия паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 5, Name = "Номер паспорта", ScreenName = "Номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 6, Name = "Кем выдан", ScreenName = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 7, Name = "Дата выдачи паспорта", ScreenName = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+
+                new GoodColumn { Id = 8, Name = "Адрес регистрации\\прописка", ScreenName = "Адрес регистрации\\прописка должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 9, Name = "Фактическое место проживания", ScreenName = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 }
+                );
+
+            context.ImportTypes.AddOrUpdate(
+                it => it.Id,
+                new ImportType { Id = 1, Name = "Реестр", ScreenName = "Импорт реестров\\дел" },
+                new ImportType { Id = 2, Name = "Платежи", ScreenName = "Платежи по реестрам" },
+                new ImportType { Id = 3, Name = "Корректировки", ScreenName = "Корректировки по реестрам" },
+                new ImportType { Id = 4, Name = "Контакты", ScreenName = "Дополнительные контакты" }
                 );
 
             context.SaveChanges();

@@ -1,15 +1,13 @@
-﻿using System;
-using mba_application.MBAPermissionsService;
-
+﻿using mba_application.MBAPermissionsService;
 
 namespace mba_application.MBAComponents
 {
     public class Employee
     {
         public PermissionsDC Permissions;
+
         public Employee()
         {
-
         }
 
         public bool TryEnter()

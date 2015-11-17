@@ -40,9 +40,6 @@
                 <dxdo:DocumentGroup ItemHeight="1.11*" CaptionLocation="Bottom" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
                     <dxdo:DocumentPanel Caption="Информация" ItemHeight="1.08*">
                         <dxlc:LayoutControl Orientation="Vertical" >
-                            <dxe:ProgressBarEdit x:Name="editor" ContentDisplayMode="Content" Visibility="{Binding ShowProgressBar}" Minimum="0" Maximum="125" Value="65" Height="17">
-                                <sys:String>sdfa{0:p}</sys:String>
-                            </dxe:ProgressBarEdit>
                             <dxlc:LayoutGroup Orientation="Vertical" Header="{Binding WorkSheetsCount}" View="GroupBox" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                 <dxe:ListBoxEdit HorizontalAlignment="Stretch" ItemsSource="{Binding WorkSheetsInBook}" HorizontalContentAlignment="Stretch">
                                     <dxe:ListBoxEdit.ItemTemplate>
@@ -57,13 +54,19 @@
                                                         </Grid.RowDefinitions>
 
                                                         <TextBlock Grid.Row="0" HorizontalAlignment="Stretch" Text="{Binding ColumnsCount}" FontWeight="Bold"/>
-                                                        <dxe:ComboBoxEdit Grid.Row="1" HorizontalAlignment="Stretch" ItemsSource="{Binding ColumnCaptionList}" HorizontalContentAlignment="Stretch">
-                                                            <dxe:ComboBoxEdit.ItemTemplate>
+                                                        <dxe:ListBoxEdit Grid.Row="1" MaxHeight="100" HorizontalAlignment="Stretch" ItemsSource="{Binding ColumnCaptionList}" HorizontalContentAlignment="Stretch">
+                                                            <dxe:ListBoxEdit.ItemTemplate>
                                                                 <DataTemplate>
-                                                                    <TextBlock FontWeight="Bold" Text="{Binding}"/>
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition />
+                                                                            <RowDefinition />
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Grid.Row="0" FontWeight="Bold" Text="{Binding}"/>
+                                                                    </Grid>
                                                                 </DataTemplate>
-                                                            </dxe:ComboBoxEdit.ItemTemplate>                                                            
-                                                        </dxe:ComboBoxEdit>
+                                                            </dxe:ListBoxEdit.ItemTemplate>
+                                                        </dxe:ListBoxEdit>
                                                         <dxe:ListBoxEdit Grid.Row ="2" HorizontalAlignment="Stretch" ItemsSource="{Binding SummRowsInfo}" HorizontalContentAlignment="Stretch">
                                                             <dxe:ListBoxEdit.ItemTemplate>
                                                                 <DataTemplate>

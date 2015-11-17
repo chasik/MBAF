@@ -22,6 +22,12 @@ namespace mba_model
 
         //Import
         public DbSet<ColumnHeader>    ColumnHeaders   { get; set; }
+        public DbSet<GoodColumn>      GoodColumns     { get; set; }
+        public DbSet<ImportType>      ImportTypes     { get; set; }
+
+        //Clients
+        public DbSet<Client>          Clients         { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

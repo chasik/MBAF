@@ -8,16 +8,12 @@ namespace mba_model.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.ColumnHeaders",
+                "dbo.ImportTypes",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Byte(nullable: false),
                         Name = c.String(),
                         ScreenName = c.String(),
-                        Created = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        CreatedBy = c.Int(nullable: false),
-                        Deleted = c.DateTime(precision: 7, storeType: "datetime2"),
-                        DeletedBy = c.Int(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -25,7 +21,7 @@ namespace mba_model.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.ColumnHeaders");
+            DropTable("dbo.ImportTypes");
         }
     }
 }
