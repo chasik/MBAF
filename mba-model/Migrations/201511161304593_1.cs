@@ -1,0 +1,18 @@
+namespace mba_model.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class _1 : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Permissions", "Command");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Permissions", "Command", c => c.String());
+        }
+    }
+}

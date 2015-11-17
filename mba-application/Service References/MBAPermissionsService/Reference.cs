@@ -78,7 +78,7 @@ namespace mba_application.MBAPermissionsService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PermissionDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
     [System.SerializableAttribute()]
-    public partial struct PermissionDC : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class PermissionDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -110,6 +110,7 @@ namespace mba_application.MBAPermissionsService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TooltipField;
         
+        [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
                 return this.extensionDataField;
@@ -238,7 +239,7 @@ namespace mba_application.MBAPermissionsService {
         
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
-        void RaisePropertyChanged(string propertyName) {
+        protected void RaisePropertyChanged(string propertyName) {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));

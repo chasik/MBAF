@@ -19,7 +19,7 @@
     
     DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}"
     >
-    
+   
     <dxmvvm:Interaction.Triggers>
         <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}" />
     </dxmvvm:Interaction.Triggers>
@@ -27,7 +27,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="34" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
@@ -39,8 +39,8 @@
                             </Style>
                             <Style TargetType="dxnb:NavBarItem">
                                 <Setter Property="Content" Value="{Binding Path=ScreenName}"/>
-                                <Setter Property="Command" Value="{Binding Path=CommandParam}"/>
-                                <!--Setter Property="CommandParameter" Value="RegistryAddView"/-->
+                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dx:DXWindow}}, Path=DataContext.MenuItemClickCommand}"/>
+                                <Setter Property="CommandParameter" Value="{Binding Path=CommandParam}"/>
                             </Style>
                         </dxnb:NavBarControl.Resources>
                         <dxnb:NavBarControl.View>
@@ -49,10 +49,7 @@
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>
                 <dxdo:LayoutPanel AllowClose="False" AllowContextMenu="False" AllowDock="False" AllowDrag="False" AllowFloat="False" AllowHide="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowRename="False" AllowRestore="False">
-                    <dxwui:NavigationFrame AnimationType="SlideHorizontal" NavigationCacheMode="Required" Grid.Column="1" Grid.RowSpan="2">
-                        <dxmvvm:Interaction.Triggers>
-                            <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnViewLoadedCommand}" />
-                        </dxmvvm:Interaction.Triggers>
+                    <dxwui:NavigationFrame Source="AdminUsersView" NavigationCacheMode="Enabled" NavigationCacheMaxSize="100" AnimationType="SlideHorizontal" Grid.Column="1" Grid.RowSpan="2">
                         <dxmvvm:Interaction.Behaviors>
                             <dxwuin:FrameNavigationService />
                         </dxmvvm:Interaction.Behaviors>
@@ -63,12 +60,11 @@
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
                         </dxnb:NavBarControl.View>
-                        <dxnb:NavBarGroup Header="Group 1" ImageSource="{dx:DXImage Image=BOContact_32x32.png}">
-                            <dxnb:NavBarItem Content="Item 1" ImageSource="{dx:DXImage Image=ImportImage_32x32.png}"/>
-                            <dxnb:NavBarItem Content="Item 2"/>
+                        <dxnb:NavBarGroup Header="Звонилка" ImageSource="{dx:DXImage Image=BOContact_32x32.png}" DisplaySource="Content">
+                            <dxnb:NavBarItem Content="Item 1"/>
                         </dxnb:NavBarGroup>
                         <dxnb:NavBarGroup Header="Group 2" DisplayMode="ImageAndText">
-                            <dxnb:NavBarItem Content="Item 1"/>
+                            <dxnb:NavBarItem Content="Item 1" Command="{Binding MenuItemClickCommand}"/>
                             <dxnb:NavBarItem Content="Item 2"/>
                         </dxnb:NavBarGroup>
                     </dxnb:NavBarControl>

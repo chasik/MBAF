@@ -37,12 +37,6 @@ namespace mba_services
                         select new PermissionDC { Id = p.Id, GroupName = pg.ScreenName, Name = p.Name, ScreenName = p.ScreenName, CommandParam = p.CommandParam};
 
                 permissions.PermissionsHashSet = q.ToList();
-                // собрали все разрешения по ролям
-                //currentUser.Roles.ToList().ForEach(r => listPermissions.UnionWith(r.Permissions.ToList()));
-                // и подтянули остальные разрешения, задаваемые отдельно для пользователя
-                //listPermissions.UnionWith(currentUser.Permissions.ToList());
-                // мапим на datacontracttype для передачи клиенту
-                //permissions.PermissionsHashSet = AutoMapper.Mapper.Map<IEnumerable<Permission>, IEnumerable<PermissionDC>>(listPermissions);
             }
             return permissions;
         }

@@ -3,14 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:AdminViewModels="clr-namespace:mba_application.ViewModels.Admin"
-             xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet" x:Class="mba_application.Views.Admin.AdminUsersView"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+             xmlns:AdminViewModels="clr-namespace:mba_application.ViewModels.Admin"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="mba_application.Views.Admin.AdminUsersView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.DataContext>
         <AdminViewModels:AdminUsersViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <dxsps:SpreadsheetControl HorizontalAlignment="Left" Height="300" Margin="307,118,0,0" VerticalAlignment="Top" Width="600"/>
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
+            <dxg:GridControl.View>
+                <dxg:TableView ShowTotalSummary="True" AllowEditing="False"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
     </Grid>
 </UserControl>
