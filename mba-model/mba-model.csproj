@@ -38,9 +38,9 @@
     <Compile Include="Import\GoodColumn.cs" />
     <Compile Include="Import\ColumnHeader.cs" />
     <Compile Include="Import\ImportType.cs" />
-    <Compile Include="Migrations\201511171510294_1.cs" />
-    <Compile Include="Migrations\201511171510294_1.Designer.cs">
-      <DependentUpon>201511171510294_1.cs</DependentUpon>
+    <Compile Include="Migrations\201511181131560_1.cs" />
+    <Compile Include="Migrations\201511181131560_1.Designer.cs">
+      <DependentUpon>201511181131560_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permission.cs" />
@@ -86,8 +86,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511171510294_1.resx">
-      <DependentUpon>201511171510294_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511181131560_1.resx">
+      <DependentUpon>201511181131560_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

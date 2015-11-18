@@ -1,9 +1,17 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
-namespace mba_service.DataContracts
+namespace mba_services.DataContracts
 {
     [DataContract]
-    class ImportType
+    public class GoodColumnDC
     {
+        [DataMember]
+        public int GoodColumnId;
+        [DataMember]
+        public string GoodColumnName;
     }
+
+    [CollectionDataContract]
+    public class GoodColumnsListDC : ObservableCollection<GoodColumnDC> { }
 }

@@ -113,6 +113,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBAComponents\Employee.cs" />
+    <Compile Include="MBAComponents\MBAConverters\MultiBindConverter.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\SIPUserAgent.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
@@ -181,8 +182,20 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumnDC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumnsListDC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MBAImportService\mba_services.DataContracts.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MBAImportService\service.wsdl" />
     <None Include="Service References\MBAImportService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAImportService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MBAPermissionsService\item1.xsd">

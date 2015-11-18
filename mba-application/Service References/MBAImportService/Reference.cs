@@ -9,19 +9,97 @@
 //------------------------------------------------------------------------------
 
 namespace mba_application.MBAImportService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoodColumnDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
+    [System.SerializableAttribute()]
+    public partial class GoodColumnDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GoodColumnIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GoodColumnNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GoodColumnId {
+            get {
+                return this.GoodColumnIdField;
+            }
+            set {
+                if ((this.GoodColumnIdField.Equals(value) != true)) {
+                    this.GoodColumnIdField = value;
+                    this.RaisePropertyChanged("GoodColumnId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GoodColumnName {
+            get {
+                return this.GoodColumnNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GoodColumnNameField, value) != true)) {
+                    this.GoodColumnNameField = value;
+                    this.RaisePropertyChanged("GoodColumnName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="GoodColumnsListDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts", ItemName="GoodColumnDC")]
+    [System.SerializableAttribute()]
+    public class GoodColumnsListDC : System.Collections.Generic.List<mba_application.MBAImportService.GoodColumnDC> {
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAImportService.IImportService")]
     public interface IImportService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/DoWork", ReplyAction="http://tempuri.org/IImportService/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GetGoodColumn", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnResponse")]
+        mba_application.MBAImportService.GoodColumnDC GetGoodColumn(string columnHeader);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/DoWork", ReplyAction="http://tempuri.org/IImportService/DoWorkResponse")]
-        System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GetGoodColumn", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnResponse")]
+        System.IAsyncResult BeginGetGoodColumn(string columnHeader, System.AsyncCallback callback, object asyncState);
         
-        void EndDoWork(System.IAsyncResult result);
+        mba_application.MBAImportService.GoodColumnDC EndGetGoodColumn(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GetGoodColumnList", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnListResponse")]
+        mba_application.MBAImportService.GoodColumnsListDC GetGoodColumnList();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GetGoodColumnList", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnListResponse")]
+        System.IAsyncResult BeginGetGoodColumnList(System.AsyncCallback callback, object asyncState);
+        
+        mba_application.MBAImportService.GoodColumnsListDC EndGetGoodColumnList(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -30,13 +108,57 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetGoodColumnCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetGoodColumnCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public mba_application.MBAImportService.GoodColumnDC Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((mba_application.MBAImportService.GoodColumnDC)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetGoodColumnListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetGoodColumnListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public mba_application.MBAImportService.GoodColumnsListDC Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((mba_application.MBAImportService.GoodColumnsListDC)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ImportServiceClient : System.ServiceModel.ClientBase<mba_application.MBAImportService.IImportService>, mba_application.MBAImportService.IImportService {
         
-        private BeginOperationDelegate onBeginDoWorkDelegate;
+        private BeginOperationDelegate onBeginGetGoodColumnDelegate;
         
-        private EndOperationDelegate onEndDoWorkDelegate;
+        private EndOperationDelegate onEndGetGoodColumnDelegate;
         
-        private System.Threading.SendOrPostCallback onDoWorkCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetGoodColumnCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetGoodColumnListDelegate;
+        
+        private EndOperationDelegate onEndGetGoodColumnListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetGoodColumnListCompletedDelegate;
         
         public ImportServiceClient() {
         }
@@ -57,53 +179,106 @@ namespace mba_application.MBAImportService {
                 base(binding, remoteAddress) {
         }
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> DoWorkCompleted;
+        public event System.EventHandler<GetGoodColumnCompletedEventArgs> GetGoodColumnCompleted;
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public event System.EventHandler<GetGoodColumnListCompletedEventArgs> GetGoodColumnListCompleted;
+        
+        public mba_application.MBAImportService.GoodColumnDC GetGoodColumn(string columnHeader) {
+            return base.Channel.GetGoodColumn(columnHeader);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginDoWork(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginDoWork(callback, asyncState);
+        public System.IAsyncResult BeginGetGoodColumn(string columnHeader, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetGoodColumn(columnHeader, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public void EndDoWork(System.IAsyncResult result) {
-            base.Channel.EndDoWork(result);
+        public mba_application.MBAImportService.GoodColumnDC EndGetGoodColumn(System.IAsyncResult result) {
+            return base.Channel.EndGetGoodColumn(result);
         }
         
-        private System.IAsyncResult OnBeginDoWork(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return this.BeginDoWork(callback, asyncState);
+        private System.IAsyncResult OnBeginGetGoodColumn(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string columnHeader = ((string)(inValues[0]));
+            return this.BeginGetGoodColumn(columnHeader, callback, asyncState);
         }
         
-        private object[] OnEndDoWork(System.IAsyncResult result) {
-            this.EndDoWork(result);
-            return null;
+        private object[] OnEndGetGoodColumn(System.IAsyncResult result) {
+            mba_application.MBAImportService.GoodColumnDC retVal = this.EndGetGoodColumn(result);
+            return new object[] {
+                    retVal};
         }
         
-        private void OnDoWorkCompleted(object state) {
-            if ((this.DoWorkCompleted != null)) {
+        private void OnGetGoodColumnCompleted(object state) {
+            if ((this.GetGoodColumnCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.DoWorkCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.GetGoodColumnCompleted(this, new GetGoodColumnCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void DoWorkAsync() {
-            this.DoWorkAsync(null);
+        public void GetGoodColumnAsync(string columnHeader) {
+            this.GetGoodColumnAsync(columnHeader, null);
         }
         
-        public void DoWorkAsync(object userState) {
-            if ((this.onBeginDoWorkDelegate == null)) {
-                this.onBeginDoWorkDelegate = new BeginOperationDelegate(this.OnBeginDoWork);
+        public void GetGoodColumnAsync(string columnHeader, object userState) {
+            if ((this.onBeginGetGoodColumnDelegate == null)) {
+                this.onBeginGetGoodColumnDelegate = new BeginOperationDelegate(this.OnBeginGetGoodColumn);
             }
-            if ((this.onEndDoWorkDelegate == null)) {
-                this.onEndDoWorkDelegate = new EndOperationDelegate(this.OnEndDoWork);
+            if ((this.onEndGetGoodColumnDelegate == null)) {
+                this.onEndGetGoodColumnDelegate = new EndOperationDelegate(this.OnEndGetGoodColumn);
             }
-            if ((this.onDoWorkCompletedDelegate == null)) {
-                this.onDoWorkCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDoWorkCompleted);
+            if ((this.onGetGoodColumnCompletedDelegate == null)) {
+                this.onGetGoodColumnCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetGoodColumnCompleted);
             }
-            base.InvokeAsync(this.onBeginDoWorkDelegate, null, this.onEndDoWorkDelegate, this.onDoWorkCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetGoodColumnDelegate, new object[] {
+                        columnHeader}, this.onEndGetGoodColumnDelegate, this.onGetGoodColumnCompletedDelegate, userState);
+        }
+        
+        public mba_application.MBAImportService.GoodColumnsListDC GetGoodColumnList() {
+            return base.Channel.GetGoodColumnList();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetGoodColumnList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetGoodColumnList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public mba_application.MBAImportService.GoodColumnsListDC EndGetGoodColumnList(System.IAsyncResult result) {
+            return base.Channel.EndGetGoodColumnList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetGoodColumnList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetGoodColumnList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetGoodColumnList(System.IAsyncResult result) {
+            mba_application.MBAImportService.GoodColumnsListDC retVal = this.EndGetGoodColumnList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetGoodColumnListCompleted(object state) {
+            if ((this.GetGoodColumnListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetGoodColumnListCompleted(this, new GetGoodColumnListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetGoodColumnListAsync() {
+            this.GetGoodColumnListAsync(null);
+        }
+        
+        public void GetGoodColumnListAsync(object userState) {
+            if ((this.onBeginGetGoodColumnListDelegate == null)) {
+                this.onBeginGetGoodColumnListDelegate = new BeginOperationDelegate(this.OnBeginGetGoodColumnList);
+            }
+            if ((this.onEndGetGoodColumnListDelegate == null)) {
+                this.onEndGetGoodColumnListDelegate = new EndOperationDelegate(this.OnEndGetGoodColumnList);
+            }
+            if ((this.onGetGoodColumnListCompletedDelegate == null)) {
+                this.onGetGoodColumnListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetGoodColumnListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetGoodColumnListDelegate, null, this.onEndGetGoodColumnListDelegate, this.onGetGoodColumnListCompletedDelegate, userState);
         }
     }
 }

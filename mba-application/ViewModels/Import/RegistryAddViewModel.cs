@@ -5,18 +5,24 @@ using DevExpress.Spreadsheet;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using mba_application.MBAComponents;
+using mba_application.MBAImportService;
 
 namespace mba_application.ViewModels.Import
 {
     public class RegistryAddViewModel : ViewModelBase
     {
         private INavigationService NavigationService { get { return GetService<INavigationService>(); } }
+        public MBAImportService.ImportServiceClient ImportService;
         public RegistryAddViewModel()
         {
             ShowProgressBar = "Collapsed";
             WorkSheetsCount = "Результаты парсинга документа ...";
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
+
+            ImportService = new MBAImportService.ImportServiceClient();
+            GoodColumns = ImportService.GetGoodColumnList();
         }
+
         public string SourceFilePath
         {
             get { return GetProperty(() => SourceFilePath); }
@@ -37,6 +43,12 @@ namespace mba_application.ViewModels.Import
             get { return GetProperty(() => WorkSheetsInBook); }
             set { SetProperty(() => WorkSheetsInBook, value); }
         }
+        public GoodColumnsListDC GoodColumns
+        {
+            get { return GetProperty(() => GoodColumns); }
+            set { SetProperty(() => GoodColumns, value); }
+        }
+
         public void DblClickExplorer(FileSystemItem focusedNode)
         {
             // TODO: сделать проверку через регулярное выражение
@@ -61,7 +73,7 @@ namespace mba_application.ViewModels.Import
                     Range usedRange = ws.GetUsedRange();
 
                     SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
-                    sheetInfo.WorkSheetName = ws.Name;
+                    sheetInfo.WorkSheetName = ws.Name + " (" + sheetInfo.ColumnsCount.ToString() + " столбцов)";
                     for (int i = usedRange.TopRowIndex; i < usedRange.BottomRowIndex; i++)
                     {
                         sheetInfo.AddNewRow();
@@ -74,11 +86,17 @@ namespace mba_application.ViewModels.Import
                             {
                                 if (ws.Cells[i, j].Value.Type == CellValueType.Text)
                                 {
-                                    var captionValue = ws.Cells[i, j].Value.ToString().ToLower()
-                                                        .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
-                                                        .Replace("\n", " ").Replace("  ", " ");
-                                    if (!sheetInfo.ColumnCaptionList.Contains(captionValue))
+                                    var captionValue = new ColumnCaption
+                                    {
+                                        Caption = ws.Cells[i, j].Value.ToString().ToLower()
+                                            .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
+                                            .Replace("\n", " ").Replace("  ", " ")
+                                    };
+                                    if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
+                                    {
+                                        captionValue.GoodColumnRef = ImportService.GetGoodColumn(captionValue.Caption); 
                                         sheetInfo.ColumnCaptionList.Add(captionValue);
+                                    }
                                 }
                             }
                         }
@@ -88,7 +106,13 @@ namespace mba_application.ViewModels.Import
             }
             //ShowProgressBar = "Collapsed";
         }
+
+        public void ChangeGoodColumn(object param)
+        {
+            var f = 1;
+        }
     }
+
 
     public class RowStruct
     {
@@ -113,7 +137,7 @@ namespace mba_application.ViewModels.Import
 
         public Dictionary<string, int> SummRowsInfo { get; set; }
 
-        public List<string> ColumnCaptionList { get; set; }
+        public List<ColumnCaption> ColumnCaptionList { get; set; }
 
         public SheetInfo(int _columnsCount)
         {
@@ -121,7 +145,7 @@ namespace mba_application.ViewModels.Import
             ColumnsCount = _columnsCount;
 
             SummRowsInfo = new Dictionary<string, int>();
-            ColumnCaptionList = new List<string>();
+            ColumnCaptionList = new List<ColumnCaption>();
         }
         public void AddNewRow()
         {
@@ -152,6 +176,15 @@ namespace mba_application.ViewModels.Import
 
             return isShapka;
         }
+    }
+
+    public class ColumnCaption
+    {
+        public ColumnCaption()
+        {
+        }
+        public string Caption { get; set; }
+        public GoodColumnDC GoodColumnRef { get; set; }
     }
 
     public class RowInfo

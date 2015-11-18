@@ -9,6 +9,8 @@ namespace mba_model
         public string Name { get; set; }
         public string ScreenName { get; set; }
 
+        public int GoodColumnId { get; set; }
+
         [Column(TypeName = "datetime2")]
         public DateTime Created { get; set; }
         public int CreatedBy { get; set; }
@@ -16,5 +18,7 @@ namespace mba_model
         [Column(TypeName = "datetime2")]
         public DateTime? Deleted { get; set; }
         public int? DeletedBy { get; set; }
+
+        public virtual GoodColumn GoodColumn { get; set; }
     }
 }

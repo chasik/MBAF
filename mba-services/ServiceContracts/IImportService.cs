@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using mba_services.DataContracts;
 
 namespace mba_services.ServiceContracts
 {
@@ -6,6 +7,9 @@ namespace mba_services.ServiceContracts
     public interface IImportService
     {
         [OperationContract]
-        void DoWork();
+        GoodColumnDC GetGoodColumn(string columnHeader);
+
+        [OperationContract]
+        GoodColumnsListDC GetGoodColumnList();
     }
 }

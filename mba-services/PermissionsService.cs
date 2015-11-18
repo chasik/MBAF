@@ -14,7 +14,6 @@ namespace mba_services
 
         public PermissionsService()
         {
-            AutoMapper.Mapper.CreateMap<mba_model.Permission, mba_services.DataContracts.PermissionDC>();
         }
 
         public PermissionsDC GetPermissions()
