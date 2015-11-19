@@ -113,6 +113,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBAComponents\Employee.cs" />
+    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToVisibilityConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToBackgroundConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\MultiBindConverter.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\SIPUserAgent.cs" />

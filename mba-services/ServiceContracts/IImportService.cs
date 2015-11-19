@@ -11,5 +11,8 @@ namespace mba_services.ServiceContracts
 
         [OperationContract]
         GoodColumnsListDC GetGoodColumnList();
+
+        [OperationContract]
+        bool AddGoodColumnRelation(GoodColumnAddRelationParamDC param);
     }
 }

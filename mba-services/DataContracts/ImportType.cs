@@ -12,6 +12,15 @@ namespace mba_services.DataContracts
         public string GoodColumnName;
     }
 
+    [DataContract]
+    public class GoodColumnAddRelationParamDC
+    {
+        [DataMember]
+        public GoodColumnDC GoodColumn;
+        [DataMember]
+        public string ColumnHeader;
+    }
+
     [CollectionDataContract]
     public class GoodColumnsListDC : ObservableCollection<GoodColumnDC> { }
 }

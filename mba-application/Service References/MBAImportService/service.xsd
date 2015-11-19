@@ -27,4 +27,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddGoodColumnRelation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="param" nillable="true" type="q3:GoodColumnAddRelationParamDC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddGoodColumnRelationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddGoodColumnRelationResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

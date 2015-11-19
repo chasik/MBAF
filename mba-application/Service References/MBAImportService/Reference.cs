@@ -81,6 +81,67 @@ namespace mba_application.MBAImportService {
     public class GoodColumnsListDC : System.Collections.Generic.List<mba_application.MBAImportService.GoodColumnDC> {
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoodColumnAddRelationParamDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
+    [System.SerializableAttribute()]
+    public partial class GoodColumnAddRelationParamDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColumnHeaderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private mba_application.MBAImportService.GoodColumnDC GoodColumnField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColumnHeader {
+            get {
+                return this.ColumnHeaderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColumnHeaderField, value) != true)) {
+                    this.ColumnHeaderField = value;
+                    this.RaisePropertyChanged("ColumnHeader");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public mba_application.MBAImportService.GoodColumnDC GoodColumn {
+            get {
+                return this.GoodColumnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GoodColumnField, value) != true)) {
+                    this.GoodColumnField = value;
+                    this.RaisePropertyChanged("GoodColumn");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAImportService.IImportService")]
     public interface IImportService {
@@ -100,6 +161,14 @@ namespace mba_application.MBAImportService {
         System.IAsyncResult BeginGetGoodColumnList(System.AsyncCallback callback, object asyncState);
         
         mba_application.MBAImportService.GoodColumnsListDC EndGetGoodColumnList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/AddGoodColumnRelation", ReplyAction="http://tempuri.org/IImportService/AddGoodColumnRelationResponse")]
+        bool AddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/AddGoodColumnRelation", ReplyAction="http://tempuri.org/IImportService/AddGoodColumnRelationResponse")]
+        System.IAsyncResult BeginAddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, System.AsyncCallback callback, object asyncState);
+        
+        bool EndAddGoodColumnRelation(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -146,6 +215,25 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddGoodColumnRelationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddGoodColumnRelationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ImportServiceClient : System.ServiceModel.ClientBase<mba_application.MBAImportService.IImportService>, mba_application.MBAImportService.IImportService {
         
         private BeginOperationDelegate onBeginGetGoodColumnDelegate;
@@ -159,6 +247,12 @@ namespace mba_application.MBAImportService {
         private EndOperationDelegate onEndGetGoodColumnListDelegate;
         
         private System.Threading.SendOrPostCallback onGetGoodColumnListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddGoodColumnRelationDelegate;
+        
+        private EndOperationDelegate onEndAddGoodColumnRelationDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddGoodColumnRelationCompletedDelegate;
         
         public ImportServiceClient() {
         }
@@ -182,6 +276,8 @@ namespace mba_application.MBAImportService {
         public event System.EventHandler<GetGoodColumnCompletedEventArgs> GetGoodColumnCompleted;
         
         public event System.EventHandler<GetGoodColumnListCompletedEventArgs> GetGoodColumnListCompleted;
+        
+        public event System.EventHandler<AddGoodColumnRelationCompletedEventArgs> AddGoodColumnRelationCompleted;
         
         public mba_application.MBAImportService.GoodColumnDC GetGoodColumn(string columnHeader) {
             return base.Channel.GetGoodColumn(columnHeader);
@@ -279,6 +375,56 @@ namespace mba_application.MBAImportService {
                 this.onGetGoodColumnListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetGoodColumnListCompleted);
             }
             base.InvokeAsync(this.onBeginGetGoodColumnListDelegate, null, this.onEndGetGoodColumnListDelegate, this.onGetGoodColumnListCompletedDelegate, userState);
+        }
+        
+        public bool AddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param) {
+            return base.Channel.AddGoodColumnRelation(param);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddGoodColumnRelation(param, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndAddGoodColumnRelation(System.IAsyncResult result) {
+            return base.Channel.EndAddGoodColumnRelation(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddGoodColumnRelation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            mba_application.MBAImportService.GoodColumnAddRelationParamDC param = ((mba_application.MBAImportService.GoodColumnAddRelationParamDC)(inValues[0]));
+            return this.BeginAddGoodColumnRelation(param, callback, asyncState);
+        }
+        
+        private object[] OnEndAddGoodColumnRelation(System.IAsyncResult result) {
+            bool retVal = this.EndAddGoodColumnRelation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddGoodColumnRelationCompleted(object state) {
+            if ((this.AddGoodColumnRelationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddGoodColumnRelationCompleted(this, new AddGoodColumnRelationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddGoodColumnRelationAsync(mba_application.MBAImportService.GoodColumnAddRelationParamDC param) {
+            this.AddGoodColumnRelationAsync(param, null);
+        }
+        
+        public void AddGoodColumnRelationAsync(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, object userState) {
+            if ((this.onBeginAddGoodColumnRelationDelegate == null)) {
+                this.onBeginAddGoodColumnRelationDelegate = new BeginOperationDelegate(this.OnBeginAddGoodColumnRelation);
+            }
+            if ((this.onEndAddGoodColumnRelationDelegate == null)) {
+                this.onEndAddGoodColumnRelationDelegate = new EndOperationDelegate(this.OnEndAddGoodColumnRelation);
+            }
+            if ((this.onAddGoodColumnRelationCompletedDelegate == null)) {
+                this.onAddGoodColumnRelationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddGoodColumnRelationCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddGoodColumnRelationDelegate, new object[] {
+                        param}, this.onEndAddGoodColumnRelationDelegate, this.onAddGoodColumnRelationCompletedDelegate, userState);
         }
     }
 }

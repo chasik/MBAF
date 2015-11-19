@@ -8,7 +8,8 @@ namespace mba_model.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(mba_model.ModelContext context)
@@ -89,8 +90,12 @@ namespace mba_model.Migrations
                 new GoodColumn { Id = 6, Name = "Кем выдан", ScreenName = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 7, Name = "Дата выдачи паспорта", ScreenName = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 8, Name = "Адрес регистрации\\прописка", ScreenName = "Адрес регистрации\\прописка должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 9, Name = "Фактическое место проживания", ScreenName = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 }
+                new GoodColumn { Id = 8, Name = "Адрес регистрации\\прописка", ScreenName = "Адрес регистрации(прописка) должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 9, Name = "Фактическое место проживания", ScreenName = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 10, Name = "ФИО должника", ScreenName = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 11, Name = "Дата рождения должника", ScreenName = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 12, Name = "Серия и номер паспорта", ScreenName = "Серия и номер паспорта", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 13, Name = "Кем и когда выдан паспорт", ScreenName = "Кем и когда выдан паспорт", Created = DateTime.Now, CreatedBy = 1 }
                 );
 
             context.ImportTypes.AddOrUpdate(
