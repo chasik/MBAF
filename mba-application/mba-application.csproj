@@ -113,6 +113,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBAComponents\Employee.cs" />
+    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToVisibilityConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToBackgroundConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\MultiBindConverter.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\SIPUserAgent.cs" />
@@ -182,11 +184,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumnDC.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumnsListDC.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\MBAImportService\mba_model.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MBAImportService\mba_services.DataContracts.xsd">
       <SubType>Designer</SubType>
@@ -295,6 +300,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\similarity\WordsMatching.csproj">
+      <Project>{cffea5f4-2374-4336-956b-f6edb9e2fbf1}</Project>
+      <Name>WordsMatching</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

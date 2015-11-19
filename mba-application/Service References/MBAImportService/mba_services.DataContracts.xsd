@@ -7,10 +7,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GoodColumnDC" nillable="true" type="tns:GoodColumnDC" />
-  <xs:complexType name="GoodColumnsListDC">
+  <xs:complexType name="GoodColumnAddRelationParamDC">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodColumnDC" nillable="true" type="tns:GoodColumnDC" />
+      <xs:element minOccurs="0" name="ColumnHeader" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumnDC" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="GoodColumnsListDC" nillable="true" type="tns:GoodColumnsListDC" />
+  <xs:element name="GoodColumnAddRelationParamDC" nillable="true" type="tns:GoodColumnAddRelationParamDC" />
 </xs:schema>

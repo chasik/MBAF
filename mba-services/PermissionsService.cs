@@ -10,16 +10,12 @@ namespace mba_services
 {
     public class PermissionsService : IPermissionsService
     {
-        private HashSet<Permission> listPermissions;
-
         public PermissionsService()
         {
         }
 
         public PermissionsDC GetPermissions()
         {
-            listPermissions = new HashSet<Permission>();
-
             PermissionsDC permissions = new PermissionsDC();
             permissions.Login = ServiceSecurityContext.Current.PrimaryIdentity.Name;
 
@@ -33,7 +29,7 @@ namespace mba_services
                         join pg in mcontext.PermissionGroup on p.PermissionGroupId equals pg.Id
                         where p.Roles.Any(r => r.Users.Select(u => u.Id).Contains(currentUser.Id)) 
                                 || p.Users.Any(u => u.Id == currentUser.Id)
-                        select new PermissionDC { Id = p.Id, GroupName = pg.ScreenName, Name = p.Name, ScreenName = p.ScreenName, CommandParam = p.CommandParam};
+                        select new PermissionDC { Id = p.Id, GroupName = pg.ScreenName, Name = p.Name, ScreenName = p.ScreenName, CommandParam = p.CommandParam };
 
                 permissions.PermissionsHashSet = q.ToList();
             }

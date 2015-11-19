@@ -76,9 +76,297 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="GoodColumnsListDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts", ItemName="GoodColumnDC")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoodColumn", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
     [System.SerializableAttribute()]
-    public class GoodColumnsListDC : System.Collections.Generic.List<mba_application.MBAImportService.GoodColumnDC> {
+    public partial class GoodColumn : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private mba_application.MBAImportService.ColumnHeader[] ColumnHeadersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CreatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DeletedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> DeletedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public mba_application.MBAImportService.ColumnHeader[] ColumnHeaders {
+            get {
+                return this.ColumnHeadersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColumnHeadersField, value) != true)) {
+                    this.ColumnHeadersField = value;
+                    this.RaisePropertyChanged("ColumnHeaders");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CreatedBy {
+            get {
+                return this.CreatedByField;
+            }
+            set {
+                if ((this.CreatedByField.Equals(value) != true)) {
+                    this.CreatedByField = value;
+                    this.RaisePropertyChanged("CreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Deleted {
+            get {
+                return this.DeletedField;
+            }
+            set {
+                if ((this.DeletedField.Equals(value) != true)) {
+                    this.DeletedField = value;
+                    this.RaisePropertyChanged("Deleted");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DeletedBy {
+            get {
+                return this.DeletedByField;
+            }
+            set {
+                if ((this.DeletedByField.Equals(value) != true)) {
+                    this.DeletedByField = value;
+                    this.RaisePropertyChanged("DeletedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColumnHeader", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
+    [System.SerializableAttribute()]
+    public partial class ColumnHeader : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private mba_application.MBAImportService.GoodColumn GoodColumnField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GoodColumnIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public mba_application.MBAImportService.GoodColumn GoodColumn {
+            get {
+                return this.GoodColumnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GoodColumnField, value) != true)) {
+                    this.GoodColumnField = value;
+                    this.RaisePropertyChanged("GoodColumn");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GoodColumnId {
+            get {
+                return this.GoodColumnIdField;
+            }
+            set {
+                if ((this.GoodColumnIdField.Equals(value) != true)) {
+                    this.GoodColumnIdField = value;
+                    this.RaisePropertyChanged("GoodColumnId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoodColumnAddRelationParamDC", Namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts")]
+    [System.SerializableAttribute()]
+    public partial class GoodColumnAddRelationParamDC : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColumnHeaderField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private mba_application.MBAImportService.GoodColumnDC GoodColumnField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ColumnHeader {
+            get {
+                return this.ColumnHeaderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColumnHeaderField, value) != true)) {
+                    this.ColumnHeaderField = value;
+                    this.RaisePropertyChanged("ColumnHeader");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public mba_application.MBAImportService.GoodColumnDC GoodColumn {
+            get {
+                return this.GoodColumnField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GoodColumnField, value) != true)) {
+                    this.GoodColumnField = value;
+                    this.RaisePropertyChanged("GoodColumn");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -93,13 +381,21 @@ namespace mba_application.MBAImportService {
         
         mba_application.MBAImportService.GoodColumnDC EndGetGoodColumn(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GetGoodColumnList", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnListResponse")]
-        mba_application.MBAImportService.GoodColumnsListDC GetGoodColumnList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GoodColumns", ReplyAction="http://tempuri.org/IImportService/GoodColumnsResponse")]
+        mba_application.MBAImportService.GoodColumn[] GoodColumns();
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GetGoodColumnList", ReplyAction="http://tempuri.org/IImportService/GetGoodColumnListResponse")]
-        System.IAsyncResult BeginGetGoodColumnList(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GoodColumns", ReplyAction="http://tempuri.org/IImportService/GoodColumnsResponse")]
+        System.IAsyncResult BeginGoodColumns(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAImportService.GoodColumnsListDC EndGetGoodColumnList(System.IAsyncResult result);
+        mba_application.MBAImportService.GoodColumn[] EndGoodColumns(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/AddGoodColumnRelation", ReplyAction="http://tempuri.org/IImportService/AddGoodColumnRelationResponse")]
+        bool AddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/AddGoodColumnRelation", ReplyAction="http://tempuri.org/IImportService/AddGoodColumnRelationResponse")]
+        System.IAsyncResult BeginAddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, System.AsyncCallback callback, object asyncState);
+        
+        bool EndAddGoodColumnRelation(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -127,19 +423,38 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetGoodColumnListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GoodColumnsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetGoodColumnListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GoodColumnsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
-        public mba_application.MBAImportService.GoodColumnsListDC Result {
+        public mba_application.MBAImportService.GoodColumn[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAImportService.GoodColumnsListDC)(this.results[0]));
+                return ((mba_application.MBAImportService.GoodColumn[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddGoodColumnRelationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddGoodColumnRelationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
@@ -154,11 +469,17 @@ namespace mba_application.MBAImportService {
         
         private System.Threading.SendOrPostCallback onGetGoodColumnCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetGoodColumnListDelegate;
+        private BeginOperationDelegate onBeginGoodColumnsDelegate;
         
-        private EndOperationDelegate onEndGetGoodColumnListDelegate;
+        private EndOperationDelegate onEndGoodColumnsDelegate;
         
-        private System.Threading.SendOrPostCallback onGetGoodColumnListCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGoodColumnsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddGoodColumnRelationDelegate;
+        
+        private EndOperationDelegate onEndAddGoodColumnRelationDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddGoodColumnRelationCompletedDelegate;
         
         public ImportServiceClient() {
         }
@@ -181,7 +502,9 @@ namespace mba_application.MBAImportService {
         
         public event System.EventHandler<GetGoodColumnCompletedEventArgs> GetGoodColumnCompleted;
         
-        public event System.EventHandler<GetGoodColumnListCompletedEventArgs> GetGoodColumnListCompleted;
+        public event System.EventHandler<GoodColumnsCompletedEventArgs> GoodColumnsCompleted;
+        
+        public event System.EventHandler<AddGoodColumnRelationCompletedEventArgs> AddGoodColumnRelationCompleted;
         
         public mba_application.MBAImportService.GoodColumnDC GetGoodColumn(string columnHeader) {
             return base.Channel.GetGoodColumn(columnHeader);
@@ -233,52 +556,102 @@ namespace mba_application.MBAImportService {
                         columnHeader}, this.onEndGetGoodColumnDelegate, this.onGetGoodColumnCompletedDelegate, userState);
         }
         
-        public mba_application.MBAImportService.GoodColumnsListDC GetGoodColumnList() {
-            return base.Channel.GetGoodColumnList();
+        public mba_application.MBAImportService.GoodColumn[] GoodColumns() {
+            return base.Channel.GoodColumns();
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetGoodColumnList(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetGoodColumnList(callback, asyncState);
+        public System.IAsyncResult BeginGoodColumns(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGoodColumns(callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAImportService.GoodColumnsListDC EndGetGoodColumnList(System.IAsyncResult result) {
-            return base.Channel.EndGetGoodColumnList(result);
+        public mba_application.MBAImportService.GoodColumn[] EndGoodColumns(System.IAsyncResult result) {
+            return base.Channel.EndGoodColumns(result);
         }
         
-        private System.IAsyncResult OnBeginGetGoodColumnList(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return this.BeginGetGoodColumnList(callback, asyncState);
+        private System.IAsyncResult OnBeginGoodColumns(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGoodColumns(callback, asyncState);
         }
         
-        private object[] OnEndGetGoodColumnList(System.IAsyncResult result) {
-            mba_application.MBAImportService.GoodColumnsListDC retVal = this.EndGetGoodColumnList(result);
+        private object[] OnEndGoodColumns(System.IAsyncResult result) {
+            mba_application.MBAImportService.GoodColumn[] retVal = this.EndGoodColumns(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetGoodColumnListCompleted(object state) {
-            if ((this.GetGoodColumnListCompleted != null)) {
+        private void OnGoodColumnsCompleted(object state) {
+            if ((this.GoodColumnsCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetGoodColumnListCompleted(this, new GetGoodColumnListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GoodColumnsCompleted(this, new GoodColumnsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetGoodColumnListAsync() {
-            this.GetGoodColumnListAsync(null);
+        public void GoodColumnsAsync() {
+            this.GoodColumnsAsync(null);
         }
         
-        public void GetGoodColumnListAsync(object userState) {
-            if ((this.onBeginGetGoodColumnListDelegate == null)) {
-                this.onBeginGetGoodColumnListDelegate = new BeginOperationDelegate(this.OnBeginGetGoodColumnList);
+        public void GoodColumnsAsync(object userState) {
+            if ((this.onBeginGoodColumnsDelegate == null)) {
+                this.onBeginGoodColumnsDelegate = new BeginOperationDelegate(this.OnBeginGoodColumns);
             }
-            if ((this.onEndGetGoodColumnListDelegate == null)) {
-                this.onEndGetGoodColumnListDelegate = new EndOperationDelegate(this.OnEndGetGoodColumnList);
+            if ((this.onEndGoodColumnsDelegate == null)) {
+                this.onEndGoodColumnsDelegate = new EndOperationDelegate(this.OnEndGoodColumns);
             }
-            if ((this.onGetGoodColumnListCompletedDelegate == null)) {
-                this.onGetGoodColumnListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetGoodColumnListCompleted);
+            if ((this.onGoodColumnsCompletedDelegate == null)) {
+                this.onGoodColumnsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGoodColumnsCompleted);
             }
-            base.InvokeAsync(this.onBeginGetGoodColumnListDelegate, null, this.onEndGetGoodColumnListDelegate, this.onGetGoodColumnListCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGoodColumnsDelegate, null, this.onEndGoodColumnsDelegate, this.onGoodColumnsCompletedDelegate, userState);
+        }
+        
+        public bool AddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param) {
+            return base.Channel.AddGoodColumnRelation(param);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAddGoodColumnRelation(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddGoodColumnRelation(param, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public bool EndAddGoodColumnRelation(System.IAsyncResult result) {
+            return base.Channel.EndAddGoodColumnRelation(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddGoodColumnRelation(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            mba_application.MBAImportService.GoodColumnAddRelationParamDC param = ((mba_application.MBAImportService.GoodColumnAddRelationParamDC)(inValues[0]));
+            return this.BeginAddGoodColumnRelation(param, callback, asyncState);
+        }
+        
+        private object[] OnEndAddGoodColumnRelation(System.IAsyncResult result) {
+            bool retVal = this.EndAddGoodColumnRelation(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddGoodColumnRelationCompleted(object state) {
+            if ((this.AddGoodColumnRelationCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddGoodColumnRelationCompleted(this, new AddGoodColumnRelationCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddGoodColumnRelationAsync(mba_application.MBAImportService.GoodColumnAddRelationParamDC param) {
+            this.AddGoodColumnRelationAsync(param, null);
+        }
+        
+        public void AddGoodColumnRelationAsync(mba_application.MBAImportService.GoodColumnAddRelationParamDC param, object userState) {
+            if ((this.onBeginAddGoodColumnRelationDelegate == null)) {
+                this.onBeginAddGoodColumnRelationDelegate = new BeginOperationDelegate(this.OnBeginAddGoodColumnRelation);
+            }
+            if ((this.onEndAddGoodColumnRelationDelegate == null)) {
+                this.onEndAddGoodColumnRelationDelegate = new EndOperationDelegate(this.OnEndAddGoodColumnRelation);
+            }
+            if ((this.onAddGoodColumnRelationCompletedDelegate == null)) {
+                this.onAddGoodColumnRelationCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddGoodColumnRelationCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddGoodColumnRelationDelegate, new object[] {
+                        param}, this.onEndAddGoodColumnRelationDelegate, this.onAddGoodColumnRelationCompletedDelegate, userState);
         }
     }
 }

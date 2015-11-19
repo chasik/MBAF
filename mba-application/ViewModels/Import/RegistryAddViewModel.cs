@@ -38,15 +38,23 @@ namespace mba_application.ViewModels.Import
             get { return GetProperty(() => WorkSheetsCount); }
             set { SetProperty(() => WorkSheetsCount, value); }
         }
+
         public ObservableCollection<SheetInfo> WorkSheetsInBook
         {
             get { return GetProperty(() => WorkSheetsInBook); }
             set { SetProperty(() => WorkSheetsInBook, value); }
         }
-        public GoodColumnsListDC GoodColumns
+
+        public GoodColumn[] GoodColumns
         {
             get { return GetProperty(() => GoodColumns); }
             set { SetProperty(() => GoodColumns, value); }
+        }
+
+        public Client[] ClientsCollection
+        {
+            get { return GetProperty(() => ClientsCollection); }
+            set { SetProperty(() => ClientsCollection, value); }
         }
 
         public void DblClickExplorer(FileSystemItem focusedNode)
@@ -90,11 +98,14 @@ namespace mba_application.ViewModels.Import
                                     {
                                         Caption = ws.Cells[i, j].Value.ToString().ToLower()
                                             .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
-                                            .Replace("\n", " ").Replace("  ", " ")
+                                            .Replace("\n", "").Replace("  ", " ")
                                     };
                                     if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
                                     {
-                                        captionValue.GoodColumnRef = ImportService.GetGoodColumn(captionValue.Caption); 
+                                        captionValue.GoodColumnRef = ImportService.GetGoodColumn(captionValue.Caption);
+                                        captionValue.GoodColumnListRef = new GoodColumnsListDC();
+                                        captionValue.GoodColumnListRef.Add(captionValue.GoodColumnRef);
+                                        captionValue.GoodColumnListRef.AddRange(GoodColumns);
                                         sheetInfo.ColumnCaptionList.Add(captionValue);
                                     }
                                 }
@@ -109,7 +120,7 @@ namespace mba_application.ViewModels.Import
 
         public void ChangeGoodColumn(object param)
         {
-            var f = 1;
+            ImportService.AddGoodColumnRelation(param as GoodColumnAddRelationParamDC);
         }
     }
 
@@ -185,6 +196,7 @@ namespace mba_application.ViewModels.Import
         }
         public string Caption { get; set; }
         public GoodColumnDC GoodColumnRef { get; set; }
+        public GoodColumnsListDC GoodColumnListRef { get; set; }
     }
 
     public class RowInfo
