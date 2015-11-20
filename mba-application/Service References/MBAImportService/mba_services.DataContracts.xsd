@@ -13,5 +13,15 @@
       <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumnDC" />
     </xs:sequence>
   </xs:complexType>
+<<<<<<< HEAD
+=======
+  <xs:element name="GoodColumnsListDC" nillable="true" type="tns:GoodColumnsListDC" />
+  <xs:complexType name="GoodColumnAddRelationParamDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColumnHeader" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumnDC" />
+    </xs:sequence>
+  </xs:complexType>
+>>>>>>> 6ffeacc5dd44d3de79ee0143d8c9452c1a7cc2bb
   <xs:element name="GoodColumnAddRelationParamDC" nillable="true" type="tns:GoodColumnAddRelationParamDC" />
 </xs:schema>

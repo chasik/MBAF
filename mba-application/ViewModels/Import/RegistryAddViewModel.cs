@@ -19,6 +19,8 @@ namespace mba_application.ViewModels.Import
             WorkSheetsCount = "Результаты парсинга документа ...";
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
 
+            //GoodColumnsNames = new Dictionary<int, string>();
+
             ImportService = new MBAImportService.ImportServiceClient();
             GoodColumns = ImportService.GetGoodColumnList();
         }
@@ -48,14 +50,25 @@ namespace mba_application.ViewModels.Import
         public GoodColumn[] GoodColumns
         {
             get { return GetProperty(() => GoodColumns); }
-            set { SetProperty(() => GoodColumns, value); }
+            set {
+                SetProperty(() => GoodColumns, value);
+                //GoodColumnsNames.Clear();
+                foreach (var item in value)
+                {
+                    //GoodColumnsNames.Add(item.GoodColumnId, item.GoodColumnName);
+                }
+            }
         }
 
+<<<<<<< HEAD
         public Client[] ClientsCollection
         {
             get { return GetProperty(() => ClientsCollection); }
             set { SetProperty(() => ClientsCollection, value); }
         }
+=======
+        //public Dictionary<int, string> GoodColumnsNames { get; private set; }
+>>>>>>> 6ffeacc5dd44d3de79ee0143d8c9452c1a7cc2bb
 
         public void DblClickExplorer(FileSystemItem focusedNode)
         {
