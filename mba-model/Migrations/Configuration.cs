@@ -9,11 +9,7 @@ namespace mba_model.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-<<<<<<< HEAD
             AutomaticMigrationDataLossAllowed = true;
-=======
-            //AutomaticMigrationDataLossAllowed = true;
->>>>>>> 6ffeacc5dd44d3de79ee0143d8c9452c1a7cc2bb
         }
 
         protected override void Seed(mba_model.ModelContext context)
@@ -94,21 +90,13 @@ namespace mba_model.Migrations
                 new GoodColumn { Id = 6, Name = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 7, Name = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
 
-<<<<<<< HEAD
                 new GoodColumn { Id = 8, Name = "Адрес регистрации(прописка) должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 9, Name = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 10, Name = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 11, Name = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 12, Name = "Серия и номер паспорта", Created = DateTime.Now, CreatedBy = 1 },
                 new GoodColumn { Id = 13, Name = "Кем и когда выдан паспорт", Created = DateTime.Now, CreatedBy = 1 }
-=======
-                new GoodColumn { Id = 8, Name = "Адрес регистрации\\прописка", ScreenName = "Адрес регистрации(прописка) должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 9, Name = "Фактическое место проживания", ScreenName = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 10, Name = "ФИО должника", ScreenName = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 11, Name = "Дата рождения должника", ScreenName = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 12, Name = "Серия и номер паспорта", ScreenName = "Серия и номер паспорта", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 13, Name = "Кем и когда выдан паспорт", ScreenName = "Кем и когда выдан паспорт", Created = DateTime.Now, CreatedBy = 1 }
->>>>>>> 6ffeacc5dd44d3de79ee0143d8c9452c1a7cc2bb
+
                 );
 
             context.ImportTypes.AddOrUpdate(

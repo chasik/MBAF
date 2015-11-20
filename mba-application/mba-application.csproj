@@ -193,13 +193,13 @@
     <None Include="Service References\MBAImportService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAImportService\mba_services.DataContracts.xsd">
+    <None Include="Service References\MBAImportService\mba_services.DataContracts1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAImportService\service.wsdl" />
     <None Include="Service References\MBAImportService\service.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\MBAImportService\service1.wsdl" />
     <None Include="Service References\MBAImportService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
