@@ -1,54 +1,48 @@
 ﻿using System.Linq;
 using System.ServiceModel;
-using System.Collections.Generic;
 
 using mba_model;
-using mba_services.DataContracts;
 using mba_services.ServiceContracts;
 
 namespace mba_services
 {
     public class PermissionsService : IPermissionsService
     {
+        public ModelContext dbContext;
+
         public PermissionsService()
         {
+            dbContext = new ModelContext();
+            dbContext.Configuration.ProxyCreationEnabled = false;
         }
 
-        public PermissionsDC GetPermissions()
+        public Permission[] Permissions()
         {
-            PermissionsDC permissions = new PermissionsDC();
-            permissions.Login = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+            var currentLogin = ServiceSecurityContext.Current.PrimaryIdentity.Name;
+            User currentUser = GerUserFromBD(currentLogin);
+            currentUser = currentUser ?? AddUserToBD(currentLogin);
 
-            using (ModelContext mcontext = new ModelContext())
-            {
-                User currentUser = GerUserFromBD(mcontext, permissions.Login);
-
-                currentUser = currentUser ?? AddUserToBD(mcontext, permissions.Login);
-
-                var q = from p in mcontext.Permissions
-                        join pg in mcontext.PermissionGroup on p.PermissionGroupId equals pg.Id
-                        where p.Roles.Any(r => r.Users.Select(u => u.Id).Contains(currentUser.Id)) 
-                                || p.Users.Any(u => u.Id == currentUser.Id)
-                        select new PermissionDC { Id = p.Id, GroupName = pg.ScreenName, Name = p.Name, ScreenName = p.ScreenName, CommandParam = p.CommandParam };
-
-                permissions.PermissionsHashSet = q.ToList();
-            }
-            return permissions;
+            return (from p in dbContext.Permissions
+                    where p.Roles.Any(r => r.Users.Select(u => u.Id).Contains(currentUser.Id))
+                           || p.Users.Any(u => u.Id == currentUser.Id)
+                    orderby p.ParentId
+                    select p
+                   ).ToArray();
         }
 
-        private User GerUserFromBD(ModelContext context, string login)
+        private User GerUserFromBD(string login)
         {
-            return (from u in context.Users
+            return (from u in dbContext.Users
                     where u.Login == login
                     select u
                    ).FirstOrDefault();
         }
 
-        private User AddUserToBD(ModelContext context, string login)
+        private User AddUserToBD(string login)
         {
-            context.Users.Add(new User { Login = login });
-            context.SaveChanges();
-            return GerUserFromBD(context, login);
+            dbContext.Users.Add(new User { Login = login });
+            dbContext.SaveChanges();
+            return GerUserFromBD(login);
         }
     }
 }

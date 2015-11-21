@@ -23,15 +23,38 @@
             <converters:MultiBindConverter x:Key="commandParamsConverter" x:Shared="False"/>
             <converters:CurrentCaptionToBackgroundConverter x:Key="currentCaptionToBackgroundConverter" x:Shared="False"/>
             <converters:CurrentCaptionToVisibilityConverter x:Key="currentCaptionToVisibilityConverter" x:Shared="False"/>
+            <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter" x:Shared="False"/>
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="35"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <dxdo:DocumentPanel Grid.Row="0">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ClientsCollection}">
-                            
+                        <dxe:ComboBoxEdit ShowSizeGrip="False"
+                                          IsTextEditable="False"
+                                          AutoComplete="True"
+                                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.Clients}"
+                                          DisplayMember="Name"
+                                          ValueMember="Id"
+                                          ApplyItemTemplateToSelectedItem="True">
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" 
+                                               Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
+                                        <TextBlock Grid.Column="1" 
+                                                   Text="{Binding Path=Name}" Margin="10,1,10,0"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:ComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
                         </dxe:ComboBoxEdit>
                     </dxdo:DocumentPanel>
                     <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding ColumnCaptionList}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">

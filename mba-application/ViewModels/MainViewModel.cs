@@ -1,24 +1,26 @@
 ﻿using DevExpress.Mvvm;
 using mba_application.MBAComponents;
-using mba_application.MBAPermissionsService;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace mba_application.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         public Employee CurrentEmployee { get; set; }
-        public ObservableCollection<PermissionDC> UserPermissions { get; set; }
+
+        public ObservableCollection<PermissionGroup> UserPermissionGroups
+        {
+            get { return GetProperty(() => UserPermissionGroups); }
+            set { SetProperty(() => UserPermissionGroups, value); }
+        }
 
         public DelegateCommand<string> MenuItemClickCommand { get; private set; }
 
         private INavigationService NavigationService { get { return GetService<INavigationService>(); } }
-        private SIPUserAgent MBAPhone;
+        //private SIPUserAgent MBAPhone;
         public MainViewModel()
         {
             CurrentEmployee = new Employee();
-            UserPermissions = new ObservableCollection<PermissionDC>();
 
             MenuItemClickCommand = new DelegateCommand<string>(MenuItemClick);
 
@@ -33,17 +35,14 @@ namespace mba_application.ViewModels
 
             //if (!MBAPhone.RegisterToProxy(1800))
             //    errorcode = MBAPhone.GetVaxObjectError();
-
         }
 
         public void OnInitMainView()
         {
             if (CurrentEmployee.TryEnter())
             {
-                foreach (var p in CurrentEmployee.Permissions.PermissionsHashSet)
-                {
-                    UserPermissions.Add(p);
-                }
+                UserPermissionGroups = new ObservableCollection<PermissionGroup>(CurrentEmployee.PermissionGroups);
+
                 NavigationService.Navigate("RegistryAddView", null, this);
             }
             else

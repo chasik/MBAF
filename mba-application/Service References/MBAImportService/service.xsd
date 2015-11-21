@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/mba_model" />
-  <xs:element name="GetGoodColumn">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
+  <xs:element name="GoodColumn">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="columnHeader" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetGoodColumnResponse">
+  <xs:element name="GoodColumnResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="GetGoodColumnResult" nillable="true" type="q1:GoodColumnDC" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="GoodColumnResult" nillable="true" type="q1:GoodColumn" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -28,10 +28,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Clients">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="ClientsResult" nillable="true" type="q3:ArrayOfClient" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddGoodColumnRelation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="param" nillable="true" type="q3:GoodColumnAddRelationParamDC" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="param" nillable="true" type="q4:GoodColumnAddRelationParamDC" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

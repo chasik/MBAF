@@ -15,6 +15,8 @@ namespace mba_model
         public string Name { get; set; }
         [DataMember]
         public string FullName { get; set; }
+        [DataMember]
+        public string Image { get; set; }
 
         [DataMember]
         [Column(TypeName = "datetime2")]

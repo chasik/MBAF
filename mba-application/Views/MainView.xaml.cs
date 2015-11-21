@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using DevExpress.Xpf.Core;
-using System.Data;
 using mba_application.MBAComponents;
 using WordsMatching;
 using System.Diagnostics;

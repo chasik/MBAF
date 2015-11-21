@@ -33,26 +33,26 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8734/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8734/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8734/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
+      <xsd:import schemaLocation="http://localhost:8734/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/mba_model" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IPermissionsService_GetPermissions_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPermissions" />
+  <wsdl:message name="IPermissionsService_Permissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:Permissions" />
   </wsdl:message>
-  <wsdl:message name="IPermissionsService_GetPermissions_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPermissionsResponse" />
+  <wsdl:message name="IPermissionsService_Permissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PermissionsResponse" />
   </wsdl:message>
   <wsdl:portType name="IPermissionsService">
-    <wsdl:operation name="GetPermissions">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionsService/GetPermissions" message="tns:IPermissionsService_GetPermissions_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionsService/GetPermissionsResponse" message="tns:IPermissionsService_GetPermissions_OutputMessage" />
+    <wsdl:operation name="Permissions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionsService/Permissions" message="tns:IPermissionsService_Permissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionsService/PermissionsResponse" message="tns:IPermissionsService_Permissions_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPermissionsService" type="tns:IPermissionsService">
     <wsp:PolicyReference URI="#NetTcpBinding_IPermissionsService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetPermissions">
-      <soap12:operation soapAction="http://tempuri.org/IPermissionsService/GetPermissions" style="document" />
+    <wsdl:operation name="Permissions">
+      <soap12:operation soapAction="http://tempuri.org/IPermissionsService/Permissions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

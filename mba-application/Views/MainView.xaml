@@ -12,6 +12,7 @@
     
     xmlns:local="clr-namespace:mba_application"
     xmlns:vm="clr-namespace:mba_application.ViewModels"
+    xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
     x:Class="mba_application.MainView"
     
     Title="MBA Finance" Height="500" Width="900"
@@ -19,6 +20,11 @@
     
     DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}"
     >
+    <dx:DXWindow.Resources>
+        <ResourceDictionary>
+            <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
+        </ResourceDictionary>
+    </dx:DXWindow.Resources>
    
     <dxmvvm:Interaction.Triggers>
         <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}" />
@@ -32,15 +38,28 @@
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
                 <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
-                    <dxnb:NavBarControl Name="leftNavBarControl"  GroupDescription="GroupName" ItemsSource="{Binding UserPermissions}">
+                    <dxnb:NavBarControl Name="leftNavBarControl" ItemsSource="{Binding UserPermissionGroups}">
                         <dxnb:NavBarControl.Resources>
                             <Style TargetType="dxnb:NavBarGroup">
-                                <Setter Property="Header" Value="{Binding}"/>
+                                <Setter Property="DisplayMode" Value="ImageAndText"/>
+                                <Setter Property="IsVisible" Value="{Binding ShowGroup}"/>
+                                <Setter Property="Header" Value="{Binding ParentPermission.ScreenName}"/>
+                                <Setter Property="ImageSource" Value="{Binding ParentPermission.Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
+                                <Setter Property="ItemsSource" Value="{Binding Items}"/>
                             </Style>
                             <Style TargetType="dxnb:NavBarItem">
+                                <Setter Property="DisplayMode" Value="ImageAndText"/>
                                 <Setter Property="Content" Value="{Binding Path=ScreenName}"/>
+                                <Setter Property="ImageSource" Value="{Binding Path=Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
                                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dx:DXWindow}}, Path=DataContext.MenuItemClickCommand}"/>
                                 <Setter Property="CommandParameter" Value="{Binding Path=CommandParam}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ScreenName}"/>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </dxnb:NavBarControl.Resources>
                         <dxnb:NavBarControl.View>
@@ -63,7 +82,7 @@
                         <dxnb:NavBarGroup Header="Звонилка" ImageSource="{dx:DXImage Image=BOContact_32x32.png}" DisplaySource="Content">
                             <dxnb:NavBarItem Content="Item 1"/>
                         </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Group 2" DisplayMode="ImageAndText">
+                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText">
                             <dxnb:NavBarItem Content="Item 1" Command="{Binding MenuItemClickCommand}"/>
                             <dxnb:NavBarItem Content="Item 2"/>
                         </dxnb:NavBarGroup>

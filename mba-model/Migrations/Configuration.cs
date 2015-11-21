@@ -28,30 +28,33 @@ namespace mba_model.Migrations
                 new Role { Id = 10, Name = "report", ScreenName = "Отчеты" }
                 );
 
-            context.PermissionGroup.AddOrUpdate(
-                pg => pg.Id,
-                new PermissionGroup { Id = 1, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", ImageSource = "" },
-                new PermissionGroup { Id = 2, Name = "menu-head", ScreenName = "Старший", Tooltip = "Раздел меню для работы старшего", ImageSource = "" },
-                new PermissionGroup { Id = 3, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", ImageSource = "" },
-                new PermissionGroup { Id = 4, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", ImageSource = "" },
-                new PermissionGroup { Id = 5, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", ImageSource = "" },
-                new PermissionGroup { Id = 6, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", ImageSource = "" },
-                new PermissionGroup { Id = 7, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", ImageSource = "" },
-                new PermissionGroup { Id = 8, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", ImageSource = "" }
-                );
 
             context.Permissions.AddOrUpdate(
                 p => p.Id,
-                new Permission { Id = 1, PermissionGroupId = 1, Name = "menu-processing-work", ScreenName = "Выборки",
-                                 Tooltip = "Рабочее пространство оператора", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 2, PermissionGroupId = 1, Name = "menu-processing-table", ScreenName = "Табели",
-                                 Tooltip = "Дополнительные табели для операторов", ImageSource = "", CommandParam = "" },
-                new Permission { Id = 3, PermissionGroupId = 8, Name = "menu-admin-users", ScreenName = "Пользователи",
-                                 Tooltip = "Установка разрешений для пользователей", ImageSource = "", CommandParam = "AdminUsersView" },
-                new Permission { Id = 4, PermissionGroupId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk",
-                                 Tooltip = "Настройка и мониторинг Asterisk", ImageSource = "", CommandParam = "AdminAsteriskView" },
-                new Permission { Id = 5, PermissionGroupId = 3, Name = "menu-import-registry", ScreenName = "Реестры",
-                                 Tooltip = "Импорт реестров", ImageSource = "", CommandParam = "RegistryAddView" }
+                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", Image = "menu-group-admin.png" },
+                new Permission { Id = 2, ParentId = null, Name = "menu-head", ScreenName = "Старший", Tooltip = "Раздел меню для работы старшего", Image = "menu-group-admin.png" },
+                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", Image = "menu-group-admin.png" },
+                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", Image = "menu-group-admin.png" },
+                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", Image = "menu-group-admin.png" },
+                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", Image = "menu-group-admin.png" },
+                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-admin.png" },
+                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", Image = "menu-group-admin.png" },
+
+                new Permission { Id = 9, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки",
+                                 Tooltip = "Рабочее пространство оператора", Image = "menu-group-admin.png", CommandParam = ""
+                               },
+                new Permission { Id = 10, ParentId = 1, Name = "menu-processing-table", ScreenName = "Табели",
+                                 Tooltip = "Дополнительные табели для операторов", Image = "menu-group-admin.png", CommandParam = ""
+                               },
+                new Permission { Id = 11, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи",
+                                 Tooltip = "Установка разрешений для пользователей", Image = "menu-group-admin.png", CommandParam = "AdminUsersView"
+                               },
+                new Permission { Id = 12, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk",
+                                 Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-group-admin.png", CommandParam = "AdminAsteriskView"
+                               },
+                new Permission { Id = 13, ParentId = 3, Name = "menu-import-registry", ScreenName = "Реестры",
+                                 Tooltip = "Импорт реестров", Image = "menu-group-admin.png", CommandParam = "RegistryAddView"
+                               }
                 );
 
             context.Actions.AddOrUpdate(
@@ -72,11 +75,12 @@ namespace mba_model.Migrations
 
             context.Clients.AddOrUpdate(
                 c => c.Id,
-                new Client { Id = 1, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 2, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 3, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 4, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 5, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Created = DateTime.Now, CreatedBy = 1 }
+                new Client { Id = 1, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Image="ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 2, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 3, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 4, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 5, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 6, InnerId = 250, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
                 );
 
             context.GoodColumns.AddOrUpdate(
@@ -101,7 +105,7 @@ namespace mba_model.Migrations
 
             context.ImportTypes.AddOrUpdate(
                 it => it.Id,
-                new ImportType { Id = 1, Name = "Импорт реестров\\дел" },
+                new ImportType { Id = 1, Name = "Импорт реестров" },
                 new ImportType { Id = 2, Name = "Платежи по реестрам" },
                 new ImportType { Id = 3, Name = "Корректировки по реестрам" },
                 new ImportType { Id = 4, Name = "Дополнительные контакты" }

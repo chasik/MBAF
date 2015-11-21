@@ -1,22 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace mba_model
 {
+    [DataContract]
     public class Permission
     {
+        [DataMember]
         public int Id { get; set; }
-        public int PermissionGroupId { get; set; }
+        [DataMember]
+        public int? ParentId { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string ScreenName { get; set; }
+        [DataMember]
         public string Tooltip { get; set; }
-        public string ImageSource { get; set; }
+        [DataMember]
+        public string Image { get; set; }
+        [DataMember]
         public string CommandParam { get; set; }
 
+        [DataMember]
         public virtual ICollection<Role> Roles { get; set; }
+        [DataMember]
         public virtual ICollection<User> Users { get; set; }
-
-        public virtual PermissionGroup PermissionGroup { get; set; }
     }
 }

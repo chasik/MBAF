@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using mba_model;
 using System.Runtime.Serialization;
 
 namespace mba_services.DataContracts
@@ -22,10 +22,9 @@ namespace mba_services.DataContracts
     {
         public PermissionsDC()
         {
-            PermissionsHashSet = new HashSet<PermissionDC>();
         }
 
-        [DataMember] public IEnumerable<PermissionDC> PermissionsHashSet;
+        [DataMember] public Permission[] Permissions;
         [DataMember] public string Login;
     }
 }

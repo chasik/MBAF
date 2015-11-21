@@ -33,21 +33,27 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/mba_model" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IImportService_GetGoodColumn_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGoodColumn" />
+  <wsdl:message name="IImportService_GoodColumn_InputMessage">
+    <wsdl:part name="parameters" element="tns:GoodColumn" />
   </wsdl:message>
-  <wsdl:message name="IImportService_GetGoodColumn_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGoodColumnResponse" />
+  <wsdl:message name="IImportService_GoodColumn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GoodColumnResponse" />
   </wsdl:message>
   <wsdl:message name="IImportService_GoodColumns_InputMessage">
     <wsdl:part name="parameters" element="tns:GoodColumns" />
   </wsdl:message>
   <wsdl:message name="IImportService_GoodColumns_OutputMessage">
     <wsdl:part name="parameters" element="tns:GoodColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IImportService_Clients_InputMessage">
+    <wsdl:part name="parameters" element="tns:Clients" />
+  </wsdl:message>
+  <wsdl:message name="IImportService_Clients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientsResponse" />
   </wsdl:message>
   <wsdl:message name="IImportService_AddGoodColumnRelation_InputMessage">
     <wsdl:part name="parameters" element="tns:AddGoodColumnRelation" />
@@ -56,13 +62,17 @@
     <wsdl:part name="parameters" element="tns:AddGoodColumnRelationResponse" />
   </wsdl:message>
   <wsdl:portType name="IImportService">
-    <wsdl:operation name="GetGoodColumn">
-      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/GetGoodColumn" message="tns:IImportService_GetGoodColumn_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/GetGoodColumnResponse" message="tns:IImportService_GetGoodColumn_OutputMessage" />
+    <wsdl:operation name="GoodColumn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/GoodColumn" message="tns:IImportService_GoodColumn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/GoodColumnResponse" message="tns:IImportService_GoodColumn_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GoodColumns">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportService/GoodColumns" message="tns:IImportService_GoodColumns_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImportService/GoodColumnsResponse" message="tns:IImportService_GoodColumns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Clients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/Clients" message="tns:IImportService_Clients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/ClientsResponse" message="tns:IImportService_Clients_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddGoodColumnRelation">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AddGoodColumnRelation" message="tns:IImportService_AddGoodColumnRelation_InputMessage" />
@@ -72,8 +82,8 @@
   <wsdl:binding name="NetTcpBinding_IImportService" type="tns:IImportService">
     <wsp:PolicyReference URI="#NetTcpBinding_IImportService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="GetGoodColumn">
-      <soap12:operation soapAction="http://tempuri.org/IImportService/GetGoodColumn" style="document" />
+    <wsdl:operation name="GoodColumn">
+      <soap12:operation soapAction="http://tempuri.org/IImportService/GoodColumn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -83,6 +93,15 @@
     </wsdl:operation>
     <wsdl:operation name="GoodColumns">
       <soap12:operation soapAction="http://tempuri.org/IImportService/GoodColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Clients">
+      <soap12:operation soapAction="http://tempuri.org/IImportService/Clients" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

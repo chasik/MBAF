@@ -113,6 +113,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBAComponents\Employee.cs" />
+    <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToVisibilityConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToBackgroundConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\MultiBindConverter.cs" />
@@ -184,10 +186,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumn.datasource">
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.Client.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumnDC.datasource">
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumn.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MBAImportService\mba_model.xsd">
@@ -212,7 +214,7 @@
     <None Include="Service References\MBAPermissionsService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAPermissionsService\mba_application.MBAPermissionsService.PermissionsDC.datasource">
+    <None Include="Service References\MBAPermissionsService\mba_application.MBAPermissionsService.Permission.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MBAPermissionsService\PermissionsService.wsdl" />
@@ -306,6 +308,15 @@
       <Project>{cffea5f4-2374-4336-956b-f6edb9e2fbf1}</Project>
       <Name>WordsMatching</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClientDefault.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClientSber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-group-admin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

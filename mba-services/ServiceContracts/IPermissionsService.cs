@@ -1,5 +1,5 @@
 ﻿using System.ServiceModel;
-using mba_services.DataContracts;
+using mba_model;
 
 namespace mba_services.ServiceContracts
 {
@@ -7,6 +7,6 @@ namespace mba_services.ServiceContracts
     public interface IPermissionsService
     {
         [OperationContract]
-        PermissionsDC GetPermissions();
+        Permission[] Permissions();
     }
 }

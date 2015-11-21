@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8734/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" />
-  <xs:element name="GetPermissions">
+  <xs:import schemaLocation="http://localhost:8734/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/mba_model" />
+  <xs:element name="Permissions">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetPermissionsResponse">
+  <xs:element name="PermissionsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_services.DataContracts" minOccurs="0" name="GetPermissionsResult" nillable="true" type="q1:PermissionsDC" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="PermissionsResult" nillable="true" type="q1:ArrayOfPermission" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

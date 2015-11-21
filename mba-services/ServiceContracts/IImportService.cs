@@ -8,10 +8,13 @@ namespace mba_services.ServiceContracts
     public interface IImportService
     {
         [OperationContract]
-        GoodColumnDC GetGoodColumn(string columnHeader);
+        GoodColumn GoodColumn(string columnHeader);
 
         [OperationContract]
         GoodColumn[] GoodColumns();
+
+        [OperationContract]
+        Client[] Clients();
 
         [OperationContract]
         bool AddGoodColumnRelation(GoodColumnAddRelationParamDC param);

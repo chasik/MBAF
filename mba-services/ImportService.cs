@@ -3,6 +3,7 @@
 using mba_model;
 using mba_services.DataContracts;
 using mba_services.ServiceContracts;
+using System;
 
 namespace mba_services
 {
@@ -13,6 +14,7 @@ namespace mba_services
         public ImportService()
         {
             dbContext = new ModelContext();
+            dbContext.Configuration.ProxyCreationEnabled = false;
         }
 
         public bool AddGoodColumnRelation(GoodColumnAddRelationParamDC param)
@@ -31,21 +33,30 @@ namespace mba_services
             return true;
         }
 
-        public GoodColumnDC GetGoodColumn(string columnHeader)
+        public Client[] Clients()
         {
-            GoodColumnDC goodCol = (from gc in dbContext.GoodColumns
-                                    join ch in dbContext.ColumnHeaders on gc.Id equals ch.GoodColumnId
-                                    where ch.Name == columnHeader
-                                    select new GoodColumnDC { GoodColumnId = gc.Id, GoodColumnName = gc.Name }
-                                   ).FirstOrDefault();
+            return (from client in dbContext.Clients
+                    where client.Deleted == null
+                    select client
+                   ).ToArray();
+        }
 
-            return goodCol ?? new GoodColumnDC { GoodColumnId = 0, GoodColumnName = "Не определен" };
+        public GoodColumn GoodColumn(string columnHeader)
+        {
+            return (from gc in dbContext.GoodColumns
+                    join ch in dbContext.ColumnHeaders on gc.Id equals ch.GoodColumnId
+                    where ch.Name == columnHeader
+                    select gc
+                   ).FirstOrDefault() ?? new GoodColumn { Id = 0, Name = "Не определен" };
         }
 
         public GoodColumn[] GoodColumns()
         {
-            var z = dbContext.GoodColumns.Where(gc => gc.Deleted == null).ToArray();
-            return z;
+            return (from gc in dbContext.GoodColumns
+                     where gc.Deleted == null
+                     select gc
+                   ).ToArray();
         }
+
     }
 }
