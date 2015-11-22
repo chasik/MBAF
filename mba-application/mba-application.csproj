@@ -256,9 +256,6 @@
     <Resource Include="Images\Icons\Item.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\SplashScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +314,55 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\menu-group-admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-group-analytics.png" />
+    <Resource Include="Images\Icons\menu-group-import.png" />
+    <Resource Include="Images\Icons\menu-group-operator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-import-registry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-group-report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-analytics-dashboard.png" />
+    <Resource Include="Images\Icons\menu-item-report-reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-admin-aster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-admin-users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-processing-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-processing-operator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\tools-calc.png" />
+    <Resource Include="Images\Icons\tools-chat.png" />
+    <Resource Include="Images\Icons\tools-phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-group-lead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-lead-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-group-leadership.png" />
+    <Resource Include="Images\Icons\menu-group-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-leadership-dashboard.png" />
+    <Resource Include="Images\Icons\menu-item-search-address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mba-logo-big.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

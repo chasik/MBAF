@@ -31,29 +31,44 @@ namespace mba_model.Migrations
 
             context.Permissions.AddOrUpdate(
                 p => p.Id,
-                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", Image = "menu-group-admin.png" },
-                new Permission { Id = 2, ParentId = null, Name = "menu-head", ScreenName = "Старший", Tooltip = "Раздел меню для работы старшего", Image = "menu-group-admin.png" },
-                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", Image = "menu-group-admin.png" },
-                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", Image = "menu-group-admin.png" },
-                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", Image = "menu-group-admin.png" },
-                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", Image = "menu-group-admin.png" },
-                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-admin.png" },
+                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", Image = "menu-group-operator.png" },
+                new Permission { Id = 2, ParentId = null, Name = "menu-lead", ScreenName = "Проект", Tooltip = "Раздел меню для работы менеджера проекта", Image = "menu-group-lead.png" },
+                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", Image = "menu-group-import.png" },
+                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", Image = "menu-group-analytics.png" },
+                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", Image = "menu-group-report.png" },
+                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", Image = "menu-group-search.png" },
+                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-leadership.png" },
                 new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", Image = "menu-group-admin.png" },
 
                 new Permission { Id = 9, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки",
-                                 Tooltip = "Рабочее пространство оператора", Image = "menu-group-admin.png", CommandParam = ""
+                                 Tooltip = "Рабочее пространство оператора", Image = "menu-item-processing-operator.png", CommandParam = ""
                                },
                 new Permission { Id = 10, ParentId = 1, Name = "menu-processing-table", ScreenName = "Табели",
-                                 Tooltip = "Дополнительные табели для операторов", Image = "menu-group-admin.png", CommandParam = ""
+                                 Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-table.png", CommandParam = ""
                                },
                 new Permission { Id = 11, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи",
-                                 Tooltip = "Установка разрешений для пользователей", Image = "menu-group-admin.png", CommandParam = "AdminUsersView"
+                                 Tooltip = "Установка разрешений для пользователей", Image = "menu-item-admin-users.png", CommandParam = "AdminUsersView"
                                },
                 new Permission { Id = 12, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk",
-                                 Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-group-admin.png", CommandParam = "AdminAsteriskView"
+                                 Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-item-admin-aster.png", CommandParam = "AdminAsteriskView"
                                },
                 new Permission { Id = 13, ParentId = 3, Name = "menu-import-registry", ScreenName = "Реестры",
-                                 Tooltip = "Импорт реестров", Image = "menu-group-admin.png", CommandParam = "RegistryAddView"
+                                 Tooltip = "Импорт реестров", Image = "menu-item-import-registry.png", CommandParam = "RegistryAddView"
+                               },
+                new Permission { Id = 14, ParentId = 4, Name = "menu-analytics-dashboard", ScreenName = "Мониторинг",
+                                 Tooltip = "Текущая состояние колл-центра", Image = "menu-item-analytics-dashboard.png", CommandParam = ""
+                               },
+                new Permission { Id = 15, ParentId = 5, Name = "menu-report-reports", ScreenName = "Отчеты",
+                                 Tooltip = "Настройка отчетов", Image = "menu-item-report-reports.png", CommandParam = ""
+                               },
+                new Permission { Id = 16, ParentId = 2, Name = "menu-lead-tables", ScreenName = "Табели",
+                                 Tooltip = "Заполнение табелей", Image = "menu-item-lead-table.png", CommandParam = ""
+                               },
+                new Permission { Id = 17, ParentId = 6, Name = "menu-search-address", ScreenName = "Адресса",
+                                 Tooltip = "Поиск и проверка адресов", Image = "menu-item-search-address.png", CommandParam = ""
+                               },
+                new Permission { Id = 18, ParentId = 7, Name = "menu-leadership-dashboard", ScreenName = "Мониторинг",
+                                 Tooltip = "Мониторинг рабочего процесса", Image = "menu-item-leadership-dashboard.png", CommandParam = ""
                                }
                 );
 

@@ -5,6 +5,7 @@
     xmlns:dxnb="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     
     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
@@ -50,20 +51,27 @@
                             <Style TargetType="dxnb:NavBarItem">
                                 <Setter Property="DisplayMode" Value="ImageAndText"/>
                                 <Setter Property="Content" Value="{Binding Path=ScreenName}"/>
-                                <Setter Property="ImageSource" Value="{Binding Path=Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
                                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dx:DXWindow}}, Path=DataContext.MenuItemClickCommand}"/>
                                 <Setter Property="CommandParameter" Value="{Binding Path=CommandParam}"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding ScreenName}"/>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Width="24" Height="24" Margin="20,2,10,2"
+                                                    Source="{Binding Path=Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding ScreenName}" VerticalAlignment="Center"/>
+                                            </Grid>
                                         </DataTemplate>
                                     </Setter.Value>
                                 </Setter>
                             </Style>
                         </dxnb:NavBarControl.Resources>
                         <dxnb:NavBarControl.View>
-                            <dxnb:ExplorerBarView/>
+                            <dxnb:SideBarView/>
                         </dxnb:NavBarControl.View>
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>
@@ -74,17 +82,25 @@
                         </dxmvvm:Interaction.Behaviors>
                     </dxwui:NavigationFrame>
                 </dxdo:LayoutPanel>
-                <dxdo:LayoutPanel ItemWidth="180" Caption="Инструменты" AllowClose="False" AllowContextMenu="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowSizing="False" AllowMove="False" AllowMaximize="False" AllowMinimize="False" AllowFloat="False" AllowDock="False" AllowRestore="False" AllowHide="False">
+                <dxdo:LayoutPanel ItemWidth="182" Caption="Инструменты" AllowClose="False" AllowContextMenu="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowSizing="False" AllowMove="False" AllowMaximize="False" AllowMinimize="False" AllowFloat="False" AllowDock="False" AllowRestore="False" AllowHide="False">
                     <dxnb:NavBarControl HorizontalAlignment="Right">
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
                         </dxnb:NavBarControl.View>
-                        <dxnb:NavBarGroup Header="Звонилка" ImageSource="{dx:DXImage Image=BOContact_32x32.png}" DisplaySource="Content">
-                            <dxnb:NavBarItem Content="Item 1"/>
+                        <dxnb:NavBarGroup Header="MBA Phone" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-phone.png">
+                            <dxnb:NavBarGroup.Content>
+                                <TextBlock>Телефон</TextBlock>
+                            </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText">
-                            <dxnb:NavBarItem Content="Item 1" Command="{Binding MenuItemClickCommand}"/>
-                            <dxnb:NavBarItem Content="Item 2"/>
+                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png">
+                            <dxnb:NavBarGroup.Content>
+                                <dxe:Calculator x:Name="calculator"/>
+                            </dxnb:NavBarGroup.Content>
+                        </dxnb:NavBarGroup>
+                        <dxnb:NavBarGroup Header="Чаты" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-chat.png">
+                            <dxnb:NavBarGroup.Content>
+                                <TextBlock>импорт чат</TextBlock>
+                            </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>

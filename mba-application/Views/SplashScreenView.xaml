@@ -14,18 +14,29 @@
                 <Border Background="Black" CornerRadius="3" Opacity="0.15"/>
                 <Border CornerRadius="2" Margin="1" Background="White"/>
             </Grid>
-            <Grid x:Name="Content_Area" Margin="12">
+            <Grid x:Name="Content_Area" Margin="10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="190"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Image x:Name="Image" Source="Image.png" Stretch="None"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="230"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="Image" 
+                       Grid.RowSpan="3"
+                       Grid.Column="1"
+                       Source="pack://application:,,,/mba-application;component/Images/mba-logo-big.jpg" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Top" 
+                       />
                 <TextBlock x:Name="Info" TextWrapping="Wrap" Text="{Binding State}" Grid.Row="1" Margin="12,12,12,0" Foreground="#FF2D2D2D"/>
                 <ProgressBar x:Name="progressBar"
                              Height="12"
                              Grid.Row="2"
+                             Grid.ColumnSpan="2"
                              Margin="12"
                              IsIndeterminate="{Binding IsIndeterminate}"
                              Value="{Binding Progress}"
