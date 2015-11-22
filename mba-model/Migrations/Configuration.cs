@@ -90,12 +90,12 @@ namespace mba_model.Migrations
 
             context.Clients.AddOrUpdate(
                 c => c.Id,
-                new Client { Id = 1, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Image="ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 2, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 3, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 4, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 5, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 6, InnerId = 250, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
+                new Client { Id = 1, ParentId = null, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Image="ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 2, ParentId = null, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 3, ParentId = 2, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 4, ParentId = null, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 5, ParentId = 4, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 6, ParentId = null, InnerId = 251, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
                 );
 
             context.GoodColumns.AddOrUpdate(

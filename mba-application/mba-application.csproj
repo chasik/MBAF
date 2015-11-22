@@ -192,10 +192,10 @@
     <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumn.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MBAImportService\mba_model.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\MBAImportService\mba_application.MBAImportService.ImportType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MBAImportService\mba_services.DataContracts1.xsd">
+    <None Include="Service References\MBAImportService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MBAImportService\service.xsd">
@@ -363,6 +363,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\mba-logo-big.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClientMTSbank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClientRenesansCredit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

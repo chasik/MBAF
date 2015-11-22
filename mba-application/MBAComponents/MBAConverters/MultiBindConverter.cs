@@ -14,7 +14,8 @@ namespace mba_application.MBAComponents.MBAConverters
         }
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return new GoodColumnAddRelationParamDC { GoodColumn = (values[0] as GoodColumnDC), ColumnHeader = (values[1] as string) };
+            //return new GoodColumnAddRelationParamDC { GoodColumn = (values[0] as GoodColumnDC), ColumnHeader = (values[1] as string) };
+            throw new NotImplementedException();
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

@@ -22,6 +22,7 @@ namespace mba_application.ViewModels.Import
             ImportService = new MBAImportService.ImportServiceClient();
             GoodColumns = new ObservableCollection<GoodColumn>(ImportService.GoodColumns());
             Clients = new ObservableCollection<Client>(ImportService.Clients());
+            ImportTypes = new ObservableCollection<ImportType>(ImportService.ImportTypes());
         }
 
         public string SourceFilePath
@@ -45,19 +46,21 @@ namespace mba_application.ViewModels.Import
             get { return GetProperty(() => WorkSheetsInBook); }
             set { SetProperty(() => WorkSheetsInBook, value); }
         }
-
         public ObservableCollection<GoodColumn> GoodColumns
         {
             get { return GetProperty(() => GoodColumns); }
             set { SetProperty(() => GoodColumns, value); }
         }
-
         public ObservableCollection<Client> Clients
         {
             get { return GetProperty(() => Clients); }
             set { SetProperty(() => Clients, value); }
         }
-
+        public ObservableCollection<ImportType> ImportTypes
+        {
+            get { return GetProperty(() => ImportTypes); }
+            set { SetProperty(() => ImportTypes, value); }
+        }
         public void DblClickExplorer(FileSystemItem focusedNode)
         {
             // TODO: сделать проверку через регулярное выражение
@@ -69,7 +72,6 @@ namespace mba_application.ViewModels.Import
                 SourceFilePath = focusedNode.FullName;
             }
         }
-
         public void DocumentLoaded(object _spreadSheet)
         {
             //ShowProgressBar = "Visible";
@@ -121,7 +123,8 @@ namespace mba_application.ViewModels.Import
 
         public void ChangeGoodColumn(object param)
         {
-            ImportService.AddGoodColumnRelation(param as GoodColumnAddRelationParamDC);
+            //ImportService.AddGoodColumnRelation(param as GoodColumnAddRelationParamDC);
+            throw new NotImplementedException();
         }
     }
 
@@ -196,7 +199,6 @@ namespace mba_application.ViewModels.Import
         {
         }
         public string Caption { get; set; }
-        public GoodColumnDC GoodColumnRef { get; set; }
         public GoodColumn[] GoodColumnListRef { get; set; }
     }
 

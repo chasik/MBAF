@@ -1,9 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using mba_model;
-using mba_services.DataContracts;
 using mba_services.ServiceContracts;
-using System;
 
 namespace mba_services
 {
@@ -15,22 +14,6 @@ namespace mba_services
         {
             dbContext = new ModelContext();
             dbContext.Configuration.ProxyCreationEnabled = false;
-        }
-
-        public bool AddGoodColumnRelation(GoodColumnAddRelationParamDC param)
-        {
-            ColumnHeader colHeader = (from ch in dbContext.ColumnHeaders
-                                      where ch.Name == param.ColumnHeader
-                                      select ch
-                                      ).FirstOrDefault() ?? dbContext.ColumnHeaders.Add(new ColumnHeader { Name = param.ColumnHeader });
-
-            colHeader.GoodColumn = (from gc in dbContext.GoodColumns
-                                    where gc.Id == param.GoodColumn.GoodColumnId
-                                    select gc
-                                   ).FirstOrDefault();
-
-            dbContext.SaveChanges();
-            return true;
         }
 
         public Client[] Clients()
@@ -58,5 +41,9 @@ namespace mba_services
                    ).ToArray();
         }
 
+        public ImportType[] ImportTypes()
+        {
+            return (from it in dbContext.ImportTypes select it).ToArray();
+        }
     }
 }

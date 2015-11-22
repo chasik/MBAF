@@ -10,6 +10,8 @@ namespace mba_model
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public int? ParentId { get; set; }
+        [DataMember]
         public int InnerId { get; set; }
         [DataMember]
         public string Name { get; set; }

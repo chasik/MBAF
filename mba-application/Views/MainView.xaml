@@ -16,7 +16,7 @@
     xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
     x:Class="mba_application.MainView"
     
-    Title="MBA Finance" Height="500" Width="900"
+    Title="MBA Finance" Height="600" Width="1000"
     SnapsToDevicePixels="True" UseLayoutRounding="True"
     
     DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}"

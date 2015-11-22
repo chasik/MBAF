@@ -1,5 +1,4 @@
 ﻿using System.ServiceModel;
-using mba_services.DataContracts;
 using mba_model;
 
 namespace mba_services.ServiceContracts
@@ -17,6 +16,6 @@ namespace mba_services.ServiceContracts
         Client[] Clients();
 
         [OperationContract]
-        bool AddGoodColumnRelation(GoodColumnAddRelationParamDC param);
+        ImportType[] ImportTypes();
     }
 }
