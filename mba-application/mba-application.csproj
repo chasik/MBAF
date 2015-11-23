@@ -135,6 +135,7 @@
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Operator\OperatorWorkflowViewModel.cs" />
     <Compile Include="ViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\TryEnterError.cs" />
     <Compile Include="Views\Admin\AdminAsteriskView.xaml.cs">
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="Views\Import\RegistryAddView.xaml.cs">
       <DependentUpon>RegistryAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Operator\OperatorWorkflowView.xaml.cs">
+      <DependentUpon>OperatorWorkflowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PhoneView.xaml.cs">
       <DependentUpon>PhoneView.xaml</DependentUpon>
@@ -231,6 +235,10 @@
     <Page Include="Views\Import\RegistryAddView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Operator\OperatorWorkflowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PhoneView.xaml">
       <SubType>Designer</SubType>
@@ -369,6 +377,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ClientRenesansCredit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-processing-task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-lead-monitoring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-lead-operators.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-lead-registry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\menu-item-lead-dialer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
