@@ -11,3 +11,5 @@ DevExpress.Xpf.LayoutControl.LayoutControl, DevExpress.Xpf.LayoutControl.v15.1, 
 DevExpress.Xpf.Editors.ComboBoxEdit, DevExpress.Xpf.Core.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Grid.LookUp.LookUpEdit, DevExpress.Xpf.Grid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Editors.Calculator, DevExpress.Xpf.Core.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.LayoutControl.DockLayoutControl, DevExpress.Xpf.LayoutControl.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Scheduler.SchedulerControl, DevExpress.Xpf.Scheduler.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

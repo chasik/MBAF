@@ -56,6 +56,7 @@
     <Reference Include="DevExpress.Xpf.Printing.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.ReportDesigner.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Ribbon.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Scheduler.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Spreadsheet.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Themes.DXStyle.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
@@ -84,6 +85,7 @@
     <Reference Include="DevExpress.Xpf.Themes.VS2010.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -135,6 +137,8 @@
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Manager\ManagerAutoTasksViewModel.cs" />
+    <Compile Include="ViewModels\Manager\ManagerTasksViewModel.cs" />
     <Compile Include="ViewModels\Operator\OperatorWorkflowViewModel.cs" />
     <Compile Include="ViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\TryEnterError.cs" />
@@ -146,6 +150,12 @@
     </Compile>
     <Compile Include="Views\Import\RegistryAddView.xaml.cs">
       <DependentUpon>RegistryAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manager\ManagerAutoTasksView.xaml.cs">
+      <DependentUpon>ManagerAutoTasksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manager\ManagerTasksView.xaml.cs">
+      <DependentUpon>ManagerTasksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Operator\OperatorWorkflowView.xaml.cs">
       <DependentUpon>OperatorWorkflowView.xaml</DependentUpon>
@@ -235,6 +245,14 @@
     <Page Include="Views\Import\RegistryAddView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Manager\ManagerAutoTasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manager\ManagerTasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Operator\OperatorWorkflowView.xaml">
       <SubType>Designer</SubType>
@@ -397,6 +415,7 @@
     <Resource Include="Images\Icons\menu-item-search-opp.png" />
     <Resource Include="Images\Icons\menu-item-search-phone.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
