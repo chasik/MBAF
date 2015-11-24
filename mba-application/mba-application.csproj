@@ -117,9 +117,6 @@
     <Compile Include="MBAComponents\Employee.cs" />
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
-    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToVisibilityConverter.cs" />
-    <Compile Include="MBAComponents\MBAConverters\CurrentCaptionToBackgroundConverter.cs" />
-    <Compile Include="MBAComponents\MBAConverters\MultiBindConverter.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\SIPUserAgent.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
@@ -212,26 +209,26 @@
     <None Include="Service References\MBAImportService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\MBAImportService\service.wsdl" />
     <None Include="Service References\MBAImportService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAImportService\service1.wsdl" />
     <None Include="Service References\MBAImportService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MBAPermissionsService\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MBAPermissionsService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MBAPermissionsService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MBAPermissionsService\mba_application.MBAPermissionsService.Permission.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MBAPermissionsService\PermissionsService.wsdl" />
+    <None Include="Service References\MBAPermissionsService\mba_model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAPermissionsService\service.wsdl" />
+    <None Include="Service References\MBAPermissionsService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAPermissionsService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Admin\AdminAsteriskView.xaml">
@@ -289,21 +286,6 @@
     <WCFMetadataStorage Include="Service References\MBAPermissionsService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="VAXSIPUSERAGENTCOMLib">
       <Guid>{B63B0AE6-3427-4552-974E-A4CBA0C60883}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -313,18 +295,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAImportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAImportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAImportService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\similarity\WordsMatching.csproj">
@@ -415,7 +385,30 @@
     <Resource Include="Images\Icons\menu-item-search-opp.png" />
     <Resource Include="Images\Icons\menu-item-search-phone.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Service References\MBAPermissionsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAPermissionsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAPermissionsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

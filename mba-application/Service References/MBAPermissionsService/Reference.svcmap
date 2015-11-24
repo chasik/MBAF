@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="debebc41-4476-4d6d-b9a9-08468aae8fb5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9e8467d7-8cd4-4f92-a644-d3ec7220059c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,14 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8734/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8834/mex_permission" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PermissionsService.wsdl" MetadataType="Wsdl" ID="3f88f780-b183-46e0-a2b7-4e9f8f0f376e" SourceId="1" SourceUrl="http://localhost:8734/?wsdl" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="3acfbd3d-f99c-41b3-96b3-faf82f1869a5" SourceId="1" SourceUrl="http://localhost:8734/?xsd=xsd2" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="a305d2f9-b171-4871-b842-b5cfbba73ead" SourceId="1" SourceUrl="http://localhost:8734/?disco" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="091393aa-1b5a-44c1-8993-b7535e45db60" SourceId="1" SourceUrl="http://localhost:8734/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="898b42de-bc22-4017-a9ec-198228d0b37f" SourceId="1" SourceUrl="http://localhost:8734/?xsd=xsd0" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="9fa8f08c-df47-4d6a-894d-a3a2f3530c22" SourceId="1" SourceUrl="http://localhost:8834/mex_permission" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d589e278-b18c-4b7f-a3f6-10df178ac04d" SourceId="1" SourceUrl="http://localhost:8834/mex_permission" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="2959daa7-04e7-48fb-81f0-fb4bbbbcb4b9" SourceId="1" SourceUrl="http://localhost:8834/mex_permission" />
+    <MetadataFile FileName="mba_model.xsd" MetadataType="Schema" ID="0a7b4488-fbe7-409a-aceb-e55cbe84cd12" SourceId="1" SourceUrl="http://localhost:8834/mex_permission" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

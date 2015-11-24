@@ -16,14 +16,21 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              xmlns:ImportViewModels="clr-namespace:mba_application.ViewModels.Import"
-             mc:Ignorable="d"  d:DesignHeight="400" d:DesignWidth="600" 
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}">
+             mc:Ignorable="d"  d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}" 
+             >
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:MultiBindConverter x:Key="commandParamsConverter" x:Shared="False"/>
-            <converters:CurrentCaptionToBackgroundConverter x:Key="currentCaptionToBackgroundConverter" x:Shared="False"/>
-            <converters:CurrentCaptionToVisibilityConverter x:Key="currentCaptionToVisibilityConverter" x:Shared="False"/>
             <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter" x:Shared="False"/>
+            <Style x:Key="ColumnHeaderAnalysis">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsGoodPercent}" Value="True">
+                        <Setter Property="TextBlock.Background" Value="Lime"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsGoodPercent}" Value="False">
+                        <Setter Property="TextBlock.Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -38,7 +45,6 @@
                             </Grid.ColumnDefinitions>
                             <dxe:ComboBoxEdit Grid.Column="0"
                                               ShowSizeGrip="False"
-                                              IsTextEditable="False"
                                               AutoComplete="True"
                                               ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.Clients}"
                                               DisplayMember="Name"
@@ -54,7 +60,7 @@
                                             <Image Grid.Column="0" 
                                                    Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
                                             <TextBlock Grid.Column="1" 
-                                                       Text="{Binding Path=Name}" Margin="10,1,10,0"></TextBlock>
+                                                       Text="{Binding Path=Name, Mode=OneWay}" Margin="10,1,10,0"></TextBlock>
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ComboBoxEdit.ItemTemplate>
@@ -64,7 +70,6 @@
                             </dxe:ComboBoxEdit>
                             <dxe:ComboBoxEdit Grid.Column="1"
                                               ShowSizeGrip="False"
-                                              IsTextEditable="False"
                                               AutoComplete="True"
                                               ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.ImportTypes}"
                                               DisplayMember="Name"
@@ -85,52 +90,32 @@
                     <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding ColumnCaptionList}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                         <dxe:ListBoxEdit.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="140"/>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" 
-                                               Width="320" FontWeight="Bold" Padding="6,0,6,0"
-                                               Text="{Binding Caption}" 
-                                               Background="{Binding GoodColumnRef.GoodColumnId, Converter={StaticResource currentCaptionToBackgroundConverter}}"/>
+                                <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
+                                               Text="{Binding Caption}"/>
 
                                     <dxe:ComboBoxEdit x:Name="GoodColumnComboboxEdit"
-                                                      Grid.Column="1" 
-                                                      ShowSizeGrip="False"
+                                                      DisplayMember="GoodColumn" 
+                                                      ValueMember="GoodColumn"
                                                       IsTextEditable="False"
-                                                      AutoComplete="True"
-                                                      SelectedIndex="0"
-                                                      ItemsSource="{Binding GoodColumnListRef}"
-                                                      DisplayMember="GoodColumnName"
-                                                      ValueMember="GoodColumnId"
-                                                      ApplyItemTemplateToSelectedItem="True">
+                                                      ItemsSource="{Binding GoodColumnWithPercentMatches}"
+                                                      ApplyItemTemplateToSelectedItem="True"
+                                                      SelectedIndex="0">
                                         <dxe:ComboBoxEdit.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding GoodColumnName}" Width="200" Margin="10,1,10,0"></TextBlock>
+                                            <DataTemplate >
+                                                <StackPanel Orientation="Horizontal" Margin="2">
+                                                    <TextBlock Text="{Binding Percent}" 
+                                                               Grid.Column="0" Width="40" Padding="10,1,10,0"
+                                                               Style="{StaticResource ColumnHeaderAnalysis}"/>
+                                                    <TextBlock Text="{Binding GoodColumn.Name}" Grid.Column="1" Width="200" Margin="10,1,10,0"/>
+                                                </StackPanel>
                                             </DataTemplate>
                                         </dxe:ComboBoxEdit.ItemTemplate>
                                         <dxe:ComboBoxEdit.StyleSettings>
                                             <dxe:ComboBoxStyleSettings />
                                         </dxe:ComboBoxEdit.StyleSettings>
                                     </dxe:ComboBoxEdit>
-
-                                    <Button Grid.Column="2"
-                                            Visibility="{Binding GoodColumnRef.GoodColumnId, Converter={StaticResource currentCaptionToVisibilityConverter}}"
-                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.ChangeGoodColumnCommand}" 
-                                            Margin="20,0,20,0">
-                                        <Button.CommandParameter>
-                                            <MultiBinding Converter="{StaticResource commandParamsConverter}">
-                                                <Binding ElementName="GoodColumnComboboxEdit" Path="SelectedItem"/>
-                                                <Binding Path="Caption"/>
-                                            </MultiBinding>
-                                        </Button.CommandParameter>
-                                        Сохранить
-                                    </Button>
-                                </Grid>
+                                </StackPanel>
                             </DataTemplate>
                         </dxe:ListBoxEdit.ItemTemplate>
                     </dxe:ListBoxEdit>
@@ -164,7 +149,7 @@
                             <dxdo:DocumentGroup ItemsSource="{Binding WorkSheetsInBook}" CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding WorkSheetName}"/>
+                                        <TextBlock Text="{Binding WorkSheetName, Mode=OneWay}"/>
                                     </DataTemplate>
                                 </dxdo:DocumentGroup.ItemCaptionTemplate>
                                 <dxdo:DocumentGroup.ItemContentTemplate>

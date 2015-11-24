@@ -111,22 +111,34 @@ namespace mba_model.Migrations
 
             context.GoodColumns.AddOrUpdate(
                 gc => gc.Id,
-                new GoodColumn { Id = 1, Name = "Фамилия должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 2, Name = "Имя должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 3, Name = "Отчество должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 1,  Name = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 2,  Name = "Фамилия должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 3,  Name = "Имя должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 4,  Name = "Отчество должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 5,  Name = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 4, Name = "Серия паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 5, Name = "Номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 6, Name = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 7, Name = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 6, Name = "Пол должника", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 8, Name = "Адрес регистрации(прописка) должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 9, Name = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 10, Name = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 11, Name = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 12, Name = "Серия и номер паспорта", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 13, Name = "Кем и когда выдан паспорт", Created = DateTime.Now, CreatedBy = 1 }
+                new GoodColumn { Id = 7,  Name = "Серия и номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 8,  Name = "Кем и когда выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 9,  Name = "Серия паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 10,  Name = "Номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 11,  Name = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 12, Name = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
 
+                new GoodColumn { Id = 13, Name = "Адрес регистрации(прописки) должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 14, Name = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
+
+                new GoodColumn { Id = 15, Name = "Мобильный телефон должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 16, Name = "Телефон адреса регистрации должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 17, Name = "Телефон фактического места проживания должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 18, Name = "Рабочий телефон должника", Created = DateTime.Now, CreatedBy = 1 },
+
+                new GoodColumn { Id = 19, Name = "Номер кредитного договора", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 20, Name = "Тип продукта (кредита)", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 21, Name = "Программа кредитования должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 22, Name = "Номер счета для погашения задолженности", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 23, Name = "Дата предоставления кредита", Created = DateTime.Now, CreatedBy = 1 }
                 );
 
             context.ImportTypes.AddOrUpdate(

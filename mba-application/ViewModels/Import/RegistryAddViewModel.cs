@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using mba_application.MBAComponents;
 using mba_application.MBAImportService;
+using WordsMatching;
 
 namespace mba_application.ViewModels.Import
 {
@@ -15,8 +16,6 @@ namespace mba_application.ViewModels.Import
         public MBAImportService.ImportServiceClient ImportService;
         public RegistryAddViewModel()
         {
-            ShowProgressBar = "Collapsed";
-            WorkSheetsCount = "Результаты парсинга документа ...";
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
 
             ImportService = new MBAImportService.ImportServiceClient();
@@ -29,16 +28,6 @@ namespace mba_application.ViewModels.Import
         {
             get { return GetProperty(() => SourceFilePath); }
             set { SetProperty(() => SourceFilePath, value); }
-        }
-        public string ShowProgressBar
-        {
-            get { return GetProperty(() => ShowProgressBar); }
-            set { SetProperty(() => ShowProgressBar, value); }
-        }
-        public string WorkSheetsCount
-        {
-            get { return GetProperty(() => WorkSheetsCount); }
-            set { SetProperty(() => WorkSheetsCount, value); }
         }
 
         public ObservableCollection<SheetInfo> WorkSheetsInBook
@@ -74,11 +63,9 @@ namespace mba_application.ViewModels.Import
         }
         public void DocumentLoaded(object _spreadSheet)
         {
-            //ShowProgressBar = "Visible";
             if (_spreadSheet is SpreadsheetControl)
             {
                 IWorkbook WorkBook = (_spreadSheet as SpreadsheetControl).Document;
-                WorkSheetsCount = "Найдено листов: " + WorkBook.Worksheets.Count.ToString();
                 foreach (Worksheet ws in WorkBook.Worksheets)
                 {
                     Range usedRange = ws.GetUsedRange();
@@ -97,19 +84,16 @@ namespace mba_application.ViewModels.Import
                             {
                                 if (ws.Cells[i, j].Value.Type == CellValueType.Text)
                                 {
-                                    var captionValue = new ColumnCaption
-                                    {
-                                        Caption = ws.Cells[i, j].Value.ToString().ToLower()
-                                            .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
-                                            .Replace("\n", "").Replace("  ", " ")
-                                    };
+                                    var captionValue = new ColumnCaption {
+                                            Caption = ws.Cells[i, j].Value.ToString().ToLower()
+                                                        .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
+                                                        .Replace("\n", "").Replace("  ", " ")
+                                        };
+
                                     if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
                                     {
-                                        //captionValue.GoodColumnRef = ImportService.GetGoodColumn(captionValue.Caption);
-                                        //captionValue.GoodColumnListRef = new GoodColumnsListDC();
-                                        //captionValue.GoodColumnListRef.Add(captionValue.GoodColumnRef);
-                                        //captionValue.GoodColumnListRef.AddRange(GoodColumns);
-                                        //sheetInfo.ColumnCaptionList.Add(captionValue);
+                                        captionValue.CompareWithGoodColumns(GoodColumns);
+                                        sheetInfo.ColumnCaptionList.Add(captionValue);
                                     }
                                 }
                             }
@@ -118,13 +102,6 @@ namespace mba_application.ViewModels.Import
                     WorkSheetsInBook.Add(sheetInfo);
                 }
             }
-            //ShowProgressBar = "Collapsed";
-        }
-
-        public void ChangeGoodColumn(object param)
-        {
-            //ImportService.AddGoodColumnRelation(param as GoodColumnAddRelationParamDC);
-            throw new NotImplementedException();
         }
     }
 
@@ -195,11 +172,32 @@ namespace mba_application.ViewModels.Import
 
     public class ColumnCaption
     {
+        public string Caption { get; set; }
+        public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }
+
         public ColumnCaption()
         {
+            GoodColumnWithPercentMatches = new List<GoodColumnWithPercentMathces>();
         }
-        public string Caption { get; set; }
-        public GoodColumn[] GoodColumnListRef { get; set; }
+
+        internal void CompareWithGoodColumns(ObservableCollection<GoodColumn> goodColumns)
+        {
+            foreach (var item in goodColumns)
+            {
+                GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces {
+                    GoodColumn = item,
+                    Percent = (float) Math.Round((new MatchsMaker(item.Name, Caption)).Score, 2)
+                });
+            }
+            GoodColumnWithPercentMatches.Sort((one, two) => { if (one.Percent > two.Percent) return -1; else return 1; });
+        }
+    }
+
+    public class GoodColumnWithPercentMathces
+    {
+        public bool IsGoodPercent { get { return Percent > 0.9; } set { } }
+        public float Percent { get; set; }
+        public GoodColumn GoodColumn { get; set; }
     }
 
     public class RowInfo

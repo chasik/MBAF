@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="586f458a-2b17-463d-8a33-da6b8866cb84" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="95b0c502-285f-4cf0-baf7-ca06fdee9415" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8735/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8835/mex_import" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="f5b76ea3-9831-4b21-832d-e6d11356ff71" SourceId="1" SourceUrl="http://localhost:8735/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d24fa05b-97ba-4b94-a339-7cc5fb38b2b8" SourceId="1" SourceUrl="http://localhost:8735/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="009500ed-185b-4a0e-bf13-311c4eb6d1bd" SourceId="1" SourceUrl="http://localhost:8735/mex" />
-    <MetadataFile FileName="mba_model.xsd" MetadataType="Schema" ID="8ba05ce3-f510-43e7-b3a8-9d8a9453ab4c" SourceId="1" SourceUrl="http://localhost:8735/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="a98004f2-dc52-467b-a6a0-65135da4d124" SourceId="1" SourceUrl="http://localhost:8835/mex_import" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0a7bb437-5a15-4b81-a748-859245b83874" SourceId="1" SourceUrl="http://localhost:8835/mex_import" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="0c0c66df-e4d0-4a96-8d67-7eefbb861f6f" SourceId="1" SourceUrl="http://localhost:8835/mex_import" />
+    <MetadataFile FileName="mba_model.xsd" MetadataType="Schema" ID="24a4651b-39a3-4034-9bcc-a30a22cf9fcb" SourceId="1" SourceUrl="http://localhost:8835/mex_import" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
