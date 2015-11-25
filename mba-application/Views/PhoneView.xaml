@@ -15,59 +15,32 @@
                 <Ellipse Stroke="#576168"
                          StrokeThickness="1">
                     <Ellipse.Style>
-                        <Style TargetType="Ellipse">
+                        <Style>
+                            <Setter Property="Ellipse.Fill" Value="Transparent"></Setter>
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Stroke" Value="White"></Setter>
+                                <Trigger Property="Button.IsMouseOver" Value="True">
+                                    <Setter Property="Ellipse.Fill" Value="Red"></Setter>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
 
-                <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Margin="0,0,0,2"
-                                  TextBlock.FontSize="22"/>
             </Grid>
         </ControlTemplate>
 
         <Style x:Key="IPhoneButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Control.Template" Value="{StaticResource IPhoneButton}"/>
-            <Setter Property="Margin" Value="2"/>
-            <Style.Triggers>
-                <!--Trigger Property="Control.IsMouseOver" Value="True">
-                    <Setter Property="Visibility" Value="Hidden"></Setter>
-                </Trigger-->
-                <!--EventTrigger RoutedEvent="Button.MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
-                            <Storyboard>
-                                <ThicknessAnimation Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="Margin"
-                                                 To="0,0,0,0">
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </>
-                <EventTrigger RoutedEvent="Button.MouseLeave">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard HandoffBehavior="SnapshotAndReplace">
-                            <Storyboard>
-                                <ThicknessAnimation Duration="0:0:0.1"
-                                                 Storyboard.TargetProperty="Margin"
-                                                 To="2,2,2,2">
-                                </ThicknessAnimation>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger-->
-            </Style.Triggers>
+            <Setter Property="Margin" Value="1"/>
         </Style>
 
         <Style x:Key="IPhoneButtonCallStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource IPhoneButtonStyle}">
         </Style>
+
+        <ControlTemplate x:Key="IPhoneEraseButton" TargetType="Button">
+            <Image Source="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png"></Image>
+        </ControlTemplate>
+
     </UserControl.Resources>
     <Grid Height="280">
         <Grid.ColumnDefinitions>
@@ -86,24 +59,31 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" Grid.Column="1" Content="1" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="2" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="3" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="0" 
+                Grid.Column="4"
+                Height="22"
+                VerticalAlignment="Center"
+                Template="{StaticResource IPhoneEraseButton}"
+                />
+        
+        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <Button Grid.Row="2" Grid.Column="1" Content="4" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="5" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="6" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="3" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <Button Grid.Row="3" Grid.Column="1" Content="7" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="8" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="9" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="2" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <!--Button Grid.Row="4" Grid.Column="0" Content="-" Style="{StaticResource IPhoneButtonStyle}"/-->
-        <Button Grid.Row="4" Grid.Column="2" Content="0" Style="{StaticResource IPhoneButtonStyle}"/>
-        <!--Button Grid.Row="4" Grid.Column="2" Content="-" Style="{StaticResource IPhoneButtonStyle}"/-->
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="4" Grid.Column="2" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="4" Grid.Column="3" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <!--Button Grid.Row="5" Grid.Column="0" Content="-" Style="{StaticResource IPhoneButtonStyle}"/-->
-        <Button Grid.Row="5" Grid.Column="2" Content="-" Style="{StaticResource IPhoneButtonCallStyle}"/>
-        <!--Button Grid.Row="5" Grid.Column="2" Content="-" Style="{StaticResource IPhoneButtonStyle}"/-->
+        <Button Grid.Row="5" Grid.Column="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="5" Grid.Column="2" Style="{StaticResource IPhoneButtonCallStyle}"/>
+        <Button Grid.Row="5" Grid.Column="3" Style="{StaticResource IPhoneButtonStyle}"/>
     </Grid>
 </UserControl>
