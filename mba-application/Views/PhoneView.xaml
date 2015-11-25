@@ -13,7 +13,17 @@
         <ControlTemplate x:Key="IPhoneButton" TargetType="Button">
             <Grid>
                 <Ellipse Stroke="#576168"
-                         StrokeThickness="1"/>
+                         StrokeThickness="1">
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Stroke" Value="White"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
 
                 <ContentPresenter HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
