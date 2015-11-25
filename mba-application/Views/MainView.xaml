@@ -12,6 +12,7 @@
     xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
     
     xmlns:local="clr-namespace:mba_application"
+    xmlns:v="clr-namespace:mba_application.Views"
     xmlns:vm="clr-namespace:mba_application.ViewModels"
     xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
     x:Class="mba_application.MainView"
@@ -24,6 +25,10 @@
     <dx:DXWindow.Resources>
         <ResourceDictionary>
             <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
+            <vm:PhoneViewModel x:Key="PhoneViewModel"/>
+            <DataTemplate DataType="{x:Type vm:PhoneViewModel}">
+                <v:PhoneView/>
+            </DataTemplate>
         </ResourceDictionary>
     </dx:DXWindow.Resources>
    
@@ -34,7 +39,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
@@ -89,10 +94,10 @@
                         </dxnb:NavBarControl.View>
                         <dxnb:NavBarGroup Header="MBA Phone" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-phone.png">
                             <dxnb:NavBarGroup.Content>
-                                <TextBlock>Телефон</TextBlock>
+                                <ContentControl Content="{StaticResource PhoneViewModel}"/>
                             </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png">
+                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png" IsExpanded="False">
                             <dxnb:NavBarGroup.Content>
                                 <dxe:Calculator x:Name="calculator"/>
                             </dxnb:NavBarGroup.Content>
@@ -106,7 +111,7 @@
                 </dxdo:LayoutPanel>
             </dxdo:LayoutGroup>
         </dxdo:DockLayoutManager>
-        <dxb:StatusBarControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <dxb:StatusBarControl Grid.Row="1" HorizontalAlignment="Stretch" />
 
     </Grid>
 

@@ -16,7 +16,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              xmlns:ImportViewModels="clr-namespace:mba_application.ViewModels.Import"
-             mc:Ignorable="d"  d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}" 
+             mc:Ignorable="d"  d:DesignHeight="400" d:DesignWidth="600" 
+             DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}" 
              >
     <UserControl.Resources>
         <ResourceDictionary>
