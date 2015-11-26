@@ -8,7 +8,7 @@ namespace mba_application.MBAComponents.MBAConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return "\\Images\\Icons\\" + value;
+            return "\\Resources\\Images\\Icons\\" + value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

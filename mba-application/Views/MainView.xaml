@@ -45,7 +45,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="36" />
         </Grid.RowDefinitions>
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
@@ -93,22 +93,22 @@
                         </dxmvvm:Interaction.Behaviors>
                     </dxwui:NavigationFrame>
                 </dxdo:LayoutPanel>
-                <dxdo:LayoutPanel ItemWidth="182" Caption="Инструменты" AllowClose="False" AllowContextMenu="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowSizing="False" AllowMove="False" AllowMaximize="False" AllowMinimize="False" AllowFloat="False" AllowDock="False" AllowRestore="False" AllowHide="False">
+                <dxdo:LayoutPanel ItemWidth="182" Caption="Инструменты" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
                     <dxnb:NavBarControl HorizontalAlignment="Right">
                         <dxnb:NavBarControl.View>
                             <dxnb:ExplorerBarView/>
                         </dxnb:NavBarControl.View>
-                        <dxnb:NavBarGroup Header="MBA Phone" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-phone.png">
+                        <dxnb:NavBarGroup Header="MBA Phone" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Resources/Images/Icons/tools-phone.png">
                             <dxnb:NavBarGroup.Content>
                                 <ContentControl ContentTemplate="{StaticResource PhoneMain}"/>
                             </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png" IsExpanded="False">
+                        <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Resources/Images/Icons/tools-calc.png" IsExpanded="False">
                             <dxnb:NavBarGroup.Content>
                                 <dxe:Calculator x:Name="calculator"/>
                             </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
-                        <dxnb:NavBarGroup Header="Чаты" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-chat.png">
+                        <dxnb:NavBarGroup Header="Чаты" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Resources/Images/Icons/tools-chat.png">
                             <dxnb:NavBarGroup.Content>
                                 <TextBlock><Run Text="импорт чат"/></TextBlock>
                             </dxnb:NavBarGroup.Content>
@@ -121,7 +121,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition  Width="400"/>
             </Grid.ColumnDefinitions>
             <ContentControl Grid.Column ="2" ContentTemplate="{StaticResource PhoneMini}"/>
         </Grid>

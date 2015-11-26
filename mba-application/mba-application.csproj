@@ -281,10 +281,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\Group.png" />
+    <Resource Include="Resources\Images\Icons\Group.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\Item.png" />
+    <Resource Include="Resources\Images\Icons\Item.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -311,87 +311,87 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ClientDefault.png" />
+    <Resource Include="Resources\Images\ClientDefault.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ClientSber.png" />
+    <Resource Include="Resources\Images\ClientSber.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-group-admin.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-admin.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-group-analytics.png" />
-    <Resource Include="Images\Icons\menu-group-import.png" />
-    <Resource Include="Images\Icons\menu-group-operator.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-analytics.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-import.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-operator.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-import-registry.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-import-registry.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-group-report.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-report.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-analytics-dashboard.png" />
-    <Resource Include="Images\Icons\menu-item-report-reports.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-analytics-dashboard.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-report-reports.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-admin-aster.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-admin-aster.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-admin-users.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-admin-users.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-processing-table.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-processing-table.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-processing-operator.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-processing-operator.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\tools-calc.png" />
-    <Resource Include="Images\Icons\tools-chat.png" />
-    <Resource Include="Images\Icons\tools-phone.png" />
+    <Resource Include="Resources\Images\Icons\tools-calc.png" />
+    <Resource Include="Resources\Images\Icons\tools-chat.png" />
+    <Resource Include="Resources\Images\Icons\tools-phone.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-group-lead.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-lead.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-lead-table.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-lead-table.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-group-leadership.png" />
-    <Resource Include="Images\Icons\menu-group-search.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-leadership.png" />
+    <Resource Include="Resources\Images\Icons\menu-group-search.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-leadership-dashboard.png" />
-    <Resource Include="Images\Icons\menu-item-search-address.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-leadership-dashboard.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-search-address.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\mba-logo-big.jpg" />
+    <Resource Include="Resources\Images\mba-logo-big.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ClientMTSbank.png" />
+    <Resource Include="Resources\Images\ClientMTSbank.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ClientRenesansCredit.png" />
+    <Resource Include="Resources\Images\ClientRenesansCredit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-processing-task.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-processing-task.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-lead-monitoring.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-lead-monitoring.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-lead-operators.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-lead-operators.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-lead-registry.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-lead-registry.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-lead-dialer.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-lead-dialer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\menu-item-search-opp.png" />
-    <Resource Include="Images\Icons\menu-item-search-phone.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-search-opp.png" />
+    <Resource Include="Resources\Images\Icons\menu-item-search-phone.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MBAPermissionsService\configuration91.svcinfo" />
@@ -416,6 +416,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\eraseBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\callButtonImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
