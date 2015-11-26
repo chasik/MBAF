@@ -15,6 +15,7 @@
     xmlns:v="clr-namespace:mba_application.Views"
     xmlns:vm="clr-namespace:mba_application.ViewModels"
     xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
+    xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
     x:Class="mba_application.MainView"
     
     Title="MBA Finance" Height="600" Width="1000"
@@ -25,39 +26,44 @@
     <dx:DXWindow.Resources>
         <ResourceDictionary>
             <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
-            <vm:PhoneViewModel x:Key="PhoneViewModel"/>
-            <DataTemplate DataType="{x:Type vm:PhoneViewModel}">
+
+            <DataTemplate  DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMain">
                 <v:PhoneView/>
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMini">
+                <v:PhoneMiniView/>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </dx:DXWindow.Resources>
-   
+
     <dxmvvm:Interaction.Triggers>
         <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}" />
     </dxmvvm:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="10" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <dxdo:DockLayoutManager>
             <dxdo:LayoutGroup>
                 <dxdo:LayoutPanel Caption="Меню" ItemWidth="180" AllowClose="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowRename="False" AllowRestore="False" AllowSizing="False" AllowContextMenu="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowFloat="False">
-                    <dxnb:NavBarControl Name="leftNavBarControl" ItemsSource="{Binding UserPermissionGroups}">
+                    <dxnb:NavBarControl x:Name="leftNavBarControl" ItemsSource="{Binding UserPermissionGroups}">
                         <dxnb:NavBarControl.Resources>
-                            <Style TargetType="dxnb:NavBarGroup">
+                            <Style TargetType="{x:Type dxnb:NavBarGroup}">
                                 <Setter Property="DisplayMode" Value="ImageAndText"/>
                                 <Setter Property="IsVisible" Value="{Binding ShowGroup}"/>
                                 <Setter Property="Header" Value="{Binding ParentPermission.ScreenName}"/>
                                 <Setter Property="ImageSource" Value="{Binding ParentPermission.Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
                                 <Setter Property="ItemsSource" Value="{Binding Items}"/>
                             </Style>
-                            <Style TargetType="dxnb:NavBarItem">
+                            <Style TargetType="{x:Type dxnb:NavBarItem}">
                                 <Setter Property="DisplayMode" Value="ImageAndText"/>
-                                <Setter Property="Content" Value="{Binding Path=ScreenName}"/>
-                                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dx:DXWindow}}, Path=DataContext.MenuItemClickCommand}"/>
-                                <Setter Property="CommandParameter" Value="{Binding Path=CommandParam}"/>
+                                <Setter Property="Content" Value="{Binding ScreenName}"/>
+                                <Setter Property="Command" Value="{Binding DataContext.MenuItemClickCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dx:DXWindow}}}"/>
+                                <Setter Property="CommandParameter" Value="{Binding CommandParam}"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <DataTemplate>
@@ -67,7 +73,7 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Image Grid.Column="0" Width="24" Height="24" Margin="20,2,10,2"
-                                                    Source="{Binding Path=Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
+													Source="{Binding Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
                                                 <TextBlock Grid.Column="1" Text="{Binding ScreenName}" VerticalAlignment="Center"/>
                                             </Grid>
                                         </DataTemplate>
@@ -94,7 +100,7 @@
                         </dxnb:NavBarControl.View>
                         <dxnb:NavBarGroup Header="MBA Phone" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-phone.png">
                             <dxnb:NavBarGroup.Content>
-                                <ContentControl Content="{StaticResource PhoneViewModel}"/>
+                                <ContentControl ContentTemplate="{StaticResource PhoneMain}"/>
                             </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
                         <dxnb:NavBarGroup Header="Калькулятор" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-calc.png" IsExpanded="False">
@@ -104,15 +110,21 @@
                         </dxnb:NavBarGroup>
                         <dxnb:NavBarGroup Header="Чаты" DisplayMode="ImageAndText" DisplaySource="Content" ImageSource="pack://application:,,,/mba-application;component/Images/Icons/tools-chat.png">
                             <dxnb:NavBarGroup.Content>
-                                <TextBlock>импорт чат</TextBlock>
+                                <TextBlock><Run Text="импорт чат"/></TextBlock>
                             </dxnb:NavBarGroup.Content>
                         </dxnb:NavBarGroup>
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>
             </dxdo:LayoutGroup>
         </dxdo:DockLayoutManager>
-        <dxb:StatusBarControl Grid.Row="1" HorizontalAlignment="Stretch" />
-
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column ="2" ContentTemplate="{StaticResource PhoneMini}"/>
+        </Grid>
     </Grid>
 
 </dx:DXWindow>

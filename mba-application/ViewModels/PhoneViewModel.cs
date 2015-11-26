@@ -1,13 +1,16 @@
-﻿using System;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 
 namespace mba_application.ViewModels
 {
-    public class PhoneViewModel : ViewModelBase
+    [POCOViewModel]
+    public class PhoneViewModel
     {
-        public PhoneViewModel()
-        {
+        protected PhoneViewModel() { }
 
+        public static PhoneViewModel Create()
+        {
+            return ViewModelSource.Create(() => new PhoneViewModel());
         }
     }
 }
