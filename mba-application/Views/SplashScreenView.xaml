@@ -28,7 +28,7 @@
                 <Image x:Name="Image" 
                        Grid.RowSpan="3"
                        Grid.Column="1"
-                       Source="pack://application:,,,/mba-application;component/Images/mba-logo-big.jpg" 
+                       Source="pack://application:,,,/mba-application;component/Resources/Images/mba-logo-big.jpg" 
                        HorizontalAlignment="Stretch" 
                        VerticalAlignment="Top" 
                        />

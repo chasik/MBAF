@@ -7,7 +7,8 @@ namespace mba_application.ViewModels
     public class PhoneViewModel
     {
         public virtual string Number { get; set; }
-        protected PhoneViewModel() { Number = "+7-920-831-00-66"; }
+
+        public PhoneViewModel() { Number = ""; }
 
         public static PhoneViewModel Create()
         {

@@ -21,8 +21,8 @@
     Title="MBA Finance" Height="600" Width="1000"
     SnapsToDevicePixels="True" UseLayoutRounding="True"
     
-    DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}"
-    >
+    DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}">
+    
     <dx:DXWindow.Resources>
         <ResourceDictionary>
             <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>

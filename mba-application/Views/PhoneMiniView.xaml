@@ -8,7 +8,7 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              x:Class="mba_application.Views.PhoneMiniView"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="36"
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:PhoneViewModel}}">
+             DataContext="{StaticResource PhoneViewModel}">
 
     <UserControl.Resources>
         <ControlTemplate x:Key="PhoneMiniButtonStyle" TargetType="{x:Type Button}">
@@ -46,11 +46,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <dxe:TextEdit EditValue="{Binding Path=Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      x:Name="phoneEditMini" Background="Transparent" ShowBorder="False"
-			          Grid.Column="4" Grid.ColumnSpan="6"  Margin="20,0,20,0" 
-			          VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"
-      		          FontSize="20"/>
+        <dxe:TextEdit x:Name="phoneEditMini" Background="Transparent" ShowBorder="False"
+                      EditValue="{Binding Path=Number, Converter={StaticResource PhoneConverter}, UpdateSourceTrigger=PropertyChanged}"
+			          Grid.Column="4" Grid.ColumnSpan="6"  Margin="20,0,20,0" FontSize="20" 
+			          VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"/>
 
         <Button Grid.Column="0" Template="{StaticResource PhoneMiniButtonStyle}"/>
         <Button Grid.Column="1" Template="{StaticResource PhoneMiniButtonStyle}"/>

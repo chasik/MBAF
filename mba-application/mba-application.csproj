@@ -118,6 +118,7 @@
     <Compile Include="MBAComponents\Employee.cs" />
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\PhoneConverter.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\SIPUserAgent.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />

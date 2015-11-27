@@ -7,7 +7,7 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              xmlns:ViewModels="clr-namespace:mba_application.ViewModels"
              mc:Ignorable="d" d:DesignHeight="264" d:DesignWidth="182"
-             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:PhoneViewModel}">
+             DataContext="{StaticResource PhoneViewModel}">
 
     <UserControl.Resources>
         <ControlTemplate x:Key="IPhoneButton" TargetType="Button">
@@ -70,11 +70,11 @@
         </Grid.RowDefinitions>
 
         <dxe:TextEdit x:Name="phoneEdit" 
-                   EditValue="{Binding Path=Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                   Grid.Column="0" Grid.ColumnSpan="5" Background="Transparent" ShowBorder="False"
-                   VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-                   FontFamily="./Resources/Fonts/#FontAwesome"
-                   FontWeight="Normal" FontSize="16"/>
+                      EditValue="{Binding Path=Number, Converter={StaticResource PhoneConverter}, UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Column="0" Grid.ColumnSpan="5" Background="Transparent" ShowBorder="False"
+                      VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                      FontFamily="./Resources/Fonts/#FontAwesome"
+                      FontWeight="Normal" FontSize="16"/>
 
         <Button Grid.Row="0" 
                 Grid.Column="4"
