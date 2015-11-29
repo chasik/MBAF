@@ -1,4 +1,4 @@
-namespace mba_model.Migrations
+п»їnamespace mba_model.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -14,141 +14,290 @@ namespace mba_model.Migrations
 
         protected override void Seed(mba_model.ModelContext context)
         {
+            #region Roles
             context.Roles.AddOrUpdate(
                 r => r.Id,
-                new Role { Id = 1, Name = "administrator", ScreenName = "Администратор системы" },
-                new Role { Id = 2, Name = "leadership", ScreenName = "Руководство" },
-                new Role { Id = 3, Name = "programmer", ScreenName = "Программист" },
-                new Role { Id = 4, Name = "operator", ScreenName = "Оператор колл-центра" },
-                new Role { Id = 5, Name = "head", ScreenName = "Старший проекта" },
-                new Role { Id = 6, Name = "curator", ScreenName = "Куратор проекта" },
-                new Role { Id = 7, Name = "import", ScreenName = "Импорт" },
-                new Role { Id = 8, Name = "analytics", ScreenName = "Аналитика" },
-                new Role { Id = 9, Name = "search", ScreenName = "Отдел поиска" },
-                new Role { Id = 10, Name = "report", ScreenName = "Отчеты" }
+                new Role { Id = 1, Name = "administrator", ScreenName = "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ СЃРёСЃС‚РµРјС‹" },
+                new Role { Id = 2, Name = "leadership", ScreenName = "Р СѓРєРѕРІРѕРґСЃС‚РІРѕ" },
+                new Role { Id = 3, Name = "programmer", ScreenName = "РџСЂРѕРіСЂР°РјРјРёСЃС‚" },
+                new Role { Id = 4, Name = "operator", ScreenName = "РћРїРµСЂР°С‚РѕСЂ РєРѕР»Р»-С†РµРЅС‚СЂР°" },
+                new Role { Id = 5, Name = "head", ScreenName = "РЎС‚Р°СЂС€РёР№ РїСЂРѕРµРєС‚Р°" },
+                new Role { Id = 6, Name = "curator", ScreenName = "РљСѓСЂР°С‚РѕСЂ РїСЂРѕРµРєС‚Р°" },
+                new Role { Id = 7, Name = "import", ScreenName = "РРјРїРѕСЂС‚" },
+                new Role { Id = 8, Name = "analytics", ScreenName = "РђРЅР°Р»РёС‚РёРєР°" },
+                new Role { Id = 9, Name = "search", ScreenName = "РћС‚РґРµР» РїРѕРёСЃРєР°" },
+                new Role { Id = 10, Name = "report", ScreenName = "РћС‚С‡РµС‚С‹" }
                 );
+            #endregion
 
-
+            #region Permissions
             context.Permissions.AddOrUpdate(
                 p => p.Id,
-                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "Процессинг", Tooltip = "Раздел меню для работы оператора", Image = "menu-group-operator.png" },
-                new Permission { Id = 2, ParentId = null, Name = "menu-lead", ScreenName = "Проект", Tooltip = "Раздел меню для работы менеджера проекта", Image = "menu-group-lead.png" },
-                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "Импорт", Tooltip = "Раздел меню для импорта реестров, корректировок, платежей", Image = "menu-group-import.png" },
-                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "Аналитика", Tooltip = "Раздел меню аналитики", Image = "menu-group-analytics.png" },
-                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "Отчеты", Tooltip = "Раздел меню просмотра отчетности", Image = "menu-group-report.png" },
-                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "Поиск", Tooltip = "Раздел меню для работы отдела поиска", Image = "menu-group-search.png" },
-                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-leadership.png" },
-                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", Image = "menu-group-admin.png" },
+                new Permission { Id = 1, ParentId = null, Name = "menu-processing", ScreenName = "РџСЂРѕС†РµСЃСЃРёРЅРі", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ РґР»СЏ СЂР°Р±РѕС‚С‹ РѕРїРµСЂР°С‚РѕСЂР°", Image = "menu-group-operator.png" },
+                new Permission { Id = 2, ParentId = null, Name = "menu-lead", ScreenName = "РџСЂРѕРµРєС‚", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ РґР»СЏ СЂР°Р±РѕС‚С‹ РјРµРЅРµРґР¶РµСЂР° РїСЂРѕРµРєС‚Р°", Image = "menu-group-lead.png" },
+                new Permission { Id = 3, ParentId = null, Name = "menu-import", ScreenName = "РРјРїРѕСЂС‚", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ РґР»СЏ РёРјРїРѕСЂС‚Р° СЂРµРµСЃС‚СЂРѕРІ, РєРѕСЂСЂРµРєС‚РёСЂРѕРІРѕРє, РїР»Р°С‚РµР¶РµР№", Image = "menu-group-import.png" },
+                new Permission { Id = 4, ParentId = null, Name = "menu-analytics", ScreenName = "РђРЅР°Р»РёС‚РёРєР°", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ Р°РЅР°Р»РёС‚РёРєРё", Image = "menu-group-analytics.png" },
+                new Permission { Id = 5, ParentId = null, Name = "menu-report", ScreenName = "РћС‚С‡РµС‚С‹", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ РїСЂРѕСЃРјРѕС‚СЂР° РѕС‚С‡РµС‚РЅРѕСЃС‚Рё", Image = "menu-group-report.png" },
+                new Permission { Id = 6, ParentId = null, Name = "menu-search", ScreenName = "РџРѕРёСЃРє", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ РґР»СЏ СЂР°Р±РѕС‚С‹ РѕС‚РґРµР»Р° РїРѕРёСЃРєР°", Image = "menu-group-search.png" },
+                new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Р СѓРєРѕРІРѕРґСЃС‚РІРѕ", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ СЂСѓРєРѕРІРѕРґСЃС‚РІР°", Image = "menu-group-leadership.png" },
+                new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "РђРґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ", Tooltip = "Р Р°Р·РґРµР» РјРµРЅСЋ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ СЃРёСЃС‚РµРјС‹", Image = "menu-group-admin.png" },
 
-                new Permission { Id = 9, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки",
-                                 Tooltip = "Рабочее пространство оператора", Image = "menu-item-processing-operator.png", CommandParam = "OperatorWorkflowView" },
-                new Permission { Id = 10, ParentId = 1, Name = "menu-processing-task", ScreenName = "Задания",
-                                 Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-task.png", CommandParam = "" },
-                new Permission { Id = 11, ParentId = 1, Name = "menu-processing-table", ScreenName = "Табели",
-                                 Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-table.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 9,
+                    ParentId = 1,
+                    Name = "menu-processing-work",
+                    ScreenName = "Р’С‹Р±РѕСЂРєРё",
+                    Tooltip = "Р Р°Р±РѕС‡РµРµ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ РѕРїРµСЂР°С‚РѕСЂР°",
+                    Image = "menu-item-processing-operator.png",
+                    CommandParam = "OperatorWorkflowView"
+                },
+                new Permission
+                {
+                    Id = 10,
+                    ParentId = 1,
+                    Name = "menu-processing-task",
+                    ScreenName = "Р—Р°РґР°РЅРёСЏ",
+                    Tooltip = "Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ С‚Р°Р±РµР»Рё РґР»СЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ",
+                    Image = "menu-item-processing-task.png",
+                    CommandParam = ""
+                },
+                new Permission
+                {
+                    Id = 11,
+                    ParentId = 1,
+                    Name = "menu-processing-table",
+                    ScreenName = "РўР°Р±РµР»Рё",
+                    Tooltip = "Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ С‚Р°Р±РµР»Рё РґР»СЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ",
+                    Image = "menu-item-processing-table.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 12, ParentId = 2, Name = "menu-lead-operators", ScreenName = "Выборки",
-                                 Tooltip = "Формирование заданий (выборок) для операторов", Image = "menu-item-lead-operators.png", CommandParam = "ManagerTasksView" },
-                new Permission { Id = 13, ParentId = 2, Name = "menu-lead-dialer", ScreenName = "Dialer",
-                                 Tooltip = "Задания для автоматического выполнения", Image = "menu-item-lead-dialer.png", CommandParam = "ManagerAutoTasksView" },
-                new Permission { Id = 14, ParentId = 2, Name = "menu-lead-registry", ScreenName = "Реестры",
-                                 Tooltip = "Работа с реестрами по проекту", Image = "menu-item-lead-registry.png", CommandParam = "" },
-                new Permission { Id = 15, ParentId = 2, Name = "menu-lead-monitoring", ScreenName = "Мониторинг",
-                                 Tooltip = "Мониторинг активности операторов", Image = "menu-item-lead-monitoring.png", CommandParam = "" },
-                new Permission { Id = 16, ParentId = 2, Name = "menu-lead-tables", ScreenName = "Табели",
-                                 Tooltip = "Заполнение табелей", Image = "menu-item-lead-table.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 12,
+                    ParentId = 2,
+                    Name = "menu-lead-operators",
+                    ScreenName = "Р’С‹Р±РѕСЂРєРё",
+                    Tooltip = "Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Р·Р°РґР°РЅРёР№ (РІС‹Р±РѕСЂРѕРє) РґР»СЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ",
+                    Image = "menu-item-lead-operators.png",
+                    CommandParam = "ManagerTasksView"
+                },
+                new Permission
+                {
+                    Id = 13,
+                    ParentId = 2,
+                    Name = "menu-lead-dialer",
+                    ScreenName = "Dialer",
+                    Tooltip = "Р—Р°РґР°РЅРёСЏ РґР»СЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ",
+                    Image = "menu-item-lead-dialer.png",
+                    CommandParam = "ManagerAutoTasksView"
+                },
+                new Permission
+                {
+                    Id = 14,
+                    ParentId = 2,
+                    Name = "menu-lead-registry",
+                    ScreenName = "Р РµРµСЃС‚СЂС‹",
+                    Tooltip = "Р Р°Р±РѕС‚Р° СЃ СЂРµРµСЃС‚СЂР°РјРё РїРѕ РїСЂРѕРµРєС‚Сѓ",
+                    Image = "menu-item-lead-registry.png",
+                    CommandParam = ""
+                },
+                new Permission
+                {
+                    Id = 15,
+                    ParentId = 2,
+                    Name = "menu-lead-monitoring",
+                    ScreenName = "РњРѕРЅРёС‚РѕСЂРёРЅРі",
+                    Tooltip = "РњРѕРЅРёС‚РѕСЂРёРЅРі Р°РєС‚РёРІРЅРѕСЃС‚Рё РѕРїРµСЂР°С‚РѕСЂРѕРІ",
+                    Image = "menu-item-lead-monitoring.png",
+                    CommandParam = ""
+                },
+                new Permission
+                {
+                    Id = 16,
+                    ParentId = 2,
+                    Name = "menu-lead-tables",
+                    ScreenName = "РўР°Р±РµР»Рё",
+                    Tooltip = "Р—Р°РїРѕР»РЅРµРЅРёРµ С‚Р°Р±РµР»РµР№",
+                    Image = "menu-item-lead-table.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 17, ParentId = 3, Name = "menu-import-registry", ScreenName = "Реестры",
-                                 Tooltip = "Импорт реестров", Image = "menu-item-import-registry.png", CommandParam = "RegistryAddView" },
+                new Permission
+                {
+                    Id = 17,
+                    ParentId = 3,
+                    Name = "menu-import-registry",
+                    ScreenName = "Р РµРµСЃС‚СЂС‹",
+                    Tooltip = "РРјРїРѕСЂС‚ СЂРµРµСЃС‚СЂРѕРІ",
+                    Image = "menu-item-import-registry.png",
+                    CommandParam = "RegistryAddView"
+                },
 
-                new Permission { Id = 18, ParentId = 4, Name = "menu-analytics-dashboard", ScreenName = "Мониторинг",
-                                 Tooltip = "Текущая состояние колл-центра", Image = "menu-item-analytics-dashboard.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 18,
+                    ParentId = 4,
+                    Name = "menu-analytics-dashboard",
+                    ScreenName = "РњРѕРЅРёС‚РѕСЂРёРЅРі",
+                    Tooltip = "РўРµРєСѓС‰Р°СЏ СЃРѕСЃС‚РѕСЏРЅРёРµ РєРѕР»Р»-С†РµРЅС‚СЂР°",
+                    Image = "menu-item-analytics-dashboard.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 19, ParentId = 5, Name = "menu-report-reports", ScreenName = "Отчеты",
-                                 Tooltip = "Настройка отчетов", Image = "menu-item-report-reports.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 19,
+                    ParentId = 5,
+                    Name = "menu-report-reports",
+                    ScreenName = "РћС‚С‡РµС‚С‹",
+                    Tooltip = "РќР°СЃС‚СЂРѕР№РєР° РѕС‚С‡РµС‚РѕРІ",
+                    Image = "menu-item-report-reports.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 20, ParentId = 6, Name = "menu-search-address", ScreenName = "Адресса",
-                                 Tooltip = "Поиск и проверка адресов", Image = "menu-item-search-address.png", CommandParam = "" },
-                new Permission { Id = 21, ParentId = 6, Name = "menu-search-phone", ScreenName = "Телефоны",
-                                 Tooltip = "Поиск и проверка телефонов", Image = "menu-item-search-phone.png", CommandParam = "" },
-                new Permission { Id = 22, ParentId = 6, Name = "menu-search-opp", ScreenName = "ОПП",
-                                 Tooltip = "Отдел предварительного поиска", Image = "menu-item-search-opp.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 20,
+                    ParentId = 6,
+                    Name = "menu-search-address",
+                    ScreenName = "РђРґСЂРµСЃСЃР°",
+                    Tooltip = "РџРѕРёСЃРє Рё РїСЂРѕРІРµСЂРєР° Р°РґСЂРµСЃРѕРІ",
+                    Image = "menu-item-search-address.png",
+                    CommandParam = ""
+                },
+                new Permission
+                {
+                    Id = 21,
+                    ParentId = 6,
+                    Name = "menu-search-phone",
+                    ScreenName = "РўРµР»РµС„РѕРЅС‹",
+                    Tooltip = "РџРѕРёСЃРє Рё РїСЂРѕРІРµСЂРєР° С‚РµР»РµС„РѕРЅРѕРІ",
+                    Image = "menu-item-search-phone.png",
+                    CommandParam = ""
+                },
+                new Permission
+                {
+                    Id = 22,
+                    ParentId = 6,
+                    Name = "menu-search-opp",
+                    ScreenName = "РћРџРџ",
+                    Tooltip = "РћС‚РґРµР» РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РїРѕРёСЃРєР°",
+                    Image = "menu-item-search-opp.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 23, ParentId = 7, Name = "menu-leadership-dashboard", ScreenName = "Мониторинг",
-                                 Tooltip = "Мониторинг рабочего процесса", Image = "menu-item-leadership-dashboard.png", CommandParam = "" },
+                new Permission
+                {
+                    Id = 23,
+                    ParentId = 7,
+                    Name = "menu-leadership-dashboard",
+                    ScreenName = "РњРѕРЅРёС‚РѕСЂРёРЅРі",
+                    Tooltip = "РњРѕРЅРёС‚РѕСЂРёРЅРі СЂР°Р±РѕС‡РµРіРѕ РїСЂРѕС†РµСЃСЃР°",
+                    Image = "menu-item-leadership-dashboard.png",
+                    CommandParam = ""
+                },
 
-                new Permission { Id = 24, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи",
-                                 Tooltip = "Установка разрешений для пользователей", Image = "menu-item-admin-users.png", CommandParam = "AdminUsersView" },
-                new Permission { Id = 25, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk",
-                                 Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-item-admin-aster.png", CommandParam = "AdminAsteriskView" }
+                new Permission
+                {
+                    Id = 24,
+                    ParentId = 8,
+                    Name = "menu-admin-users",
+                    ScreenName = "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё",
+                    Tooltip = "РЈСЃС‚Р°РЅРѕРІРєР° СЂР°Р·СЂРµС€РµРЅРёР№ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№",
+                    Image = "menu-item-admin-users.png",
+                    CommandParam = "AdminUsersView"
+                },
+                new Permission
+                {
+                    Id = 25,
+                    ParentId = 8,
+                    Name = "menu-admin-aster",
+                    ScreenName = "Asterisk",
+                    Tooltip = "РќР°СЃС‚СЂРѕР№РєР° Рё РјРѕРЅРёС‚РѕСЂРёРЅРі Asterisk",
+                    Image = "menu-item-admin-aster.png",
+                    CommandParam = "AdminAsteriskView"
+                }
                 );
-
+            #endregion
+            
+            #region User actions
             context.Actions.AddOrUpdate(
                 a => a.Id,
-                new mba_model.Action { Id = 1, Name = "create", Description = "Создание пользователя" },
-                new mba_model.Action { Id = 2, Name = "try_enter", Description = "Попытка входа пользователя в систему" },
-                new mba_model.Action { Id = 3, Name = "enter", Description = "Вход пользователя в систему" },
-                new mba_model.Action { Id = 4, Name = "exit", Description = "Выход пользователя из системы" },
-                new mba_model.Action { Id = 5, Name = "freezing", Description = "'Заморозка' пользователя" },
-                new mba_model.Action { Id = 6, Name = "defrost", Description = "'Разморозка' пользователя" }
+                new mba_model.Action { Id = 1, Name = "create", Description = "РЎРѕР·РґР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" },
+                new mba_model.Action { Id = 2, Name = "try_enter", Description = "РџРѕРїС‹С‚РєР° РІС…РѕРґР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ СЃРёСЃС‚РµРјСѓ" },
+                new mba_model.Action { Id = 3, Name = "enter", Description = "Р’С…РѕРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ СЃРёСЃС‚РµРјСѓ" },
+                new mba_model.Action { Id = 4, Name = "exit", Description = "Р’С‹С…РѕРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· СЃРёСЃС‚РµРјС‹" },
+                new mba_model.Action { Id = 5, Name = "freezing", Description = "'Р—Р°РјРѕСЂРѕР·РєР°' РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" },
+                new mba_model.Action { Id = 6, Name = "defrost", Description = "'Р Р°Р·РјРѕСЂРѕР·РєР°' РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" }
                 );
+            #endregion
 
+            #region Users
             context.Users.AddOrUpdate(
                 u => u.Id,
-                new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" },
-                new User { Id = 2, Login = "NEWPROG\\ich", FirstName = "Иван", MiddleName = "Анатольевич", LastName = "Часов", Email = "chasow@yandex.ru" }
+                new User { Id = 1, Login = "MBARU\\Ivan_Chasov", FirstName = "РРІР°РЅ", MiddleName = "РђРЅР°С‚РѕР»СЊРµРІРёС‡", LastName = "Р§Р°СЃРѕРІ", Email = "chasow@yandex.ru" },
+                new User { Id = 2, Login = "DESKTOP-22AR0VL\\ich", FirstName = "РРІР°РЅ", MiddleName = "РђРЅР°С‚РѕР»СЊРµРІРёС‡", LastName = "Р§Р°СЃРѕРІ", Email = "chasow@yandex.ru" }
                 );
+            #endregion
 
+            #region Clients
             context.Clients.AddOrUpdate(
                 c => c.Id,
-                new Client { Id = 1, ParentId = null, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Image="ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 2, ParentId = null, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 3, ParentId = 2, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 4, ParentId = null, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 5, ParentId = 4, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 6, ParentId = null, InnerId = 251, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
+                new Client { Id = 1, ParentId = null, InnerId = 202, Name = "РЈСЂР°Р»СЊСЃРєРёР№ Р‘Р°РЅРє Р РµРєРѕРЅСЃС‚СЂСѓРєС†РёРё Рё Р Р°Р·РІРёС‚РёСЏ", FullName = "РџРђРћ \"РЈСЂР°Р»СЊСЃРєРёР№ Р±Р°РЅРє СЂРµРєРѕРЅСЃС‚СЂСѓРєС†РёРё Рё СЂР°Р·РІРёС‚РёСЏ\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 2, ParentId = null, InnerId = 205, Name = "РњРўРЎ-Р‘Р°РЅРє", FullName = "РћРђРћ \"РњРўРЎ-Р‘Р°РЅРє\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 3, ParentId = 2, InnerId = 248, Name = "РњРўРЎ-Р‘Р°РЅРє", FullName = "РћРђРћ \"РњРўРЎ-Р‘Р°РЅРє\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 4, ParentId = null, InnerId = 219, Name = "Р РµРЅРµСЃСЃР°РЅСЃ РљСЂРµРґРёС‚", FullName = "РћРћРћ РљР‘ \"Р РµРЅРµСЃСЃР°РЅСЃ РљСЂРµРґРёС‚\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
+                new Client { Id = 5, ParentId = 4, InnerId = 250, Name = "Р РµРЅРµСЃСЃР°РЅСЃ РљСЂРµРґРёС‚", FullName = "РћРћРћ РљР‘ \"Р РµРЅРµСЃСЃР°РЅСЃ РљСЂРµРґРёС‚\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 6, ParentId = null, InnerId = 251, Name = "РџРђРћ РЎР±РµСЂР±Р°РЅРє", FullName = "РџСѓР±Р»РёС‡РЅРѕРµ Р°РєС†РёРѕРЅРµСЂРЅРѕРµ РѕР±С‰РµСЃС‚РІРѕ В«РЎР±РµСЂР±Р°РЅРє Р РѕСЃСЃРёРёВ»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
                 );
+            #endregion
 
+            #region GoodColumns
             context.GoodColumns.AddOrUpdate(
                 gc => gc.Id,
-                new GoodColumn { Id = 1,  Name = "ФИО должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 2,  Name = "Фамилия должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 3,  Name = "Имя должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 4,  Name = "Отчество должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 5,  Name = "Дата рождения должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 1, Name = "Р¤РРћ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 2, Name = "Р¤Р°РјРёР»РёСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 3, Name = "РРјСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 4, Name = "РћС‚С‡РµСЃС‚РІРѕ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 5, Name = "Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 6, Name = "Пол должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 6, Name = "РџРѕР» РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 7,  Name = "Серия и номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 8,  Name = "Кем и когда выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 9,  Name = "Серия паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 10,  Name = "Номер паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 11,  Name = "Кем выдан паспорт должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 12, Name = "Дата выдачи паспорта должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 7, Name = "РЎРµСЂРёСЏ Рё РЅРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 8, Name = "РљРµРј Рё РєРѕРіРґР° РІС‹РґР°РЅ РїР°СЃРїРѕСЂС‚ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 9, Name = "РЎРµСЂРёСЏ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 10, Name = "РќРѕРјРµСЂ РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 11, Name = "РљРµРј РІС‹РґР°РЅ РїР°СЃРїРѕСЂС‚ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 12, Name = "Р”Р°С‚Р° РІС‹РґР°С‡Рё РїР°СЃРїРѕСЂС‚Р° РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 13, Name = "Адрес регистрации(прописки) должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 14, Name = "Фактическое место проживания должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 13, Name = "РђРґСЂРµСЃ СЂРµРіРёСЃС‚СЂР°С†РёРё(РїСЂРѕРїРёСЃРєРё) РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 14, Name = "Р¤Р°РєС‚РёС‡РµСЃРєРѕРµ РјРµСЃС‚Рѕ РїСЂРѕР¶РёРІР°РЅРёСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 15, Name = "Мобильный телефон должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 16, Name = "Телефон адреса регистрации должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 17, Name = "Телефон фактического места проживания должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 18, Name = "Рабочий телефон должника", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 15, Name = "РњРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„РѕРЅ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 16, Name = "РўРµР»РµС„РѕРЅ Р°РґСЂРµСЃР° СЂРµРіРёСЃС‚СЂР°С†РёРё РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 17, Name = "РўРµР»РµС„РѕРЅ С„Р°РєС‚РёС‡РµСЃРєРѕРіРѕ РјРµСЃС‚Р° РїСЂРѕР¶РёРІР°РЅРёСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 18, Name = "Р Р°Р±РѕС‡РёР№ С‚РµР»РµС„РѕРЅ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
 
-                new GoodColumn { Id = 19, Name = "Номер кредитного договора", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 20, Name = "Тип продукта (кредита)", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 21, Name = "Программа кредитования должника", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 22, Name = "Номер счета для погашения задолженности", Created = DateTime.Now, CreatedBy = 1 },
-                new GoodColumn { Id = 23, Name = "Дата предоставления кредита", Created = DateTime.Now, CreatedBy = 1 }
+                new GoodColumn { Id = 19, Name = "РќРѕРјРµСЂ РєСЂРµРґРёС‚РЅРѕРіРѕ РґРѕРіРѕРІРѕСЂР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 20, Name = "РўРёРї РїСЂРѕРґСѓРєС‚Р° (РєСЂРµРґРёС‚Р°)", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 21, Name = "РџСЂРѕРіСЂР°РјРјР° РєСЂРµРґРёС‚РѕРІР°РЅРёСЏ РґРѕР»Р¶РЅРёРєР°", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 22, Name = "РќРѕРјРµСЂ СЃС‡РµС‚Р° РґР»СЏ РїРѕРіР°С€РµРЅРёСЏ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё", Created = DateTime.Now, CreatedBy = 1 },
+                new GoodColumn { Id = 23, Name = "Р”Р°С‚Р° РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёСЏ РєСЂРµРґРёС‚Р°", Created = DateTime.Now, CreatedBy = 1 }
                 );
+            #endregion
 
+            #region ImportTypes
             context.ImportTypes.AddOrUpdate(
                 it => it.Id,
-                new ImportType { Id = 1, Name = "Импорт реестров" },
-                new ImportType { Id = 2, Name = "Платежи по реестрам" },
-                new ImportType { Id = 3, Name = "Корректировки по реестрам" },
-                new ImportType { Id = 4, Name = "Дополнительные контакты" },
-                new ImportType { Id = 5, Name = "Специальные предложения банка" }
+                new ImportType { Id = 1, Name = "РРјРїРѕСЂС‚ СЂРµРµСЃС‚СЂРѕРІ" },
+                new ImportType { Id = 2, Name = "РџР»Р°С‚РµР¶Рё РїРѕ СЂРµРµСЃС‚СЂР°Рј" },
+                new ImportType { Id = 3, Name = "РљРѕСЂСЂРµРєС‚РёСЂРѕРІРєРё РїРѕ СЂРµРµСЃС‚СЂР°Рј" },
+                new ImportType { Id = 4, Name = "Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РєРѕРЅС‚Р°РєС‚С‹" },
+                new ImportType { Id = 5, Name = "РЎРїРµС†РёР°Р»СЊРЅС‹Рµ РїСЂРµРґР»РѕР¶РµРЅРёСЏ Р±Р°РЅРєР°" }
                 );
+            #endregion
 
             context.SaveChanges();
 

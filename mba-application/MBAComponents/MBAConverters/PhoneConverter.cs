@@ -13,7 +13,7 @@ namespace mba_application.MBAComponents.MBAConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string val = value.ToString();
+            string val = value == null ? string.Empty : value.ToString();
             switch (val.Length)
             {
                 case 1: return val;

@@ -8,7 +8,7 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              x:Class="mba_application.Views.PhoneMiniView"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="36"
-             DataContext="{StaticResource PhoneViewModel}">
+             DataContext="{StaticResource MBAPhoneViewModel}">
 
     <UserControl.Resources>
         <ControlTemplate x:Key="PhoneMiniButtonStyle" TargetType="{x:Type Button}">

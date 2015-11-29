@@ -7,7 +7,7 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              xmlns:ViewModels="clr-namespace:mba_application.ViewModels"
              mc:Ignorable="d" d:DesignHeight="264" d:DesignWidth="182"
-             DataContext="{StaticResource PhoneViewModel}">
+             DataContext="{StaticResource MBAPhoneViewModel}">
 
     <UserControl.Resources>
         <ControlTemplate x:Key="IPhoneButton" TargetType="Button">
@@ -39,6 +39,7 @@
         <Style x:Key="IPhoneButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Control.Template" Value="{StaticResource IPhoneButton}"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="Command" Value="{Binding PhoneButtonClick}"/>
         </Style>
 
         <Style x:Key="IPhoneButtonCallStyle" TargetType="{x:Type Button}">
@@ -82,20 +83,20 @@
                 Template="{StaticResource IPhoneEraseButton}"
                 />
 
-        <Button Grid.Row="1" Grid.Column="1" Content="1" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="2" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="3" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="1" CommandParameter="1" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="2" CommandParameter="2" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="3" CommandParameter="3" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <Button Grid.Row="2" Grid.Column="1" Content="4" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="5" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="6" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="4" CommandParameter="4" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="5" CommandParameter="5" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="3" Content="6" CommandParameter="6" Style="{StaticResource IPhoneButtonStyle}"/>
 
-        <Button Grid.Row="3" Grid.Column="1" Content="7" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="8" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="9" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="7" CommandParameter="7" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="8" CommandParameter="8" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="3" Content="9" CommandParameter="9" Style="{StaticResource IPhoneButtonStyle}"/>
 
         <Button Grid.Row="4" Grid.Column="1" Content="-" Style="{StaticResource IPhoneButtonStyle}"/>
-        <Button Grid.Row="4" Grid.Column="2" Content="0" Style="{StaticResource IPhoneButtonStyle}"/>
+        <Button Grid.Row="4" Grid.Column="2" Content="0" CommandParameter="0" Style="{StaticResource IPhoneButtonStyle}"/>
         <Button Grid.Row="4" Grid.Column="3" Content="-" Style="{StaticResource IPhoneButtonStyle}"/>
 
         <Button Grid.Row="5" Grid.Column="1" Content="-" Style="{StaticResource IPhoneButtonStyle}"/>
