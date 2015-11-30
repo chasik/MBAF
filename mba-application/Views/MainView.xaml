@@ -39,7 +39,8 @@
     </dx:DXWindow.Resources>
 
     <dxmvvm:Interaction.Triggers>
-        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}" />
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}"/>
+        <dxmvvm:EventToCommand EventName="Closed" Command="{Binding CloseMainWindowCommand}"/>
     </dxmvvm:Interaction.Triggers>
 
     <Grid>

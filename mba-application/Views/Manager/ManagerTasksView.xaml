@@ -8,6 +8,7 @@
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" 
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
              xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              x:Class="mba_application.Views.Manager.ManagerTasksView"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" 
              DataContext="{dxmvvm:ViewModelSource Type={x:Type Manager:ManagerTasksViewModel}}">
@@ -17,7 +18,7 @@
                 <dxdo:LayoutPanel Caption="Фильтры" dxb:MergingProperties.ElementMergingBehavior="Undefined" ItemWidth="0.44*"/>
                 <dxdo:LayoutGroup Orientation="Vertical" ItemWidth="1.12*">
                     <dxdo:LayoutPanel Caption="Календарь" ItemHeight="0.4*">
-                        <dxsch:SchedulerControl ActiveViewType="Month">
+                        <dxsch:SchedulerControl >
                             <dxsch:SchedulerControl.FullWeekView>
                                 <dxsch:FullWeekView Enabled="True"/>
                             </dxsch:SchedulerControl.FullWeekView>

@@ -15,3 +15,4 @@ DevExpress.Xpf.LayoutControl.DockLayoutControl, DevExpress.Xpf.LayoutControl.v15
 DevExpress.Xpf.Scheduler.SchedulerControl, DevExpress.Xpf.Scheduler.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Gauges.DigitalGaugeControl, DevExpress.Xpf.Gauges.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Editors.TextEdit, DevExpress.Xpf.Core.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Grid.TreeListControl, DevExpress.Xpf.Grid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

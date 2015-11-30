@@ -128,20 +128,22 @@
     <dxdo:DockLayoutManager FloatingMode="Desktop">
         <dxdo:LayoutGroup Orientation="Horizontal">
             <dxdo:LayoutPanel Caption="Panel" ItemWidth="300">
-                <dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
-                    <dxg:TreeListControl.Columns>
-                        <dxg:TreeListColumn FieldName="Name" ReadOnly="true"/>
-                    </dxg:TreeListControl.Columns>
-                    <dxg:TreeListControl.View>
-                        <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True">
-                            <dxmvvm:Interaction.Triggers>
-                                <dxmvvm:EventToCommand EventName="RowDoubleClick" 
-									                   Command="{Binding DblClickExplorerCommand}"
-									                   CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
-                            </dxmvvm:Interaction.Triggers>
-                        </dxg:TreeListView>
-                    </dxg:TreeListControl.View>
-                </dxg:TreeListControl>
+                <Grid>
+                    <!--dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
+                        <dxg:TreeListControl.Columns>
+                            <dxg:TreeListColumn FieldName="Name" ReadOnly="true"/>
+                        </dxg:TreeListControl.Columns>
+                        <dxg:TreeListControl.View>
+                            <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="RowDoubleClick" 
+									                       Command="{Binding DblClickExplorerCommand}"
+									                       CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxg:TreeListView>
+                        </dxg:TreeListControl.View>
+                    </-->
+                </Grid>
             </dxdo:LayoutPanel>
             <dxdo:LayoutGroup Orientation="Vertical" ItemWidth="1.39*">
                 <dxdo:DocumentGroup ItemHeight="1.11*" CaptionLocation="Bottom" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">

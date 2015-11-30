@@ -9,17 +9,24 @@
              mc:Ignorable="d" d:DesignHeight="264" d:DesignWidth="182"
              DataContext="{StaticResource MBAPhoneViewModel}">
 
+    <dxmvvm:Interaction.Triggers>
+        <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding InitializeMBAPhoneCommand}" />
+    </dxmvvm:Interaction.Triggers>
+
     <UserControl.Resources>
         <ControlTemplate x:Key="IPhoneButton" TargetType="Button">
             <Border Name="mainBorder" BorderBrush="#576168" BorderThickness="1" Background="Transparent" CornerRadius="22">
-                <ContentPresenter Name="mainButton" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                <ContentPresenter Name="mainContent" VerticalAlignment="Center" HorizontalAlignment="Center" 
                                   Margin="0,0,0,2" TextBlock.FontSize="21"/>
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter TargetName="mainBorder" Property="BorderThickness" Value="2,2,2,2"></Setter>
                     <Setter TargetName="mainBorder" Property="BorderBrush" Value="#FF6700"></Setter>
-                    <Setter TargetName="mainButton" Property="TextBlock.Foreground" Value="#FF6700"></Setter>
+                    <Setter TargetName="mainContent" Property="TextBlock.Foreground" Value="#FF6700"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="mainBorder" Property="Background" Value="#EEEEEE"></Setter>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -39,12 +46,13 @@
         <Style x:Key="IPhoneButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Control.Template" Value="{StaticResource IPhoneButton}"/>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="Command" Value="{Binding PhoneButtonClick}"/>
+            <Setter Property="Command" Value="{Binding PhoneButtonClickCommand}"/>
         </Style>
 
         <Style x:Key="IPhoneButtonCallStyle" TargetType="{x:Type Button}">
             <Setter Property="Control.Template" Value="{StaticResource IPhoneButtonCall}"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="Command" Value="{Binding PhoneCallButtonClickCommand}"/>
         </Style>
 
         <ControlTemplate x:Key="IPhoneEraseButton" TargetType="Button">
