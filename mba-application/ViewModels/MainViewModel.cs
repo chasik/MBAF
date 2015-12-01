@@ -32,8 +32,7 @@ namespace mba_application.ViewModels
             if (CurrentEmployee.TryEnter())
             {
                 UserPermissionGroups = new ObservableCollection<PermissionGroup>(CurrentEmployee.PermissionGroups);
-
-                NavigationService.Navigate("RegistryAddView", null, this);
+                //NavigationService.Navigate("RegistryAddView", null, this);
             }
             else
             {

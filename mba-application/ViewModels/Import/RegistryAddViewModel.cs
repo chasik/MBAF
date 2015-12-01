@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using mba_application.MBAComponents;
 using mba_application.MBAImportService;
 using WordsMatching;
+using mba_model;
 
 namespace mba_application.ViewModels.Import
 {

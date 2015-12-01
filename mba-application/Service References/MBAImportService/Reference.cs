@@ -9,529 +9,43 @@
 //------------------------------------------------------------------------------
 
 namespace mba_application.MBAImportService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GoodColumn", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class GoodColumn : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAImportService.ColumnHeader[] ColumnHeadersField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreatedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DeletedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> DeletedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAImportService.ColumnHeader[] ColumnHeaders {
-            get {
-                return this.ColumnHeadersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ColumnHeadersField, value) != true)) {
-                    this.ColumnHeadersField = value;
-                    this.RaisePropertyChanged("ColumnHeaders");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Created {
-            get {
-                return this.CreatedField;
-            }
-            set {
-                if ((this.CreatedField.Equals(value) != true)) {
-                    this.CreatedField = value;
-                    this.RaisePropertyChanged("Created");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreatedBy {
-            get {
-                return this.CreatedByField;
-            }
-            set {
-                if ((this.CreatedByField.Equals(value) != true)) {
-                    this.CreatedByField = value;
-                    this.RaisePropertyChanged("CreatedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> Deleted {
-            get {
-                return this.DeletedField;
-            }
-            set {
-                if ((this.DeletedField.Equals(value) != true)) {
-                    this.DeletedField = value;
-                    this.RaisePropertyChanged("Deleted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> DeletedBy {
-            get {
-                return this.DeletedByField;
-            }
-            set {
-                if ((this.DeletedByField.Equals(value) != true)) {
-                    this.DeletedByField = value;
-                    this.RaisePropertyChanged("DeletedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ColumnHeader", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class ColumnHeader : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAImportService.GoodColumn GoodColumnField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GoodColumnIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAImportService.GoodColumn GoodColumn {
-            get {
-                return this.GoodColumnField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.GoodColumnField, value) != true)) {
-                    this.GoodColumnField = value;
-                    this.RaisePropertyChanged("GoodColumn");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int GoodColumnId {
-            get {
-                return this.GoodColumnIdField;
-            }
-            set {
-                if ((this.GoodColumnIdField.Equals(value) != true)) {
-                    this.GoodColumnIdField = value;
-                    this.RaisePropertyChanged("GoodColumnId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Client", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class Client : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreatedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreatedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DeletedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> DeletedByField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int InnerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ParentIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Created {
-            get {
-                return this.CreatedField;
-            }
-            set {
-                if ((this.CreatedField.Equals(value) != true)) {
-                    this.CreatedField = value;
-                    this.RaisePropertyChanged("Created");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CreatedBy {
-            get {
-                return this.CreatedByField;
-            }
-            set {
-                if ((this.CreatedByField.Equals(value) != true)) {
-                    this.CreatedByField = value;
-                    this.RaisePropertyChanged("CreatedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> Deleted {
-            get {
-                return this.DeletedField;
-            }
-            set {
-                if ((this.DeletedField.Equals(value) != true)) {
-                    this.DeletedField = value;
-                    this.RaisePropertyChanged("Deleted");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> DeletedBy {
-            get {
-                return this.DeletedByField;
-            }
-            set {
-                if ((this.DeletedByField.Equals(value) != true)) {
-                    this.DeletedByField = value;
-                    this.RaisePropertyChanged("DeletedBy");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Image {
-            get {
-                return this.ImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
-                    this.ImageField = value;
-                    this.RaisePropertyChanged("Image");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int InnerId {
-            get {
-                return this.InnerIdField;
-            }
-            set {
-                if ((this.InnerIdField.Equals(value) != true)) {
-                    this.InnerIdField = value;
-                    this.RaisePropertyChanged("InnerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ParentId {
-            get {
-                return this.ParentIdField;
-            }
-            set {
-                if ((this.ParentIdField.Equals(value) != true)) {
-                    this.ParentIdField = value;
-                    this.RaisePropertyChanged("ParentId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ImportType", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class ImportType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAImportService.IImportService")]
     public interface IImportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GoodColumn", ReplyAction="http://tempuri.org/IImportService/GoodColumnResponse")]
-        mba_application.MBAImportService.GoodColumn GoodColumn(string columnHeader);
+        mba_model.GoodColumn GoodColumn(string columnHeader);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GoodColumn", ReplyAction="http://tempuri.org/IImportService/GoodColumnResponse")]
         System.IAsyncResult BeginGoodColumn(string columnHeader, System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAImportService.GoodColumn EndGoodColumn(System.IAsyncResult result);
+        mba_model.GoodColumn EndGoodColumn(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GoodColumns", ReplyAction="http://tempuri.org/IImportService/GoodColumnsResponse")]
-        mba_application.MBAImportService.GoodColumn[] GoodColumns();
+        mba_model.GoodColumn[] GoodColumns();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GoodColumns", ReplyAction="http://tempuri.org/IImportService/GoodColumnsResponse")]
         System.IAsyncResult BeginGoodColumns(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAImportService.GoodColumn[] EndGoodColumns(System.IAsyncResult result);
+        mba_model.GoodColumn[] EndGoodColumns(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/Clients", ReplyAction="http://tempuri.org/IImportService/ClientsResponse")]
-        mba_application.MBAImportService.Client[] Clients();
+        mba_model.Client[] Clients();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/Clients", ReplyAction="http://tempuri.org/IImportService/ClientsResponse")]
         System.IAsyncResult BeginClients(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAImportService.Client[] EndClients(System.IAsyncResult result);
+        mba_model.Client[] EndClients(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/ImportTypes", ReplyAction="http://tempuri.org/IImportService/ImportTypesResponse")]
-        mba_application.MBAImportService.ImportType[] ImportTypes();
+        mba_model.ImportType[] ImportTypes();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/ImportTypes", ReplyAction="http://tempuri.org/IImportService/ImportTypesResponse")]
         System.IAsyncResult BeginImportTypes(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAImportService.ImportType[] EndImportTypes(System.IAsyncResult result);
+        mba_model.ImportType[] EndImportTypes(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -549,10 +63,10 @@ namespace mba_application.MBAImportService {
             this.results = results;
         }
         
-        public mba_application.MBAImportService.GoodColumn Result {
+        public mba_model.GoodColumn Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAImportService.GoodColumn)(this.results[0]));
+                return ((mba_model.GoodColumn)(this.results[0]));
             }
         }
     }
@@ -568,10 +82,10 @@ namespace mba_application.MBAImportService {
             this.results = results;
         }
         
-        public mba_application.MBAImportService.GoodColumn[] Result {
+        public mba_model.GoodColumn[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAImportService.GoodColumn[])(this.results[0]));
+                return ((mba_model.GoodColumn[])(this.results[0]));
             }
         }
     }
@@ -587,10 +101,10 @@ namespace mba_application.MBAImportService {
             this.results = results;
         }
         
-        public mba_application.MBAImportService.Client[] Result {
+        public mba_model.Client[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAImportService.Client[])(this.results[0]));
+                return ((mba_model.Client[])(this.results[0]));
             }
         }
     }
@@ -606,10 +120,10 @@ namespace mba_application.MBAImportService {
             this.results = results;
         }
         
-        public mba_application.MBAImportService.ImportType[] Result {
+        public mba_model.ImportType[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAImportService.ImportType[])(this.results[0]));
+                return ((mba_model.ImportType[])(this.results[0]));
             }
         }
     }
@@ -669,7 +183,7 @@ namespace mba_application.MBAImportService {
         
         public event System.EventHandler<ImportTypesCompletedEventArgs> ImportTypesCompleted;
         
-        public mba_application.MBAImportService.GoodColumn GoodColumn(string columnHeader) {
+        public mba_model.GoodColumn GoodColumn(string columnHeader) {
             return base.Channel.GoodColumn(columnHeader);
         }
         
@@ -679,7 +193,7 @@ namespace mba_application.MBAImportService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAImportService.GoodColumn EndGoodColumn(System.IAsyncResult result) {
+        public mba_model.GoodColumn EndGoodColumn(System.IAsyncResult result) {
             return base.Channel.EndGoodColumn(result);
         }
         
@@ -689,7 +203,7 @@ namespace mba_application.MBAImportService {
         }
         
         private object[] OnEndGoodColumn(System.IAsyncResult result) {
-            mba_application.MBAImportService.GoodColumn retVal = this.EndGoodColumn(result);
+            mba_model.GoodColumn retVal = this.EndGoodColumn(result);
             return new object[] {
                     retVal};
         }
@@ -719,7 +233,7 @@ namespace mba_application.MBAImportService {
                         columnHeader}, this.onEndGoodColumnDelegate, this.onGoodColumnCompletedDelegate, userState);
         }
         
-        public mba_application.MBAImportService.GoodColumn[] GoodColumns() {
+        public mba_model.GoodColumn[] GoodColumns() {
             return base.Channel.GoodColumns();
         }
         
@@ -729,7 +243,7 @@ namespace mba_application.MBAImportService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAImportService.GoodColumn[] EndGoodColumns(System.IAsyncResult result) {
+        public mba_model.GoodColumn[] EndGoodColumns(System.IAsyncResult result) {
             return base.Channel.EndGoodColumns(result);
         }
         
@@ -738,7 +252,7 @@ namespace mba_application.MBAImportService {
         }
         
         private object[] OnEndGoodColumns(System.IAsyncResult result) {
-            mba_application.MBAImportService.GoodColumn[] retVal = this.EndGoodColumns(result);
+            mba_model.GoodColumn[] retVal = this.EndGoodColumns(result);
             return new object[] {
                     retVal};
         }
@@ -767,7 +281,7 @@ namespace mba_application.MBAImportService {
             base.InvokeAsync(this.onBeginGoodColumnsDelegate, null, this.onEndGoodColumnsDelegate, this.onGoodColumnsCompletedDelegate, userState);
         }
         
-        public mba_application.MBAImportService.Client[] Clients() {
+        public mba_model.Client[] Clients() {
             return base.Channel.Clients();
         }
         
@@ -777,7 +291,7 @@ namespace mba_application.MBAImportService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAImportService.Client[] EndClients(System.IAsyncResult result) {
+        public mba_model.Client[] EndClients(System.IAsyncResult result) {
             return base.Channel.EndClients(result);
         }
         
@@ -786,7 +300,7 @@ namespace mba_application.MBAImportService {
         }
         
         private object[] OnEndClients(System.IAsyncResult result) {
-            mba_application.MBAImportService.Client[] retVal = this.EndClients(result);
+            mba_model.Client[] retVal = this.EndClients(result);
             return new object[] {
                     retVal};
         }
@@ -815,7 +329,7 @@ namespace mba_application.MBAImportService {
             base.InvokeAsync(this.onBeginClientsDelegate, null, this.onEndClientsDelegate, this.onClientsCompletedDelegate, userState);
         }
         
-        public mba_application.MBAImportService.ImportType[] ImportTypes() {
+        public mba_model.ImportType[] ImportTypes() {
             return base.Channel.ImportTypes();
         }
         
@@ -825,7 +339,7 @@ namespace mba_application.MBAImportService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAImportService.ImportType[] EndImportTypes(System.IAsyncResult result) {
+        public mba_model.ImportType[] EndImportTypes(System.IAsyncResult result) {
             return base.Channel.EndImportTypes(result);
         }
         
@@ -834,7 +348,7 @@ namespace mba_application.MBAImportService {
         }
         
         private object[] OnEndImportTypes(System.IAsyncResult result) {
-            mba_application.MBAImportService.ImportType[] retVal = this.EndImportTypes(result);
+            mba_model.ImportType[] retVal = this.EndImportTypes(result);
             return new object[] {
                     retVal};
         }

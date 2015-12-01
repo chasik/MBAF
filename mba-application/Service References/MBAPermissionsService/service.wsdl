@@ -42,10 +42,20 @@
   <wsdl:message name="IPermissionsService_Permissions_OutputMessage">
     <wsdl:part name="parameters" element="tns:PermissionsResponse" />
   </wsdl:message>
+  <wsdl:message name="IPermissionsService_Users_InputMessage">
+    <wsdl:part name="parameters" element="tns:Users" />
+  </wsdl:message>
+  <wsdl:message name="IPermissionsService_Users_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UsersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPermissionsService">
     <wsdl:operation name="Permissions">
       <wsdl:input wsaw:Action="http://tempuri.org/IPermissionsService/Permissions" message="tns:IPermissionsService_Permissions_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPermissionsService/PermissionsResponse" message="tns:IPermissionsService_Permissions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Users">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPermissionsService/Users" message="tns:IPermissionsService_Users_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPermissionsService/UsersResponse" message="tns:IPermissionsService_Users_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPermissionsService" type="tns:IPermissionsService">
@@ -53,6 +63,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="Permissions">
       <soap12:operation soapAction="http://tempuri.org/IPermissionsService/Permissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Users">
+      <soap12:operation soapAction="http://tempuri.org/IPermissionsService/Users" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

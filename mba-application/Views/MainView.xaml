@@ -16,13 +16,14 @@
     xmlns:vm="clr-namespace:mba_application.ViewModels"
     xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
     xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     x:Class="mba_application.MainView"
     
     Title="MBA Finance" Height="600" Width="1000"
     SnapsToDevicePixels="True" UseLayoutRounding="True"
     
     DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}">
-    
+
     <dx:DXWindow.Resources>
         <ResourceDictionary>
             <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
@@ -30,11 +31,11 @@
             <DataTemplate  DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMain">
                 <v:PhoneView/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMini">
                 <v:PhoneMiniView/>
             </DataTemplate>
-            
+
         </ResourceDictionary>
     </dx:DXWindow.Resources>
 

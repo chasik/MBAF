@@ -8,5 +8,7 @@ namespace mba_services.ServiceContracts
     {
         [OperationContract]
         Permission[] Permissions();
+        [OperationContract]
+        User[] Users();
     }
 }

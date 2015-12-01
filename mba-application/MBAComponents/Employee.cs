@@ -1,4 +1,5 @@
 ﻿using mba_application.MBAPermissionsService;
+using mba_model;
 using System.Collections.Generic;
 
 namespace mba_application.MBAComponents

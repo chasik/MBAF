@@ -9,26 +9,32 @@ namespace mba_model
     {
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2"), Display(Name = "Freezed")]
+        [Column(TypeName = "datetime2"), Display(Name = "Заблокирован")]
         public DateTime? Freezed { get; set; }
 
-        [Display(Name = "Login")]
+        [Display(Name = "Логин")]
         public string Login { get; set; }
-        [Display(Name = "First Name")]
+
+        [Display(Name = "Имя")]
         public string FirstName { get; set; }
-        [Display(Name = "Middle Name")]
+
+        [Display(Name = "Отчество")]
         public string MiddleName { get; set; }
-        [Display(Name = "Last Name")]
+
+        [Display(Name = "Фамилия")]
         public string LastName { get; set; }
-        [Display(Name = "Full Name")]
+
+        [Display(Name = "ФИО")]
         public string FullName { get; set; }
-        [Display(Name = "User E-Mail")]
+
+        [Display(Name = "E-Mail")]
         public string Email { get; set; }
-        [Display(Name = "User Photo")]
+
+        [Display(Name = "Фотография")]
         public byte[] Photo { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Permission> Permissions { get; set; }
-        public virtual ICollection<UserAction> UserActions { get; private set; }
+        public virtual ICollection<UserAction> UserActions { get; set; }
     }
 }

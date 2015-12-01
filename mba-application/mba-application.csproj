@@ -43,6 +43,9 @@
     <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Docking.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Grid.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v15.1.Core, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v15.1.Extensions, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.NavBar.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Scheduler.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Spreadsheet.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -79,6 +82,7 @@
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\PhoneConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\PhoneStateToColorButtonCallConverter.cs" />
     <Compile Include="MBAComponents\MBAMessages\CloseProgramMessage.cs" />
     <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
@@ -157,20 +161,16 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\mba_model.Client.datasource" />
+    <None Include="Properties\DataSources\mba_model.GoodColumn.datasource" />
+    <None Include="Properties\DataSources\mba_model.ImportType.datasource" />
+    <None Include="Properties\DataSources\mba_model.Permission.datasource" />
+    <None Include="Properties\DataSources\mba_model.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.Client.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.GoodColumn.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MBAImportService\mba_application.MBAImportService.ImportType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\MBAImportService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -180,9 +180,6 @@
     </None>
     <None Include="Service References\MBAImportService\service1.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MBAPermissionsService\mba_application.MBAPermissionsService.Permission.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MBAPermissionsService\mba_model.xsd">
       <SubType>Designer</SubType>
@@ -255,6 +252,10 @@
     <WCFMetadataStorage Include="Service References\MBAPermissionsService\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\mba-model\mba-model.csproj">
+      <Project>{920797ae-3b59-4295-8e48-fcf8318e3093}</Project>
+      <Name>mba-model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\similarity\WordsMatching.csproj">
       <Project>{cffea5f4-2374-4336-956b-f6edb9e2fbf1}</Project>
       <Name>WordsMatching</Name>
@@ -389,6 +390,9 @@
     <Resource Include="Resources\wav\incoming.wav" />
     <Resource Include="Resources\wav\ring.wav" />
     <Resource Include="Resources\wav\unavailable.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\endCallButtonImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

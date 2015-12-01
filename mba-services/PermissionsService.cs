@@ -30,6 +30,12 @@ namespace mba_services
                    ).ToArray();
         }
 
+        public User[] Users()
+        {
+            return (from u in dbContext.Users
+                    select u).ToArray();
+        }
+
         private User GerUserFromBD(string login)
         {
             return (from u in dbContext.Users

@@ -1,13 +1,27 @@
-﻿using System;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
+using mba_model;
+using System.Collections.Generic;
 
 namespace mba_application.ViewModels.Admin
 {
-    public class AdminUsersViewModel : ViewModelBase
+    [POCOViewModel]
+    public class AdminUsersViewModel
     {
-        public AdminUsersViewModel()
+        protected AdminUsersViewModel()
         {
+        }
 
+        public static AdminUsersViewModel Create()
+        {
+            return ViewModelSource.Create(() => new AdminUsersViewModel());
+        }
+
+        public virtual List<User> Users { get; set; }
+
+        public void GetUsers()
+        {
+            Users = new List<User>((new MBAPermissionsService.PermissionsServiceClient()).Users());
         }
     }
 }

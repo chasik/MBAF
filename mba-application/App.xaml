@@ -8,6 +8,5 @@
     <Application.Resources>
         <ViewModels:PhoneViewModel x:Key="MBAPhoneViewModel"/>
         <converters:PhoneConverter x:Key="PhoneConverter"/>
-        <Image x:Key="CallButtonImage" Source="pack://application:,,,/mba-application;component/Resources/Images/Icons/callButtonImage.png"/>
     </Application.Resources>
 </Application>

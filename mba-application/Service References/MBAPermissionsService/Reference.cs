@@ -9,508 +9,27 @@
 //------------------------------------------------------------------------------
 
 namespace mba_application.MBAPermissionsService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Permission", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class Permission : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CommandParamField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ParentIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.Role[] RolesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ScreenNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TooltipField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.User[] UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CommandParam {
-            get {
-                return this.CommandParamField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommandParamField, value) != true)) {
-                    this.CommandParamField = value;
-                    this.RaisePropertyChanged("CommandParam");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Image {
-            get {
-                return this.ImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
-                    this.ImageField = value;
-                    this.RaisePropertyChanged("Image");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ParentId {
-            get {
-                return this.ParentIdField;
-            }
-            set {
-                if ((this.ParentIdField.Equals(value) != true)) {
-                    this.ParentIdField = value;
-                    this.RaisePropertyChanged("ParentId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.Role[] Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ScreenName {
-            get {
-                return this.ScreenNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ScreenNameField, value) != true)) {
-                    this.ScreenNameField = value;
-                    this.RaisePropertyChanged("ScreenName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Tooltip {
-            get {
-                return this.TooltipField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TooltipField, value) != true)) {
-                    this.TooltipField = value;
-                    this.RaisePropertyChanged("Tooltip");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.User[] Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.Permission[] PermissionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ScreenNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.User[] UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.Permission[] Permissions {
-            get {
-                return this.PermissionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PermissionsField, value) != true)) {
-                    this.PermissionsField = value;
-                    this.RaisePropertyChanged("Permissions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ScreenName {
-            get {
-                return this.ScreenNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ScreenNameField, value) != true)) {
-                    this.ScreenNameField = value;
-                    this.RaisePropertyChanged("ScreenName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.User[] Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/mba_model")]
-    [System.SerializableAttribute()]
-    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FirstNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> FreezedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FullNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LastNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LoginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MiddleNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.Permission[] PermissionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] PhotoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private mba_application.MBAPermissionsService.Role[] RolesField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FirstName {
-            get {
-                return this.FirstNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
-                    this.FirstNameField = value;
-                    this.RaisePropertyChanged("FirstName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> Freezed {
-            get {
-                return this.FreezedField;
-            }
-            set {
-                if ((this.FreezedField.Equals(value) != true)) {
-                    this.FreezedField = value;
-                    this.RaisePropertyChanged("Freezed");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FullName {
-            get {
-                return this.FullNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
-                    this.FullNameField = value;
-                    this.RaisePropertyChanged("FullName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastName {
-            get {
-                return this.LastNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
-                    this.LastNameField = value;
-                    this.RaisePropertyChanged("LastName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Login {
-            get {
-                return this.LoginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string MiddleName {
-            get {
-                return this.MiddleNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MiddleNameField, value) != true)) {
-                    this.MiddleNameField = value;
-                    this.RaisePropertyChanged("MiddleName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.Permission[] Permissions {
-            get {
-                return this.PermissionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PermissionsField, value) != true)) {
-                    this.PermissionsField = value;
-                    this.RaisePropertyChanged("Permissions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Photo {
-            get {
-                return this.PhotoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhotoField, value) != true)) {
-                    this.PhotoField = value;
-                    this.RaisePropertyChanged("Photo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public mba_application.MBAPermissionsService.Role[] Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAPermissionsService.IPermissionsService")]
     public interface IPermissionsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/Permissions", ReplyAction="http://tempuri.org/IPermissionsService/PermissionsResponse")]
-        mba_application.MBAPermissionsService.Permission[] Permissions();
+        mba_model.Permission[] Permissions();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/Permissions", ReplyAction="http://tempuri.org/IPermissionsService/PermissionsResponse")]
         System.IAsyncResult BeginPermissions(System.AsyncCallback callback, object asyncState);
         
-        mba_application.MBAPermissionsService.Permission[] EndPermissions(System.IAsyncResult result);
+        mba_model.Permission[] EndPermissions(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/Users", ReplyAction="http://tempuri.org/IPermissionsService/UsersResponse")]
+        mba_model.User[] Users();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/Users", ReplyAction="http://tempuri.org/IPermissionsService/UsersResponse")]
+        System.IAsyncResult BeginUsers(System.AsyncCallback callback, object asyncState);
+        
+        mba_model.User[] EndUsers(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -528,10 +47,29 @@ namespace mba_application.MBAPermissionsService {
             this.results = results;
         }
         
-        public mba_application.MBAPermissionsService.Permission[] Result {
+        public mba_model.Permission[] Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((mba_application.MBAPermissionsService.Permission[])(this.results[0]));
+                return ((mba_model.Permission[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UsersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public mba_model.User[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((mba_model.User[])(this.results[0]));
             }
         }
     }
@@ -545,6 +83,12 @@ namespace mba_application.MBAPermissionsService {
         private EndOperationDelegate onEndPermissionsDelegate;
         
         private System.Threading.SendOrPostCallback onPermissionsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUsersDelegate;
+        
+        private EndOperationDelegate onEndUsersDelegate;
+        
+        private System.Threading.SendOrPostCallback onUsersCompletedDelegate;
         
         public PermissionsServiceClient() {
         }
@@ -567,7 +111,9 @@ namespace mba_application.MBAPermissionsService {
         
         public event System.EventHandler<PermissionsCompletedEventArgs> PermissionsCompleted;
         
-        public mba_application.MBAPermissionsService.Permission[] Permissions() {
+        public event System.EventHandler<UsersCompletedEventArgs> UsersCompleted;
+        
+        public mba_model.Permission[] Permissions() {
             return base.Channel.Permissions();
         }
         
@@ -577,7 +123,7 @@ namespace mba_application.MBAPermissionsService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public mba_application.MBAPermissionsService.Permission[] EndPermissions(System.IAsyncResult result) {
+        public mba_model.Permission[] EndPermissions(System.IAsyncResult result) {
             return base.Channel.EndPermissions(result);
         }
         
@@ -586,7 +132,7 @@ namespace mba_application.MBAPermissionsService {
         }
         
         private object[] OnEndPermissions(System.IAsyncResult result) {
-            mba_application.MBAPermissionsService.Permission[] retVal = this.EndPermissions(result);
+            mba_model.Permission[] retVal = this.EndPermissions(result);
             return new object[] {
                     retVal};
         }
@@ -613,6 +159,54 @@ namespace mba_application.MBAPermissionsService {
                 this.onPermissionsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnPermissionsCompleted);
             }
             base.InvokeAsync(this.onBeginPermissionsDelegate, null, this.onEndPermissionsDelegate, this.onPermissionsCompletedDelegate, userState);
+        }
+        
+        public mba_model.User[] Users() {
+            return base.Channel.Users();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUsers(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUsers(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public mba_model.User[] EndUsers(System.IAsyncResult result) {
+            return base.Channel.EndUsers(result);
+        }
+        
+        private System.IAsyncResult OnBeginUsers(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginUsers(callback, asyncState);
+        }
+        
+        private object[] OnEndUsers(System.IAsyncResult result) {
+            mba_model.User[] retVal = this.EndUsers(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUsersCompleted(object state) {
+            if ((this.UsersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UsersCompleted(this, new UsersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UsersAsync() {
+            this.UsersAsync(null);
+        }
+        
+        public void UsersAsync(object userState) {
+            if ((this.onBeginUsersDelegate == null)) {
+                this.onBeginUsersDelegate = new BeginOperationDelegate(this.OnBeginUsers);
+            }
+            if ((this.onEndUsersDelegate == null)) {
+                this.onEndUsersDelegate = new EndOperationDelegate(this.OnEndUsers);
+            }
+            if ((this.onUsersCompletedDelegate == null)) {
+                this.onUsersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUsersCompleted);
+            }
+            base.InvokeAsync(this.onBeginUsersDelegate, null, this.onEndUsersDelegate, this.onUsersCompletedDelegate, userState);
         }
     }
 }
