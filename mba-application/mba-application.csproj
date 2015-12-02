@@ -78,13 +78,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MBAComponents\cDefinForVaxVoIP.cs" />
     <Compile Include="MBAComponents\Employee.cs" />
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
-    <Compile Include="MBAComponents\MBAConverters\PhoneConverter.cs" />
-    <Compile Include="MBAComponents\MBAConverters\PhoneStateToColorButtonCallConverter.cs" />
+    <Compile Include="MBAComponents\MBAConverters\PhoneConverters.cs" />
     <Compile Include="MBAComponents\MBAMessages\CloseProgramMessage.cs" />
-    <Compile Include="MBAComponents\PhonePjsip4net.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
     <Compile Include="Service References\MBAImportService\Reference.cs">
       <AutoGen>True</AutoGen>
