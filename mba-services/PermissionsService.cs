@@ -6,11 +6,11 @@ using mba_services.ServiceContracts;
 
 namespace mba_services
 {
-    public class PermissionsService : IPermissionsService
+    public class UserService : IUserService
     {
         public ModelContext dbContext;
 
-        public PermissionsService()
+        public UserService()
         {
             dbContext = new ModelContext();
             dbContext.Configuration.ProxyCreationEnabled = false;

@@ -1,5 +1,4 @@
-﻿using mba_application.MBAPermissionsService;
-using mba_model;
+﻿using mba_model;
 using System.Collections.Generic;
 
 namespace mba_application.MBAComponents
@@ -15,7 +14,7 @@ namespace mba_application.MBAComponents
 
         public bool TryEnter()
         {
-            var employeeService = new MBAPermissionsService.PermissionsServiceClient();
+            var employeeService = new MBAUserService.UserServiceClient();
             var allPermissions = employeeService.Permissions();
 
             foreach (Permission permission in allPermissions)
@@ -28,7 +27,8 @@ namespace mba_application.MBAComponents
 
             foreach (Permission permission in allPermissions)
             {
-                if (permission == null)
+                // пропускаем с ParentId == null (группы меню) и с ParentId == 0 (инструменты)
+                if (permission.ParentId == null || permission.ParentId == 0)
                     continue;
 
                 foreach (PermissionGroup permGroup in PermissionGroups)

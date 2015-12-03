@@ -9,9 +9,6 @@ namespace mba_model
     {
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2"), Display(Name = "Заблокирован")]
-        public DateTime? Freezed { get; set; }
-
         [Display(Name = "Логин")]
         public string Login { get; set; }
 
@@ -32,6 +29,9 @@ namespace mba_model
 
         [Display(Name = "Фотография")]
         public byte[] Photo { get; set; }
+
+        [Column(TypeName = "datetime2"), Display(Name = "Заблокирован")]
+        public DateTime? Freezed { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Permission> Permissions { get; set; }

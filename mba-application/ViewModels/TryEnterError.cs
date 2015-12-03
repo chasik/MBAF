@@ -1,5 +1,4 @@
-﻿using System;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 
 namespace mba_application.ViewModels
 {

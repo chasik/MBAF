@@ -85,27 +85,37 @@
     <Compile Include="MBAComponents\MBAConverters\PhoneConverters.cs" />
     <Compile Include="MBAComponents\MBAMessages\CloseProgramMessage.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
+    <Compile Include="Service References\MBAAsteriskService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\MBAImportService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\MBAPermissionsService\Reference.cs">
+    <Compile Include="Service References\MBAUserService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Admin\AdminAsteriskViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AdminRolesViewModel.cs" />
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Manager\ManagerAutoTasksViewModel.cs" />
     <Compile Include="ViewModels\Manager\ManagerTasksViewModel.cs" />
     <Compile Include="ViewModels\Operator\OperatorWorkflowViewModel.cs" />
-    <Compile Include="ViewModels\PhoneViewModel.cs" />
+    <Compile Include="ViewModels\Phone\PhoneHistoryViewModel.cs" />
+    <Compile Include="ViewModels\Phone\PhoneViewModel.cs" />
     <Compile Include="ViewModels\TryEnterError.cs" />
     <Compile Include="Views\Admin\AdminAsteriskView.xaml.cs">
       <DependentUpon>AdminAsteriskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdminRolesView.xaml.cs">
+      <DependentUpon>AdminRolesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\AdminUsersView.xaml.cs">
       <DependentUpon>AdminUsersView.xaml</DependentUpon>
@@ -122,10 +132,13 @@
     <Compile Include="Views\Operator\OperatorWorkflowView.xaml.cs">
       <DependentUpon>OperatorWorkflowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PhoneMiniView.xaml.cs">
+    <Compile Include="Views\Phone\PhoneHistoryView.xaml.cs">
+      <DependentUpon>PhoneHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Phone\PhoneMiniView.xaml.cs">
       <DependentUpon>PhoneMiniView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PhoneView.xaml.cs">
+    <Compile Include="Views\Phone\PhoneView.xaml.cs">
       <DependentUpon>PhoneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SplashScreenView.xaml.cs">
@@ -170,6 +183,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\MBAAsteriskService\service.wsdl" />
+    <None Include="Service References\MBAAsteriskService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MBAImportService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -180,19 +197,23 @@
     <None Include="Service References\MBAImportService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAPermissionsService\mba_model.xsd">
+    <None Include="Service References\MBAUserService\mba_model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAPermissionsService\service.wsdl" />
-    <None Include="Service References\MBAPermissionsService\service.xsd">
+    <None Include="Service References\MBAUserService\service.wsdl" />
+    <None Include="Service References\MBAUserService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MBAPermissionsService\service1.xsd">
+    <None Include="Service References\MBAUserService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Admin\AdminAsteriskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\AdminRolesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,11 +237,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PhoneMiniView.xaml">
+    <Page Include="Views\Phone\PhoneHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PhoneView.xaml">
+    <Page Include="Views\Phone\PhoneMiniView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Phone\PhoneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,8 +272,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MBAAsteriskService\" />
     <WCFMetadataStorage Include="Service References\MBAImportService\" />
-    <WCFMetadataStorage Include="Service References\MBAPermissionsService\" />
+    <WCFMetadataStorage Include="Service References\MBAUserService\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mba-model\mba-model.csproj">
@@ -344,18 +370,6 @@
     <Resource Include="Resources\Images\Icons\menu-item-search-phone.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAPermissionsService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\MBAImportService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +406,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\endCallButtonImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAAsteriskService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAAsteriskService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAAsteriskService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAUserService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAUserService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAUserService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

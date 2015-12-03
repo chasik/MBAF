@@ -8,32 +8,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mba_application.MBAPermissionsService {
+namespace mba_application.MBAUserService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAPermissionsService.IPermissionsService")]
-    public interface IPermissionsService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MBAUserService.IUserService")]
+    public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/Permissions", ReplyAction="http://tempuri.org/IPermissionsService/PermissionsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Permissions", ReplyAction="http://tempuri.org/IUserService/PermissionsResponse")]
         mba_model.Permission[] Permissions();
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/Permissions", ReplyAction="http://tempuri.org/IPermissionsService/PermissionsResponse")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUserService/Permissions", ReplyAction="http://tempuri.org/IUserService/PermissionsResponse")]
         System.IAsyncResult BeginPermissions(System.AsyncCallback callback, object asyncState);
         
         mba_model.Permission[] EndPermissions(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPermissionsService/Users", ReplyAction="http://tempuri.org/IPermissionsService/UsersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Users", ReplyAction="http://tempuri.org/IUserService/UsersResponse")]
         mba_model.User[] Users();
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IPermissionsService/Users", ReplyAction="http://tempuri.org/IPermissionsService/UsersResponse")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IUserService/Users", ReplyAction="http://tempuri.org/IUserService/UsersResponse")]
         System.IAsyncResult BeginUsers(System.AsyncCallback callback, object asyncState);
         
         mba_model.User[] EndUsers(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPermissionsServiceChannel : mba_application.MBAPermissionsService.IPermissionsService, System.ServiceModel.IClientChannel {
+    public interface IUserServiceChannel : mba_application.MBAUserService.IUserService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -76,7 +76,7 @@ namespace mba_application.MBAPermissionsService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PermissionsServiceClient : System.ServiceModel.ClientBase<mba_application.MBAPermissionsService.IPermissionsService>, mba_application.MBAPermissionsService.IPermissionsService {
+    public partial class UserServiceClient : System.ServiceModel.ClientBase<mba_application.MBAUserService.IUserService>, mba_application.MBAUserService.IUserService {
         
         private BeginOperationDelegate onBeginPermissionsDelegate;
         
@@ -90,22 +90,22 @@ namespace mba_application.MBAPermissionsService {
         
         private System.Threading.SendOrPostCallback onUsersCompletedDelegate;
         
-        public PermissionsServiceClient() {
+        public UserServiceClient() {
         }
         
-        public PermissionsServiceClient(string endpointConfigurationName) : 
+        public UserServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public PermissionsServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public UserServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PermissionsServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public UserServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public PermissionsServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public UserServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

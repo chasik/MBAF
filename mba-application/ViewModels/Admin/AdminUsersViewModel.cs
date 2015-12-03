@@ -21,7 +21,7 @@ namespace mba_application.ViewModels.Admin
 
         public void GetUsers()
         {
-            Users = new List<User>((new MBAPermissionsService.PermissionsServiceClient()).Users());
+            Users = new List<User>((new MBAUserService.UserServiceClient()).Users());
         }
     }
 }

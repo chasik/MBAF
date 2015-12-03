@@ -27,6 +27,8 @@ namespace mba_model
 
         //Clients
         public DbSet<Client>          Clients         { get; set; }
+        //Projects
+        public DbSet<Project>         Projects        { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

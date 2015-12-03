@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mba_application.ViewModels.Phone;
+using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Data;
@@ -66,13 +67,13 @@ namespace mba_application.MBAComponents.MBAConverters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var result = "#6CFF5F";
-            ViewModels.PhoneState phoneStateVal = (ViewModels.PhoneState)Enum.Parse(typeof(ViewModels.PhoneState), value.ToString());
+            PhoneState phoneStateVal = (PhoneState)Enum.Parse(typeof(PhoneState), value.ToString());
 
             switch (phoneStateVal)
             {
-                case ViewModels.PhoneState.TRYING:
-                case ViewModels.PhoneState.TRYING_IN:
-                case ViewModels.PhoneState.CALL_ACCEPTS:
+                case PhoneState.TRYING:
+                case PhoneState.TRYING_IN:
+                case PhoneState.CALL_ACCEPTS:
                     result = "#FF5F5F";
                     break;
             }
@@ -90,13 +91,13 @@ namespace mba_application.MBAComponents.MBAConverters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var result = "#42DB59";
-            ViewModels.PhoneState phoneStateVal = (ViewModels.PhoneState)Enum.Parse(typeof(ViewModels.PhoneState), value.ToString());
+            PhoneState phoneStateVal = (PhoneState)Enum.Parse(typeof(PhoneState), value.ToString());
 
             switch (phoneStateVal)
             {
-                case ViewModels.PhoneState.TRYING:
-                case ViewModels.PhoneState.TRYING_IN:
-                case ViewModels.PhoneState.CALL_ACCEPTS:
+                case PhoneState.TRYING:
+                case PhoneState.TRYING_IN:
+                case PhoneState.CALL_ACCEPTS:
                     result = "Red";
                     break;
             }
@@ -113,13 +114,13 @@ namespace mba_application.MBAComponents.MBAConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ViewModels.PhoneState phoneStateVal = (ViewModels.PhoneState)Enum.Parse(typeof(ViewModels.PhoneState), value.ToString());
+            PhoneState phoneStateVal = (PhoneState)Enum.Parse(typeof(PhoneState), value.ToString());
 
             switch (phoneStateVal)
             {
-                case ViewModels.PhoneState.TRYING:
-                case ViewModels.PhoneState.TRYING_IN:
-                case ViewModels.PhoneState.CALL_ACCEPTS:
+                case PhoneState.TRYING:
+                case PhoneState.TRYING_IN:
+                case PhoneState.CALL_ACCEPTS:
                     return new BitmapImage(new Uri("pack://application:,,,/mba-application;component/Resources/Images/Icons/endCallButtonImage.png"));
                 default:
                     return new BitmapImage(new Uri("pack://application:,,,/mba-application;component/Resources/Images/Icons/callButtonImage.png"));

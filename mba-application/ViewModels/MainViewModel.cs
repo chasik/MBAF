@@ -1,50 +1,48 @@
 ﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 using mba_application.MBAComponents;
 using mba_application.MBAComponents.MBAMessages;
 using System.Collections.ObjectModel;
 
 namespace mba_application.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    [POCOViewModel]
+    public class MainViewModel
     {
-        public Employee CurrentEmployee { get; set; }
+        public virtual Employee CurrentEmployee { get; set; }
 
-        public ObservableCollection<PermissionGroup> UserPermissionGroups
+        public virtual ObservableCollection<PermissionGroup> UserPermissionGroups { get; set; }
+
+        public virtual INavigationService NavigationService { get { return null; } }
+
+        protected MainViewModel()
         {
-            get { return GetProperty(() => UserPermissionGroups); }
-            set { SetProperty(() => UserPermissionGroups, value); }
         }
 
-        public DelegateCommand<string> MenuItemClickCommand { get; private set; }
-
-        private INavigationService NavigationService { get { return GetService<INavigationService>(); } }
-
-        public MainViewModel()
+        public static MainViewModel Create()
         {
-            CurrentEmployee = new Employee();
-
-            MenuItemClickCommand = new DelegateCommand<string>(MenuItemClick);
+            return ViewModelSource.Create(() => new MainViewModel());
         }
 
         public void OnInitMainView()
         {
+            CurrentEmployee = new Employee();
             if (CurrentEmployee.TryEnter())
             {
                 UserPermissionGroups = new ObservableCollection<PermissionGroup>(CurrentEmployee.PermissionGroups);
-                //NavigationService.Navigate("RegistryAddView", null, this);
             }
             else
             {
                 NavigationService.Navigate("TryEnterError", null, this);
             }
         }
+
         public void MenuItemClick(string frameName)
         {
             NavigationService.Navigate(frameName);
         }
 
-        [Command]
         public void CloseMainWindow()
         {
             Messenger.Default.Send(new CloseProgramMessage());

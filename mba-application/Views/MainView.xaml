@@ -14,6 +14,7 @@
     xmlns:local="clr-namespace:mba_application"
     xmlns:v="clr-namespace:mba_application.Views"
     xmlns:vm="clr-namespace:mba_application.ViewModels"
+    xmlns:vmPhone="clr-namespace:mba_application.ViewModels.Phone"
     xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
     xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
@@ -28,11 +29,11 @@
         <ResourceDictionary>
             <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
 
-            <DataTemplate  DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMain">
+            <DataTemplate  DataType="{x:Type vmPhone:PhoneViewModel}" x:Key="PhoneMain">
                 <v:PhoneView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vm:PhoneViewModel}" x:Key="PhoneMini">
+            <DataTemplate DataType="{x:Type vmPhone:PhoneViewModel}" x:Key="PhoneMini">
                 <v:PhoneMiniView/>
             </DataTemplate>
 

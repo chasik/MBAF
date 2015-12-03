@@ -6,7 +6,7 @@ using System.Media;
 using System.Timers;
 using VAXSIPUSERAGENTCOMLib;
 
-namespace mba_application.ViewModels
+namespace mba_application.ViewModels.Phone
 {
     public class PhoneViewModel : ViewModelBase
     {

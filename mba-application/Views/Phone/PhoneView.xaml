@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
-             xmlns:ViewModels="clr-namespace:mba_application.ViewModels"
+             xmlns:ViewModelsPhone="clr-namespace:mba_application.ViewModels.Phone"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              mc:Ignorable="d" d:DesignHeight="264" d:DesignWidth="182"
              DataContext="{StaticResource MBAPhoneViewModel}">
@@ -70,16 +70,16 @@
 
         <Style x:Key="timerText" TargetType="TextBlock" >
             <Style.Triggers>
-                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModels:PhoneState.TRYING}">
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.TRYING}">
                     <Setter  Property="Foreground" Value="#DDDDDD"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModels:PhoneState.TRYING_IN}">
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.TRYING_IN}">
                     <Setter Property="Foreground" Value="Red"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModels:PhoneState.CALL_ACCEPTS}">
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.CALL_ACCEPTS}">
                     <Setter Property="Foreground" Value="#42DB59"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModels:PhoneState.CALL_IN_ACCEPTS}">
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.CALL_IN_ACCEPTS}">
                     <Setter Property="Foreground" Value="BlueViolet"/>
                 </DataTrigger>
             </Style.Triggers>

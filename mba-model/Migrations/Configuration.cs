@@ -42,187 +42,33 @@
                 new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-leadership.png" },
                 new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", Image = "menu-group-admin.png" },
 
-                new Permission
-                {
-                    Id = 9,
-                    ParentId = 1,
-                    Name = "menu-processing-work",
-                    ScreenName = "Выборки",
-                    Tooltip = "Рабочее пространство оператора",
-                    Image = "menu-item-processing-operator.png",
-                    CommandParam = "OperatorWorkflowView"
-                },
-                new Permission
-                {
-                    Id = 10,
-                    ParentId = 1,
-                    Name = "menu-processing-task",
-                    ScreenName = "Задания",
-                    Tooltip = "Дополнительные табели для операторов",
-                    Image = "menu-item-processing-task.png",
-                    CommandParam = ""
-                },
-                new Permission
-                {
-                    Id = 11,
-                    ParentId = 1,
-                    Name = "menu-processing-table",
-                    ScreenName = "Табели",
-                    Tooltip = "Дополнительные табели для операторов",
-                    Image = "menu-item-processing-table.png",
-                    CommandParam = ""
-                },
+                new Permission { Id = 9, ParentId = 0, Name = "tools-phone", ScreenName = "MBA Phone", Tooltip = "Доступена панель софтфона", Image = "" },
+                new Permission { Id = 10, ParentId = 0, Name = "tools-phone-history", ScreenName = "История", Tooltip = "История звонков", Image = "" },
+                new Permission { Id = 11, ParentId = 0, Name = "tools-calc", ScreenName = "Калькулятор", Tooltip = "Доступен калькулятор", Image = "" },
+                new Permission { Id = 12, ParentId = 0, Name = "tools-chat", ScreenName = "Чат", Tooltip = "Доступена панель чатов", Image = "" },
 
-                new Permission
-                {
-                    Id = 12,
-                    ParentId = 2,
-                    Name = "menu-lead-operators",
-                    ScreenName = "Выборки",
-                    Tooltip = "Формирование заданий (выборок) для операторов",
-                    Image = "menu-item-lead-operators.png",
-                    CommandParam = "ManagerTasksView"
-                },
-                new Permission
-                {
-                    Id = 13,
-                    ParentId = 2,
-                    Name = "menu-lead-dialer",
-                    ScreenName = "Dialer",
-                    Tooltip = "Задания для автоматического выполнения",
-                    Image = "menu-item-lead-dialer.png",
-                    CommandParam = "ManagerAutoTasksView"
-                },
-                new Permission
-                {
-                    Id = 14,
-                    ParentId = 2,
-                    Name = "menu-lead-registry",
-                    ScreenName = "Реестры",
-                    Tooltip = "Работа с реестрами по проекту",
-                    Image = "menu-item-lead-registry.png",
-                    CommandParam = ""
-                },
-                new Permission
-                {
-                    Id = 15,
-                    ParentId = 2,
-                    Name = "menu-lead-monitoring",
-                    ScreenName = "Мониторинг",
-                    Tooltip = "Мониторинг активности операторов",
-                    Image = "menu-item-lead-monitoring.png",
-                    CommandParam = ""
-                },
-                new Permission
-                {
-                    Id = 16,
-                    ParentId = 2,
-                    Name = "menu-lead-tables",
-                    ScreenName = "Табели",
-                    Tooltip = "Заполнение табелей",
-                    Image = "menu-item-lead-table.png",
-                    CommandParam = ""
-                },
-
-                new Permission
-                {
-                    Id = 17,
-                    ParentId = 3,
-                    Name = "menu-import-registry",
-                    ScreenName = "Реестры",
-                    Tooltip = "Импорт реестров",
-                    Image = "menu-item-import-registry.png",
-                    CommandParam = "RegistryAddView"
-                },
-
-                new Permission
-                {
-                    Id = 18,
-                    ParentId = 4,
-                    Name = "menu-analytics-dashboard",
-                    ScreenName = "Мониторинг",
-                    Tooltip = "Текущая состояние колл-центра",
-                    Image = "menu-item-analytics-dashboard.png",
-                    CommandParam = ""
-                },
-
-                new Permission
-                {
-                    Id = 19,
-                    ParentId = 5,
-                    Name = "menu-report-reports",
-                    ScreenName = "Отчеты",
-                    Tooltip = "Настройка отчетов",
-                    Image = "menu-item-report-reports.png",
-                    CommandParam = ""
-                },
-
-                new Permission
-                {
-                    Id = 20,
-                    ParentId = 6,
-                    Name = "menu-search-address",
-                    ScreenName = "Адресса",
-                    Tooltip = "Поиск и проверка адресов",
-                    Image = "menu-item-search-address.png",
-                    CommandParam = ""
-                },
-                new Permission
-                {
-                    Id = 21,
-                    ParentId = 6,
-                    Name = "menu-search-phone",
-                    ScreenName = "Телефоны",
-                    Tooltip = "Поиск и проверка телефонов",
-                    Image = "menu-item-search-phone.png",
-                    CommandParam = ""
-                },
-                new Permission
-                {
-                    Id = 22,
-                    ParentId = 6,
-                    Name = "menu-search-opp",
-                    ScreenName = "ОПП",
-                    Tooltip = "Отдел предварительного поиска",
-                    Image = "menu-item-search-opp.png",
-                    CommandParam = ""
-                },
-
-                new Permission
-                {
-                    Id = 23,
-                    ParentId = 7,
-                    Name = "menu-leadership-dashboard",
-                    ScreenName = "Мониторинг",
-                    Tooltip = "Мониторинг рабочего процесса",
-                    Image = "menu-item-leadership-dashboard.png",
-                    CommandParam = ""
-                },
-
-                new Permission
-                {
-                    Id = 24,
-                    ParentId = 8,
-                    Name = "menu-admin-users",
-                    ScreenName = "Пользователи",
-                    Tooltip = "Установка разрешений для пользователей",
-                    Image = "menu-item-admin-users.png",
-                    CommandParam = "AdminUsersView"
-                },
-                new Permission
-                {
-                    Id = 25,
-                    ParentId = 8,
-                    Name = "menu-admin-aster",
-                    ScreenName = "Asterisk",
-                    Tooltip = "Настройка и мониторинг Asterisk",
-                    Image = "menu-item-admin-aster.png",
-                    CommandParam = "AdminAsteriskView"
-                }
+                new Permission { Id = 13, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", Image = "menu-item-processing-operator.png", CommandParam = "OperatorWorkflowView" },
+                new Permission { Id = 14, ParentId = 1, Name = "menu-processing-task", ScreenName = "Задания", Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-task.png", CommandParam = "" },
+                new Permission { Id = 15, ParentId = 1, Name = "menu-processing-table", ScreenName = "Табели", Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-table.png", CommandParam = "" },
+                new Permission { Id = 16, ParentId = 2, Name = "menu-lead-operators", ScreenName = "Выборки", Tooltip = "Формирование заданий (выборок) для операторов", Image = "menu-item-lead-operators.png", CommandParam = "ManagerTasksView" },
+                new Permission { Id = 17, ParentId = 2, Name = "menu-lead-dialer", ScreenName = "Dialer", Tooltip = "Задания для автоматического выполнения", Image = "menu-item-lead-dialer.png", CommandParam = "ManagerAutoTasksView" },
+                new Permission { Id = 18, ParentId = 2, Name = "menu-lead-registry", ScreenName = "Реестры", Tooltip = "Работа с реестрами по проекту", Image = "menu-item-lead-registry.png", CommandParam = "" },
+                new Permission { Id = 19, ParentId = 2, Name = "menu-lead-monitoring", ScreenName = "Мониторинг", Tooltip = "Мониторинг активности операторов", Image = "menu-item-lead-monitoring.png", CommandParam = "" },
+                new Permission { Id = 20, ParentId = 2, Name = "menu-lead-tables", ScreenName = "Табели", Tooltip = "Заполнение табелей", Image = "menu-item-lead-table.png", CommandParam = "" },
+                new Permission { Id = 21, ParentId = 3, Name = "menu-import-registry", ScreenName = "Реестры", Tooltip = "Импорт реестров", Image = "menu-item-import-registry.png", CommandParam = "RegistryAddView" },
+                new Permission { Id = 22, ParentId = 4, Name = "menu-analytics-dashboard", ScreenName = "Мониторинг", Tooltip = "Текущая состояние колл-центра", Image = "menu-item-analytics-dashboard.png", CommandParam = "" },
+                new Permission { Id = 23, ParentId = 5, Name = "menu-report-reports", ScreenName = "Отчеты", Tooltip = "Настройка отчетов", Image = "menu-item-report-reports.png", CommandParam = "" },
+                new Permission { Id = 24, ParentId = 6, Name = "menu-search-address", ScreenName = "Адресса", Tooltip = "Поиск и проверка адресов", Image = "menu-item-search-address.png", CommandParam = "" },
+                new Permission { Id = 25, ParentId = 6, Name = "menu-search-phone", ScreenName = "Телефоны", Tooltip = "Поиск и проверка телефонов", Image = "menu-item-search-phone.png", CommandParam = "" },
+                new Permission { Id = 26, ParentId = 6, Name = "menu-search-opp", ScreenName = "ОПП", Tooltip = "Отдел предварительного поиска", Image = "menu-item-search-opp.png", CommandParam = "" },
+                new Permission { Id = 27, ParentId = 7, Name = "menu-leadership-dashboard", ScreenName = "Мониторинг", Tooltip = "Мониторинг рабочего процесса", Image = "menu-item-leadership-dashboard.png", CommandParam = "" },
+                new Permission { Id = 28, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", Image = "menu-item-admin-users.png", CommandParam = "AdminUsersView" },
+                new Permission { Id = 29, ParentId = 8, Name = "menu-admin-roles", ScreenName = "Роли / привилегии", Tooltip = "Редактирование ролей и привилегий", Image = "", CommandParam = "AdminRolesView" },
+                new Permission { Id = 30, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-item-admin-aster.png", CommandParam = "AdminAsteriskView" }
                 );
             #endregion
             
-            #region User actions
+            #region UserActions
             context.Actions.AddOrUpdate(
                 a => a.Id,
                 new mba_model.Action { Id = 1, Name = "create", Description = "Создание пользователя" },
@@ -251,6 +97,13 @@
                 new Client { Id = 4, ParentId = null, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
                 new Client { Id = 5, ParentId = 4, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 6, ParentId = null, InnerId = 251, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
+                );
+            #endregion
+
+            #region Project
+            context.Projects.AddOrUpdate(
+                proj => proj.Id,
+                new Project { Id = 1, ClientId = 6, Name = "Сбербанк" }
                 );
             #endregion
 
