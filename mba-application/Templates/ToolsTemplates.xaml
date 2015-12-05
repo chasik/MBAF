@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+                    xmlns:phoneViews="clr-namespace:mba_application.Views.Phone"
+                    xmlns:phoneViewModels="clr-namespace:mba_application.ViewModels.Phone"
+                    xmlns:chatViews="clr-namespace:mba_application.Views.Chat"
+                    xmlns:chatViewModels="clr-namespace:mba_application.ViewModels.Chat">
+
+    <DataTemplate DataType="{x:Type phoneViewModels:PhoneViewModel}" x:Key="PhoneMain">
+        <phoneViews:PhoneView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type phoneViewModels:PhoneViewModel}" x:Key="PhoneMini">
+        <phoneViews:PhoneMiniView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type phoneViewModels:PhoneHistoryViewModel}" x:Key="PhoneHistory">
+        <phoneViews:PhoneHistoryView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type chatViewModels:ChatToolViewModel}" x:Key="ChatTool">
+        <chatViews:ChatToolView/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CalcTool">
+        <dxe:Calculator x:Name="calculator"/>
+    </DataTemplate>
+
+</ResourceDictionary>

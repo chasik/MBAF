@@ -59,8 +59,8 @@
     <Compile Include="ServiceContracts\IAsteriskService.cs" />
     <Compile Include="ServiceContracts\IImportService.cs" />
     <Compile Include="ImportService.cs" />
-    <Compile Include="PermissionsService.cs" />
-    <Compile Include="ServiceContracts\IPermissionsService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="ServiceContracts\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

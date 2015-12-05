@@ -83,6 +83,7 @@
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\PhoneConverters.cs" />
+    <Compile Include="MBAComponents\MBAConverters\ToolsNameToContentTemplate.cs" />
     <Compile Include="MBAComponents\MBAMessages\CloseProgramMessage.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
     <Compile Include="Service References\MBAAsteriskService\Reference.cs">
@@ -103,6 +104,7 @@
     <Compile Include="ViewModels\Admin\AdminAsteriskViewModel.cs" />
     <Compile Include="ViewModels\Admin\AdminRolesViewModel.cs" />
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
+    <Compile Include="ViewModels\Chat\ChatToolViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Manager\ManagerAutoTasksViewModel.cs" />
@@ -119,6 +121,9 @@
     </Compile>
     <Compile Include="Views\Admin\AdminUsersView.xaml.cs">
       <DependentUpon>AdminUsersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Chat\ChatToolView.xaml.cs">
+      <DependentUpon>ChatToolView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Import\RegistryAddView.xaml.cs">
       <DependentUpon>RegistryAddView.xaml</DependentUpon>
@@ -209,6 +214,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Templates\ToolsTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Admin\AdminAsteriskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Admin\AdminUsersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Chat\ChatToolView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -430,6 +443,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\menu-item-admin-roles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\no-permission-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\tools-call-history.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace mba_application.Views
+namespace mba_application.Views.Phone
 {
     public partial class PhoneView : UserControl
     {

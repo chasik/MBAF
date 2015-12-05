@@ -96,9 +96,6 @@ namespace WordsMatching
 
 		public Tokeniser()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
 		}
 	}
 }

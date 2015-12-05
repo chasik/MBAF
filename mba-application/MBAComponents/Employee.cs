@@ -6,11 +6,16 @@ namespace mba_application.MBAComponents
     public class Employee
     {
         public List<PermissionGroup> PermissionGroups;
+        public List<Tool> Tools;
 
         public Employee()
         {
+            MBAPhoneEnable = false;
             PermissionGroups = new List<PermissionGroup>();
+            Tools = new List<Tool>();
         }
+
+        public bool MBAPhoneEnable { get; private set; }
 
         public bool TryEnter()
         {
@@ -22,6 +27,12 @@ namespace mba_application.MBAComponents
                 if (permission.ParentId == null)
                 {
                     PermissionGroups.Add(new PermissionGroup(permission));
+                } 
+                else if (permission.ParentId == 0) //если это разрешение на инструмент
+                {
+                    Tools.Add(new Tool(permission));
+                    if (permission.Name == "tools-phone")
+                        MBAPhoneEnable = true;
                 }
             }
 
@@ -55,6 +66,20 @@ namespace mba_application.MBAComponents
         {
             ParentPermission = permission;
             Items = new List<Permission>();
+        }
+    }
+
+    public class Tool
+    {
+        public string HeaderName { get; set; }
+        public string ImageName { get; set; }
+        public string ContentTemplateName { get; set; }
+
+        public Tool(Permission permission)
+        {
+            HeaderName = permission.ScreenName;
+            ImageName = permission.Image;
+            ContentTemplateName = permission.Name;
         }
     }
 }

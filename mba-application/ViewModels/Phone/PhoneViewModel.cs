@@ -177,7 +177,8 @@ namespace mba_application.ViewModels.Phone
 
         void OnCloseProgram(CloseProgramMessage message)
         {
-            MBAPhone.UnInitialize();
+            if (MBAPhone != null)
+                MBAPhone.UnInitialize();
         }
 
         private VaxVoIPSIP MBAPhone;

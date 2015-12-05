@@ -4,7 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="340" d:DesignWidth="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="1" Margin="0,10,0,0"
+               Source="pack://application:,,,/mba-application;component/Resources/Images/no-permission-user.png"></Image>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,20,20,20" TextWrapping="Wrap" FontSize="34" FontWeight="Bold"
+                   Foreground="#555555"
+                   HorizontalAlignment="Left" VerticalAlignment="Center">
+            Обратитесь к администратору для активации учетной записи
+        </TextBlock>
     </Grid>
 </UserControl>

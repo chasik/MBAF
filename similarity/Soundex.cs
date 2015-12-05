@@ -13,9 +13,6 @@ namespace WordsMatching
 		}
 		public Soundex()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
 		}
 	}
 }

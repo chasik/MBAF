@@ -42,10 +42,10 @@
                 new Permission { Id = 7, ParentId = null, Name = "menu-leadership", ScreenName = "Руководство", Tooltip = "Раздел меню руководства", Image = "menu-group-leadership.png" },
                 new Permission { Id = 8, ParentId = null, Name = "menu-admin", ScreenName = "Администрирование", Tooltip = "Раздел меню администрирование системы", Image = "menu-group-admin.png" },
 
-                new Permission { Id = 9, ParentId = 0, Name = "tools-phone", ScreenName = "MBA Phone", Tooltip = "Доступена панель софтфона", Image = "" },
-                new Permission { Id = 10, ParentId = 0, Name = "tools-phone-history", ScreenName = "История", Tooltip = "История звонков", Image = "" },
-                new Permission { Id = 11, ParentId = 0, Name = "tools-calc", ScreenName = "Калькулятор", Tooltip = "Доступен калькулятор", Image = "" },
-                new Permission { Id = 12, ParentId = 0, Name = "tools-chat", ScreenName = "Чат", Tooltip = "Доступена панель чатов", Image = "" },
+                new Permission { Id = 9, ParentId = 0, Name = "tools-phone", ScreenName = "MBA Phone", Tooltip = "Доступена панель софтфона", Image = "tools-phone.png" },
+                new Permission { Id = 10, ParentId = 0, Name = "tools-phone-history", ScreenName = "История", Tooltip = "История звонков", Image = "tools-call-history.png" },
+                new Permission { Id = 11, ParentId = 0, Name = "tools-calc", ScreenName = "Калькулятор", Tooltip = "Доступен калькулятор", Image = "tools-calc.png" },
+                new Permission { Id = 12, ParentId = 0, Name = "tools-chat", ScreenName = "Чат", Tooltip = "Доступна панель чатов", Image = "tools-chat.png" },
 
                 new Permission { Id = 13, ParentId = 1, Name = "menu-processing-work", ScreenName = "Выборки", Tooltip = "Рабочее пространство оператора", Image = "menu-item-processing-operator.png", CommandParam = "OperatorWorkflowView" },
                 new Permission { Id = 14, ParentId = 1, Name = "menu-processing-task", ScreenName = "Задания", Tooltip = "Дополнительные табели для операторов", Image = "menu-item-processing-task.png", CommandParam = "" },
@@ -63,7 +63,7 @@
                 new Permission { Id = 26, ParentId = 6, Name = "menu-search-opp", ScreenName = "ОПП", Tooltip = "Отдел предварительного поиска", Image = "menu-item-search-opp.png", CommandParam = "" },
                 new Permission { Id = 27, ParentId = 7, Name = "menu-leadership-dashboard", ScreenName = "Мониторинг", Tooltip = "Мониторинг рабочего процесса", Image = "menu-item-leadership-dashboard.png", CommandParam = "" },
                 new Permission { Id = 28, ParentId = 8, Name = "menu-admin-users", ScreenName = "Пользователи", Tooltip = "Установка разрешений для пользователей", Image = "menu-item-admin-users.png", CommandParam = "AdminUsersView" },
-                new Permission { Id = 29, ParentId = 8, Name = "menu-admin-roles", ScreenName = "Роли / привилегии", Tooltip = "Редактирование ролей и привилегий", Image = "", CommandParam = "AdminRolesView" },
+                new Permission { Id = 29, ParentId = 8, Name = "menu-admin-roles", ScreenName = "Роли / привилегии", Tooltip = "Редактирование ролей и привилегий", Image = "menu-item-admin-roles.png", CommandParam = "AdminRolesView" },
                 new Permission { Id = 30, ParentId = 8, Name = "menu-admin-aster", ScreenName = "Asterisk", Tooltip = "Настройка и мониторинг Asterisk", Image = "menu-item-admin-aster.png", CommandParam = "AdminAsteriskView" }
                 );
             #endregion

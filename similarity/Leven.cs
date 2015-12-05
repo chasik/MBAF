@@ -70,9 +70,6 @@ namespace WordsMatching
 
 		public Leven()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
 		}
 	}
 }

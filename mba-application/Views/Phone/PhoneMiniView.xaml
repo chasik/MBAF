@@ -1,18 +1,20 @@
-﻿<UserControl x:Class="mba_application.Views.PhoneMiniView"
+﻿<UserControl x:Class="mba_application.Views.Phone.PhoneMiniView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:ViewModelsPhone="clr-namespace:mba_application.ViewModels.Phone"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="36"
+             mc:Ignorable="d" d:DesignWidth="440" d:DesignHeight="36"
              DataContext="{StaticResource MBAPhoneViewModel}">
 
     <UserControl.Resources>
         <converters:PhoneStateToColorButtonCallConverter x:Key="phoneStateToColorButtonCallConverter" x:Shared="False"/>
         <converters:PhoneStateToHoverColorButtonCallConverter x:Key="phoneStateToHoverColorButtonCallConverter" x:Shared="False"/>
         <converters:PhoneStateToContentButtonCallConverter x:Key="phoneStateToContentButtonCallConverter" x:Shared="False"/>
+        <converters:CallDurationToStringConverter x:Key="callDurationToStringConverter" x:Shared="False"/>
 
         <ControlTemplate x:Key="PhoneMiniButton" TargetType="{x:Type Button}">
             <Border x:Name="cornerBorder"
@@ -63,6 +65,23 @@
             <Setter Property="Command" Value="{Binding PhoneCallButtonClickCommand}"/>
         </Style>
 
+        <Style x:Key="timerText" TargetType="TextBlock" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.TRYING}">
+                    <Setter  Property="Foreground" Value="#DDDDDD"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.TRYING_IN}">
+                    <Setter Property="Foreground" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.CALL_ACCEPTS}">
+                    <Setter Property="Foreground" Value="#42DB59"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding phoneState}" Value="{x:Static ViewModelsPhone:PhoneState.CALL_IN_ACCEPTS}">
+                    <Setter Property="Foreground" Value="BlueViolet"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </UserControl.Resources>
 
     <Grid Height="36">
@@ -78,17 +97,23 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <dxe:TextEdit x:Name="phoneEditMini" Background="Transparent" ShowBorder="False"
                       EditValue="{Binding Path=Number, Converter={StaticResource PhoneConverter}, UpdateSourceTrigger=PropertyChanged}"
-			          Grid.Column="4" Grid.ColumnSpan="6"  Margin="20,0,20,0" FontSize="20" 
+			          Grid.Column="4" Grid.ColumnSpan="5"  Margin="2,0,0,0" FontSize="22" 
 			          VerticalAlignment="Center" HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"/>
+        
+        <TextBlock Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="2" Background="Transparent" Margin="6,0,6,0"
+                   VerticalAlignment="Top" HorizontalAlignment="Stretch" TextAlignment="Right" FontSize="16"
+                   Text="{Binding CallDuration, Converter={StaticResource callDurationToStringConverter}}"
+                   Style="{StaticResource timerText}"/>
 
         <Button Grid.Column="0" Style="{StaticResource PhoneMiniButtonStyle}"/>
         <Button Grid.Column="1" Style="{StaticResource PhoneMiniButtonStyle}"/>
         <Button Grid.Column="2" Style="{StaticResource PhoneMiniButtonStyle}"/>
         <Button Grid.Column="3" Style="{StaticResource PhoneMiniButtonStyle}"/>
-        <Button Grid.Column="10" Style="{StaticResource PhoneButtonCallStyle}"/>
+        <Button Grid.Column="11" Style="{StaticResource PhoneButtonCallStyle}"/>
     </Grid>
 </UserControl>

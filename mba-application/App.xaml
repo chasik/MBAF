@@ -7,7 +7,12 @@
              StartupUri="Views/MainView.xaml" 
              Startup="OnAppStartup_UpdateThemeName">
     <Application.Resources>
-        <ViewModelsPhone:PhoneViewModel x:Key="MBAPhoneViewModel"/>
-        <converters:PhoneConverter x:Key="PhoneConverter"/>
+        <ResourceDictionary>
+            <ViewModelsPhone:PhoneViewModel x:Key="MBAPhoneViewModel"/>
+            <converters:PhoneConverter x:Key="PhoneConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Templates/ToolsTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
