@@ -1,6 +1,8 @@
 ﻿using DevExpress.Utils;
 using DevExpress.Xpf.Grid;
+using System;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace mba_application.MBAComponents
 {
@@ -34,9 +36,13 @@ namespace mba_application.MBAComponents
 
                 foreach (string s in root)
                 {
-                    TreeListNode node = new TreeListNode() { Content = new FileSystemItem(s, "Drive", "<Drive>", s) };
+                    TreeListNode node = new TreeListNode() {
+                        Content = new FileSystemItem(s, "Drive", "<Drive>", s),
+                        Image = FileSystemImages.DiskImage,
+                        IsExpandButtonVisible = DefaultBoolean.True,
+                        Tag = false
+                    };
                     _treeListView.Nodes.Add(node);
-                    node.IsExpandButtonVisible = DefaultBoolean.True;
                 }
             }
             catch { }
@@ -57,7 +63,13 @@ namespace mba_application.MBAComponents
                 string[] root = Helper.GetFiles(item.FullName);
                 foreach (string s in root)
                 {
-                    node = new TreeListNode() { Content = new FileSystemItem(Helper.GetFileName(s), "File", Helper.GetFileSize(s).ToString(), s) };
+                    if (s.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1)
+                        node = new TreeListNode() { Content = new FileSystemItem(Helper.GetFileName(s), "File", Helper.GetFileSize(s).ToString(), s), Image = FileSystemImages.FileExcel2Image };
+                    else if (s.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1)
+                        node = new TreeListNode() { Content = new FileSystemItem(Helper.GetFileName(s), "File", Helper.GetFileSize(s).ToString(), s), Image = FileSystemImages.FileExcelImage };
+                    else
+                        node = new TreeListNode() { Content = new FileSystemItem(Helper.GetFileName(s), "File", Helper.GetFileSize(s).ToString(), s), Image = FileSystemImages.FileImage };
+
                     node.IsExpandButtonVisible = DefaultBoolean.False;
                     treeListNode.Nodes.Add(node);
                 }
@@ -77,7 +89,7 @@ namespace mba_application.MBAComponents
                 {
                     try
                     {
-                        TreeListNode node = new TreeListNode() { Content = new FileSystemItem(Helper.GetDirectoryName(s), "Folder", "<Folder>", s) };
+                        TreeListNode node = new TreeListNode() { Content = new FileSystemItem(Helper.GetDirectoryName(s), "Folder", "<Folder>", s), Image = FileSystemImages.ClosedFolderImage };
                         treeListNode.Nodes.Add(node);
 
                         node.IsExpandButtonVisible = HasFiles(s) ? DefaultBoolean.True : DefaultBoolean.False;
@@ -148,5 +160,73 @@ namespace mba_application.MBAComponents
         public string ItemType { get; set; }
         public string Size { get; set; }
         public string FullName { get; set; }
+    }
+
+    public class FileSystemImages
+    {
+        static BitmapImage fileImage;
+        public static BitmapImage FileImage
+        {
+            get
+            {
+                if (fileImage == null)
+                    fileImage = LoadImage("file-simple");
+                return fileImage;
+            }
+        }
+        static BitmapImage diskImage;
+        public static BitmapImage DiskImage
+        {
+            get
+            {
+                if (diskImage == null)
+                    diskImage = LoadImage("disk-orange");
+                return diskImage;
+            }
+        }
+        static BitmapImage fileExcelImage;
+        public static BitmapImage FileExcelImage
+        {
+            get
+            {
+                if (fileExcelImage == null)
+                    fileExcelImage = LoadImage("file-excel-orange");
+                return fileExcelImage;
+            }
+        }
+        static BitmapImage fileExcel2Image;
+        public static BitmapImage FileExcel2Image
+        {
+            get
+            {
+                if (fileExcel2Image == null)
+                    fileExcel2Image = LoadImage("file-excel2-orange");
+                return fileExcel2Image;
+            }
+        }
+        static BitmapImage closedFolderImage;
+        public static BitmapImage ClosedFolderImage
+        {
+            get
+            {
+                if (closedFolderImage == null)
+                    closedFolderImage = LoadImage("folder-closed");
+                return closedFolderImage;
+            }
+        }
+        static BitmapImage openedFolderImage;
+        public static BitmapImage OpenedFolderImage
+        {
+            get
+            {
+                if (openedFolderImage == null)
+                    openedFolderImage = LoadImage("folder-opened");
+                return openedFolderImage;
+            }
+        }
+        static BitmapImage LoadImage(string imageName)
+        {
+            return new BitmapImage(new Uri("pack://application:,,,/mba-application;component/Resources/Images/FileSystem/" + imageName + ".png"));
+        }
     }
 }

@@ -80,7 +80,7 @@
                     </dxnb:NavBarControl>
                 </dxdo:LayoutPanel>
                 <dxdo:LayoutPanel AllowClose="False" AllowContextMenu="False" AllowDock="False" AllowDrag="False" AllowFloat="False" AllowHide="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowRename="False" AllowRestore="False">
-                    <dxwui:NavigationFrame Source="AdminUsersView" NavigationCacheMode="Enabled" NavigationCacheMaxSize="100" AnimationType="SlideHorizontal" Grid.Column="1" Grid.RowSpan="2">
+                    <dxwui:NavigationFrame Source="RegistryAddView" NavigationCacheMode="Enabled" NavigationCacheMaxSize="100" AnimationType="SlideHorizontal" Grid.Column="1" Grid.RowSpan="2">
                         <dxmvvm:Interaction.Behaviors>
                             <dxwuin:FrameNavigationService/>
                         </dxmvvm:Interaction.Behaviors>

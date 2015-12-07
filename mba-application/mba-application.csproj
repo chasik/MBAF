@@ -453,6 +453,22 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\tools-call-history.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FileSystem\disk-orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FileSystem\file-excel-orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FileSystem\file-excel2-orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FileSystem\folder-closed.png" />
+    <Resource Include="Resources\Images\FileSystem\folder-opened.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FileSystem\file-simple.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

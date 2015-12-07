@@ -5,12 +5,12 @@ namespace mba_application.Views.Import
 {
     public partial class RegistryAddView : UserControl
     {
-        //internal TreeListFileExplorer fileExplorer;
+        internal TreeListFileExplorer fileExplorer;
         public RegistryAddView()
         {
             InitializeComponent();
 
-            //fileExplorer = new TreeListFileExplorer(FileExplorerView);
+            fileExplorer = new TreeListFileExplorer(FileExplorerView);
         }
     }
 }

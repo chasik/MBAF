@@ -8,58 +8,49 @@ using mba_application.MBAComponents;
 using mba_application.MBAImportService;
 using WordsMatching;
 using mba_model;
+using DevExpress.Xpf.Grid;
+using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.POCO;
 
 namespace mba_application.ViewModels.Import
 {
-    public class RegistryAddViewModel : ViewModelBase
+    [POCOViewModel]
+    public class RegistryAddViewModel
     {
-        private INavigationService NavigationService { get { return GetService<INavigationService>(); } }
-        public MBAImportService.ImportServiceClient ImportService;
-        public RegistryAddViewModel()
+        protected RegistryAddViewModel()
         {
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
 
             ImportService = new MBAImportService.ImportServiceClient();
+
             GoodColumns = new ObservableCollection<GoodColumn>(ImportService.GoodColumns());
             Clients = new ObservableCollection<Client>(ImportService.Clients());
             ImportTypes = new ObservableCollection<ImportType>(ImportService.ImportTypes());
         }
 
-        public string SourceFilePath
+        public RegistryAddViewModel Create()
         {
-            get { return GetProperty(() => SourceFilePath); }
-            set { SetProperty(() => SourceFilePath, value); }
+            return ViewModelSource.Create(() => new RegistryAddViewModel());
         }
 
-        public ObservableCollection<SheetInfo> WorkSheetsInBook
+        public ImportServiceClient ImportService;
+
+        public virtual string SourceFilePath { get; set; }
+
+        public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
+        public ObservableCollection<GoodColumn> GoodColumns { get; set; }
+        public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<ImportType> ImportTypes { get; set; }
+
+        public void DblClickExplorer(TreeListNode focusedNode)
         {
-            get { return GetProperty(() => WorkSheetsInBook); }
-            set { SetProperty(() => WorkSheetsInBook, value); }
-        }
-        public ObservableCollection<GoodColumn> GoodColumns
-        {
-            get { return GetProperty(() => GoodColumns); }
-            set { SetProperty(() => GoodColumns, value); }
-        }
-        public ObservableCollection<Client> Clients
-        {
-            get { return GetProperty(() => Clients); }
-            set { SetProperty(() => Clients, value); }
-        }
-        public ObservableCollection<ImportType> ImportTypes
-        {
-            get { return GetProperty(() => ImportTypes); }
-            set { SetProperty(() => ImportTypes, value); }
-        }
-        public void DblClickExplorer(FileSystemItem focusedNode)
-        {
-            // TODO: сделать проверку через регулярное выражение
-            if (focusedNode.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1
-                    || focusedNode.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1
+            FileSystemItem nodeContent = focusedNode.Content as FileSystemItem;
+            if (nodeContent.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1
+                    || nodeContent.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1
                )
             {
                 WorkSheetsInBook.Clear();
-                SourceFilePath = focusedNode.FullName;
+                SourceFilePath = nodeContent.FullName;
             }
         }
         public void DocumentLoaded(object _spreadSheet)
@@ -223,4 +214,5 @@ namespace mba_application.ViewModels.Import
                 cellTypesDictionary.Add(cellType, new RowStruct(columnsCount));
         }
     }
+
 }

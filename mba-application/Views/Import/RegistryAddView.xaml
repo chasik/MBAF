@@ -16,12 +16,12 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              xmlns:ImportViewModels="clr-namespace:mba_application.ViewModels.Import"
-             mc:Ignorable="d"  d:DesignHeight="400" d:DesignWidth="600" 
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}" 
-             >
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" 
+             DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}">
+    
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter" x:Shared="False"/>
+            <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter"/>
             <Style x:Key="ColumnHeaderAnalysis">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsGoodPercent}" Value="True">
@@ -32,7 +32,7 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-            <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
+            <UserControl x:Key="ExcelSheetInfo">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
@@ -95,8 +95,7 @@
                                     <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
                                                Text="{Binding Caption}"/>
 
-                                    <dxe:ComboBoxEdit x:Name="GoodColumnComboboxEdit"
-                                                      DisplayMember="GoodColumn" 
+                                    <dxe:ComboBoxEdit DisplayMember="GoodColumn" 
                                                       ValueMember="GoodColumn"
                                                       IsTextEditable="False"
                                                       ItemsSource="{Binding GoodColumnWithPercentMatches}"
@@ -129,20 +128,21 @@
         <dxdo:LayoutGroup Orientation="Horizontal">
             <dxdo:LayoutPanel Caption="Panel" ItemWidth="300">
                 <Grid>
-                    <!--dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
+                    <dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
                         <dxg:TreeListControl.Columns>
                             <dxg:TreeListColumn FieldName="Name" ReadOnly="true"/>
                         </dxg:TreeListControl.Columns>
                         <dxg:TreeListControl.View>
-                            <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True">
+                            <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True" 
+                                              ShowNodeImages="True" ImageFieldName="Image">
                                 <dxmvvm:Interaction.Triggers>
                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" 
 									                       Command="{Binding DblClickExplorerCommand}"
-									                       CommandParameter="{Binding FocusedNode.Content, ElementName=FileExplorerView}"/>
+									                       CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
                                 </dxmvvm:Interaction.Triggers>
                             </dxg:TreeListView>
                         </dxg:TreeListControl.View>
-                    </-->
+                    </dxg:TreeListControl>
                 </Grid>
             </dxdo:LayoutPanel>
             <dxdo:LayoutGroup Orientation="Vertical" ItemWidth="1.39*">
