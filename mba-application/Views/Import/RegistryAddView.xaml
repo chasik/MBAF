@@ -60,8 +60,8 @@
                                             </Grid.ColumnDefinitions>
                                             <Image Grid.Column="0" 
                                                    Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
-                                            <TextBlock Grid.Column="1" 
-                                                       Text="{Binding Path=Name, Mode=OneWay}" Margin="10,1,10,0"></TextBlock>
+                                            <TextBlock Grid.Column="1" Margin="10,1,10,0"
+                                                       Text="{Binding Path=Name, Mode=OneWay}"></TextBlock>
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ComboBoxEdit.ItemTemplate>
