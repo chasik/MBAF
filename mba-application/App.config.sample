@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="DXThemeManager" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <userSettings>
+    <DXThemeManager>
+      <setting name="ApplicationThemeName" serializeAs="String">
+        <value>MetropolisLight</value>
+      </setting>
+    </DXThemeManager>
+  </userSettings>
+
+  <system.serviceModel>
+    <bindings>
+      <netTcpBinding>
+        <binding name="NetTcpBinding_IImportService" />
+        <binding name="NetTcpBinding_IAsteriskService" />
+        <binding name="NetTcpBinding_IUserService" />
+      </netTcpBinding>
+    </bindings>
+    <client>
+      <endpoint address="net.tcp://localhost:8735/ImportService" binding="netTcpBinding"
+        bindingConfiguration="NetTcpBinding_IImportService" contract="MBAImportService.IImportService"
+        name="NetTcpBinding_IImportService">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+      <endpoint address="net.tcp://localhost:8736/AsteriskService"
+        binding="netTcpBinding" bindingConfiguration="NetTcpBinding_IAsteriskService"
+        contract="MBAAsteriskService.IAsteriskService" name="NetTcpBinding_IAsteriskService">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+      <endpoint address="net.tcp://localhost:8734/UserService" binding="netTcpBinding"
+        bindingConfiguration="NetTcpBinding_IUserService" contract="MBAUserService.IUserService"
+        name="NetTcpBinding_IUserService">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+    </client>
+  </system.serviceModel>
+</configuration>

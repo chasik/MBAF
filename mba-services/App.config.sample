@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+
+  <system.web>
+    <compilation debug="true" />
+  </system.web>
+  <!-- When deploying the service library project, the content of the config file must be added to the host's 
+   app.config file. System.Configuration does not support config files for libraries. -->
+  <system.serviceModel>
+    <services>
+      <service name="mba_services.UserService">
+        <endpoint address="UserService" binding="netTcpBinding"
+          contract="mba_services.ServiceContracts.IUserService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex_user" binding="mexHttpBinding" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.tcp://localhost:8734" />
+            <add baseAddress="http://localhost:8834" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service name="mba_services.ImportService">
+        <endpoint address="ImportService" binding="netTcpBinding" contract="mba_services.ServiceContracts.IImportService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex_import" binding="mexHttpBinding" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.tcp://localhost:8735" />
+            <add baseAddress="http://localhost:8835" />
+          </baseAddresses>
+        </host>
+      </service>
+      <service name="mba_services.AsteriskService">
+        <endpoint address="AsteriskService" binding="netTcpBinding" contract="mba_services.ServiceContracts.IAsteriskService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex_asterisk" binding="mexHttpBinding" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="net.tcp://localhost:8736" />
+            <add baseAddress="http://localhost:8836" />
+          </baseAddresses>
+        </host>
+      </service>
+    </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- To avoid disclosing metadata information, 
+           set the values below to false before deployment -->
+          <serviceMetadata httpGetEnabled="True" httpsGetEnabled="True"/>
+          <!-- To receive exception details in faults for debugging purposes, 
+           set the value below to true.  Set to false before deployment 
+           to avoid disclosing exception information -->
+          <serviceDebug includeExceptionDetailInFaults="False" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+  </system.serviceModel>
+  
+  <startup> 
+      <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+  </startup>
+  
+  <connectionStrings>
+    <add name="mbafDB" connectionString="Data Source=localhost;Initial Catalog=mbaf;Integrated Security=True" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+ 
+</configuration>
