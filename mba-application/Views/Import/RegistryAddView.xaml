@@ -6,6 +6,7 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" 
@@ -24,27 +25,31 @@
             <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter"/>
             <Style x:Key="ColumnHeaderAnalysis">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsGoodPercent}" Value="True">
+                    <DataTrigger Binding="{Binding BestValue.IsGoodPercent}" Value="True">
                         <Setter Property="TextBlock.Background" Value="Lime"/>
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding IsGoodPercent}" Value="False">
+                    <DataTrigger Binding="{Binding BestValue.IsGoodPercent}" Value="False">
                         <Setter Property="TextBlock.Background" Value="Red"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-            <UserControl x:Key="ExcelSheetInfo">
+            <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <dxdo:DocumentPanel Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <dxdo:DocumentPanel Grid.Row="0" Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <dxe:ComboBoxEdit Grid.Column="0"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="38"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="0"
                                               ShowSizeGrip="False"
                                               AutoComplete="True"
                                               ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.Clients}"
@@ -69,52 +74,73 @@
                                     <dxe:ComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
-                            <dxe:ComboBoxEdit Grid.Column="1"
+                            <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0"
                                               ShowSizeGrip="False"
                                               AutoComplete="True"
-                                              ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.ImportTypes}"
+                                              ItemsSource="{Binding Path=DataContext.ImportTypes, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
                                               DisplayMember="Name"
                                               ValueMember="Id"
                                               ApplyItemTemplateToSelectedItem="True">
                                 <dxe:ComboBoxEdit.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Grid.Column="1" 
-                                                    Text="{Binding Path=Name}" Margin="10,1,10,0"></TextBlock>
+                                                    Text="{Binding Name}" Margin="10,1,10,0"></TextBlock>
                                     </DataTemplate>
                                 </dxe:ComboBoxEdit.ItemTemplate>
                                 <dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:ComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
+
+
+                            <dxc:ChartControl Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" 
+                                              AnimationMode="OnDataChanged" ToolTipEnabled="True">
+                                <dxc:ChartControl.Diagram>
+                                    <dxc:SimpleDiagram2D HorizontalAlignment="Left">
+                                        <dxc:SimpleDiagram2D.Series>
+                                            <dxc:PieSeries2D SweepDirection="Clockwise" Rotation="-90" HoleRadiusPercent="70"
+                                                             LabelsResolveOverlappingMinIndent="4"
+                                                             ArgumentDataMember="GoodColumnName"
+                                                             ValueDataMember="Percent"
+                                                             DataSource="{Binding Path=DataContext.SelectedColumnMatches, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}">
+                                                <dxc:PieSeries2D.Model>
+                                                    <dxc:BorderlessFlatPie2DModel/>
+                                                </dxc:PieSeries2D.Model>
+                                                <dxc:PieSeries2D.PointAnimation>
+                                                    <dxc:Pie2DFlyInAnimation Duration="0:0:0.5" PointOrder="Random" />
+                                                </dxc:PieSeries2D.PointAnimation>
+
+                                                <dxc:PieSeries2D.Label>
+                                                    <dxc:SeriesLabel Visible="True" dxc:PieSeries.LabelPosition="TwoColumns"
+                                                                     ResolveOverlappingMode="JustifyAllAroundPoint"
+                                                                     TextPattern="{}{V}% {A}"/>
+                                                </dxc:PieSeries2D.Label>
+                                            </dxc:PieSeries2D>
+                                        </dxc:SimpleDiagram2D.Series>
+                                    </dxc:SimpleDiagram2D>
+                                </dxc:ChartControl.Diagram>
+                            </dxc:ChartControl>
+                        
                         </Grid>
                     </dxdo:DocumentPanel>
-                    <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding ColumnCaptionList}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <dxe:ListBoxEdit x:Name="ColumnsList"
+                                     Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                     SelectionMode="Single"
+                                     ItemsSource="{Binding ColumnCaptionList, Mode=OneWay}" >
+                        <dxmvvm:Interaction.Triggers>
+                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
+									               Command="{Binding Path=DataContext.SelectionChangedAtColumnsListCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
+									               PassEventArgsToCommand="True"/>
+                        </dxmvvm:Interaction.Triggers>
                         <dxe:ListBoxEdit.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="2">
+                                    <TextBlock Grid.Column="0" Width="40" Padding="4,1,4,0"
+                                               HorizontalAlignment="Stretch" TextAlignment="Center"
+                                               Style="{StaticResource ColumnHeaderAnalysis}"
+                                               Text="{Binding BestValue.PercentString}"/>
                                     <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
-                                               Text="{Binding Caption}"/>
-
-                                    <dxe:ComboBoxEdit DisplayMember="GoodColumn" 
-                                                      ValueMember="GoodColumn"
-                                                      IsTextEditable="False"
-                                                      ItemsSource="{Binding GoodColumnWithPercentMatches}"
-                                                      ApplyItemTemplateToSelectedItem="True"
-                                                      SelectedIndex="0">
-                                        <dxe:ComboBoxEdit.ItemTemplate>
-                                            <DataTemplate >
-                                                <StackPanel Orientation="Horizontal" Margin="2">
-                                                    <TextBlock Text="{Binding Percent}" 
-                                                               Grid.Column="0" Width="40" Padding="10,1,10,0"
-                                                               Style="{StaticResource ColumnHeaderAnalysis}"/>
-                                                    <TextBlock Text="{Binding GoodColumn.Name}" Grid.Column="1" Width="200" Margin="10,1,10,0"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </dxe:ComboBoxEdit.ItemTemplate>
-                                        <dxe:ComboBoxEdit.StyleSettings>
-                                            <dxe:ComboBoxStyleSettings />
-                                        </dxe:ComboBoxEdit.StyleSettings>
-                                    </dxe:ComboBoxEdit>
+                                               Text="{Binding Caption, Mode=OneWay}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </dxe:ListBoxEdit.ItemTemplate>
@@ -126,7 +152,7 @@
 
     <dxdo:DockLayoutManager FloatingMode="Desktop">
         <dxdo:LayoutGroup Orientation="Horizontal">
-            <dxdo:LayoutPanel Caption="Panel" ItemWidth="300">
+            <dxdo:LayoutPanel Caption="Мой Компьютер" ItemWidth="300" AllowClose="False" AllowContextMenu="False" AllowDock="False" AllowDockToDocumentGroup="False" AllowDrag="False" AllowFloat="False" AllowMaximize="False" AllowMinimize="False" AllowMove="False" AllowRename="False" AllowRestore="False">
                 <Grid>
                     <dxg:TreeListControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" >
                         <dxg:TreeListControl.Columns>
@@ -173,7 +199,7 @@
                         <Grid/>
                     </dxdo:DocumentPanel>
                 </dxdo:DocumentGroup>
-                <dxdo:LayoutPanel Caption="Excel preview" ItemHeight="0.54*" >
+                <dxdo:LayoutPanel Caption="Excel preview" ItemHeight="0.4*" >
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" DocumentSource="{Binding SourceFilePath}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 

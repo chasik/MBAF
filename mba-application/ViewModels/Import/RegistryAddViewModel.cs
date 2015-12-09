@@ -11,6 +11,8 @@ using mba_model;
 using DevExpress.Xpf.Grid;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
+using System.Windows;
+using DevExpress.Xpf.Editors;
 
 namespace mba_application.ViewModels.Import
 {
@@ -20,6 +22,7 @@ namespace mba_application.ViewModels.Import
         protected RegistryAddViewModel()
         {
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
+            SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
 
             ImportService = new MBAImportService.ImportServiceClient();
 
@@ -37,6 +40,7 @@ namespace mba_application.ViewModels.Import
 
         public virtual string SourceFilePath { get; set; }
 
+        public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
         public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
         public ObservableCollection<GoodColumn> GoodColumns { get; set; }
         public ObservableCollection<Client> Clients { get; set; }
@@ -53,46 +57,56 @@ namespace mba_application.ViewModels.Import
                 SourceFilePath = nodeContent.FullName;
             }
         }
+        public void SelectionChangedAtColumnsList(object eventArgs)
+        {
+            var selectedItem = ((eventArgs as RoutedEventArgs).Source as ListBoxEdit).SelectedItem;
+            SelectedColumnMatches.Clear();
+
+            foreach (var item in (selectedItem as ColumnCaption).GoodColumnWithPercentMatches)
+            {
+                SelectedColumnMatches.Add(item);
+            }
+        }
+
         public void DocumentLoaded(object _spreadSheet)
         {
-            if (_spreadSheet is SpreadsheetControl)
+            if (!(_spreadSheet is SpreadsheetControl))
+                return;
+            IWorkbook WorkBook = (_spreadSheet as SpreadsheetControl).Document;
+            foreach (Worksheet ws in WorkBook.Worksheets)
             {
-                IWorkbook WorkBook = (_spreadSheet as SpreadsheetControl).Document;
-                foreach (Worksheet ws in WorkBook.Worksheets)
+                DevExpress.Spreadsheet.Range usedRange = ws.GetUsedRange();
+
+                SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
+                sheetInfo.WorkSheetName = ws.Name + " (" + sheetInfo.ColumnsCount.ToString() + " столбцов)";
+                for (int i = usedRange.TopRowIndex; i < usedRange.BottomRowIndex; i++)
                 {
-                    Range usedRange = ws.GetUsedRange();
+                    sheetInfo.AddNewRow();
+                    for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
+                        sheetInfo.CurrentRowInfo.AddCell(ws.Cells[i, j]);
 
-                    SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
-                    sheetInfo.WorkSheetName = ws.Name + " (" + sheetInfo.ColumnsCount.ToString() + " столбцов)";
-                    for (int i = usedRange.TopRowIndex; i < usedRange.BottomRowIndex; i++)
+                    if (sheetInfo.GetStatisticForRow())
                     {
-                        sheetInfo.AddNewRow();
                         for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
-                            sheetInfo.CurrentRowInfo.AddCell(ws.Cells[i, j]);
-
-                        if (sheetInfo.GetStatisticForRow())
                         {
-                            for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
+                            if (ws.Cells[i, j].Value.Type == CellValueType.Text)
                             {
-                                if (ws.Cells[i, j].Value.Type == CellValueType.Text)
-                                {
-                                    var captionValue = new ColumnCaption {
-                                            Caption = ws.Cells[i, j].Value.ToString().ToLower()
-                                                        .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
-                                                        .Replace("\n", "").Replace("  ", " ")
-                                        };
+                                var captionValue = new ColumnCaption {
+                                        Caption = ws.Cells[i, j].Value.ToString().ToLower()
+                                                    .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
+                                                    .Replace("\n", "").Replace("  ", " ")
+                                    };
 
-                                    if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
-                                    {
-                                        captionValue.CompareWithGoodColumns(GoodColumns);
-                                        sheetInfo.ColumnCaptionList.Add(captionValue);
-                                    }
+                                if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
+                                {
+                                    captionValue.CompareWithGoodColumns(GoodColumns);
+                                    sheetInfo.ColumnCaptionList.Add(captionValue);
                                 }
                             }
                         }
                     }
-                    WorkSheetsInBook.Add(sheetInfo);
                 }
+                WorkSheetsInBook.Add(sheetInfo);
             }
         }
     }
@@ -165,21 +179,27 @@ namespace mba_application.ViewModels.Import
     public class ColumnCaption
     {
         public string Caption { get; set; }
+        public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }
 
         public ColumnCaption()
         {
             GoodColumnWithPercentMatches = new List<GoodColumnWithPercentMathces>();
+            BestValue = new GoodColumnWithPercentMathces { Percent = 0 };
         }
 
         internal void CompareWithGoodColumns(ObservableCollection<GoodColumn> goodColumns)
         {
             foreach (var item in goodColumns)
             {
-                GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces {
-                    GoodColumn = item,
-                    Percent = (float) Math.Round((new MatchsMaker(item.Name, Caption)).Score, 2)
-                });
+                var percent = (float)Math.Round((new MatchsMaker(item.Name, Caption)).Score * 100);
+                GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces { GoodColumnId = item.Id, GoodColumnName = item.Name, Percent = percent });
+                if (percent > BestValue.Percent)
+                {
+                    BestValue.Percent = percent;
+                    BestValue.GoodColumnId = item.Id;
+                    BestValue.GoodColumnName = item.Name;
+                }
             }
             GoodColumnWithPercentMatches.Sort((one, two) => { if (one.Percent > two.Percent) return -1; else return 1; });
         }
@@ -187,9 +207,12 @@ namespace mba_application.ViewModels.Import
 
     public class GoodColumnWithPercentMathces
     {
-        public bool IsGoodPercent { get { return Percent > 0.9; } set { } }
         public float Percent { get; set; }
-        public GoodColumn GoodColumn { get; set; }
+        public int GoodColumnId { get; set; }
+        public string GoodColumnName { get; set; }
+
+        public string PercentString { get { return Percent.ToString() + "%"; }  }
+        public bool IsGoodPercent { get { return Percent > 80; } }
     }
 
     public class RowInfo
