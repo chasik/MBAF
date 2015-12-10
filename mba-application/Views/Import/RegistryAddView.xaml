@@ -33,6 +33,7 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -74,6 +75,7 @@
                                     <dxe:ComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
+                            
                             <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0"
                                               ShowSizeGrip="False"
                                               AutoComplete="True"
@@ -92,22 +94,30 @@
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
 
-
-                            <dxc:ChartControl Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" 
-                                              AnimationMode="OnDataChanged" ToolTipEnabled="True">
+                            <dxc:ChartControl Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
+                                              AnimationMode="OnLoad" ToolTipEnabled="True">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonDown"
+									                       Command="{Binding Path=DataContext.MouseLeftButtonDownCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
+									                       PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonUp"
+									                       Command="{Binding Path=DataContext.MouseLeftButtonUpCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
+									                       PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Behaviors>
                                 <dxc:ChartControl.Diagram>
                                     <dxc:SimpleDiagram2D HorizontalAlignment="Left">
                                         <dxc:SimpleDiagram2D.Series>
-                                            <dxc:PieSeries2D SweepDirection="Clockwise" Rotation="-90" HoleRadiusPercent="70"
+                                            <dxc:PieSeries2D SweepDirection="Clockwise" Rotation="-90" HoleRadiusPercent="0"
                                                              LabelsResolveOverlappingMinIndent="4"
                                                              ArgumentDataMember="GoodColumnName"
                                                              ValueDataMember="Percent"
-                                                             DataSource="{Binding Path=DataContext.SelectedColumnMatches, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}">
+                                                             ToolTipPointPattern="{}{A}"
+                                                             DataSource="{Binding Path=SelectedColumnMatches}">
                                                 <dxc:PieSeries2D.Model>
                                                     <dxc:BorderlessFlatPie2DModel/>
                                                 </dxc:PieSeries2D.Model>
                                                 <dxc:PieSeries2D.PointAnimation>
-                                                    <dxc:Pie2DFlyInAnimation Duration="0:0:0.5" PointOrder="Random" />
+                                                    <dxc:Pie2DFlyInAnimation Duration="0:0:1.5" PointOrder="Straight" />
                                                 </dxc:PieSeries2D.PointAnimation>
 
                                                 <dxc:PieSeries2D.Label>
@@ -129,7 +139,10 @@
                                      ItemsSource="{Binding ColumnCaptionList, Mode=OneWay}" >
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
-									               Command="{Binding Path=DataContext.SelectionChangedAtColumnsListCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
+									               Command="{Binding Path=SelectionChangedAtColumnsListCommand}"
+									               PassEventArgsToCommand="True"/>
+                            <dxmvvm:EventToCommand EventName="Loaded" 
+									               Command="{Binding Path=DataContext.ListBoxEditLoadedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
 									               PassEventArgsToCommand="True"/>
                         </dxmvvm:Interaction.Triggers>
                         <dxe:ListBoxEdit.ItemTemplate>
@@ -178,7 +191,7 @@
                             <dxdo:DocumentGroup ItemsSource="{Binding WorkSheetsInBook}" CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding WorkSheetName, Mode=OneWay}"/>
+                                        <TextBlock Text="{Binding WorkSheetName}"/>
                                     </DataTemplate>
                                 </dxdo:DocumentGroup.ItemCaptionTemplate>
                                 <dxdo:DocumentGroup.ItemContentTemplate>
@@ -203,8 +216,12 @@
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" DocumentSource="{Binding SourceFilePath}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
-								Command="{Binding DocumentLoadedCommand}"
-								CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+								                   Command="{Binding DocumentLoadedCommand}"
+								                   CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+                            <dxmvvm:EventToCommand EventName="SelectionChanged"
+                                                   Command="{Binding SelectionChangedCommand}"
+                                                   PassEventArgsToCommand="True"
+                                                   />
                         </dxmvvm:Interaction.Triggers>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>

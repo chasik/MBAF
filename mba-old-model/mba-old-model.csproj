@@ -1,0 +1,1568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{391100C9-CC48-4591-99F2-7576AEEC43DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mba_old_model</RootNamespace>
+    <AssemblyName>mba-old-model</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Commands, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Commands.7.0.0-rc1-final\lib\net451\EntityFramework.Commands.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Core.7.0.0-rc1-final\lib\net451\EntityFramework.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MicrosoftSqlServer, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MicrosoftSqlServer.7.0.0-rc1-final\lib\net451\EntityFramework.MicrosoftSqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MicrosoftSqlServer.Design, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MicrosoftSqlServer.Design.7.0.0-rc1-final\lib\net451\EntityFramework.MicrosoftSqlServer.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Relational, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Relational.7.0.0-rc1-final\lib\net451\EntityFramework.Relational.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Relational.Design, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Relational.Design.7.0.0-rc1-final\lib\net451\EntityFramework.Relational.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.OptionsModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.OptionsModel.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.OptionsModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.0.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Concurrent" />
+    <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.1.36\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0-beta-23516\lib\dotnet5.2\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Interactive.Async, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ix-Async.1.2.5\lib\net45\System.Interactive.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="activity_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="address_mark.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Address_original.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="address_x_address_mark.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Address_x_TimeZone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="administrative_assessment_settings.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="administrative_assessment_settings_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="app_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="app_log_client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auto_call_cash.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auto_dial_agent_status.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_account.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_account_search_payments.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_rate.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_rate_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_refin_rate.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement_breakdown_credit_note.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement_breakdown_item.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement_breakdown_item_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank_statement_credit_note.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeepQueue.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BeepTask.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="be_sucess_rate.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bonita.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CasePackage.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CaseSubPackage.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_return.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_return_codes.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_return_history.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_return_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_view_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_x_cost.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_x_debtor.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_x_department.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="case_x_department_x_user.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="claims_payments.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientPhoneExclusion.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="client_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="client_contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="client_description.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="component_version_library.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="computer.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_725.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_725s.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_autocall.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_external_final.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_queue.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact_status_x_contact_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contract.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cost.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="credit_note.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="credit_note_reported.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CxA.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CxT.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_Client_E_mail_text.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_E_mail.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_E_mails_send.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_lib_PrintsQueueItem_status.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_lib_PrintsQueueItem_x_Contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_lib_PrintsQueue_status.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsLetter.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsLetter_doc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsQueue.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsQueue_Items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsQueue_Items_cases.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C_PrintsTemplates.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data_exports.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data_exports_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db_info.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db_news.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="debthor_err_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="debtor.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="debtor_insolvent.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="deduplication_settings.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictionary.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dny.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dtproperties.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dt_getpropertiesbyid_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dt_getpropertiesbyid_u_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="emails.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="emails_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="error_library.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="estate.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="et.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ex_record.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ex_record_x_et.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fki_Report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnc_user_profile_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forms_events.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forms_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forms_items_properities.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forms_list.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="forms_parts.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="future_invoice.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Groups.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guarantor.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GxC.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GxP.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="imports.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_data.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_data_contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_desc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_client_setting.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_method.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_method_definition.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_source.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_source_file.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="import_payment_step.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_account_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_account_report_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_payment_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_report_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inspector_x_case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="installment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="installment_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="installment_breakdown_temp.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="installment_settings.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="institution.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inventory.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invoice.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ipm_x_ips.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IService1.cs" />
+    <Compile Include="libs.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="libs_firstname.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="libs_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="libs_items_dic.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="libs_items_dict.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lib_firstname_female.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lib_firstname_male.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lib_tituly.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="licenses.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mass_case_merge.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mass_case_mergeb.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mobilni_predvolby.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="new_address_cashe.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="okresy_a_kraje.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payment_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payment_reported.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="payment_transfer.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persons.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persons_duplicated.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persons_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pevne_predvolby.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Phone_city_code.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Phone_code_replace.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postal_order.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postal_order_temp.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postimport_confirmative_reports.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="postimport_settings.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prc_get_company_info_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prc_get_person_info_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prc_odkup_mrtvoly_select_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="printer_usage.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_aplications.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_aplications_texts.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_aplications_UA2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_invoice.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_rendered_doc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_spool.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_spool_group.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_spool_groupping.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_spool_send_info.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_spool_temp.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prints_x_contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="print_aplications.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="print_aplications_doc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="print_aplications_printer_setup.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="print_aplications_search.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="print_aplications_texts.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_get_report_payment_base_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_select_report_user_calls_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_show_history_autocall_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_show_history_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_show_history_with_filter_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proc_user_profile_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="profile_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="promise_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="promise_payment_2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="prov.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Provision.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="provision_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Provision_settings.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxA.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxC.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxC_type.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxC_x_CxA.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxP.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PxT.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="p_postcard_send.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_control.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_data_template.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_money_flow.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_money_to_invoice_temp.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_rtf_fragment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_success_batch_month_kalendarni.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_success_batch_month_predani2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_template.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_user_calls.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="report_user_calls_today.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rep_control_x_rep_rtf_fragment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="robot.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="robot_results.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="role.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="select_queue.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="select_queue_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs" />
+    <Compile Include="se_statistika_plateb.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="smst_x_client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sms_in.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sms_operator.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sms_out.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sms_templates.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="soud.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="soud_x_client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="splatka.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Svatky.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Switchboard_line.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="system_print.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tables_desc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tables_desc_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="task.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="task_725s.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="task_x_users.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="task_x_users_725s.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Telecom.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelecomSetNoActual.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Telecom_x_TimeZone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_check_case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_money_forecast.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_transfer_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_transfer_payment_invoice.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_view_Company_and_Full_address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_view_Company_and_Full_telecom_phone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_view_Persons_and_Full_address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_view_Persons_and_Full_telecom_phone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeZonesRus.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_db.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_pay2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_test.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="unique_doc_group_sequence.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users_client_groups.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users_rights.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_x_role.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UxG.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vat.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_batch.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_finder.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_finder2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_finder_motivace.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_operator.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_operator_denni.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_operator_motivace.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_active_operator_tydny.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_account.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_account_search_payments.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown_item.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown_item_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown_item_breakdown__all_unassigned_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown_item_breakdown__all_unassigned_payment_differences.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown__all_unassigned_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bank_statement_breakdown__all_unassigned_payment_differences.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bs_pisemne_splatkace.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bs_prisliby.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bs_ustni_skaly.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_bs_ustni_skaly_obdobi.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_CasePackage.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_cases_to_search_contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_export_slozenky_MTS_Administrak.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_export_slozenky_MTS_kapital.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_export_slozenky_vyber.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_for_sms.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_return.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_return_export.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_return_export_ge.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_x_debtor.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_x_debtor_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_x_department.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_case_x_department_x_user.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_client_attribute.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_client_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_company.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Company_and_Full_address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Company_and_Full_telecom_email.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Company_and_Full_telecom_fax.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Company_and_Full_telecom_phone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_contact.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_contact_autocall_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_contract.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Copmany_and_Full_telecom.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_cxa.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_cxt.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW_debtor_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_full_new.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_splitter_get_addresses.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_splitter_get_cases.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_splitter_get_info.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_splitter_get_relations.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_debtor_splitter_get_telecoms.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_departments_efficiency.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_doimport_oa_case_addresses.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_duplicities_in_PxC.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_export_case_return.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_inspector_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_inspector_breakdown2008.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_inspector_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_installment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_installment_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_invoice.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_invoice_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_libs_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_MBA_Mail_Installment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_packages_efficiency.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payments_ebanka_POSTA.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_bank_statement_breakdown_diferences.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_bank_statemnet_diferences.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_breakdown_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_reported.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_vs_bank_statement_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_payment_vs_bank_statement_breakdown_item_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_paymet_bank_statement_breakdown_item_breakdown_diferences.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_address.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_telecom.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_telecom_email.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_telecom_fax.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_telecom_phone.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Persons_and_Full_telecom_phone_with_index.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_postal_order.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_prints.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_prints_aplications.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_prints_full_info.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_prints_spool_groupping_not_printed_spool.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_print_aplications.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_print_aplications_doc.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_print_aplications_printer_setup.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_print_aplications_search.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_print_invoice_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_provision.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_provision_package.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Provision_settings_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_pxa.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_full_company.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_full_persons.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_type.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_type_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_x_CxA.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_PxC_x_CxA_full.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_pxt.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_RD__payed_plus_money__to_mo_to_another_case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_base.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_inspektor_case.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_inspektor_payment.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success1.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success2a.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success3.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_klient_success_a.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_akado.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_alfa_bank.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_be.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_megafon.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_MTS.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_skylink.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_vimpelkom.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_payments_vyber.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_print_settlement.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_statusy_MBAF.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_statusy_MBAF_skupiny.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_success_inspector.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_success_inspector_abs.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_sucess_on_each_casepackage.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_template.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_trzeb_po_mesicich.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_urgence_pravnich_moci.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_report_uspesnosti_new.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L1.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L1_profile_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L2.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L2_profile_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L3.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_L3_profile_items.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_role_profile_items_all.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_rozdily_mezi_bankou_a_postou.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_show_all_payment_reported_with_error.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_show_all_payment_with_breakdown_with_error.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_show_all_payment_with_out_breakdown.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_sms_for_client.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_sms_out.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_success_batch_total.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_success_batch_total_abs.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_success_operator.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_success_operator_abs.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_success_operator_batch.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Switchboard_line.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_task.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_teams_efficiency.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_telecom.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_terminy_baliku.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_users.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_users_client_groups.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_users_rights.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="web_db_mbaf_cz_login_log.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="web_source_search_error.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="web_source_search_result.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_bckp20100402.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_bckp20100428.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_bckp20100511.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_breakdown_bckp20100402.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_breakdown_bckp20100428.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_breakdown_bckp20100511.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_breakdown_test.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_administrative_assessment_settings_test.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_bank_statement_breakdown_before_duplicated_AS_deleted.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_case_back_from_29102010_1200_backup.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_import_case_to_test.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_PersonsStatistic.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_PersonsStatisticTmp.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_task_back.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zz_task_back_from_29102010_1200_backup.cs">
+      <DependentUpon>OldModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="OldModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OldModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="OldModel.edmx.diagram">
+      <DependentUpon>OldModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OldModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+      <LastGenOutput>OldModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="OldModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldModel.edmx</DependentUpon>
+      <LastGenOutput>OldModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio</VSToolsPath>
+    <WcfServiceModelTargetPath>$(VSToolsPath)\WCF</WcfServiceModelTargetPath>
+  </PropertyGroup>
+  <Import Project="$(WcfServiceModelTargetPath)\Microsoft.VisualStudio.ServiceModel.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -13,6 +13,10 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using System.Windows;
 using DevExpress.Xpf.Editors;
+using System.Windows.Input;
+using DevExpress.Xpf.Charts;
+using System.Windows.Media.Animation;
+using System.Drawing;
 
 namespace mba_application.ViewModels.Import
 {
@@ -22,7 +26,6 @@ namespace mba_application.ViewModels.Import
         protected RegistryAddViewModel()
         {
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
-            SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
 
             ImportService = new MBAImportService.ImportServiceClient();
 
@@ -36,11 +39,13 @@ namespace mba_application.ViewModels.Import
             return ViewModelSource.Create(() => new RegistryAddViewModel());
         }
 
+        private ChartHitInfo SelectedHitInfo;
+        private DateTime MouseDownTime, MouseUpTime;
+
         public ImportServiceClient ImportService;
 
         public virtual string SourceFilePath { get; set; }
 
-        public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
         public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
         public ObservableCollection<GoodColumn> GoodColumns { get; set; }
         public ObservableCollection<Client> Clients { get; set; }
@@ -57,17 +62,62 @@ namespace mba_application.ViewModels.Import
                 SourceFilePath = nodeContent.FullName;
             }
         }
-        public void SelectionChangedAtColumnsList(object eventArgs)
+        public void ListBoxEditLoaded(object eventArgs)
         {
-            var selectedItem = ((eventArgs as RoutedEventArgs).Source as ListBoxEdit).SelectedItem;
-            SelectedColumnMatches.Clear();
+            ListBoxEdit loadedListBoxEdit = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
 
-            foreach (var item in (selectedItem as ColumnCaption).GoodColumnWithPercentMatches)
+            if (loadedListBoxEdit.SelectedIndex == -1)
             {
-                SelectedColumnMatches.Add(item);
+                loadedListBoxEdit.SelectedIndex = 0;
             }
         }
+        public void MouseLeftButtonDown(object eventArgs)
+        {
+            MouseDownTime = DateTime.Now;
+            var e = eventArgs as MouseButtonEventArgs;
+        }
+        public void MouseLeftButtonUp(object eventArgs)
+        {
+            MouseUpTime = DateTime.Now;
+            var e = eventArgs as MouseButtonEventArgs;
+            var sender = e.Source;
+            var chart = (sender as SimpleDiagram2D).Parent as ChartControl;
 
+            ChartHitInfo hitInfo = chart.CalcHitInfo(e.GetPosition(chart));
+
+            if (hitInfo == null || hitInfo.SeriesPoint == null || (MouseUpTime - MouseDownTime).TotalMilliseconds > 180)
+                return;
+
+            if (SelectedHitInfo != null)
+            {
+                double dist = PieSeries.GetExplodedDistance(SelectedHitInfo.SeriesPoint);
+                Storyboard selectedStoryBoard = new Storyboard();
+                DoubleAnimation selectedAnimation = new DoubleAnimation();
+                selectedAnimation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
+                selectedAnimation.To = 0;
+                selectedStoryBoard.Children.Add(selectedAnimation);
+                Storyboard.SetTarget(selectedAnimation, SelectedHitInfo.SeriesPoint);
+                Storyboard.SetTargetProperty(selectedAnimation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
+                selectedStoryBoard.Begin();
+            }
+
+            double distance = PieSeries.GetExplodedDistance(hitInfo.SeriesPoint);
+            Storyboard storyBoard = new Storyboard();
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
+            animation.To = distance > 0 ? 0 : 0.4;
+            storyBoard.Children.Add(animation);
+            Storyboard.SetTarget(animation, hitInfo.SeriesPoint);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
+            storyBoard.Begin();
+
+            SelectedHitInfo = hitInfo;
+        }
+
+        public void SelectionChanged(object eventArgs)
+        {
+
+        }
         public void DocumentLoaded(object _spreadSheet)
         {
             if (!(_spreadSheet is SpreadsheetControl))
@@ -78,6 +128,7 @@ namespace mba_application.ViewModels.Import
                 DevExpress.Spreadsheet.Range usedRange = ws.GetUsedRange();
 
                 SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
+                sheetInfo.WorkSheet = ws;
                 sheetInfo.WorkSheetName = ws.Name + " (" + sheetInfo.ColumnsCount.ToString() + " столбцов)";
                 for (int i = usedRange.TopRowIndex; i < usedRange.BottomRowIndex; i++)
                 {
@@ -85,7 +136,7 @@ namespace mba_application.ViewModels.Import
                     for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
                         sheetInfo.CurrentRowInfo.AddCell(ws.Cells[i, j]);
 
-                    if (sheetInfo.GetStatisticForRow())
+                    if (sheetInfo.GetStatisticForRow()) // метода взращает bool со значение true если "диагностирует" что данная строка - шапка
                     {
                         for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
                         {
@@ -94,8 +145,9 @@ namespace mba_application.ViewModels.Import
                                 var captionValue = new ColumnCaption {
                                         Caption = ws.Cells[i, j].Value.ToString().ToLower()
                                                     .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
-                                                    .Replace("\n", "").Replace("  ", " ")
-                                    };
+                                                    .Replace("\n", "").Replace("  ", " "),
+                                        RangeInWorksheet = new Thickness { Left = j, Top = usedRange.TopRowIndex, Right = j, Bottom = usedRange.BottomRowIndex}
+                                };
 
                                 if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
                                 {
@@ -125,26 +177,46 @@ namespace mba_application.ViewModels.Import
         }
     }
 
-    public class SheetInfo : BindableBase
+    public class SheetInfo : ViewModelBase
     {
-        private List<RowInfo> rangeRows;
-        public int ColumnsCount { get; set; }
-        public string WorkSheetName { get; set; }
-
-        public RowInfo CurrentRowInfo { get; private set; }
-
-        public Dictionary<string, int> SummRowsInfo { get; set; }
-
+        public Worksheet WorkSheet
+        {
+            get { return GetProperty(() => WorkSheet); }
+            set { SetProperty(() => WorkSheet, value); }
+        }
+        public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
         public List<ColumnCaption> ColumnCaptionList { get; set; }
 
         public SheetInfo(int _columnsCount)
         {
+            SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
+
             rangeRows = new List<RowInfo>();
             ColumnsCount = _columnsCount;
 
             SummRowsInfo = new Dictionary<string, int>();
             ColumnCaptionList = new List<ColumnCaption>();
         }
+
+        [Command]
+        public void SelectionChangedAtColumnsList(object eventArgs)
+        {
+            var selectedItem = ((eventArgs as RoutedEventArgs).Source as ListBoxEdit).SelectedItem as ColumnCaption;
+
+            WorkSheet.Selection = WorkSheet.Range.FromLTRB(
+                    (int)selectedItem.RangeInWorksheet.Left,
+                    (int)selectedItem.RangeInWorksheet.Top,
+                    (int)selectedItem.RangeInWorksheet.Right,
+                    (int)selectedItem.RangeInWorksheet.Bottom
+                );
+
+            SelectedColumnMatches.Clear();
+            foreach (var item in selectedItem.GoodColumnWithPercentMatches)
+            {
+                SelectedColumnMatches.Add(item);
+            }
+        }
+
         public void AddNewRow()
         {
             CurrentRowInfo = new RowInfo(ColumnsCount);
@@ -174,10 +246,17 @@ namespace mba_application.ViewModels.Import
 
             return isShapka;
         }
+
+        private List<RowInfo> rangeRows;
+        public int ColumnsCount { get; set; }
+        public string WorkSheetName { get; set; }
+        public RowInfo CurrentRowInfo { get; private set; }
+        public Dictionary<string, int> SummRowsInfo { get; set; }
     }
 
     public class ColumnCaption
     {
+        public Thickness RangeInWorksheet { get; set; }
         public string Caption { get; set; }
         public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }
@@ -185,7 +264,7 @@ namespace mba_application.ViewModels.Import
         public ColumnCaption()
         {
             GoodColumnWithPercentMatches = new List<GoodColumnWithPercentMathces>();
-            BestValue = new GoodColumnWithPercentMathces { Percent = 0 };
+            BestValue = new GoodColumnWithPercentMathces { Percent = 0.01F };
         }
 
         internal void CompareWithGoodColumns(ObservableCollection<GoodColumn> goodColumns)
@@ -193,6 +272,8 @@ namespace mba_application.ViewModels.Import
             foreach (var item in goodColumns)
             {
                 var percent = (float)Math.Round((new MatchsMaker(item.Name, Caption)).Score * 100);
+                if (percent == 0)
+                    percent = 0.01F;
                 GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces { GoodColumnId = item.Id, GoodColumnName = item.Name, Percent = percent });
                 if (percent > BestValue.Percent)
                 {
