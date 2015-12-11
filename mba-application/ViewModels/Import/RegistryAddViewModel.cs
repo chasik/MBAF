@@ -16,8 +16,6 @@ using DevExpress.Xpf.Editors;
 using System.Windows.Input;
 using DevExpress.Xpf.Charts;
 using System.Windows.Media.Animation;
-using System.Drawing;
-using System.Windows.Controls;
 
 namespace mba_application.ViewModels.Import
 {

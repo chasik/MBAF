@@ -137,7 +137,7 @@
                     <dxe:ListBoxEdit x:Name="ColumnsList"
                                      Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      SelectionMode="Single"
-                                     ItemsSource="{Binding ColumnCaptionList}" >
+                                     ItemsSource="{Binding ColumnCaptionList}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
                                                    Command="{Binding Path=SelectionChangedAtColumnsListCommand}" PassEventArgsToCommand="True"/>
@@ -228,7 +228,7 @@
                     </dxdo:DocumentPanel>
                 </dxdo:DocumentGroup>
                 <dxdo:LayoutPanel Caption="{Binding SourceFilePath}" ItemHeight="0.4*" AllowRestore="False" AllowRename="False" AllowMove="False" AllowMaximize="False" AllowFloat="False" AllowDrag="False" AllowDockToDocumentGroup="False" AllowDock="False" AllowContextMenu="False" AllowClose="False">
-                    <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" 
+                    <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" AllowDrop="True"
                                               DocumentSource="{Binding SourceFilePath}"
                                               ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                         <dxmvvm:Interaction.Triggers>
