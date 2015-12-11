@@ -25,7 +25,6 @@
              DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}">
 
     <dx:DXWindow.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
         <converters:ToolsNameToContentTemplate x:Key="toolsNameToContentTemplate" x:Shared="False"/>
     </dx:DXWindow.Resources>
