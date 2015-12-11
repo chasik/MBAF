@@ -17,6 +17,7 @@ using System.Windows.Input;
 using DevExpress.Xpf.Charts;
 using System.Windows.Media.Animation;
 using System.Drawing;
+using System.Windows.Controls;
 
 namespace mba_application.ViewModels.Import
 {
@@ -44,6 +45,7 @@ namespace mba_application.ViewModels.Import
 
         public ImportServiceClient ImportService;
 
+        public virtual int SelectedWorkSheetIndex { get; set; }
         public virtual string SourceFilePath { get; set; }
 
         public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
@@ -60,15 +62,6 @@ namespace mba_application.ViewModels.Import
             {
                 WorkSheetsInBook.Clear();
                 SourceFilePath = nodeContent.FullName;
-            }
-        }
-        public void ListBoxEditLoaded(object eventArgs)
-        {
-            ListBoxEdit loadedListBoxEdit = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
-
-            if (loadedListBoxEdit.SelectedIndex == -1)
-            {
-                loadedListBoxEdit.SelectedIndex = 0;
             }
         }
         public void MouseLeftButtonDown(object eventArgs)
@@ -114,10 +107,6 @@ namespace mba_application.ViewModels.Import
             SelectedHitInfo = hitInfo;
         }
 
-        public void SelectionChanged(object eventArgs)
-        {
-
-        }
         public void DocumentLoaded(object _spreadSheet)
         {
             if (!(_spreadSheet is SpreadsheetControl))
@@ -130,23 +119,24 @@ namespace mba_application.ViewModels.Import
                 SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
                 sheetInfo.WorkSheet = ws;
                 sheetInfo.WorkSheetName = ws.Name + " (" + sheetInfo.ColumnsCount.ToString() + " столбцов)";
-                for (int i = usedRange.TopRowIndex; i < usedRange.BottomRowIndex; i++)
+                for (int rowIndex = usedRange.TopRowIndex; rowIndex < usedRange.BottomRowIndex; rowIndex++)
                 {
                     sheetInfo.AddNewRow();
-                    for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
-                        sheetInfo.CurrentRowInfo.AddCell(ws.Cells[i, j]);
+                    for (int columnIndex = usedRange.LeftColumnIndex; columnIndex < usedRange.RightColumnIndex; columnIndex++)
+                        sheetInfo.CurrentRowInfo.AddCell(ws.Cells[rowIndex, columnIndex]);
 
                     if (sheetInfo.GetStatisticForRow()) // метода взращает bool со значение true если "диагностирует" что данная строка - шапка
                     {
-                        for (int j = usedRange.LeftColumnIndex; j < usedRange.RightColumnIndex; j++)
+                        for (int headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex < usedRange.RightColumnIndex; headerColumnIndex++)
                         {
-                            if (ws.Cells[i, j].Value.Type == CellValueType.Text)
+                            if (ws.Cells[rowIndex, headerColumnIndex].Value.Type == CellValueType.Text)
                             {
                                 var captionValue = new ColumnCaption {
-                                        Caption = ws.Cells[i, j].Value.ToString().ToLower()
+                                        HeaderTableIndex = rowIndex,
+                                        Caption = ws.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower()
                                                     .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
                                                     .Replace("\n", "").Replace("  ", " "),
-                                        RangeInWorksheet = new Thickness { Left = j, Top = usedRange.TopRowIndex, Right = j, Bottom = usedRange.BottomRowIndex}
+                                        RangeInWorksheet = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex}
                                 };
 
                                 if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
@@ -210,11 +200,23 @@ namespace mba_application.ViewModels.Import
                     (int)selectedItem.RangeInWorksheet.Bottom
                 );
 
+            //WorkSheet.FreezeRows(selectedItem.HeaderTableIndex);
+            WorkSheet.ScrollTo(selectedItem.HeaderTableIndex, (int)selectedItem.RangeInWorksheet.Left);
+
             SelectedColumnMatches.Clear();
             foreach (var item in selectedItem.GoodColumnWithPercentMatches)
             {
                 SelectedColumnMatches.Add(item);
             }
+        }
+
+        [Command]
+        public void ListBoxLoaded(object eventArgs)
+        {
+            var loadedListBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+
+            if (loadedListBox.SelectedIndex == -1)
+                loadedListBox.SelectedIndex = 0;
         }
 
         public void AddNewRow()
@@ -257,6 +259,7 @@ namespace mba_application.ViewModels.Import
     public class ColumnCaption
     {
         public Thickness RangeInWorksheet { get; set; }
+        public int HeaderTableIndex { get; set; }
         public string Caption { get; set; }
         public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }

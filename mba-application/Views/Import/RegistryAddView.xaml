@@ -133,31 +133,44 @@
                         
                         </Grid>
                     </dxdo:DocumentPanel>
+                    
                     <dxe:ListBoxEdit x:Name="ColumnsList"
                                      Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      SelectionMode="Single"
-                                     ItemsSource="{Binding ColumnCaptionList, Mode=OneWay}" >
+                                     ItemsSource="{Binding ColumnCaptionList}" >
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
-									               Command="{Binding Path=SelectionChangedAtColumnsListCommand}"
-									               PassEventArgsToCommand="True"/>
+                                                   Command="{Binding Path=SelectionChangedAtColumnsListCommand}" PassEventArgsToCommand="True"/>
                             <dxmvvm:EventToCommand EventName="Loaded" 
-									               Command="{Binding Path=DataContext.ListBoxEditLoadedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
-									               PassEventArgsToCommand="True"/>
+                                                   Command="{Binding Path=ListBoxLoadedCommand}" PassEventArgsToCommand="True"/>
                         </dxmvvm:Interaction.Triggers>
                         <dxe:ListBoxEdit.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="2">
-                                    <TextBlock Grid.Column="0" Width="40" Padding="4,1,4,0"
-                                               HorizontalAlignment="Stretch" TextAlignment="Center"
-                                               Style="{StaticResource ColumnHeaderAnalysis}"
-                                               Text="{Binding BestValue.PercentString}"/>
-                                    <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
+                                <StackPanel Orientation="Vertical" Margin="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox></CheckBox>
+                                        <TextBlock Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"
+                                                   Style="{StaticResource ColumnHeaderAnalysis}"
+                                                   Text="{Binding BestValue.PercentString}"/>
+                                        <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
                                                Text="{Binding Caption, Mode=OneWay}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Visibility="{Binding Path=IsSelected, 
+                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                         Converter={StaticResource BoolToVis}}"/>
+                                        <Button Visibility="{Binding Path=IsSelected, 
+                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                         Converter={StaticResource BoolToVis}}"/>
+                                        <Button Visibility="{Binding Path=IsSelected, 
+                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                         Converter={StaticResource BoolToVis}}"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </dxe:ListBoxEdit.ItemTemplate>
                     </dxe:ListBoxEdit>
+                    
                 </Grid>
             </UserControl>
         </ResourceDictionary>
@@ -188,7 +201,9 @@
                 <dxdo:DocumentGroup ItemHeight="1.11*" CaptionLocation="Bottom" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
                     <dxdo:DocumentPanel Caption="Информация" ItemHeight="1.08*">
                         <Grid>
-                            <dxdo:DocumentGroup ItemsSource="{Binding WorkSheetsInBook}" CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere">
+                            <dxdo:DocumentGroup CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere"
+                                                ItemsSource="{Binding WorkSheetsInBook}"
+                                                SelectedTabIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding WorkSheetName}"/>
@@ -212,16 +227,14 @@
                         <Grid/>
                     </dxdo:DocumentPanel>
                 </dxdo:DocumentGroup>
-                <dxdo:LayoutPanel Caption="Excel preview" ItemHeight="0.4*" >
-                    <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" DocumentSource="{Binding SourceFilePath}">
+                <dxdo:LayoutPanel Caption="{Binding SourceFilePath}" ItemHeight="0.4*" AllowRestore="False" AllowRename="False" AllowMove="False" AllowMaximize="False" AllowFloat="False" AllowDrag="False" AllowDockToDocumentGroup="False" AllowDock="False" AllowContextMenu="False" AllowClose="False">
+                    <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" 
+                                              DocumentSource="{Binding SourceFilePath}"
+                                              ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
 								                   Command="{Binding DocumentLoadedCommand}"
 								                   CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
-                            <dxmvvm:EventToCommand EventName="SelectionChanged"
-                                                   Command="{Binding SelectionChangedCommand}"
-                                                   PassEventArgsToCommand="True"
-                                                   />
                         </dxmvvm:Interaction.Triggers>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>
