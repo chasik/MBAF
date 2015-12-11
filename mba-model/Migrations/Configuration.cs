@@ -115,7 +115,7 @@
                 new Client { Id = 22, ParentId = null, InnerId = 246, Name = "БИНБАНК кредитные карты", FullName = "АО \"БИНБАНК кредитные карты\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 23, ParentId = null, InnerId = 249, Name = "Банк Москвы", FullName = "Банк Москвы", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 24, ParentId = null, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "ClientRenesansCredit.png", Created = DateTime.Now, CreatedBy = 1, Deleted = DateTime.Now, DeletedBy = 1 },
-                new Client { Id = 25, ParentId = null, InnerId = 251, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 }
+                new Client { Id = 25, ParentId = null, InnerId = 251, Name = "ПАО Сбербанк", FullName = "Публичное акционерное общество «Сбербанк России»", Image = "ClientSber.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 26, ParentId = null, InnerId = 252, Name = "Азиатско-Тихоокеанский Банк", FullName = "ПАО \"Азиатско-Тихоокеанский Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 27, ParentId = null, InnerId = 253, Name = "РОСБАНК", FullName = "ПАО \"РОСБАНК\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 28, ParentId = null, InnerId = 254, Name = "БИНБАНК", FullName = "ПАО \"БИНБАНК\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
@@ -124,8 +124,6 @@
                 new Client { Id = 31, ParentId = null, InnerId = 257, Name = "РОСТ БАНК", FullName = "АО \"РОСТ БАНК\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 32, ParentId = null, InnerId = 258, Name = "Кедр", FullName = "КБ \"Кедр\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 33, ParentId = null, InnerId = 413, Name = "Выручай-Деньги", FullName = "ООО МФО \"Выручай-Деньги\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 }
-
-                //new Client { Id = 7, ParentId = null, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ПАО \"Уральский банк реконструкции и развития\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 );
             #endregion
 
