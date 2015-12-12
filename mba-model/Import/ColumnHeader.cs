@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace mba_model
@@ -14,9 +13,6 @@ namespace mba_model
         public string Name { get; set; }
 
         [DataMember]
-        public int GoodColumnId { get; set; }
-
-        [DataMember]
-        public virtual GoodColumn GoodColumn { get; set; }
+        public virtual ICollection<ColumnHeaderClient> ColumnHeader_Client { get; set; }
     }
 }

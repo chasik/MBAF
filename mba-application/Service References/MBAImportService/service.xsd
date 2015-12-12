@@ -51,4 +51,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AnalyzeColumnHeaders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="columnHeaders" nillable="true" type="q5:ArrayOfColumnHeader" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AnalyzeColumnHeadersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="AnalyzeColumnHeadersResult" nillable="true" type="q6:Client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

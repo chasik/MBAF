@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using mba_model;
+using System.Collections.Generic;
 
 namespace mba_services.ServiceContracts
 {
@@ -17,5 +18,8 @@ namespace mba_services.ServiceContracts
 
         [OperationContract]
         ImportType[] ImportTypes();
+
+        [OperationContract]
+        Client AnalyzeColumnHeaders(ColumnHeader[] columnHeaders);
     }
 }

@@ -35,6 +35,6 @@ namespace mba_model
 
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Permission> Permissions { get; set; }
-        public virtual ICollection<UserAction> UserActions { get; set; }
+        public virtual ICollection<UserAction> User_Action { get; set; }
     }
 }

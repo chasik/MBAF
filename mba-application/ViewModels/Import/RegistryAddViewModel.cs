@@ -132,20 +132,29 @@ namespace mba_application.ViewModels.Import
                                 var captionValue = new ColumnCaption {
                                         HeaderTableIndex = rowIndex,
                                         Caption = ws.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower()
-                                                    .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ")
+                                                    .Replace(":", " ").Replace("_", " ").Replace(".", " ").Replace(",", " ").Replace("/", " ").Replace("\\", " ").Replace("*", " ")
                                                     .Replace("\n", "").Replace("  ", " "),
                                         RangeInWorksheet = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex}
                                 };
 
-                                if (!sheetInfo.ColumnCaptionList.Exists(c => c.Caption == captionValue.Caption))
+                                if (!sheetInfo.ColumnHeaderList.Exists(c => c.Caption == captionValue.Caption))
                                 {
                                     captionValue.CompareWithGoodColumns(GoodColumns);
-                                    sheetInfo.ColumnCaptionList.Add(captionValue);
+                                    sheetInfo.ColumnHeaderList.Add(captionValue);
                                 }
                             }
                         }
                     }
                 }
+                // производим сопоставление собранных столбцов с Клиентами для определения вероятности принадлежности
+                List<ColumnHeader> columnHeaders = new List<ColumnHeader>();
+                foreach (var item in sheetInfo.ColumnHeaderList)
+                {
+                    columnHeaders.Add(new ColumnHeader { Name = item.Caption });
+                }
+
+                sheetInfo.possiblyClient = ImportService.AnalyzeColumnHeaders(columnHeaders.ToArray());
+
                 WorkSheetsInBook.Add(sheetInfo);
             }
         }
@@ -173,7 +182,8 @@ namespace mba_application.ViewModels.Import
             set { SetProperty(() => WorkSheet, value); }
         }
         public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
-        public List<ColumnCaption> ColumnCaptionList { get; set; }
+        public List<ColumnCaption> ColumnHeaderList { get; set; }
+        public Client possiblyClient;
 
         public SheetInfo(int _columnsCount)
         {
@@ -183,7 +193,7 @@ namespace mba_application.ViewModels.Import
             ColumnsCount = _columnsCount;
 
             SummRowsInfo = new Dictionary<string, int>();
-            ColumnCaptionList = new List<ColumnCaption>();
+            ColumnHeaderList = new List<ColumnCaption>();
         }
 
         [Command]

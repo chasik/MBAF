@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using mba_model;
 using mba_services.ServiceContracts;
@@ -16,6 +15,18 @@ namespace mba_services
             dbContext.Configuration.ProxyCreationEnabled = false;
         }
 
+        public Client AnalyzeColumnHeaders(ColumnHeader[] columnHeaders)
+        {
+            foreach (var item in columnHeaders)
+            {
+                if (!dbContext.ColumnHeaders.Any(ch => ch.Name == item.Name))
+                    dbContext.ColumnHeaders.Add(item);
+            }
+            
+            dbContext.SaveChanges();
+            return null;
+        }
+
         public Client[] Clients()
         {
             return (from client in dbContext.Clients
@@ -27,8 +38,8 @@ namespace mba_services
         public GoodColumn GoodColumn(string columnHeader)
         {
             return (from gc in dbContext.GoodColumns
-                    join ch in dbContext.ColumnHeaders on gc.Id equals ch.GoodColumnId
-                    where ch.Name == columnHeader
+                    //join ch in dbContext.ColumnHeaders on gc.Id equals ch.ColumnHeader_Client.GoodColumnId
+                    //where ch.Name == columnHeader
                     select gc
                    ).FirstOrDefault() ?? new GoodColumn { Id = 0, Name = "Не определен" };
         }

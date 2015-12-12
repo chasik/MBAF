@@ -34,7 +34,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Import\ColumnHeaderClient.cs" />
     <Compile Include="Import\GoodColumn.cs" />
     <Compile Include="Import\ColumnHeader.cs" />
     <Compile Include="Import\ImportType.cs" />

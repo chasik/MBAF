@@ -20,19 +20,29 @@
   <xs:element name="ArrayOfColumnHeader" nillable="true" type="tns:ArrayOfColumnHeader" />
   <xs:complexType name="ColumnHeader">
     <xs:sequence>
-      <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
-      <xs:element minOccurs="0" name="GoodColumnId" type="xs:int" />
+      <xs:element minOccurs="0" name="ColumnHeader_Client" nillable="true" type="tns:ArrayOfColumnHeaderClient" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ColumnHeader" nillable="true" type="tns:ColumnHeader" />
-  <xs:complexType name="ArrayOfGoodColumn">
+  <xs:complexType name="ArrayOfColumnHeaderClient">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnHeaderClient" nillable="true" type="tns:ColumnHeaderClient" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfGoodColumn" nillable="true" type="tns:ArrayOfGoodColumn" />
+  <xs:element name="ArrayOfColumnHeaderClient" nillable="true" type="tns:ArrayOfColumnHeaderClient" />
+  <xs:complexType name="ColumnHeaderClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Changed" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="Clients" nillable="true" type="tns:ArrayOfClient" />
+      <xs:element minOccurs="0" name="ColumnHeaderId" type="xs:int" />
+      <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
+      <xs:element minOccurs="0" name="GoodColumnId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ColumnHeaderClient" nillable="true" type="tns:ColumnHeaderClient" />
   <xs:complexType name="ArrayOfClient">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
@@ -54,6 +64,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Client" nillable="true" type="tns:Client" />
+  <xs:complexType name="ArrayOfGoodColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGoodColumn" nillable="true" type="tns:ArrayOfGoodColumn" />
   <xs:complexType name="ArrayOfImportType">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportType" nillable="true" type="tns:ImportType" />

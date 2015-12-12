@@ -17,18 +17,12 @@ namespace mba_model
         [DataMember]
         [Column(TypeName = "datetime2")]
         public DateTime Created { get; set; }
-
         [DataMember]
         public int CreatedBy { get; set; }
-
         [DataMember]
         [Column(TypeName = "datetime2")]
         public DateTime? Deleted { get; set; }
-
         [DataMember]
         public int? DeletedBy { get; set; }
-
-        [DataMember]
-        public virtual ICollection<ColumnHeader> ColumnHeaders { get; set; }
     }
 }

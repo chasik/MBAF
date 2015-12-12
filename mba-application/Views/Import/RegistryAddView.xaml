@@ -50,13 +50,10 @@
                                 <RowDefinition Height="38"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="0"
-                                              ShowSizeGrip="False"
-                                              AutoComplete="True"
-                                              ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }, Path=DataContext.Clients}"
-                                              DisplayMember="Name"
-                                              ValueMember="Id"
-                                              ApplyItemTemplateToSelectedItem="True">
+                            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="0" ShowSizeGrip="False"
+                                              ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
+                                              DisplayMember="Name" ValueMember="Id"
+                                              ItemsSource="{Binding Path=DataContext.Clients, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
                                 <dxe:ComboBoxEdit.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -64,10 +61,10 @@
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Image Grid.Column="0" 
+                                            <Image Grid.Column="0" Margin="10,5,0,5"
                                                    Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
-                                            <TextBlock Grid.Column="1" Margin="10,1,10,0"
-                                                       Text="{Binding Path=Name, Mode=OneWay}"></TextBlock>
+                                            <TextBlock Grid.Column="1" Margin="10,1,10,0" FontSize="12" FontWeight="Bold"
+                                                       Text="{Binding Path=Name}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ComboBoxEdit.ItemTemplate>
@@ -76,17 +73,13 @@
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
                             
-                            <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0"
-                                              ShowSizeGrip="False"
-                                              AutoComplete="True"
-                                              ItemsSource="{Binding Path=DataContext.ImportTypes, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
-                                              DisplayMember="Name"
-                                              ValueMember="Id"
-                                              ApplyItemTemplateToSelectedItem="True">
+                            <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0" ShowSizeGrip="False"
+                                              ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
+                                              DisplayMember="Name" ValueMember="Id"
+                                              ItemsSource="{Binding Path=DataContext.ImportTypes, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}">
                                 <dxe:ComboBoxEdit.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Grid.Column="1" 
-                                                    Text="{Binding Name}" Margin="10,1,10,0"></TextBlock>
+                                        <TextBlock Text="{Binding Name}" Grid.Column="1" Margin="10,1,10,0"/>
                                     </DataTemplate>
                                 </dxe:ComboBoxEdit.ItemTemplate>
                                 <dxe:ComboBoxEdit.StyleSettings>
@@ -97,12 +90,10 @@
                             <dxc:ChartControl Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
                                               AnimationMode="OnLoad" ToolTipEnabled="True">
                                 <dxmvvm:Interaction.Behaviors>
-                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonDown"
-									                       Command="{Binding Path=DataContext.MouseLeftButtonDownCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
-									                       PassEventArgsToCommand="True"/>
-                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonUp"
-									                       Command="{Binding Path=DataContext.MouseLeftButtonUpCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"
-									                       PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" PassEventArgsToCommand="True"
+									                       Command="{Binding Path=DataContext.MouseLeftButtonDownCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"/>
+                                    <dxmvvm:EventToCommand EventName="MouseLeftButtonUp" PassEventArgsToCommand="True"
+									                       Command="{Binding Path=DataContext.MouseLeftButtonUpCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}"/>
                                 </dxmvvm:Interaction.Behaviors>
                                 <dxc:ChartControl.Diagram>
                                     <dxc:SimpleDiagram2D HorizontalAlignment="Left">
@@ -137,7 +128,7 @@
                     <dxe:ListBoxEdit x:Name="ColumnsList"
                                      Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      SelectionMode="Single"
-                                     ItemsSource="{Binding ColumnCaptionList}">
+                                     ItemsSource="{Binding ColumnHeaderList}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
                                                    Command="{Binding Path=SelectionChangedAtColumnsListCommand}" PassEventArgsToCommand="True"/>

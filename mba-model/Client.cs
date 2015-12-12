@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -19,19 +20,17 @@ namespace mba_model
         public string FullName { get; set; }
         [DataMember]
         public string Image { get; set; }
-
         [DataMember]
         [Column(TypeName = "datetime2")]
         public DateTime Created { get; set; }
-
         [DataMember]
         public int CreatedBy { get; set; }
-
         [DataMember]
         [Column(TypeName = "datetime2")]
         public DateTime? Deleted { get; set; }
-
         [DataMember]
         public int? DeletedBy { get; set; }
+
+        public virtual ICollection<ColumnHeaderClient> ColumnHeader_Client { get; set; }
     }
 }

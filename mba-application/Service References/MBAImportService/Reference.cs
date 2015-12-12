@@ -46,6 +46,14 @@ namespace mba_application.MBAImportService {
         System.IAsyncResult BeginImportTypes(System.AsyncCallback callback, object asyncState);
         
         mba_model.ImportType[] EndImportTypes(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/AnalyzeColumnHeaders", ReplyAction="http://tempuri.org/IImportService/AnalyzeColumnHeadersResponse")]
+        mba_model.Client AnalyzeColumnHeaders(mba_model.ColumnHeader[] columnHeaders);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/AnalyzeColumnHeaders", ReplyAction="http://tempuri.org/IImportService/AnalyzeColumnHeadersResponse")]
+        System.IAsyncResult BeginAnalyzeColumnHeaders(mba_model.ColumnHeader[] columnHeaders, System.AsyncCallback callback, object asyncState);
+        
+        mba_model.Client EndAnalyzeColumnHeaders(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -130,6 +138,25 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AnalyzeColumnHeadersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AnalyzeColumnHeadersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public mba_model.Client Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((mba_model.Client)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ImportServiceClient : System.ServiceModel.ClientBase<mba_application.MBAImportService.IImportService>, mba_application.MBAImportService.IImportService {
         
         private BeginOperationDelegate onBeginGoodColumnDelegate;
@@ -155,6 +182,12 @@ namespace mba_application.MBAImportService {
         private EndOperationDelegate onEndImportTypesDelegate;
         
         private System.Threading.SendOrPostCallback onImportTypesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAnalyzeColumnHeadersDelegate;
+        
+        private EndOperationDelegate onEndAnalyzeColumnHeadersDelegate;
+        
+        private System.Threading.SendOrPostCallback onAnalyzeColumnHeadersCompletedDelegate;
         
         public ImportServiceClient() {
         }
@@ -182,6 +215,8 @@ namespace mba_application.MBAImportService {
         public event System.EventHandler<ClientsCompletedEventArgs> ClientsCompleted;
         
         public event System.EventHandler<ImportTypesCompletedEventArgs> ImportTypesCompleted;
+        
+        public event System.EventHandler<AnalyzeColumnHeadersCompletedEventArgs> AnalyzeColumnHeadersCompleted;
         
         public mba_model.GoodColumn GoodColumn(string columnHeader) {
             return base.Channel.GoodColumn(columnHeader);
@@ -375,6 +410,56 @@ namespace mba_application.MBAImportService {
                 this.onImportTypesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnImportTypesCompleted);
             }
             base.InvokeAsync(this.onBeginImportTypesDelegate, null, this.onEndImportTypesDelegate, this.onImportTypesCompletedDelegate, userState);
+        }
+        
+        public mba_model.Client AnalyzeColumnHeaders(mba_model.ColumnHeader[] columnHeaders) {
+            return base.Channel.AnalyzeColumnHeaders(columnHeaders);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginAnalyzeColumnHeaders(mba_model.ColumnHeader[] columnHeaders, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAnalyzeColumnHeaders(columnHeaders, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public mba_model.Client EndAnalyzeColumnHeaders(System.IAsyncResult result) {
+            return base.Channel.EndAnalyzeColumnHeaders(result);
+        }
+        
+        private System.IAsyncResult OnBeginAnalyzeColumnHeaders(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            mba_model.ColumnHeader[] columnHeaders = ((mba_model.ColumnHeader[])(inValues[0]));
+            return this.BeginAnalyzeColumnHeaders(columnHeaders, callback, asyncState);
+        }
+        
+        private object[] OnEndAnalyzeColumnHeaders(System.IAsyncResult result) {
+            mba_model.Client retVal = this.EndAnalyzeColumnHeaders(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAnalyzeColumnHeadersCompleted(object state) {
+            if ((this.AnalyzeColumnHeadersCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AnalyzeColumnHeadersCompleted(this, new AnalyzeColumnHeadersCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AnalyzeColumnHeadersAsync(mba_model.ColumnHeader[] columnHeaders) {
+            this.AnalyzeColumnHeadersAsync(columnHeaders, null);
+        }
+        
+        public void AnalyzeColumnHeadersAsync(mba_model.ColumnHeader[] columnHeaders, object userState) {
+            if ((this.onBeginAnalyzeColumnHeadersDelegate == null)) {
+                this.onBeginAnalyzeColumnHeadersDelegate = new BeginOperationDelegate(this.OnBeginAnalyzeColumnHeaders);
+            }
+            if ((this.onEndAnalyzeColumnHeadersDelegate == null)) {
+                this.onEndAnalyzeColumnHeadersDelegate = new EndOperationDelegate(this.OnEndAnalyzeColumnHeaders);
+            }
+            if ((this.onAnalyzeColumnHeadersCompletedDelegate == null)) {
+                this.onAnalyzeColumnHeadersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAnalyzeColumnHeadersCompleted);
+            }
+            base.InvokeAsync(this.onBeginAnalyzeColumnHeadersDelegate, new object[] {
+                        columnHeaders}, this.onEndAnalyzeColumnHeadersDelegate, this.onAnalyzeColumnHeadersCompletedDelegate, userState);
         }
     }
 }
