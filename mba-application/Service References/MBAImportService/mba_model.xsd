@@ -2,7 +2,6 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/mba_model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/mba_model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="GoodColumn">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ColumnHeaders" nillable="true" type="tns:ArrayOfColumnHeader" />
       <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
       <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
       <xs:element minOccurs="0" name="Deleted" nillable="true" type="xs:dateTime" />
@@ -12,6 +11,46 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GoodColumn" nillable="true" type="tns:GoodColumn" />
+  <xs:complexType name="ArrayOfGoodColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGoodColumn" nillable="true" type="tns:ArrayOfGoodColumn" />
+  <xs:complexType name="ArrayOfClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
+  <xs:complexType name="Client">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="Deleted" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeletedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InnerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Client" nillable="true" type="tns:Client" />
+  <xs:complexType name="ArrayOfImportType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportType" nillable="true" type="tns:ImportType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImportType" nillable="true" type="tns:ArrayOfImportType" />
+  <xs:complexType name="ImportType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportType" nillable="true" type="tns:ImportType" />
   <xs:complexType name="ArrayOfColumnHeader">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnHeader" nillable="true" type="tns:ColumnHeader" />
@@ -38,49 +77,7 @@
       <xs:element minOccurs="0" name="ClientId" type="xs:int" />
       <xs:element minOccurs="0" name="Clients" nillable="true" type="tns:ArrayOfClient" />
       <xs:element minOccurs="0" name="ColumnHeaderId" type="xs:int" />
-      <xs:element minOccurs="0" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
-      <xs:element minOccurs="0" name="GoodColumnId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ColumnHeaderClient" nillable="true" type="tns:ColumnHeaderClient" />
-  <xs:complexType name="ArrayOfClient">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
-  <xs:complexType name="Client">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="CreatedBy" type="xs:int" />
-      <xs:element minOccurs="0" name="Deleted" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DeletedBy" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="InnerId" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Client" nillable="true" type="tns:Client" />
-  <xs:complexType name="ArrayOfGoodColumn">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodColumn" nillable="true" type="tns:GoodColumn" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfGoodColumn" nillable="true" type="tns:ArrayOfGoodColumn" />
-  <xs:complexType name="ArrayOfImportType">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImportType" nillable="true" type="tns:ImportType" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfImportType" nillable="true" type="tns:ArrayOfImportType" />
-  <xs:complexType name="ImportType">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:unsignedByte" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ImportType" nillable="true" type="tns:ImportType" />
 </xs:schema>

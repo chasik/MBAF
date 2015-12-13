@@ -16,9 +16,27 @@
              
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
+             xmlns:Dialogs="clr-namespace:mba_application.Views.Dialogs"
              xmlns:ImportViewModels="clr-namespace:mba_application.ViewModels.Import"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" 
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ImportViewModels:RegistryAddViewModel}}">
+    
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+            <dx:DialogService.ViewTemplate>
+                <DataTemplate>
+                    <Dialogs:ClientChooseView/>
+                </DataTemplate>
+            </dx:DialogService.ViewTemplate>
+            <dx:DialogService.DialogStyle>
+                <Style TargetType="dx:DXDialogWindow">
+                    <Setter Property="Width" Value="450"/>
+                    <Setter Property="Height" Value="300"/>
+                    <Setter Property="ResizeMode" Value="NoResize"/>
+                </Style>
+            </dx:DialogService.DialogStyle>
+        </dx:DialogService>
+    </dxmvvm:Interaction.Behaviors>
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -47,47 +65,17 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="38"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="0" ShowSizeGrip="False"
-                                              ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
-                                              DisplayMember="Name" ValueMember="Id"
-                                              ItemsSource="{Binding Path=DataContext.Clients, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
-                                <dxe:ComboBoxEdit.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Grid.Column="0" Margin="10,5,0,5"
-                                                   Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
-                                            <TextBlock Grid.Column="1" Margin="10,1,10,0" FontSize="12" FontWeight="Bold"
-                                                       Text="{Binding Path=Name}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </dxe:ComboBoxEdit.ItemTemplate>
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:ComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                            
-                            <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="0" ShowSizeGrip="False"
-                                              ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
-                                              DisplayMember="Name" ValueMember="Id"
-                                              ItemsSource="{Binding Path=DataContext.ImportTypes, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2}}">
-                                <dxe:ComboBoxEdit.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" Grid.Column="1" Margin="10,1,10,0"/>
-                                    </DataTemplate>
-                                </dxe:ComboBoxEdit.ItemTemplate>
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:ComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
+                            <dxlc:FlowLayoutControl Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Button Command="{Binding Path=DataContext.ShowClientChooseDialogCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
+                                    <TextBlock Text="Добавить банк" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </Button>
+                            </dxlc:FlowLayoutControl>
 
-                            <dxc:ChartControl Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
+                            <dxc:ChartControl Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
                                               AnimationMode="OnLoad" ToolTipEnabled="True">
                                 <dxmvvm:Interaction.Behaviors>
                                     <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" PassEventArgsToCommand="True"

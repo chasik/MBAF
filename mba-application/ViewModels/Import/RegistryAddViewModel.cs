@@ -16,6 +16,8 @@ using DevExpress.Xpf.Editors;
 using System.Windows.Input;
 using DevExpress.Xpf.Charts;
 using System.Windows.Media.Animation;
+using mba_application.ViewModels.Dialogs;
+using System.ComponentModel;
 
 namespace mba_application.ViewModels.Import
 {
@@ -27,10 +29,9 @@ namespace mba_application.ViewModels.Import
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
 
             ImportService = new MBAImportService.ImportServiceClient();
-
-            GoodColumns = new ObservableCollection<GoodColumn>(ImportService.GoodColumns());
-            Clients = new ObservableCollection<Client>(ImportService.Clients());
-            ImportTypes = new ObservableCollection<ImportType>(ImportService.ImportTypes());
+            GoodColumns   = new ObservableCollection<GoodColumn>(ImportService.GoodColumns());
+            Clients       = new ObservableCollection<Client>(ImportService.Clients());
+            ImportTypes   = new ObservableCollection<ImportType>(ImportService.ImportTypes());
         }
 
         public RegistryAddViewModel Create()
@@ -42,6 +43,8 @@ namespace mba_application.ViewModels.Import
         private DateTime MouseDownTime, MouseUpTime;
 
         public ImportServiceClient ImportService;
+
+        public virtual IDialogService DialogService { get { return null; } }
 
         public virtual int SelectedWorkSheetIndex { get; set; }
         public virtual string SourceFilePath { get; set; }
@@ -157,6 +160,37 @@ namespace mba_application.ViewModels.Import
 
                 WorkSheetsInBook.Add(sheetInfo);
             }
+        }
+
+        public void ShowClientChooseDialog()
+        {
+            ClientChooseViewModel clientChooseViewModel = new ClientChooseViewModel();
+            clientChooseViewModel.Clients = Clients;
+            clientChooseViewModel.ImportTypes = ImportTypes;
+
+            UICommand selectClientCommand = new UICommand()
+            {
+                Caption = "Выбрать",
+                IsCancel = false,
+                IsDefault = false,
+                Command = new DelegateCommand<CancelEventArgs>(
+                    x => { },
+                    x => true
+                )
+            };
+            UICommand cancelCommand = new UICommand()
+            {
+                Id = MessageBoxResult.Cancel,
+                Caption = "Отменить",
+                IsCancel = true,
+                IsDefault = true
+            };
+
+            DialogService.ShowDialog(
+                dialogCommands: new List<UICommand>() { selectClientCommand, cancelCommand },
+                title: "Выбор Клиента...",
+                viewModel: clientChooseViewModel
+            );
         }
     }
 

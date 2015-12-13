@@ -114,6 +114,7 @@
     <Compile Include="ViewModels\Admin\AdminRolesViewModel.cs" />
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
     <Compile Include="ViewModels\Chat\ChatToolViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\ClientChooseViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Manager\ManagerAutoTasksViewModel.cs" />
@@ -133,6 +134,9 @@
     </Compile>
     <Compile Include="Views\Chat\ChatToolView.xaml.cs">
       <DependentUpon>ChatToolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ClientChooseView.xaml.cs">
+      <DependentUpon>ClientChooseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Import\RegistryAddView.xaml.cs">
       <DependentUpon>RegistryAddView.xaml</DependentUpon>
@@ -241,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Chat\ChatToolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialogs\ClientChooseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
