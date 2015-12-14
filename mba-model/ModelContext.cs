@@ -32,6 +32,25 @@ namespace mba_model
         public DbSet<Project>         Projects        { get; set; }
 
 
+        //Asterisk
+        public virtual DbSet<AsteriskSipPeer> AsteriskSipPeers { get; set; }
+        public virtual DbSet<AsteriskQueue> AsteriskQueues { get; set; }
+        public virtual DbSet<AsteriskCallDetail> AsteriskCallDetails { get; set; }
+        public virtual DbSet<AsteriskBlacklist> AsteriskBlacklists { get; set; }
+        public virtual DbSet<AsteriskExtension> AsteriskExtensions { get; set; }
+
+        public virtual DbSet<AsteriskMttCode> AsteriskMttCodes { get; set; }
+        public virtual DbSet<ast_mtt_operators_tr> ast_mtt_operators_tr { get; set; }
+        public virtual DbSet<ast_mtt_regions_tr> ast_mtt_regions_tr { get; set; }
+
+        public virtual DbSet<AsteriskInbound> AsteriskInbounds { get; set; }
+        public virtual DbSet<AsteriskMusicOnHold> AsteriskMusicOnHolds { get; set; }
+        public virtual DbSet<AsteriskQueueMember> AsteriskQueueMembers { get; set; }
+        public virtual DbSet<AsteriskQueueRule> AsteriskQueueRules { get; set; }
+
+
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //configure model with fluent API

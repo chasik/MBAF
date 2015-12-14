@@ -9,17 +9,30 @@
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              xmlns:Dialogs="clr-namespace:mba_application.ViewModels.Dialogs"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="450">
+             mc:Ignorable="d" d:DesignHeight="280" d:DesignWidth="400">
     
     <UserControl.Resources>
         <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <dxe:ComboBoxEdit Grid.Row="0" ShowSizeGrip="False"
+
+        <!--TextBlock Grid.Row="0" Text="Поиск..."/>
+        <dxe:SearchControl x:Name="searchControl" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0"
+                           FilterCondition="Contains" FilterByColumnsMode="Default">
+        </dxe:SearchControl-->
+
+        <TextBlock Grid.Row="3" Text="Выбор клиента..."/>
+        <dxe:ComboBoxEdit Grid.Row="4" ShowSizeGrip="False"
                           ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
                           DisplayMember="Name" ValueMember="Id"
                           ItemsSource="{Binding Path=Clients}">
@@ -27,13 +40,14 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="280"/>
+                            <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="10,5,0,5"
+                        <TextBlock Grid.Column="0" Margin="10,1,10,0" HorizontalAlignment="Stretch"
+                                   FontSize="12" FontWeight="Bold"
+                                   Text="{Binding Path=Name}" />
+                        <Image Grid.Column="1" Margin="10,5,0,5" HorizontalAlignment="Right"
                                Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
-                        <TextBlock Grid.Column="1" Margin="10,1,10,0" FontSize="12" FontWeight="Bold"
-                                   Text="{Binding Path=Name}"/>
                     </Grid>
                 </DataTemplate>
             </dxe:ComboBoxEdit.ItemTemplate>
@@ -42,7 +56,8 @@
             </dxe:ComboBoxEdit.StyleSettings>
         </dxe:ComboBoxEdit>
 
-        <dxe:ComboBoxEdit Grid.Column="1" Grid.Row="1" ShowSizeGrip="False"
+        <TextBlock Grid.Row="6" Text="Тип загруженного документа..."/>
+        <dxe:ComboBoxEdit Grid.Row="7" ShowSizeGrip="False"
                           ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
                           DisplayMember="Name" ValueMember="Id"
                           ItemsSource="{Binding ImportTypes}">
@@ -52,7 +67,7 @@
                 </DataTemplate>
             </dxe:ComboBoxEdit.ItemTemplate>
             <dxe:ComboBoxEdit.StyleSettings>
-                <dxe:ComboBoxStyleSettings />
+                <dxe:ComboBoxStyleSettings/>
             </dxe:ComboBoxEdit.StyleSettings>
         </dxe:ComboBoxEdit>
     </Grid>

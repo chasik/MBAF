@@ -31,6 +31,7 @@ namespace mba_services
         {
             return (from client in dbContext.Clients
                     where client.Deleted == null
+                    orderby client.Name
                     select client
                    ).ToArray();
         }

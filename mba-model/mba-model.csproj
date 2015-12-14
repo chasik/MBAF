@@ -35,11 +35,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="Asterisk\ast_blacklist.cs" />
+    <Compile Include="Asterisk\ast_cdr.cs" />
+    <Compile Include="Asterisk\ast_extensions.cs" />
+    <Compile Include="Asterisk\ast_inbound.cs" />
+    <Compile Include="Asterisk\ast_mtt_codes.cs" />
+    <Compile Include="Asterisk\ast_mtt_operators_tr.cs" />
+    <Compile Include="Asterisk\ast_mtt_regions_tr.cs" />
+    <Compile Include="Asterisk\ast_musiconhold.cs" />
+    <Compile Include="Asterisk\ast_queues.cs" />
+    <Compile Include="Asterisk\ast_queue_members.cs" />
+    <Compile Include="Asterisk\ast_queue_rules.cs" />
+    <Compile Include="Asterisk\ast_sippeers.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Import\ColumnHeaderClient.cs" />
     <Compile Include="Import\GoodColumn.cs" />
     <Compile Include="Import\ColumnHeader.cs" />
     <Compile Include="Import\ImportType.cs" />
+    <Compile Include="Migrations\201512140942454_Initial.cs" />
+    <Compile Include="Migrations\201512140942454_Initial.Designer.cs">
+      <DependentUpon>201512140942454_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="ModelContext.cs" />
@@ -87,6 +103,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512140942454_Initial.resx">
+      <DependentUpon>201512140942454_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

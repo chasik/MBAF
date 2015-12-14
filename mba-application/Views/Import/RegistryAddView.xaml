@@ -165,11 +165,11 @@
                         </dxg:TreeListControl.Columns>
                         <dxg:TreeListControl.View>
                             <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True" 
-                                              ShowNodeImages="True" ImageFieldName="Image">
+                                                ShowNodeImages="True" ImageFieldName="Image">
                                 <dxmvvm:Interaction.Triggers>
                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" 
-									                       Command="{Binding DblClickExplorerCommand}"
-									                       CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
+									                        Command="{Binding DblClickExplorerCommand}"
+									                        CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
                                 </dxmvvm:Interaction.Triggers>
                             </dxg:TreeListView>
                         </dxg:TreeListControl.View>
@@ -208,12 +208,12 @@
                 </dxdo:DocumentGroup>
                 <dxdo:LayoutPanel Caption="{Binding SourceFilePath}" ItemHeight="0.4*" AllowRestore="False" AllowRename="False" AllowMove="False" AllowMaximize="False" AllowFloat="False" AllowDrag="False" AllowDockToDocumentGroup="False" AllowDock="False" AllowContextMenu="False" AllowClose="False">
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" AllowDrop="True"
-                                              DocumentSource="{Binding SourceFilePath}"
-                                              ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
+                                                DocumentSource="{Binding SourceFilePath}"
+                                                ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
-								                   Command="{Binding DocumentLoadedCommand}"
-								                   CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+								                    Command="{Binding DocumentLoadedCommand}"
+								                    CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
                         </dxmvvm:Interaction.Triggers>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>
