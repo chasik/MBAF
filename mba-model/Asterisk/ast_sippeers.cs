@@ -1,15 +1,15 @@
 namespace mba_model
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
 
-    [Table("ast_sippeers")]
+    [Table("ast_sippeers"), DataContract]
     public partial class AsteriskSipPeer
     {
-        [Key]
+        [Key, DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
         public string IpAddr { get; set; }
         public int? Port { get; set; }
@@ -42,6 +42,7 @@ namespace mba_model
         public string promiscredir { get; set; }
         public string useclientcode { get; set; }
         public string accountcode { get; set; }
+        [DataMember]
         public string SetVar { get; set; }
         public string callerid { get; set; }
         public string amaflags { get; set; }
@@ -53,9 +54,13 @@ namespace mba_model
         public int? maxcallbitrate { get; set; }
         public string rfc2833compensate { get; set; }
         public string mailbox { get; set; }
+        [Column("session-timers")]
         public string session_timers { get; set; }
+        [Column("session-expires")]
         public int? session_expires { get; set; }
+        [Column("session-minse")]
         public int? session_minse { get; set; }
+        [Column("session-refresher")]
         public string session_refresher { get; set; }
         public string t38pt_usertpsource { get; set; }
         public string regexten { get; set; }
@@ -91,6 +96,7 @@ namespace mba_model
         public string vmexten { get; set; }
         public string autoframing { get; set; }
         public int? rtpkeepalive { get; set; }
+        [Column("call-limit")]
         public int? call_limit { get; set; }
         public string g726nonstandard { get; set; }
         public string ignoresdpversion { get; set; }
@@ -98,6 +104,7 @@ namespace mba_model
         public string dynamic { get; set; }
         public string path { get; set; }
         public string supportpath { get; set; }
+        [DataMember]
         public string id_queue { get; set; }
     }
 }

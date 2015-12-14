@@ -1,6 +1,5 @@
 ﻿using System.ServiceModel;
 using mba_model;
-using System.Collections.Generic;
 
 namespace mba_services.ServiceContracts
 {
@@ -20,6 +19,10 @@ namespace mba_services.ServiceContracts
         ImportType[] ImportTypes();
 
         [OperationContract]
-        Client AnalyzeColumnHeaders(ColumnHeader[] columnHeaders);
+        ColumnHeader[] AddColumnHeaders(string[] columnHeaders);
+
+        [OperationContract]
+        void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client);
+
     }
 }

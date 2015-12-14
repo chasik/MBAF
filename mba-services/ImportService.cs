@@ -2,6 +2,7 @@
 
 using mba_model;
 using mba_services.ServiceContracts;
+using System.Collections.Generic;
 
 namespace mba_services
 {
@@ -15,16 +16,27 @@ namespace mba_services
             dbContext.Configuration.ProxyCreationEnabled = false;
         }
 
-        public Client AnalyzeColumnHeaders(ColumnHeader[] columnHeaders)
+        public ColumnHeader[] AddColumnHeaders(string[] columnHeaders)
         {
+            List<ColumnHeader> columnHeaderList = new List<ColumnHeader>();
             foreach (var item in columnHeaders)
             {
-                if (!dbContext.ColumnHeaders.Any(ch => ch.Name == item.Name))
-                    dbContext.ColumnHeaders.Add(item);
+                if (!dbContext.ColumnHeaders.Any(ch => ch.Name == item))
+                    columnHeaderList.Add(dbContext.ColumnHeaders.Add(new ColumnHeader { Name = item }));
+                else
+                    columnHeaderList.Add(dbContext.ColumnHeaders.Where(ch => ch.Name == item).FirstOrDefault());
             }
             
             dbContext.SaveChanges();
-            return null;
+            return columnHeaderList.ToArray();
+        }
+
+        public void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client)
+        {
+            foreach (var ch in columnHeaders)
+            {
+                client.ColumnHeader_Client.Add(new ColumnHeaderClient { ClientId = client.Id, ColumnHeaderId = ch.Id });
+            }
         }
 
         public Client[] Clients()

@@ -35,7 +35,7 @@
         <dxe:ComboBoxEdit Grid.Row="4" ShowSizeGrip="False"
                           ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
                           DisplayMember="Name" ValueMember="Id"
-                          ItemsSource="{Binding Path=Clients}">
+                          ItemsSource="{Binding Path=Clients}" SelectedItem="{Binding Path=SelectedClient}">
             <dxe:ComboBoxEdit.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -43,7 +43,7 @@
                             <ColumnDefinition Width="280"/>
                             <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="10,1,10,0" HorizontalAlignment="Stretch"
+                        <TextBlock Grid.Column="0" Margin="10,1,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
                                    FontSize="12" FontWeight="Bold"
                                    Text="{Binding Path=Name}" />
                         <Image Grid.Column="1" Margin="10,5,0,5" HorizontalAlignment="Right"

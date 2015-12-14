@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/mba_model" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GoodColumn">
     <xs:complexType>
       <xs:sequence>
@@ -51,18 +52,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AnalyzeColumnHeaders">
+  <xs:element name="AddColumnHeaders">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="columnHeaders" nillable="true" type="q5:ArrayOfColumnHeader" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="columnHeaders" nillable="true" type="q5:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AnalyzeColumnHeadersResponse">
+  <xs:element name="AddColumnHeadersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="AnalyzeColumnHeadersResult" nillable="true" type="q6:Client" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="AddColumnHeadersResult" nillable="true" type="q6:ArrayOfColumnHeader" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRelationColumnHeadersClient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="columnHeaders" nillable="true" type="q7:ArrayOfColumnHeader" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="client" nillable="true" type="q8:Client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRelationColumnHeadersClientResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

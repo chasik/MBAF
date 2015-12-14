@@ -115,6 +115,7 @@ namespace mba_application.ViewModels.Import
             IWorkbook WorkBook = (_spreadSheet as SpreadsheetControl).Document;
             foreach (Worksheet ws in WorkBook.Worksheets)
             {
+                bool headerTableFound = false;
                 DevExpress.Spreadsheet.Range usedRange = ws.GetUsedRange();
 
                 SheetInfo sheetInfo = new SheetInfo(usedRange.RightColumnIndex - usedRange.LeftColumnIndex);
@@ -126,8 +127,9 @@ namespace mba_application.ViewModels.Import
                     for (int columnIndex = usedRange.LeftColumnIndex; columnIndex < usedRange.RightColumnIndex; columnIndex++)
                         sheetInfo.CurrentRowInfo.AddCell(ws.Cells[rowIndex, columnIndex]);
 
-                    if (sheetInfo.GetStatisticForRow()) // метода взращает bool со значение true если "диагностирует" что данная строка - шапка
+                    if (!headerTableFound && sheetInfo.GetStatisticForRow()) // метода взращает bool со значение true если "диагностирует" что данная строка - шапка
                     {
+                        headerTableFound = true;
                         for (int headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex < usedRange.RightColumnIndex; headerColumnIndex++)
                         {
                             if (ws.Cells[rowIndex, headerColumnIndex].Value.Type == CellValueType.Text)
@@ -150,13 +152,13 @@ namespace mba_application.ViewModels.Import
                     }
                 }
                 // производим сопоставление собранных столбцов с Клиентами для определения вероятности принадлежности
-                List<ColumnHeader> columnHeaders = new List<ColumnHeader>();
+                List<string> columnHeaders = new List<string>();
                 foreach (var item in sheetInfo.ColumnHeaderList)
                 {
-                    columnHeaders.Add(new ColumnHeader { Name = item.Caption });
+                    columnHeaders.Add( item.Caption );
                 }
 
-                sheetInfo.possiblyClient = ImportService.AnalyzeColumnHeaders(columnHeaders.ToArray());
+                sheetInfo.ColumnHeaders = new ObservableCollection<ColumnHeader>( ImportService.AddColumnHeaders(columnHeaders.ToArray()) );
 
                 WorkSheetsInBook.Add(sheetInfo);
             }
@@ -174,7 +176,10 @@ namespace mba_application.ViewModels.Import
                 IsCancel = false,
                 IsDefault = false,
                 Command = new DelegateCommand<CancelEventArgs>(
-                    x => { },
+                    x => {
+                        if (!WorkSheetsInBook[SelectedWorkSheetIndex].RelatedClients.Contains(clientChooseViewModel.SelectedClient))
+                            WorkSheetsInBook[SelectedWorkSheetIndex].RelatedClients.Add(clientChooseViewModel.SelectedClient);
+                        },
                     x => true
                 )
             };
@@ -215,12 +220,16 @@ namespace mba_application.ViewModels.Import
             get { return GetProperty(() => WorkSheet); }
             set { SetProperty(() => WorkSheet, value); }
         }
+
+        public ObservableCollection<ColumnHeader> ColumnHeaders { get; set; }
+        public ObservableCollection<Client> RelatedClients { get; set; }
+
         public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
         public List<ColumnCaption> ColumnHeaderList { get; set; }
-        public Client possiblyClient;
 
         public SheetInfo(int _columnsCount)
         {
+            RelatedClients = new ObservableCollection<Client>();
             SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
 
             rangeRows = new List<RowInfo>();

@@ -13,7 +13,7 @@ namespace mba_model.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201512140942454_Initial"; }
+            get { return "201512141133016_Initial"; }
         }
         
         string IMigrationMetadata.Source

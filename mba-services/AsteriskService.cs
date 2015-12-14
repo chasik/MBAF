@@ -1,4 +1,6 @@
-﻿using AsterNET.ARI;
+﻿using System.Linq;
+using AsterNET.ARI;
+using mba_model;
 using mba_services.ServiceContracts;
 
 namespace mba_services
@@ -8,6 +10,14 @@ namespace mba_services
     {
         public static AriClient ActionClient;
 
+        public ModelContext dbContext;
+
+        public AsteriskService()
+        {
+            dbContext = new ModelContext();
+            dbContext.Configuration.ProxyCreationEnabled = false;
+        }
+
         public void DoWork()
         {
             ActionClient = new AriClient(new StasisEndpoint("10.100.3.44", 8088, "asterisk", "heslox"), "wcf-service");
@@ -16,6 +26,13 @@ namespace mba_services
             ActionClient.OnStasisEndEvent += ActionClient_OnStasisEndEvent; 
 
             ActionClient.Connect();
+        }
+
+        public AsteriskSipPeer[] GetAllSipPeers()
+        {
+            return (from sp in dbContext.AsteriskSipPeers
+                    select sp
+                    ).ToArray();
         }
 
         private void ActionClient_OnStasisEndEvent(IAriClient sender, AsterNET.ARI.Models.StasisEndEvent e)

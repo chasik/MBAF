@@ -7,6 +7,8 @@ namespace mba_application.ViewModels.Dialogs
     [POCOViewModel]
     public class ClientChooseViewModel
     {
+        public virtual Client SelectedClient { get; set; }
+
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<ImportType> ImportTypes { get; set; }
 

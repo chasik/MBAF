@@ -34,6 +34,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/mba_model" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IImportService_GoodColumn_InputMessage">
@@ -60,11 +61,17 @@
   <wsdl:message name="IImportService_ImportTypes_OutputMessage">
     <wsdl:part name="parameters" element="tns:ImportTypesResponse" />
   </wsdl:message>
-  <wsdl:message name="IImportService_AnalyzeColumnHeaders_InputMessage">
-    <wsdl:part name="parameters" element="tns:AnalyzeColumnHeaders" />
+  <wsdl:message name="IImportService_AddColumnHeaders_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddColumnHeaders" />
   </wsdl:message>
-  <wsdl:message name="IImportService_AnalyzeColumnHeaders_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AnalyzeColumnHeadersResponse" />
+  <wsdl:message name="IImportService_AddColumnHeaders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddColumnHeadersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IImportService_AddRelationColumnHeadersClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRelationColumnHeadersClient" />
+  </wsdl:message>
+  <wsdl:message name="IImportService_AddRelationColumnHeadersClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRelationColumnHeadersClientResponse" />
   </wsdl:message>
   <wsdl:portType name="IImportService">
     <wsdl:operation name="GoodColumn">
@@ -83,9 +90,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IImportService/ImportTypes" message="tns:IImportService_ImportTypes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImportService/ImportTypesResponse" message="tns:IImportService_ImportTypes_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AnalyzeColumnHeaders">
-      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AnalyzeColumnHeaders" message="tns:IImportService_AnalyzeColumnHeaders_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/AnalyzeColumnHeadersResponse" message="tns:IImportService_AnalyzeColumnHeaders_OutputMessage" />
+    <wsdl:operation name="AddColumnHeaders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AddColumnHeaders" message="tns:IImportService_AddColumnHeaders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/AddColumnHeadersResponse" message="tns:IImportService_AddColumnHeaders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRelationColumnHeadersClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AddRelationColumnHeadersClient" message="tns:IImportService_AddRelationColumnHeadersClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/AddRelationColumnHeadersClientResponse" message="tns:IImportService_AddRelationColumnHeadersClient_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IImportService" type="tns:IImportService">
@@ -127,8 +138,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AnalyzeColumnHeaders">
-      <soap12:operation soapAction="http://tempuri.org/IImportService/AnalyzeColumnHeaders" style="document" />
+    <wsdl:operation name="AddColumnHeaders">
+      <soap12:operation soapAction="http://tempuri.org/IImportService/AddColumnHeaders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRelationColumnHeadersClient">
+      <soap12:operation soapAction="http://tempuri.org/IImportService/AddRelationColumnHeadersClient" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

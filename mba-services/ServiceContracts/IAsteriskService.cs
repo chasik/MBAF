@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using mba_model;
 using System.ServiceModel;
-using System.Text;
 
 namespace mba_services.ServiceContracts
 {
@@ -13,5 +9,8 @@ namespace mba_services.ServiceContracts
     {
         [OperationContract]
         void DoWork();
+
+        [OperationContract]
+        AsteriskSipPeer[] GetAllSipPeers();
     }
 }

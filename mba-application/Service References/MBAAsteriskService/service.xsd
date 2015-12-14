@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/mba_model" />
   <xs:element name="DoWork">
     <xs:complexType>
       <xs:sequence />
@@ -8,6 +9,18 @@
   <xs:element name="DoWorkResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllSipPeers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllSipPeersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="GetAllSipPeersResult" nillable="true" type="q1:ArrayOfAsteriskSipPeer" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

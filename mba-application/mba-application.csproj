@@ -192,7 +192,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\mba_model.AsteriskSipPeer.datasource" />
     <None Include="Properties\DataSources\mba_model.Client.datasource" />
+    <None Include="Properties\DataSources\mba_model.ColumnHeader.datasource" />
     <None Include="Properties\DataSources\mba_model.GoodColumn.datasource" />
     <None Include="Properties\DataSources\mba_model.ImportType.datasource" />
     <None Include="Properties\DataSources\mba_model.Permission.datasource" />
@@ -202,8 +204,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\MBAAsteriskService\mba_model.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MBAAsteriskService\service.wsdl" />
     <None Include="Service References\MBAAsteriskService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAAsteriskService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MBAImportService\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MBAImportService\mba_model.xsd">
@@ -486,6 +497,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\FileSystem\file-simple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Admin\Asterisk\" />
+    <Folder Include="Views\Admin\Asterisk\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

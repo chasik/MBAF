@@ -23,6 +23,8 @@
   <Metadata>
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="539db30d-f1d3-4a66-ab51-35a662f224c8" SourceId="1" SourceUrl="http://localhost:8836/mex_asterisk" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a152ff35-ceb0-497e-b4c7-3d4909aa7566" SourceId="1" SourceUrl="http://localhost:8836/mex_asterisk" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="cc75648d-fdb6-4b0c-8e3f-a526cf555303" SourceId="1" SourceUrl="http://localhost:8836/mex_asterisk" />
+    <MetadataFile FileName="mba_model.xsd" MetadataType="Schema" ID="2275392d-0000-475e-af66-c553392676b2" SourceId="1" SourceUrl="http://localhost:8836/mex_asterisk" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

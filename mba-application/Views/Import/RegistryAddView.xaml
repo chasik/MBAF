@@ -61,19 +61,43 @@
                     <dxdo:DocumentPanel Grid.Row="0" Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="100"/>
                                 <RowDefinition Height="38"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <dxlc:FlowLayoutControl Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                                <Button Command="{Binding Path=DataContext.ShowClientChooseDialogCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
-                                    <TextBlock Text="Добавить банк" TextWrapping="Wrap" TextAlignment="Center"/>
-                                </Button>
-                            </dxlc:FlowLayoutControl>
+
+                            <dxe:ListBoxEdit Grid.Row="0" Grid.Column="0" 
+                                             ItemsSource="{Binding Path=RelatedClients}">
+                                <dxe:ListBoxEdit.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100"/>
+                                    </ItemsPanelTemplate>
+                                </dxe:ListBoxEdit.ItemsPanel>
+                                <dxe:ListBoxEdit.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="100" Margin="6,0,6,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                                <RowDefinition Height="45"/>
+                                                <RowDefinition Height="10"/>
+                                            </Grid.RowDefinitions>
+                                            <Image Grid.Row="0" HorizontalAlignment="Right"
+                                                   Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
+                                            <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" TextAlignment="Right" TextWrapping="WrapWithOverflow"
+                                                       Text="{Binding Path=Name}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </dxe:ListBoxEdit.ItemTemplate>
+                            </dxe:ListBoxEdit>
+
+                            <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch"
+                                    Command="{Binding Path=DataContext.ShowClientChooseDialogCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
+                                <TextBlock Text="Добавить банк" TextWrapping="Wrap" TextAlignment="Center"/>
+                            </Button>
 
                             <dxc:ChartControl Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
                                               AnimationMode="OnLoad" ToolTipEnabled="True">
