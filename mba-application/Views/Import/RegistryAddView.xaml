@@ -160,14 +160,14 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <Button Visibility="{Binding Path=IsSelected, 
-                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                         Converter={StaticResource BoolToVis}}"/>
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                     Converter={StaticResource BoolToVis}}"/>
                                         <Button Visibility="{Binding Path=IsSelected, 
-                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                         Converter={StaticResource BoolToVis}}"/>
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                     Converter={StaticResource BoolToVis}}"/>
                                         <Button Visibility="{Binding Path=IsSelected, 
-                                                                         RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                         Converter={StaticResource BoolToVis}}"/>
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                     Converter={StaticResource BoolToVis}}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>

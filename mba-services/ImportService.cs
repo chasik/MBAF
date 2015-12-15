@@ -3,6 +3,7 @@
 using mba_model;
 using mba_services.ServiceContracts;
 using System.Collections.Generic;
+using System;
 
 namespace mba_services
 {
@@ -21,22 +22,29 @@ namespace mba_services
             List<ColumnHeader> columnHeaderList = new List<ColumnHeader>();
             foreach (var item in columnHeaders)
             {
+                ColumnHeader addedColumnHeader;
                 if (!dbContext.ColumnHeaders.Any(ch => ch.Name == item))
-                    columnHeaderList.Add(dbContext.ColumnHeaders.Add(new ColumnHeader { Name = item }));
+                    addedColumnHeader = dbContext.ColumnHeaders.Add(new ColumnHeader { Name = item });
                 else
-                    columnHeaderList.Add(dbContext.ColumnHeaders.Where(ch => ch.Name == item).FirstOrDefault());
+                    addedColumnHeader = dbContext.ColumnHeaders.Include("ColumnHeaderClients").Where(ch => ch.Name == item).FirstOrDefault();
+
+                columnHeaderList.Add(addedColumnHeader);
             }
-            
+
             dbContext.SaveChanges();
             return columnHeaderList.ToArray();
         }
 
         public void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client)
         {
+            Client clientInDB = dbContext.Clients.Include("ColumnHeaderClients").Where(c => c.Id == client.Id).FirstOrDefault();
             foreach (var ch in columnHeaders)
             {
-                client.ColumnHeader_Client.Add(new ColumnHeaderClient { ClientId = client.Id, ColumnHeaderId = ch.Id });
+                var newColumnHeaderClient = new ColumnHeaderClient { ClientId = client.Id, ColumnHeaderId = ch.Id, Changed = DateTime.Now };
+                if (!clientInDB.ColumnHeaderClients.Any(colh => colh.ColumnHeaderId == newColumnHeaderClient.ColumnHeaderId && colh.ClientId == newColumnHeaderClient.ClientId))
+                    clientInDB.ColumnHeaderClients.Add(newColumnHeaderClient);
             }
+            dbContext.SaveChanges();
         }
 
         public Client[] Clients()

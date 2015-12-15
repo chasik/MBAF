@@ -23,6 +23,5 @@ namespace mba_services.ServiceContracts
 
         [OperationContract]
         void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client);
-
     }
 }

@@ -52,9 +52,9 @@
     <Compile Include="Import\GoodColumn.cs" />
     <Compile Include="Import\ColumnHeader.cs" />
     <Compile Include="Import\ImportType.cs" />
-    <Compile Include="Migrations\201512141133016_Initial.cs" />
-    <Compile Include="Migrations\201512141133016_Initial.Designer.cs">
-      <DependentUpon>201512141133016_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201512150815446_Init2.cs" />
+    <Compile Include="Migrations\201512150815446_Init2.Designer.cs">
+      <DependentUpon>201512150815446_Init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Permission.cs" />
@@ -105,8 +105,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512141133016_Initial.resx">
-      <DependentUpon>201512141133016_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512150815446_Init2.resx">
+      <DependentUpon>201512150815446_Init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
