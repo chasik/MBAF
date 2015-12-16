@@ -5,31 +5,32 @@ using System.Runtime.Serialization;
 
 namespace mba_model
 {
-    [DataContract]
+    [DataContract()]
     public class Client
     {
-        [DataMember]
+        [DataMember()]
         public int Id { get; set; }
-        [DataMember]
+        [DataMember()]
         public int? ParentId { get; set; }
-        [DataMember]
+        [DataMember()]
         public int InnerId { get; set; }
-        [DataMember]
+        [DataMember()]
         public string Name { get; set; }
-        [DataMember]
+        [DataMember()]
         public string FullName { get; set; }
-        [DataMember]
+        [DataMember()]
         public string Image { get; set; }
-        [DataMember, Column(TypeName = "datetime2")]
+        [DataMember(), Column(TypeName = "datetime2")]
         public DateTime Created { get; set; }
-        [DataMember]
+        
+        [DataMember()]
         public int CreatedBy { get; set; }
-        [DataMember, Column(TypeName = "datetime2")]
+        [DataMember(), Column(TypeName = "datetime2")]
         public DateTime? Deleted { get; set; }
-        [DataMember]
+        [DataMember()]
         public int? DeletedBy { get; set; }
 
-        [DataMember]
+        [DataMember()]
         public virtual ICollection<ColumnHeaderClient> ColumnHeaderClients { get; set; }
     }
 }

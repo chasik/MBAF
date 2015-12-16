@@ -47,9 +47,7 @@ namespace mba_model
         public virtual DbSet<AsteriskMusicOnHold> AsteriskMusicOnHolds { get; set; }
         public virtual DbSet<AsteriskQueueMember> AsteriskQueueMembers { get; set; }
         public virtual DbSet<AsteriskQueueRule> AsteriskQueueRules { get; set; }
-
-
-
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

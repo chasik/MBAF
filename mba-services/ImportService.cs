@@ -4,6 +4,7 @@ using mba_model;
 using mba_services.ServiceContracts;
 using System.Collections.Generic;
 using System;
+using System.Collections.ObjectModel;
 
 namespace mba_services
 {
@@ -19,7 +20,7 @@ namespace mba_services
 
         public ColumnHeader[] AddColumnHeaders(string[] columnHeaders)
         {
-            List<ColumnHeader> columnHeaderList = new List<ColumnHeader>();
+            var columnHeaderCollection = new List<ColumnHeader>();
             foreach (var item in columnHeaders)
             {
                 ColumnHeader addedColumnHeader;
@@ -28,14 +29,14 @@ namespace mba_services
                 else
                     addedColumnHeader = dbContext.ColumnHeaders.Include("ColumnHeaderClients").Where(ch => ch.Name == item).FirstOrDefault();
 
-                columnHeaderList.Add(addedColumnHeader);
+                columnHeaderCollection.Add(addedColumnHeader);
             }
-
             dbContext.SaveChanges();
-            return columnHeaderList.ToArray();
+
+            return columnHeaderCollection.ToArray();
         }
 
-        public void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client)
+        public void AddRelationColumnHeadersClient(ObservableCollection<ColumnHeader> columnHeaders, Client client)
         {
             Client clientInDB = dbContext.Clients.Include("ColumnHeaderClients").Where(c => c.Id == client.Id).FirstOrDefault();
             foreach (var ch in columnHeaders)

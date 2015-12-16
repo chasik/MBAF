@@ -43,7 +43,10 @@
                             <ColumnDefinition Width="280"/>
                             <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="10,1,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        <TextBlock Grid.Column="0" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                   FontSize="12" FontWeight="Bold"
+                                   Text="{Binding Path=InnerId}" />
+                        <TextBlock Grid.Column="0" Margin="40,0,6,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
                                    FontSize="12" FontWeight="Bold"
                                    Text="{Binding Path=Name}" />
                         <Image Grid.Column="1" Margin="10,5,0,5" HorizontalAlignment="Right"

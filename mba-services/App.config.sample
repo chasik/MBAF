@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <configuration>
 
   <configSections>
@@ -11,10 +11,33 @@
   </system.web>
   <!-- When deploying the service library project, the content of the config file must be added to the host's 
    app.config file. System.Configuration does not support config files for libraries. -->
+  <system.diagnostics>
+    <trace autoflush="true" />
+    <sources>
+      <source name="System.ServiceModel"
+              switchValue="Information, Verbose, Warning, ActivityTracing, Error, Critical"
+              propagateActivity="true">
+        <listeners>
+          <add name="sdt"
+              type="System.Diagnostics.XmlWriterTraceListener"
+              initializeData="SdrConfigExample.e2e"  />
+        </listeners>
+      </source>
+    </sources>
+  </system.diagnostics>
   <system.serviceModel>
+    <bindings>
+      <netTcpBinding>
+        <binding name="NetTcpBinding_MBAServices" maxBufferPoolSize="2147483647"
+          maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+          <readerQuotas maxDepth="10000" maxStringContentLength="2147483647"
+            maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+        </binding>
+      </netTcpBinding>
+    </bindings>
     <services>
       <service name="mba_services.UserService">
-        <endpoint address="UserService" binding="netTcpBinding" contract="mba_services.ServiceContracts.IUserService">
+        <endpoint address="UserService" binding="netTcpBinding" bindingConfiguration="NetTcpBinding_MBAServices" contract="mba_services.ServiceContracts.IUserService">
           <identity>
             <dns value="localhost" />
           </identity>
@@ -28,7 +51,7 @@
         </host>
       </service>
       <service name="mba_services.ImportService">
-        <endpoint address="ImportService" binding="netTcpBinding" contract="mba_services.ServiceContracts.IImportService">
+        <endpoint address="ImportService" binding="netTcpBinding" bindingConfiguration="NetTcpBinding_MBAServices" contract="mba_services.ServiceContracts.IImportService">
           <identity>
             <dns value="localhost" />
           </identity>
@@ -42,7 +65,7 @@
         </host>
       </service>
       <service name="mba_services.AsteriskService">
-        <endpoint address="AsteriskService" binding="netTcpBinding" contract="mba_services.ServiceContracts.IAsteriskService">
+        <endpoint address="AsteriskService" binding="netTcpBinding" bindingConfiguration="NetTcpBinding_MBAServices" contract="mba_services.ServiceContracts.IAsteriskService">
           <identity>
             <dns value="localhost" />
           </identity>

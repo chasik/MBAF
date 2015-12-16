@@ -67,6 +67,12 @@
   <wsdl:message name="IImportService_AddColumnHeaders_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddColumnHeadersResponse" />
   </wsdl:message>
+  <wsdl:message name="IImportService_GetRelatedClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRelatedClients" />
+  </wsdl:message>
+  <wsdl:message name="IImportService_GetRelatedClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRelatedClientsResponse" />
+  </wsdl:message>
   <wsdl:message name="IImportService_AddRelationColumnHeadersClient_InputMessage">
     <wsdl:part name="parameters" element="tns:AddRelationColumnHeadersClient" />
   </wsdl:message>
@@ -93,6 +99,10 @@
     <wsdl:operation name="AddColumnHeaders">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AddColumnHeaders" message="tns:IImportService_AddColumnHeaders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImportService/AddColumnHeadersResponse" message="tns:IImportService_AddColumnHeaders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportService/GetRelatedClients" message="tns:IImportService_GetRelatedClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportService/GetRelatedClientsResponse" message="tns:IImportService_GetRelatedClients_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddRelationColumnHeadersClient">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportService/AddRelationColumnHeadersClient" message="tns:IImportService_AddRelationColumnHeadersClient_InputMessage" />
@@ -140,6 +150,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddColumnHeaders">
       <soap12:operation soapAction="http://tempuri.org/IImportService/AddColumnHeaders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedClients">
+      <soap12:operation soapAction="http://tempuri.org/IImportService/GetRelatedClients" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

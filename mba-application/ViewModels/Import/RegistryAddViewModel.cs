@@ -154,13 +154,38 @@ namespace mba_application.ViewModels.Import
                 List<string> columnHeaders = new List<string>();
                 foreach (var item in sheetInfo.ColumnHeaderList)
                 {
-                    columnHeaders.Add( item.Caption );
+                    columnHeaders.Add(item.Caption);
                 }
 
-                sheetInfo.ColumnHeaders = ImportService.AddColumnHeaders(columnHeaders.ToArray());
+                var arrayColumnHeaders = ImportService.AddColumnHeaders(columnHeaders.ToArray());
+                sheetInfo.ColumnHeaders = new ObservableCollection<ColumnHeader>(arrayColumnHeaders);
 
                 // производим сопоставление собранных столбцов с Клиентами для определения вероятности принадлежности
-                //sheetInfo.RelatedClients = new ObservableCollection<Client>( ImportService.GetRelatedClients(sheetInfo.ColumnHeaders) );
+
+                sheetInfo.RelatedClients = new ObservableCollection<RelatedClientInfo>();
+                foreach (var ch in arrayColumnHeaders)
+                {
+                    if (ch.ColumnHeaderClients != null)
+                    {
+                        foreach (var chcRelation in ch.ColumnHeaderClients)
+                        {
+                            foreach (var client in Clients)
+                            {
+                                if (client.Id != chcRelation.ClientId)
+                                    continue;
+
+                                var addedClient = sheetInfo.RelatedClientsContainClient(client);
+                                if (addedClient != null)
+                                    addedClient.RelatedColumnHeaderCount++;
+                                else
+                                {
+                                    sheetInfo.RelatedClients.Add(new RelatedClientInfo { Client = client, RelatedColumnHeaderCount = 1, ColumnHeaderCount = arrayColumnHeaders.Length });
+                                }
+                            }
+                        }
+                    }
+                }
+
                 WorkSheetsInBook.Add(sheetInfo);
             }
         }
@@ -179,10 +204,14 @@ namespace mba_application.ViewModels.Import
                 Command = new DelegateCommand<CancelEventArgs>(
                     x => {
                             var currentSheetInfo = WorkSheetsInBook[SelectedWorkSheetIndex];
-                            if (!currentSheetInfo.RelatedClients.Contains(clientChooseViewModel.SelectedClient))
-                                currentSheetInfo.RelatedClients.Add(clientChooseViewModel.SelectedClient);
+                            if (currentSheetInfo.RelatedClientsContainClient(clientChooseViewModel.SelectedClient) == null)
+                                currentSheetInfo.RelatedClients.Add(
+                                    new RelatedClientInfo { Client = clientChooseViewModel.SelectedClient,
+                                                            RelatedColumnHeaderCount = currentSheetInfo.ColumnHeaders.Count,
+                                                            ColumnHeaderCount = currentSheetInfo.ColumnHeaders.Count
+                                });
 
-                            ImportService.AddRelationColumnHeadersClient(currentSheetInfo.ColumnHeaders, clientChooseViewModel.SelectedClient);
+                            ImportService.AddRelationColumnHeadersClient(currentSheetInfo.ColumnHeadersToArray, clientChooseViewModel.SelectedClient);
                          },
                     x => true
                 )
@@ -203,7 +232,6 @@ namespace mba_application.ViewModels.Import
         }
     }
 
-
     public class RowStruct
     {
         internal int columnsCount;
@@ -217,6 +245,17 @@ namespace mba_application.ViewModels.Import
         }
     }
 
+    public class RelatedClientInfo
+    {
+        public Client Client { get; set; }
+        public int RelatedColumnHeaderCount;
+        public int ColumnHeaderCount;
+        public string RelatedColumnHeaderPercentStr
+        {
+            get { return RelatedColumnHeaderCount.ToString() + " - " + (Math.Round(100F * RelatedColumnHeaderCount / ColumnHeaderCount)).ToString() + "%"; }
+        }
+    }
+
     public class SheetInfo : ViewModelBase
     {
         public Worksheet WorkSheet
@@ -225,8 +264,15 @@ namespace mba_application.ViewModels.Import
             set { SetProperty(() => WorkSheet, value); }
         }
 
-        public ColumnHeader[] ColumnHeaders { get; set; }
-        public ObservableCollection<Client> RelatedClients { get; set; }
+        public ObservableCollection<ColumnHeader> ColumnHeaders { get; set; }
+        public ColumnHeader[] ColumnHeadersToArray {
+            get {
+                List<ColumnHeader> chList = new List<ColumnHeader>(ColumnHeaders);
+                return chList.ToArray();
+            }
+        }
+
+        public ObservableCollection<RelatedClientInfo> RelatedClients { get; set; }
 
         public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
         public List<ColumnCaption> ColumnHeaderList { get; set; }
@@ -301,6 +347,16 @@ namespace mba_application.ViewModels.Import
                 SummRowsInfo.Add(CurrentRowInfo.RowInfoStr, 1);
 
             return isShapka;
+        }
+
+        internal RelatedClientInfo RelatedClientsContainClient(Client client)
+        {
+            foreach (var item in RelatedClients)
+            {
+                if (client == item.Client)
+                    return item;
+            }
+            return null;
         }
 
         private List<RowInfo> rangeRows;

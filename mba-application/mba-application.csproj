@@ -412,18 +412,6 @@
     <Resource Include="Resources\Images\Icons\menu-item-search-phone.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MBAImportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAImportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MBAImportService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\Icons\eraseBtn.png" />
   </ItemGroup>
   <ItemGroup>
@@ -501,6 +489,22 @@
   <ItemGroup>
     <Folder Include="ViewModels\Admin\Asterisk\" />
     <Folder Include="Views\Admin\Asterisk\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MBAImportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\close-button-gray-20x20.png" />
+    <Resource Include="Resources\Images\Icons\close-button-orange-20x20.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

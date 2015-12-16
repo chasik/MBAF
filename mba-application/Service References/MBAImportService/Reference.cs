@@ -55,6 +55,14 @@ namespace mba_application.MBAImportService {
         
         mba_model.ColumnHeader[] EndAddColumnHeaders(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/GetRelatedClients", ReplyAction="http://tempuri.org/IImportService/GetRelatedClientsResponse")]
+        mba_model.Client[] GetRelatedClients(mba_model.ColumnHeader[] columnHeaders);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IImportService/GetRelatedClients", ReplyAction="http://tempuri.org/IImportService/GetRelatedClientsResponse")]
+        System.IAsyncResult BeginGetRelatedClients(mba_model.ColumnHeader[] columnHeaders, System.AsyncCallback callback, object asyncState);
+        
+        mba_model.Client[] EndGetRelatedClients(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportService/AddRelationColumnHeadersClient", ReplyAction="http://tempuri.org/IImportService/AddRelationColumnHeadersClientResponse")]
         void AddRelationColumnHeadersClient(mba_model.ColumnHeader[] columnHeaders, mba_model.Client client);
         
@@ -165,6 +173,25 @@ namespace mba_application.MBAImportService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetRelatedClientsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetRelatedClientsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public mba_model.Client[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((mba_model.Client[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ImportServiceClient : System.ServiceModel.ClientBase<mba_application.MBAImportService.IImportService>, mba_application.MBAImportService.IImportService {
         
         private BeginOperationDelegate onBeginGoodColumnDelegate;
@@ -196,6 +223,12 @@ namespace mba_application.MBAImportService {
         private EndOperationDelegate onEndAddColumnHeadersDelegate;
         
         private System.Threading.SendOrPostCallback onAddColumnHeadersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetRelatedClientsDelegate;
+        
+        private EndOperationDelegate onEndGetRelatedClientsDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetRelatedClientsCompletedDelegate;
         
         private BeginOperationDelegate onBeginAddRelationColumnHeadersClientDelegate;
         
@@ -231,6 +264,8 @@ namespace mba_application.MBAImportService {
         public event System.EventHandler<ImportTypesCompletedEventArgs> ImportTypesCompleted;
         
         public event System.EventHandler<AddColumnHeadersCompletedEventArgs> AddColumnHeadersCompleted;
+        
+        public event System.EventHandler<GetRelatedClientsCompletedEventArgs> GetRelatedClientsCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddRelationColumnHeadersClientCompleted;
         
@@ -476,6 +511,56 @@ namespace mba_application.MBAImportService {
             }
             base.InvokeAsync(this.onBeginAddColumnHeadersDelegate, new object[] {
                         columnHeaders}, this.onEndAddColumnHeadersDelegate, this.onAddColumnHeadersCompletedDelegate, userState);
+        }
+        
+        public mba_model.Client[] GetRelatedClients(mba_model.ColumnHeader[] columnHeaders) {
+            return base.Channel.GetRelatedClients(columnHeaders);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetRelatedClients(mba_model.ColumnHeader[] columnHeaders, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetRelatedClients(columnHeaders, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public mba_model.Client[] EndGetRelatedClients(System.IAsyncResult result) {
+            return base.Channel.EndGetRelatedClients(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetRelatedClients(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            mba_model.ColumnHeader[] columnHeaders = ((mba_model.ColumnHeader[])(inValues[0]));
+            return this.BeginGetRelatedClients(columnHeaders, callback, asyncState);
+        }
+        
+        private object[] OnEndGetRelatedClients(System.IAsyncResult result) {
+            mba_model.Client[] retVal = this.EndGetRelatedClients(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetRelatedClientsCompleted(object state) {
+            if ((this.GetRelatedClientsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetRelatedClientsCompleted(this, new GetRelatedClientsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetRelatedClientsAsync(mba_model.ColumnHeader[] columnHeaders) {
+            this.GetRelatedClientsAsync(columnHeaders, null);
+        }
+        
+        public void GetRelatedClientsAsync(mba_model.ColumnHeader[] columnHeaders, object userState) {
+            if ((this.onBeginGetRelatedClientsDelegate == null)) {
+                this.onBeginGetRelatedClientsDelegate = new BeginOperationDelegate(this.OnBeginGetRelatedClients);
+            }
+            if ((this.onEndGetRelatedClientsDelegate == null)) {
+                this.onEndGetRelatedClientsDelegate = new EndOperationDelegate(this.OnEndGetRelatedClients);
+            }
+            if ((this.onGetRelatedClientsCompletedDelegate == null)) {
+                this.onGetRelatedClientsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRelatedClientsCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetRelatedClientsDelegate, new object[] {
+                        columnHeaders}, this.onEndGetRelatedClientsDelegate, this.onGetRelatedClientsCompletedDelegate, userState);
         }
         
         public void AddRelationColumnHeadersClient(mba_model.ColumnHeader[] columnHeaders, mba_model.Client client) {

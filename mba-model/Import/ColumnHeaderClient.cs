@@ -5,27 +5,27 @@ using System.Runtime.Serialization;
 
 namespace mba_model
 {
-    [DataContract, Table("ColumnHeader_Client")]
+    [DataContract(IsReference = true), Table("ColumnHeader_Client")]
     public class ColumnHeaderClient
     {
-        [DataMember, Key, Column(Order = 0)]
+        [DataMember(), Key, Column(Order = 0)]
         public int ColumnHeaderId { get; set; }
-        [DataMember, Key, Column(Order = 1)]
+        [DataMember(), Key, Column(Order = 1)]
         public int ClientId { get; set; }
-        [DataMember]
+        [DataMember()]
         public int? GoodColumnId { get; set; }
 
-        [DataMember]
+        [DataMember()]
         public virtual GoodColumn GoodColumn { get; set; }
-        [DataMember]
+        [DataMember()]
         public virtual ColumnHeader ColumnHeader { get; set; }
-        [DataMember]
+        [DataMember()]
         public virtual Client Client { get; set; }
 
         // additional info
-        [DataMember]
+        [DataMember()]
         public bool SaveToDB { get; set; }
-        [DataMember, Column(TypeName = "datetime2")]
+        [DataMember(), Column(TypeName = "datetime2")]
         public DateTime Changed { get; set; }
     }
 }

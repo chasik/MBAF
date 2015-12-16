@@ -16,29 +16,32 @@
   <system.serviceModel>
     <bindings>
       <netTcpBinding>
+        <binding name="NetTcpBinding_MBAServices" maxBufferPoolSize="2147483647"
+          maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647"
+            maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+        </binding>
         <binding name="NetTcpBinding_IImportService" />
-        <binding name="NetTcpBinding_IAsteriskService" />
-        <binding name="NetTcpBinding_IUserService" />
       </netTcpBinding>
     </bindings>
     <client>
-      <endpoint address="net.tcp://localhost:8735/ImportService" binding="netTcpBinding"
-        bindingConfiguration="NetTcpBinding_IImportService" contract="MBAImportService.IImportService"
-        name="NetTcpBinding_IImportService">
-        <identity>
-          <dns value="localhost" />
-        </identity>
-      </endpoint>
       <endpoint address="net.tcp://localhost:8736/AsteriskService"
-        binding="netTcpBinding" bindingConfiguration="NetTcpBinding_IAsteriskService"
+        binding="netTcpBinding" bindingConfiguration="NetTcpBinding_MBAServices"
         contract="MBAAsteriskService.IAsteriskService" name="NetTcpBinding_IAsteriskService">
         <identity>
           <dns value="localhost" />
         </identity>
       </endpoint>
       <endpoint address="net.tcp://localhost:8734/UserService" binding="netTcpBinding"
-        bindingConfiguration="NetTcpBinding_IUserService" contract="MBAUserService.IUserService"
+        bindingConfiguration="NetTcpBinding_MBAServices" contract="MBAUserService.IUserService"
         name="NetTcpBinding_IUserService">
+        <identity>
+          <dns value="localhost" />
+        </identity>
+      </endpoint>
+      <endpoint address="net.tcp://localhost:8735/ImportService" binding="netTcpBinding"
+        bindingConfiguration="NetTcpBinding_MBAServices" contract="MBAImportService.IImportService"
+        name="NetTcpBinding_IImportService">
         <identity>
           <dns value="localhost" />
         </identity>

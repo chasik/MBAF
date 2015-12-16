@@ -79,16 +79,41 @@
                                 </dxe:ListBoxEdit.ItemsPanel>
                                 <dxe:ListBoxEdit.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Width="100" Margin="6,0,6,0">
+                                        <Grid Width="100" Margin="4,0,4,0">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="35"/>
-                                                <RowDefinition Height="45"/>
-                                                <RowDefinition Height="10"/>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="20"/>
                                             </Grid.RowDefinitions>
                                             <Image Grid.Row="0" HorizontalAlignment="Right"
-                                                   Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
-                                            <TextBlock Grid.Row="1" FontSize="10" FontWeight="Bold" TextAlignment="Right" TextWrapping="WrapWithOverflow"
-                                                       Text="{Binding Path=Name}"/>
+                                                   Source="{Binding Path=Client.Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
+                                            <TextBlock Grid.Row="1" FontSize="8" TextAlignment="Right"
+                                                       Text="{Binding Path=RelatedColumnHeaderPercentStr}"/>
+                                            <TextBlock Grid.Row="1" FontSize="10" Margin="0,10,0,0"
+                                                       FontWeight="Bold" TextAlignment="Right" TextWrapping="WrapWithOverflow"
+                                                       Text="{Binding Path=Client.Name}"/>
+                                            
+                                            <Button Grid.Row="2" Width="20" Height="20" HorizontalAlignment="Right" Cursor="Hand"
+                                                    Content="" ClickMode="Press" BorderThickness="0">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Background">
+                                                            <Setter.Value>
+                                                                <ImageBrush ImageSource="/Resources/Images/Icons/close-button-gray-20x20.png"/>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background">
+                                                                    <Setter.Value>
+                                                                        <ImageBrush ImageSource="/Resources/Images/Icons/close-button-orange-20x20.png"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ListBoxEdit.ItemTemplate>

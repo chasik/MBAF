@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using mba_model;
+using System.Collections.ObjectModel;
 
 namespace mba_services.ServiceContracts
 {
@@ -22,6 +23,6 @@ namespace mba_services.ServiceContracts
         ColumnHeader[] AddColumnHeaders(string[] columnHeaders);
 
         [OperationContract]
-        void AddRelationColumnHeadersClient(ColumnHeader[] columnHeaders, Client client);
+        void AddRelationColumnHeadersClient(ObservableCollection<ColumnHeader> columnHeaders, Client client);
     }
 }

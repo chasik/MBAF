@@ -66,11 +66,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddRelationColumnHeadersClient">
+  <xs:element name="GetRelatedClients">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="columnHeaders" nillable="true" type="q7:ArrayOfColumnHeader" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="client" nillable="true" type="q8:Client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRelatedClientsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="GetRelatedClientsResult" nillable="true" type="q8:ArrayOfClient" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRelationColumnHeadersClient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="columnHeaders" nillable="true" type="q9:ArrayOfColumnHeader" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/mba_model" minOccurs="0" name="client" nillable="true" type="q10:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
