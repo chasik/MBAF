@@ -70,13 +70,15 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <dxe:ListBoxEdit Grid.Row="0" Grid.Column="0" 
-                                             ItemsSource="{Binding Path=RelatedClients}">
+                            <dxe:ListBoxEdit Grid.Row="0" Grid.Column="0"
+                                             ItemsSource="{Binding Path=RelatedClients}" 
+                                             SelectedItem="{Binding Path=SelectedRelatedClient}">
                                 <dxe:ListBoxEdit.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100"/>
                                     </ItemsPanelTemplate>
                                 </dxe:ListBoxEdit.ItemsPanel>
+                                
                                 <dxe:ListBoxEdit.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Width="100" Margin="4,0,4,0">
@@ -93,8 +95,7 @@
                                                        FontWeight="Bold" TextAlignment="Right" TextWrapping="WrapWithOverflow"
                                                        Text="{Binding Path=Client.Name}"/>
                                             
-                                            <Button Grid.Row="2" Width="20" Height="20" HorizontalAlignment="Right" Cursor="Hand"
-                                                    Content="" ClickMode="Press" BorderThickness="0">
+                                            <Button Grid.Row="2" Width="20" Height="20" HorizontalAlignment="Right" Cursor="Hand" ClickMode="Press">
                                                 <Button.Style>
                                                     <Style TargetType="{x:Type Button}">
                                                         <Setter Property="Background">
@@ -102,8 +103,19 @@
                                                                 <ImageBrush ImageSource="/Resources/Images/Icons/close-button-gray-20x20.png"/>
                                                             </Setter.Value>
                                                         </Setter>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border Background="{TemplateBinding Background}">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
                                                         <Style.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Width" Value="24"/>
+                                                                <Setter Property="Height" Value="24"/>        
                                                                 <Setter Property="Background">
                                                                     <Setter.Value>
                                                                         <ImageBrush ImageSource="/Resources/Images/Icons/close-button-orange-20x20.png"/>
@@ -114,6 +126,7 @@
                                                     </Style>
                                                 </Button.Style>
                                             </Button>
+                                            
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ListBoxEdit.ItemTemplate>
@@ -234,7 +247,7 @@
                                                 SelectedTabIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding WorkSheetName}"/>
+                                        <TextBlock Text="{Binding Path=WorkSheet.Name}"/>
                                     </DataTemplate>
                                 </dxdo:DocumentGroup.ItemCaptionTemplate>
                                 <dxdo:DocumentGroup.ItemContentTemplate>

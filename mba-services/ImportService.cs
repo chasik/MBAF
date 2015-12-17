@@ -41,7 +41,7 @@ namespace mba_services
             Client clientInDB = dbContext.Clients.Include("ColumnHeaderClients").Where(c => c.Id == client.Id).FirstOrDefault();
             foreach (var ch in columnHeaders)
             {
-                var newColumnHeaderClient = new ColumnHeaderClient { ClientId = client.Id, ColumnHeaderId = ch.Id, Changed = DateTime.Now };
+                var newColumnHeaderClient = new ColumnHeaderClient { ClientId = client.Id, ColumnHeaderId = ch.Id, Changed = DateTime.Now, SaveToDB = true };
                 if (!clientInDB.ColumnHeaderClients.Any(colh => colh.ColumnHeaderId == newColumnHeaderClient.ColumnHeaderId && colh.ClientId == newColumnHeaderClient.ClientId))
                     clientInDB.ColumnHeaderClients.Add(newColumnHeaderClient);
             }
