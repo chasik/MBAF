@@ -284,7 +284,7 @@ namespace WordsMatching
 				if (_outgoing[i] != -1)
 				{
 					nTotal += _cost[i, _outgoing[i]];
-					Trace.WriteLine (_leftTokens[i] + " <-> " + _rightTokens [_outgoing[i]] + " : " + _cost[i, _outgoing[i]]) ;
+					//Trace.WriteLine (_leftTokens[i] + " <-> " + _rightTokens [_outgoing[i]] + " : " + _cost[i, _outgoing[i]]) ;
 					float a=1.0F - System.Math.Max(_leftTokens[i].Length , _rightTokens[_outgoing[i]].Length ) != 0 ? _cost[i, _outgoing[i]]/System.Math.Max(_leftTokens[i].Length , _rightTokens[_outgoing[i]].Length ) : 1;
 					nA += a;					
 				}			

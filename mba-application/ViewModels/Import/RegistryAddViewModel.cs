@@ -30,6 +30,8 @@ namespace mba_application.ViewModels.Import
     {
         protected RegistryAddViewModel()
         {
+            WorkSheetsInBook = new ObservableCollection<SheetInfo>();
+
             ImportService = new MBAImportService.ImportServiceClient();
             ImportService.GoodColumnsCompleted += ImportService_GoodColumnsCompleted;
             ImportService.ClientsCompleted += ImportService_ClientsCompleted;
@@ -39,15 +41,13 @@ namespace mba_application.ViewModels.Import
             ImportService.GoodColumnsAsync();
             ImportService.ClientsAsync();
             ImportService.ImportTypesAsync();
-
-            WorkSheetsInBook = new ObservableCollection<SheetInfo>();
         }
 
         #region Async call to Service completed events
         private void ImportService_AddColumnHeadersCompleted(object sender, AddColumnHeadersCompletedEventArgs e)
         {
             var sheetInfo = e.UserState as SheetInfo;
-            sheetInfo.ColumnHeaders = new ObservableCollection<ColumnHeader>(e.Result);
+            sheetInfo.ColumnHeaders = new List<ColumnHeader>(e.Result);
 
             // производим сопоставление собранных столбцов с Клиентами для определения вероятности принадлежности
             var temporaryClients = new List<RelatedClientInfo>();
@@ -104,11 +104,11 @@ namespace mba_application.ViewModels.Import
         }
 
         public ImportServiceClient ImportService;
-        public ObservableCollection<GoodColumn> GoodColumns { get; set; }
-        public ObservableCollection<Client> Clients { get; set; }
-        public ObservableCollection<ImportType> ImportTypes { get; set; }
+        public virtual ObservableCollection<GoodColumn> GoodColumns { get; set; }
+        public virtual ObservableCollection<Client> Clients { get; set; }
+        public virtual ObservableCollection<ImportType> ImportTypes { get; set; }
 
-        public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
+        public virtual ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
 
         private ChartHitInfo SelectedHitInfo;
         private DateTime MouseDownTime, MouseUpTime;
@@ -193,10 +193,22 @@ namespace mba_application.ViewModels.Import
                 { 
                     columnHeaders.Add(item.Caption);
                 }
-
-                ImportService.AddColumnHeadersAsync(columnHeaders.ToArray(), sheetInfo);
-
                 WorkSheetsInBook.Add(sheetInfo);
+                ImportService.AddColumnHeadersAsync(columnHeaders.ToArray(), sheetInfo);
+           }
+        }
+
+        public void SpreadSheetSelectionChanged(object _spreadSheet)
+        {
+            var spreadSheet = _spreadSheet as SpreadsheetControl;
+            var currentSheetInfo = WorkSheetsInBook[SelectedWorkSheetIndex];
+
+            int selectedColumn = spreadSheet.Selection.LeftColumnIndex;
+
+            foreach (var item in currentSheetInfo.ColumnHeaderList)
+            {
+                if (item.RangeInWorksheet.Left == selectedColumn)
+                    currentSheetInfo.SelectedColumnHeaderValue = item;
             }
         }
 
@@ -275,17 +287,32 @@ namespace mba_application.ViewModels.Import
 
     public class SheetInfo : ViewModelBase
     {
+        public ICollection<GoodColumn> GoodColumns { get; set; }
         public Worksheet WorkSheet
         {
             get { return GetProperty(() => WorkSheet); }
             set { SetProperty(() => WorkSheet, value); }
         }
-        public ICollection<GoodColumn> GoodColumns { get; set; }
-        public List<ColumnHeaderValue> ColumnHeaderList { get; set; }
-        public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
+        public ObservableCollection<RelatedClientInfo> RelatedClients
+        {
+            get { return GetProperty(() => RelatedClients); }
+            set { SetProperty(() => RelatedClients, value); }
+        }
+        public List<ColumnHeaderValue> ColumnHeaderList
+        {
+            get { return GetProperty(() => ColumnHeaderList); }
+            set { SetProperty(() => ColumnHeaderList, value); }
+        }
+        public ColumnHeaderValue SelectedColumnHeaderValue
+        {
+            get { return GetProperty(() => SelectedColumnHeaderValue); }
+            set { SetProperty(() => SelectedColumnHeaderValue, value); }
+        }
+        public List<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
 
-        public ObservableCollection<ColumnHeader> ColumnHeaders { get; set; }
-        public ColumnHeader[] ColumnHeadersToArray {
+        public List<ColumnHeader> ColumnHeaders { get; set; }
+        public ColumnHeader[] ColumnHeadersToArray
+        {
             get
             {
                 List<ColumnHeader> chList = new List<ColumnHeader>(ColumnHeaders);
@@ -293,7 +320,6 @@ namespace mba_application.ViewModels.Import
             }
         }
 
-        public ObservableCollection<RelatedClientInfo> RelatedClients { get; set; }
         public RelatedClientInfo SelectedRelatedClient
         {
             get { return GetProperty(() => SelectedRelatedClient); }
@@ -302,7 +328,7 @@ namespace mba_application.ViewModels.Import
 
         public SheetInfo()
         {
-            SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
+            SelectedColumnMatches = new List<GoodColumnWithPercentMathces>();
             rangeRows = new List<RowInfo>();
             SummRowsInfo = new Dictionary<string, int>();
             ColumnHeaderList = new List<ColumnHeaderValue>();
@@ -311,22 +337,26 @@ namespace mba_application.ViewModels.Import
         [Command]
         public void SelectionChangedAtColumnsList(object eventArgs)
         {
-            var selectedItem = ((eventArgs as RoutedEventArgs).Source as ListBoxEdit).SelectedItem as ColumnHeaderValue;
+            if (WorkSheet.Selection.LeftColumnIndex != SelectedColumnHeaderValue.RangeInWorksheet.Left)
+                WorkSheet.ScrollTo(SelectedColumnHeaderValue.HeaderTableRowIndex, (int)SelectedColumnHeaderValue.RangeInWorksheet.Left);
+
+            WorkSheet.Columns[(int)SelectedColumnHeaderValue.RangeInWorksheet.Left].AutoFit();
 
             WorkSheet.Selection = WorkSheet.Range.FromLTRB(
-                    (int)selectedItem.RangeInWorksheet.Left,
-                    (int)selectedItem.RangeInWorksheet.Top,
-                    (int)selectedItem.RangeInWorksheet.Right,
-                    (int)selectedItem.RangeInWorksheet.Bottom
+                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Left,
+                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Top,
+                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Right,
+                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Bottom
                 );
 
-            WorkSheet.ScrollTo(selectedItem.HeaderTableIndex, (int)selectedItem.RangeInWorksheet.Left);
-
             SelectedColumnMatches.Clear();
-            foreach (var item in selectedItem.GoodColumnWithPercentMatches)
+            foreach (var item in SelectedColumnHeaderValue.GoodColumnWithPercentMatches)
             {
                 SelectedColumnMatches.Add(item);
             }
+
+            var listBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+            listBox.ScrollIntoView(SelectedColumnHeaderValue);
         }
 
         [Command]
@@ -405,13 +435,13 @@ namespace mba_application.ViewModels.Import
             for (int rowIndex = usedRange.TopRowIndex; rowIndex < usedRange.BottomRowIndex; rowIndex++)
             {
                 AddNewRow();
-                for (int columnIndex = usedRange.LeftColumnIndex; columnIndex < usedRange.RightColumnIndex; columnIndex++)
+                for (int columnIndex = usedRange.LeftColumnIndex; columnIndex <= usedRange.RightColumnIndex; columnIndex++)
                     CurrentRowInfo.AddCell(WorkSheet.Cells[rowIndex, columnIndex]);
 
                 if (!headerTableFound && GetStatisticForRow()) // метод взращает bool со значение true если "диагностирует" что данная строка - шапка
                 {
                     headerTableFound = true;
-                    for (int headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex < usedRange.RightColumnIndex; headerColumnIndex++)
+                    for (int headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex <= usedRange.RightColumnIndex; headerColumnIndex++)
                     {
                         if (WorkSheet.Cells[rowIndex, headerColumnIndex].Value.Type == CellValueType.Text)
                         {
@@ -421,7 +451,7 @@ namespace mba_application.ViewModels.Import
                             Regex pattern = new Regex("[:_,.\\*/\n]|[ ]{2,}");
                             cellValue = pattern.Replace(cellValue, " ");
 
-                            var columnHeaderValue = new ColumnHeaderValue { HeaderTableIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
+                            var columnHeaderValue = new ColumnHeaderValue { HeaderTableRowIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
 
                             if (!ColumnHeaderList.Exists(c => c.Caption == columnHeaderValue.Caption))
                             {
@@ -443,7 +473,7 @@ namespace mba_application.ViewModels.Import
     public class ColumnHeaderValue
     {
         public Thickness RangeInWorksheet { get; set; }
-        public int HeaderTableIndex { get; set; }
+        public int HeaderTableRowIndex { get; set; }
         public string Caption { get; set; }
         public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }

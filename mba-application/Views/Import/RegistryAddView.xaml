@@ -115,7 +115,7 @@
                                                         <Style.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
                                                                 <Setter Property="Width" Value="24"/>
-                                                                <Setter Property="Height" Value="24"/>        
+                                                                <Setter Property="Height" Value="24"/>
                                                                 <Setter Property="Background">
                                                                     <Setter.Value>
                                                                         <ImageBrush ImageSource="/Resources/Images/Icons/close-button-orange-20x20.png"/>
@@ -178,6 +178,7 @@
                     <dxe:ListBoxEdit x:Name="ColumnsList"
                                      Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      SelectionMode="Single"
+                                     SelectedItem="{Binding SelectedColumnHeaderValue}"
                                      ItemsSource="{Binding ColumnHeaderList}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
@@ -270,12 +271,15 @@
                 </dxdo:DocumentGroup>
                 <dxdo:LayoutPanel Caption="{Binding SourceFilePath}" ItemHeight="0.4*" AllowRestore="False" AllowRename="False" AllowMove="False" AllowMaximize="False" AllowFloat="False" AllowDrag="False" AllowDockToDocumentGroup="False" AllowDock="False" AllowContextMenu="False" AllowClose="False">
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" AllowDrop="True"
-                                                DocumentSource="{Binding SourceFilePath}"
-                                                ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
+                                              DocumentSource="{Binding SourceFilePath}"
+                                              ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                         <dxmvvm:Interaction.Triggers>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
 								                    Command="{Binding DocumentLoadedCommand}"
 								                    CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+                            <dxmvvm:EventToCommand EventName="SelectionChanged"
+                                                   Command="{Binding SpreadSheetSelectionChangedCommand}"
+                                                   CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
                         </dxmvvm:Interaction.Triggers>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>
