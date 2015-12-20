@@ -16,6 +16,7 @@
              
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
+             xmlns:selectors="clr-namespace:mba_application.MBAComponents.MBATemlpateSelectors"
              xmlns:Dialogs="clr-namespace:mba_application.Views.Dialogs"
              xmlns:ImportViewModels="clr-namespace:mba_application.ViewModels.Import"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" 
@@ -51,7 +52,36 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-            
+
+
+            <DataTemplate x:Key="columnHeaderDefaultTemplate">
+                <StackPanel Orientation="Vertical" Margin="2">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox></CheckBox>
+                        <TextBlock Text="{Binding BestValue.PercentString}" Style="{StaticResource ColumnHeaderAnalysis}" 
+                                   Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                      Converter={StaticResource BoolToVis}}"/>
+                        <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                      Converter={StaticResource BoolToVis}}"/>
+                        <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
+                                                                      Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="columnHeaderWithRelationTemplate">
+                <CheckBox></CheckBox>
+            </DataTemplate>
+
+            <selectors:ColumnHeaderTemplateSelector x:Key="ColumnHeaderTemplateSelector"
+                                                    ColumnHeaderDefaultTemplate="{StaticResource columnHeaderDefaultTemplate}"
+                                                    ColumnHeaderWithRelationTemplate="{StaticResource columnHeaderWithRelationTemplate}"/>
+
+
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -73,6 +103,11 @@
                             <dxe:ListBoxEdit Grid.Row="0" Grid.Column="0"
                                              ItemsSource="{Binding Path=RelatedClients}" 
                                              SelectedItem="{Binding Path=SelectedRelatedClient}">
+                                <dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:EventToCommand EventName="SelectedIndexChanged" PassEventArgsToCommand="True"
+									                       Command="{Binding Path=RelatedClientSelectedIndexChangedCommand}"/>
+                                </dxmvvm:Interaction.Behaviors>
+                                
                                 <dxe:ListBoxEdit.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100"/>
@@ -130,6 +165,7 @@
                                         </Grid>
                                     </DataTemplate>
                                 </dxe:ListBoxEdit.ItemTemplate>
+                            
                             </dxe:ListBoxEdit>
 
                             <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch"
@@ -174,47 +210,22 @@
                         
                         </Grid>
                     </dxdo:DocumentPanel>
-                    
-                    <dxe:ListBoxEdit x:Name="ColumnsList"
-                                     Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                                     SelectionMode="Single"
+
+                    <dxe:ListBoxEdit x:Name="ColumnsList" SelectionMode="Single" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                     ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
                                      SelectedItem="{Binding SelectedColumnHeaderValue}"
                                      ItemsSource="{Binding ColumnHeaderList}">
                         <dxmvvm:Interaction.Triggers>
-                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" 
-                                                   Command="{Binding Path=SelectionChangedAtColumnsListCommand}" PassEventArgsToCommand="True"/>
-                            <dxmvvm:EventToCommand EventName="Loaded" 
-                                                   Command="{Binding Path=ListBoxLoadedCommand}" PassEventArgsToCommand="True"/>
+                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" PassEventArgsToCommand="True"
+                                                   Command="{Binding Path=SelectionChangedAtColumnsListCommand}"/>
+                            <dxmvvm:EventToCommand EventName="Loaded" PassEventArgsToCommand="True"
+                                                   Command="{Binding Path=ListBoxLoadedCommand}"/>
                         </dxmvvm:Interaction.Triggers>
-                        <dxe:ListBoxEdit.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox></CheckBox>
-                                        <TextBlock Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"
-                                                   Style="{StaticResource ColumnHeaderAnalysis}"
-                                                   Text="{Binding BestValue.PercentString}"/>
-                                        <TextBlock Width="320" FontWeight="Bold" Padding="6,0,6,0"
-                                               Text="{Binding Caption, Mode=OneWay}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Visibility="{Binding Path=IsSelected, 
-                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                     Converter={StaticResource BoolToVis}}"/>
-                                        <Button Visibility="{Binding Path=IsSelected, 
-                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                     Converter={StaticResource BoolToVis}}"/>
-                                        <Button Visibility="{Binding Path=IsSelected, 
-                                                                     RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                     Converter={StaticResource BoolToVis}}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </dxe:ListBoxEdit.ItemTemplate>
                     </dxe:ListBoxEdit>
                     
                 </Grid>
             </UserControl>
+
         </ResourceDictionary>
     </UserControl.Resources>
 

@@ -66,7 +66,9 @@ namespace mba_application.ViewModels.Import
                         if (addedClient != null)
                             addedClient.RelatedColumnHeaderCount++;
                         else
-                            temporaryClients.Add(new RelatedClientInfo { Client = client, RelatedColumnHeaderCount = 1, ColumnHeaderCount = sheetInfo.ColumnHeaders.Count });
+                        { 
+                            temporaryClients.Add(new RelatedClientInfo { Client = chcRelation.Client, RelatedColumnHeaderCount = 1, ColumnHeaderCount = sheetInfo.ColumnHeaders.Count });
+                        }
                     }
                 }
             }
@@ -200,6 +202,8 @@ namespace mba_application.ViewModels.Import
 
         public void SpreadSheetSelectionChanged(object _spreadSheet)
         {
+            if (WorkSheetsInBook.Count < 1)
+                return;
             var spreadSheet = _spreadSheet as SpreadsheetControl;
             var currentSheetInfo = WorkSheetsInBook[SelectedWorkSheetIndex];
 
@@ -308,9 +312,13 @@ namespace mba_application.ViewModels.Import
             get { return GetProperty(() => SelectedColumnHeaderValue); }
             set { SetProperty(() => SelectedColumnHeaderValue, value); }
         }
-        public List<GoodColumnWithPercentMathces> SelectedColumnMatches { get; set; }
+        public ObservableCollection<GoodColumnWithPercentMathces> SelectedColumnMatches
+        {
+            get { return GetProperty(() => SelectedColumnMatches); }
+            set { SetProperty(() => SelectedColumnMatches, value); }
+        }
 
-        public List<ColumnHeader> ColumnHeaders { get; set; }
+public List<ColumnHeader> ColumnHeaders { get; set; }
         public ColumnHeader[] ColumnHeadersToArray
         {
             get
@@ -328,7 +336,7 @@ namespace mba_application.ViewModels.Import
 
         public SheetInfo()
         {
-            SelectedColumnMatches = new List<GoodColumnWithPercentMathces>();
+            SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
             rangeRows = new List<RowInfo>();
             SummRowsInfo = new Dictionary<string, int>();
             ColumnHeaderList = new List<ColumnHeaderValue>();
@@ -366,6 +374,13 @@ namespace mba_application.ViewModels.Import
 
             if (loadedListBox.SelectedIndex == -1)
                 loadedListBox.SelectedIndex = 0;
+        }
+
+        [Command]
+        public void RelatedClientSelectedIndexChanged(object eventArgs)
+        {
+            var loadedListBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+            return;
         }
 
         public void AddNewRow()
@@ -475,6 +490,7 @@ namespace mba_application.ViewModels.Import
         public Thickness RangeInWorksheet { get; set; }
         public int HeaderTableRowIndex { get; set; }
         public string Caption { get; set; }
+        public ColumnHeader RelatedColumnHeader { get; set; }
         public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }
 

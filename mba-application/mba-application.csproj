@@ -94,6 +94,7 @@
     <Compile Include="MBAComponents\MBAConverters\PhoneConverters.cs" />
     <Compile Include="MBAComponents\MBAConverters\ToolsNameToContentTemplate.cs" />
     <Compile Include="MBAComponents\MBAMessages\CloseProgramMessage.cs" />
+    <Compile Include="MBAComponents\MBATemlpateSelectors\ColumnHeaderTemplateSelector.cs" />
     <Compile Include="MBAComponents\TreeListFileExplorer.cs" />
     <Compile Include="Service References\MBAAsteriskService\Reference.cs">
       <AutoGen>True</AutoGen>
