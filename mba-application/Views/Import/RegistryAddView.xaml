@@ -55,26 +55,28 @@
 
 
             <DataTemplate x:Key="columnHeaderDefaultTemplate">
-                <StackPanel Orientation="Vertical" Margin="2">
+                <StackPanel Orientation="Vertical" Margin="2" Background="lightGreen">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox></CheckBox>
                         <TextBlock Text="{Binding BestValue.PercentString}" Style="{StaticResource ColumnHeaderAnalysis}" 
-                                   Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                                    Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
                         <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <!--StackPanel Orientation="Horizontal">
                         <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                      Converter={StaticResource BoolToVis}}"/>
+                                                                        Converter={StaticResource BoolToVis}}"/>
                         <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                      Converter={StaticResource BoolToVis}}"/>
+                                                                        Converter={StaticResource BoolToVis}}"/>
                         <Button Visibility="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type dxe:ListBoxEditItem}}, 
-                                                                      Converter={StaticResource BoolToVis}}"/>
-                    </StackPanel>
+                                                                        Converter={StaticResource BoolToVis}}"/>
+                    </-->
                 </StackPanel>
             </DataTemplate>
 
             <DataTemplate x:Key="columnHeaderWithRelationTemplate">
-                <CheckBox></CheckBox>
+                <dxlc:LayoutItem>
+                    <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
+                </dxlc:LayoutItem>
             </DataTemplate>
 
             <selectors:ColumnHeaderTemplateSelector x:Key="ColumnHeaderTemplateSelector"
@@ -84,11 +86,11 @@
 
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="260"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <dxdo:DocumentPanel Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <dxdo:DocumentPanel Grid.Row="0" Grid.Column="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -211,7 +213,11 @@
                         </Grid>
                     </dxdo:DocumentPanel>
 
-                    <dxe:ListBoxEdit x:Name="ColumnsList" SelectionMode="Single" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+
+                    <dxlc:FlowLayoutControl Grid.Row="1" Grid.Column="0" Orientation="Horizontal" BreakFlowToFit="True"
+                                            ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
+                                            ItemsSource="{Binding ColumnHeaderList}"/>
+                    <!--dxe:ListBoxEdit x:Name="ColumnsList" SelectionMode="Single" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
                                      SelectedItem="{Binding SelectedColumnHeaderValue}"
                                      ItemsSource="{Binding ColumnHeaderList}">
@@ -221,7 +227,7 @@
                             <dxmvvm:EventToCommand EventName="Loaded" PassEventArgsToCommand="True"
                                                    Command="{Binding Path=ListBoxLoadedCommand}"/>
                         </dxmvvm:Interaction.Triggers>
-                    </dxe:ListBoxEdit>
+                    </-->
                     
                 </Grid>
             </UserControl>
@@ -239,11 +245,11 @@
                         </dxg:TreeListControl.Columns>
                         <dxg:TreeListControl.View>
                             <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True" 
-                                                ShowNodeImages="True" ImageFieldName="Image">
+                                              ShowNodeImages="True" ImageFieldName="Image">
                                 <dxmvvm:Interaction.Triggers>
                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" 
-									                        Command="{Binding DblClickExplorerCommand}"
-									                        CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
+									                       Command="{Binding DblClickExplorerCommand}"
+									                       CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
                                 </dxmvvm:Interaction.Triggers>
                             </dxg:TreeListView>
                         </dxg:TreeListControl.View>

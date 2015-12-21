@@ -62,7 +62,7 @@ namespace mba_application.ViewModels.Import
                     {
                         if (client.Id != chcRelation.ClientId)
                             continue;
-                        var addedClient = sheetInfo.RelatedClientsContainClient(client, temporaryClients);
+                        var addedClient = sheetInfo.RelatedClientsContainClient(chcRelation.Client, temporaryClients);
                         if (addedClient != null)
                             addedClient.RelatedColumnHeaderCount++;
                         else
@@ -281,11 +281,8 @@ namespace mba_application.ViewModels.Import
         public Client Client { get; set; }
         public int RelatedColumnHeaderCount;
         public int ColumnHeaderCount;
-        public string RelatedColumnHeaderPercentStr
-        {
-            get { return RelatedColumnHeaderCount.ToString() + " - " + RelatedPercent.ToString() + "%"; }
-        }
 
+        public string RelatedColumnHeaderPercentStr { get { return RelatedColumnHeaderCount.ToString() + " - " + RelatedPercent.ToString() + "%"; } }
         public int RelatedPercent { get { return (int)Math.Round(100F * RelatedColumnHeaderCount / ColumnHeaderCount); } }
     }
 
@@ -380,6 +377,19 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public void RelatedClientSelectedIndexChanged(object eventArgs)
         {
             var loadedListBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+            foreach (var columnHeader in ColumnHeaderList)
+            {
+                ColumnHeader tmpColumnHeader = null;
+                foreach (var item in ((loadedListBox.SelectedItem as RelatedClientInfo).Client.ColumnHeaderClients))
+                {
+                    if (columnHeader.Caption == item.ColumnHeader.Name)
+                    {
+                        tmpColumnHeader = item.ColumnHeader;
+                        break;
+                    }
+                }
+                columnHeader.RelatedColumnHeader = tmpColumnHeader;
+            }
             return;
         }
 
@@ -417,7 +427,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         {
             foreach (var item in clientList)
             {
-                if (client == item.Client)
+                if (client.Id == item.Client.Id)
                     return item;
             }
             return null;
@@ -485,12 +495,16 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public Dictionary<string, int> SummRowsInfo { get; set; }
     }
 
-    public class ColumnHeaderValue
+    public class ColumnHeaderValue : BindableBase
     {
         public Thickness RangeInWorksheet { get; set; }
         public int HeaderTableRowIndex { get; set; }
         public string Caption { get; set; }
-        public ColumnHeader RelatedColumnHeader { get; set; }
+        public ColumnHeader RelatedColumnHeader
+        {
+            get { return GetProperty(() => RelatedColumnHeader); }
+            set { SetProperty(() => RelatedColumnHeader, value); }
+        }
         public GoodColumnWithPercentMathces BestValue { get; set; }
         public List<GoodColumnWithPercentMathces> GoodColumnWithPercentMatches { get; set; }
 
