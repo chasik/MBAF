@@ -32,7 +32,7 @@ namespace mba_application.ViewModels.Import
         {
             WorkSheetsInBook = new ObservableCollection<SheetInfo>();
 
-            ImportService = new MBAImportService.ImportServiceClient();
+            ImportService = new ImportServiceClient();
             ImportService.GoodColumnsCompleted += ImportService_GoodColumnsCompleted;
             ImportService.ClientsCompleted += ImportService_ClientsCompleted;
             ImportService.ImportTypesCompleted += ImportService_ImportTypesCompleted;
@@ -46,7 +46,7 @@ namespace mba_application.ViewModels.Import
         #region Async call to Service completed events
         private void ImportService_AddColumnHeadersCompleted(object sender, AddColumnHeadersCompletedEventArgs e)
         {
-            var sheetInfo = e.UserState as SheetInfo;
+            var sheetInfo = (SheetInfo) e.UserState;
             sheetInfo.ColumnHeaders = new List<ColumnHeader>(e.Result);
 
             // производим сопоставление собранных столбцов с Клиентами для определения вероятности принадлежности
@@ -112,33 +112,31 @@ namespace mba_application.ViewModels.Import
 
         public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
 
-        private ChartHitInfo SelectedHitInfo;
-        private DateTime MouseDownTime, MouseUpTime;
+        private ChartHitInfo _selectedHitInfo;
+        private DateTime _mouseDownTime, _mouseUpTime;
 
-        public virtual IDialogService DialogService { get { return null; } }
+        public virtual IDialogService DialogService => null;
 
         public virtual int SelectedWorkSheetIndex { get; set; }
         public virtual string SourceFilePath { get; set; }
 
         public void DblClickExplorer(TreeListNode focusedNode)
         {
-            FileSystemItem nodeContent = focusedNode.Content as FileSystemItem;
-            if (nodeContent.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) > -1
-                    || nodeContent.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) > -1
-               )
-            {
-                WorkSheetsInBook.Clear();
-                SourceFilePath = nodeContent.FullName;
-            }
+            var nodeContent = (FileSystemItem) focusedNode.Content;
+            if (nodeContent.FullName.IndexOf(".xls", 0, StringComparison.InvariantCultureIgnoreCase) < 0 &&
+                    nodeContent.FullName.IndexOf(".xlsx", 0, StringComparison.InvariantCultureIgnoreCase) < 0)
+                return;
+            WorkSheetsInBook.Clear();
+            SourceFilePath = nodeContent.FullName;
         }
         public void MouseLeftButtonDown(object eventArgs)
         {
-            MouseDownTime = DateTime.Now;
+            _mouseDownTime = DateTime.Now;
             var e = eventArgs as MouseButtonEventArgs;
         }
         public void MouseLeftButtonUp(object eventArgs)
         {
-            MouseUpTime = DateTime.Now;
+            _mouseUpTime = DateTime.Now;
             var e = eventArgs as MouseButtonEventArgs;
             var sender = e.Source;
 
@@ -150,25 +148,25 @@ namespace mba_application.ViewModels.Import
 
             ChartHitInfo hitInfo = chart.CalcHitInfo(e.GetPosition(chart));
 
-            if (hitInfo == null || hitInfo.SeriesPoint == null || (MouseUpTime - MouseDownTime).TotalMilliseconds > 180)
+            if (hitInfo == null || hitInfo.SeriesPoint == null || (_mouseUpTime - _mouseDownTime).TotalMilliseconds > 180)
                 return;
 
-            if (SelectedHitInfo != null)
+            if (_selectedHitInfo != null)
             {
-                double dist = PieSeries.GetExplodedDistance(SelectedHitInfo.SeriesPoint);
-                Storyboard selectedStoryBoard = new Storyboard();
-                DoubleAnimation selectedAnimation = new DoubleAnimation();
+                var dist = PieSeries.GetExplodedDistance(_selectedHitInfo.SeriesPoint);
+                var selectedStoryBoard = new Storyboard();
+                var selectedAnimation = new DoubleAnimation();
                 selectedAnimation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
                 selectedAnimation.To = 0;
                 selectedStoryBoard.Children.Add(selectedAnimation);
-                Storyboard.SetTarget(selectedAnimation, SelectedHitInfo.SeriesPoint);
+                Storyboard.SetTarget(selectedAnimation, _selectedHitInfo.SeriesPoint);
                 Storyboard.SetTargetProperty(selectedAnimation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
                 selectedStoryBoard.Begin();
             }
 
-            double distance = PieSeries.GetExplodedDistance(hitInfo.SeriesPoint);
-            Storyboard storyBoard = new Storyboard();
-            DoubleAnimation animation = new DoubleAnimation();
+            var distance = PieSeries.GetExplodedDistance(hitInfo.SeriesPoint);
+            var storyBoard = new Storyboard();
+            var animation = new DoubleAnimation();
             animation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
             animation.To = distance > 0 ? 0 : 0.4;
             storyBoard.Children.Add(animation);
@@ -176,21 +174,21 @@ namespace mba_application.ViewModels.Import
             Storyboard.SetTargetProperty(animation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
             storyBoard.Begin();
 
-            SelectedHitInfo = hitInfo;
+            _selectedHitInfo = hitInfo;
         }
 
         public void DocumentLoaded(object _spreadSheet)
         {
             if (!(_spreadSheet is SpreadsheetControl))
                 return;
-            IWorkbook WorkBook = (_spreadSheet as SpreadsheetControl).Document;
-            foreach (Worksheet itemWorkSheet in WorkBook.Worksheets)
+            var WorkBook = (_spreadSheet as SpreadsheetControl).Document;
+            foreach (var itemWorkSheet in WorkBook.Worksheets)
             {
-                SheetInfo sheetInfo = new SheetInfo { WorkSheet = itemWorkSheet, GoodColumns = GoodColumns };
+                var sheetInfo = new SheetInfo { WorkSheet = itemWorkSheet, GoodColumns = GoodColumns };
 
                 sheetInfo.ParseWorkSheet();
 
-                List<string> columnHeaders = new List<string>();
+                var columnHeaders = new List<string>();
                 foreach (var item in sheetInfo.ColumnHeaderList)
                 { 
                     columnHeaders.Add(item.Caption);
@@ -204,25 +202,27 @@ namespace mba_application.ViewModels.Import
         {
             if (WorkSheetsInBook.Count < 1)
                 return;
-            var spreadSheet = _spreadSheet as SpreadsheetControl;
+            var spreadSheet = (SpreadsheetControl) _spreadSheet;
             var currentSheetInfo = WorkSheetsInBook[SelectedWorkSheetIndex];
 
-            int selectedColumn = spreadSheet.Selection.LeftColumnIndex;
+            var selectedColumn = spreadSheet.Selection.LeftColumnIndex;
 
             foreach (var item in currentSheetInfo.ColumnHeaderList)
             {
-                if (item.RangeInWorksheet.Left == selectedColumn)
+                if ((int) item.RangeInWorksheet.Left == selectedColumn)
                     currentSheetInfo.SelectedColumnHeaderValue = item;
             }
         }
 
         public void ShowClientChooseDialog()
         {
-            ClientChooseViewModel clientChooseViewModel = new ClientChooseViewModel();
-            clientChooseViewModel.Clients = Clients;
-            clientChooseViewModel.ImportTypes = ImportTypes;
+            var clientChooseViewModel = new ClientChooseViewModel
+            {
+                Clients = Clients,
+                ImportTypes = ImportTypes
+            };
 
-            UICommand selectClientCommand = new UICommand()
+            var selectClientCommand = new UICommand()
             {
                 Caption = "Выбрать",
                 IsCancel = false,
@@ -255,24 +255,20 @@ namespace mba_application.ViewModels.Import
                 IsDefault = true
             };
 
-            DialogService.ShowDialog(
-                dialogCommands: new List<UICommand>() { selectClientCommand, cancelCommand },
-                title: "Выбор Клиента...",
-                viewModel: clientChooseViewModel
-            );
+            DialogService.ShowDialog(new List<UICommand>() { selectClientCommand, cancelCommand }, "Выбор Клиента...", clientChooseViewModel);
         }
     }
 
     public class RowStruct
     {
-        internal int columnsCount;
-        private int count;
-        internal int Count { get { return count; } set { Percent = value * 100 / columnsCount; count = value; } }
+        internal int ColumnsCount;
+        private int _count;
+        internal int Count { get { return _count; } set { Percent = value * 100 / (float) ColumnsCount; _count = value; } }
         internal float Percent;
-        internal RowStruct(int _columnsCount)
+        internal RowStruct(int columnsCount)
         {
-            columnsCount = _columnsCount;
-            count = 1;
+            ColumnsCount = columnsCount;
+            _count = 1;
         }
     }
 
@@ -282,8 +278,8 @@ namespace mba_application.ViewModels.Import
         public int RelatedColumnHeaderCount;
         public int ColumnHeaderCount;
 
-        public string RelatedColumnHeaderPercentStr { get { return RelatedColumnHeaderCount.ToString() + " - " + RelatedPercent.ToString() + "%"; } }
-        public int RelatedPercent { get { return (int)Math.Round(100F * RelatedColumnHeaderCount / ColumnHeaderCount); } }
+        public string RelatedColumnHeaderPercentStr => RelatedColumnHeaderCount + " - " + RelatedPercent + "%";
+        public int RelatedPercent => (int)Math.Round(100F * RelatedColumnHeaderCount / ColumnHeaderCount);
     }
 
     public class SheetInfo : ViewModelBase
@@ -342,7 +338,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         [Command]
         public void SelectionChangedAtColumnsList(object eventArgs)
         {
-            if (WorkSheet.Selection.LeftColumnIndex != SelectedColumnHeaderValue.RangeInWorksheet.Left)
+            if (Math.Abs(WorkSheet.Selection.LeftColumnIndex - SelectedColumnHeaderValue.RangeInWorksheet.Left) > 0)
                 WorkSheet.ScrollTo(SelectedColumnHeaderValue.HeaderTableRowIndex, (int)SelectedColumnHeaderValue.RangeInWorksheet.Left);
 
             WorkSheet.Columns[(int)SelectedColumnHeaderValue.RangeInWorksheet.Left].AutoFit();
@@ -360,37 +356,35 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
                 SelectedColumnMatches.Add(item);
             }
 
-            var listBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
-            listBox.ScrollIntoView(SelectedColumnHeaderValue);
+            var listBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
+            listBox?.ScrollIntoView(SelectedColumnHeaderValue);
         }
 
         [Command]
         public void ListBoxLoaded(object eventArgs)
         {
-            var loadedListBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+            var loadedListBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
 
-            if (loadedListBox.SelectedIndex == -1)
+            if (loadedListBox?.SelectedIndex == -1)
                 loadedListBox.SelectedIndex = 0;
         }
 
         [Command]
         public void RelatedClientSelectedIndexChanged(object eventArgs)
         {
-            var loadedListBox = (eventArgs as RoutedEventArgs).Source as ListBoxEdit;
+            var loadedListBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
             foreach (var columnHeader in ColumnHeaderList)
             {
                 ColumnHeader tmpColumnHeader = null;
                 foreach (var item in ((loadedListBox.SelectedItem as RelatedClientInfo).Client.ColumnHeaderClients))
                 {
-                    if (columnHeader.Caption == item.ColumnHeader.Name)
-                    {
-                        tmpColumnHeader = item.ColumnHeader;
-                        break;
-                    }
+                    if (columnHeader.Caption != item.ColumnHeader.Name)
+                        continue;
+                    tmpColumnHeader = item.ColumnHeader;
+                    break;
                 }
                 columnHeader.RelatedColumnHeader = tmpColumnHeader;
             }
-            return;
         }
 
         public void AddNewRow()
@@ -400,12 +394,12 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         }
         internal bool GetStatisticForRow()
         {
-            bool isShapka = false;
+            var isShapka = false;
             CurrentRowInfo.RowInfoStr = string.Empty;
-            var countTypes = CurrentRowInfo.cellTypesDictionary.Count;
-            foreach (var cellType in CurrentRowInfo.cellTypesDictionary)
+            var countTypes = CurrentRowInfo.CellTypesDictionary.Count;
+            foreach (var cellType in CurrentRowInfo.CellTypesDictionary)
             {
-                //CurrentRowInfo.RowInfoStr += "Тип: " + cellType.Key.ToString() + " - " + cellType.Value.Percent.ToString() + "% (" + cellType.Value.Count + "/" + cellType.Value.columnsCount + ") || ";
+                //CurrentRowInfo.RowInfoStr += "Тип: " + cellType.Key.ToString() + " - " + cellType.Value.Percent.ToString() + "% (" + cellType.Value.Count + "/" + cellType.Value.ColumnsCount + ") || ";
                 //CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " " + cellType.Value.Percent.ToString() + "% || ";
                 CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " || ";
 
@@ -441,12 +435,11 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
                 if (percent == 0)
                     percent = 0.01F;
                 _columnHeader.GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces { GoodColumnId = item.Id, GoodColumnName = item.Name, Percent = percent });
-                if (percent > _columnHeader.BestValue.Percent)
-                {
-                    _columnHeader.BestValue.Percent = percent;
-                    _columnHeader.BestValue.GoodColumnId = item.Id;
-                    _columnHeader.BestValue.GoodColumnName = item.Name;
-                }
+                if (percent <= _columnHeader.BestValue.Percent)
+                    continue;
+                _columnHeader.BestValue.Percent = percent;
+                _columnHeader.BestValue.GoodColumnId = item.Id;
+                _columnHeader.BestValue.GoodColumnName = item.Name;
             }
             _columnHeader.GoodColumnWithPercentMatches.Sort((one, two) => { if (one.Percent > two.Percent) return -1; else return 1; });
         }
@@ -466,24 +459,22 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
                 if (!headerTableFound && GetStatisticForRow()) // метод взращает bool со значение true если "диагностирует" что данная строка - шапка
                 {
                     headerTableFound = true;
-                    for (int headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex <= usedRange.RightColumnIndex; headerColumnIndex++)
+                    for (var headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex <= usedRange.RightColumnIndex; headerColumnIndex++)
                     {
-                        if (WorkSheet.Cells[rowIndex, headerColumnIndex].Value.Type == CellValueType.Text)
-                        {
-                            var cellValue = WorkSheet.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower();
-                            var columnRange = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex };
+                        if (WorkSheet.Cells[rowIndex, headerColumnIndex].Value.Type != CellValueType.Text)
+                            continue;
+                        var cellValue = WorkSheet.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower();
+                        var columnRange = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex };
 
-                            Regex pattern = new Regex("[:_,.\\*/\n]|[ ]{2,}");
-                            cellValue = pattern.Replace(cellValue, " ");
+                        var pattern = new Regex("[:_,.\\*/\n]|[ ]{2,}");
+                        cellValue = pattern.Replace(cellValue, " ");
 
-                            var columnHeaderValue = new ColumnHeaderValue { HeaderTableRowIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
+                        var columnHeaderValue = new ColumnHeaderValue { HeaderTableRowIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
 
-                            if (!ColumnHeaderList.Exists(c => c.Caption == columnHeaderValue.Caption))
-                            {
-                                CompareWithGoodColumns(columnHeaderValue);
-                                ColumnHeaderList.Add(columnHeaderValue);
-                            }
-                        }
+                        if (ColumnHeaderList.Exists(c => c.Caption == columnHeaderValue.Caption))
+                            continue;
+                        CompareWithGoodColumns(columnHeaderValue);
+                        ColumnHeaderList.Add(columnHeaderValue);
                     }
                 }
             }
@@ -521,30 +512,30 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public int GoodColumnId { get; set; }
         public string GoodColumnName { get; set; }
 
-        public string PercentString { get { return Percent.ToString() + "%"; }  }
-        public bool IsGoodPercent { get { return Percent > 80; } }
+        public string PercentString => Percent + "%";
+        public bool IsGoodPercent => Percent > 80;
     }
 
     public class RowInfo
     {
-        public Dictionary<CellValueType, RowStruct> cellTypesDictionary;
+        public Dictionary<CellValueType, RowStruct> CellTypesDictionary;
         private int columnsCount;
         public string RowInfoStr;
         public RowInfo(int _columnsCount)
         {
             columnsCount = _columnsCount;
-            cellTypesDictionary = new Dictionary<CellValueType, RowStruct>();
+            CellTypesDictionary = new Dictionary<CellValueType, RowStruct>();
         }
         internal void AddCell(Cell cell)
         {
-            CellValueType cellType = cell.Value.Type;
+            var cellType = cell.Value.Type;
             if (cellType == CellValueType.None)
                 return;
 
-            if (cellTypesDictionary.ContainsKey(cellType))
-                cellTypesDictionary[cellType].Count += 1;
+            if (CellTypesDictionary.ContainsKey(cellType))
+                CellTypesDictionary[cellType].Count += 1;
             else
-                cellTypesDictionary.Add(cellType, new RowStruct(columnsCount));
+                CellTypesDictionary.Add(cellType, new RowStruct(columnsCount));
         }
     }
 }

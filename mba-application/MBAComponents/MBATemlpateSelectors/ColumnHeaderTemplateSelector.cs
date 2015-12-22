@@ -4,19 +4,16 @@ using System.Windows.Controls;
 
 namespace mba_application.MBAComponents.MBATemlpateSelectors
 {
-    class ColumnHeaderTemplateSelector : DataTemplateSelector
+    public class ColumnHeaderTemplateSelector : DataTemplateSelector
     {
         public DataTemplate ColumnHeaderDefaultTemplate { get; set; }
         public DataTemplate ColumnHeaderWithRelationTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            ColumnHeaderValue columnHeader = item as ColumnHeaderValue;
+            var columnHeader = (ColumnHeaderValue) item;
 
-            if (columnHeader.RelatedColumnHeader != null)
-                return ColumnHeaderWithRelationTemplate;
-            else
-                return ColumnHeaderDefaultTemplate;
+            return columnHeader?.RelatedColumnHeader != null ? ColumnHeaderWithRelationTemplate : ColumnHeaderDefaultTemplate;
         }
     }
 }

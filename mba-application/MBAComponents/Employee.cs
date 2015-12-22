@@ -10,12 +10,12 @@ namespace mba_application.MBAComponents
 
         public Employee()
         {
-            MBAPhoneEnable = false;
+            MbaPhoneEnable = false;
             PermissionGroups = new List<PermissionGroup>();
             Tools = new List<Tool>();
         }
 
-        public bool MBAPhoneEnable { get; private set; }
+        public bool MbaPhoneEnable { get; private set; }
 
         public bool TryEnter()
         {
@@ -32,7 +32,7 @@ namespace mba_application.MBAComponents
                 {
                     Tools.Add(new Tool(permission));
                     if (permission.Name == "tools-phone")
-                        MBAPhoneEnable = true;
+                        MbaPhoneEnable = true;
                 }
             }
 
@@ -59,7 +59,7 @@ namespace mba_application.MBAComponents
     public class PermissionGroup
     {
         public List<Permission> Items { get; set; }
-        public bool ShowGroup { get { return Items.Count > 0; } }
+        public bool ShowGroup => Items.Count > 0;
         public Permission ParentPermission { get; set; }
 
         public PermissionGroup(Permission permission)

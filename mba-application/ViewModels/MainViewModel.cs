@@ -11,12 +11,12 @@ namespace mba_application.ViewModels
     public class MainViewModel
     {
         public virtual Employee CurrentEmployee { get; set; }
-        public virtual bool MBAPhoneEnable { get; set; }
+        public virtual bool MbaPhoneEnable { get; set; }
 
         public virtual ObservableCollection<PermissionGroup> UserPermissionGroups { get; set; }
         public virtual ObservableCollection<Tool> UserTools { get; set; }
 
-        public virtual INavigationService NavigationService { get { return null; } }
+        public virtual INavigationService NavigationService => null;
 
         protected MainViewModel()
         {
@@ -32,7 +32,7 @@ namespace mba_application.ViewModels
             CurrentEmployee = new Employee();
             if (CurrentEmployee.TryEnter())
             {
-                MBAPhoneEnable = CurrentEmployee.MBAPhoneEnable;
+                MbaPhoneEnable = CurrentEmployee.MbaPhoneEnable;
                 UserPermissionGroups = new ObservableCollection<PermissionGroup>(CurrentEmployee.PermissionGroups);
                 UserTools = new ObservableCollection<Tool>(CurrentEmployee.Tools);
             }
