@@ -4,23 +4,15 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:dxnb="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
-             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     
              xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
              xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
-    
-             xmlns:local="clr-namespace:mba_application"
-             xmlns:v="clr-namespace:mba_application.Views"
+
              xmlns:vm="clr-namespace:mba_application.ViewModels"
-             xmlns:vmPhone="clr-namespace:mba_application.ViewModels.Phone"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
-             xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-    
-             Title="MBA Finance" Height="600" Width="1000"
-             SnapsToDevicePixels="True" UseLayoutRounding="True"
+
+             Title="MBA Finance" Height="600" Width="1000" SnapsToDevicePixels="True" UseLayoutRounding="True"
     
              DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}" AllowDrop="True">
 
@@ -29,10 +21,10 @@
         <converters:ToolsNameToContentTemplate x:Key="toolsNameToContentTemplate" x:Shared="False"/>
     </dx:DXWindow.Resources>
 
-    <dxmvvm:Interaction.Triggers>
+    <dxmvvm:Interaction.Behaviors>
         <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnInitMainViewCommand}"/>
         <dxmvvm:EventToCommand EventName="Closed" Command="{Binding CloseMainWindowCommand}"/>
-    </dxmvvm:Interaction.Triggers>
+    </dxmvvm:Interaction.Behaviors>
 
     <Grid>
         <Grid.RowDefinitions>

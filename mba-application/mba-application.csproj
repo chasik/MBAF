@@ -335,9 +335,6 @@
     <Resource Include="Resources\Images\ClientDefault.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\ClientSber.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\Icons\menu-group-admin.png" />
   </ItemGroup>
   <ItemGroup>
@@ -391,9 +388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\ClientMTSbank.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\ClientRenesansCredit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\menu-item-processing-task.png" />
@@ -508,6 +502,26 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\close-button-gray-20x20.png" />
     <Resource Include="Resources\Images\Icons\close-button-orange-20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\242-leto-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\253-logo-rosbank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\227-otp-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\251-sber-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\219-renesans-credit.png" />
+    <Resource Include="Resources\Images\250-renesans-credit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\214-vost-express-bank.png" />
+    <Resource Include="Resources\Images\236-vost-express-bank.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

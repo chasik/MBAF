@@ -14,7 +14,7 @@
                 <Border Background="Black" CornerRadius="3" Opacity="0.15"/>
                 <Border CornerRadius="2" Margin="1" Background="White"/>
             </Grid>
-            <Grid x:Name="Content_Area" Margin="10">
+            <Grid x:Name="ContentArea" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="190"/>
                     <RowDefinition Height="Auto"/>
@@ -25,19 +25,15 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="230"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="Image" 
-                       Grid.RowSpan="3"
-                       Grid.Column="1"
+                <Image x:Name="Image" Grid.RowSpan="3" Grid.Column="1"
                        Source="pack://application:,,,/mba-application;component/Resources/Images/mba-logo-big.jpg" 
-                       HorizontalAlignment="Stretch" 
-                       VerticalAlignment="Top" 
-                       />
-                <TextBlock x:Name="Info" TextWrapping="Wrap" Text="{Binding State}" Grid.Row="1" Margin="12,12,12,0" Foreground="#FF2D2D2D"/>
-                <ProgressBar x:Name="progressBar"
-                             Height="12"
-                             Grid.Row="2"
-                             Grid.ColumnSpan="2"
-                             Margin="12"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                <TextBlock x:Name="Info" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"
+                           Margin="12,12,12,0" Foreground="Orange" FontWeight="Bold"
+                           Text="{Binding State}"/>
+                
+                <ProgressBar x:Name="ProgressBar" Height="12" Margin="12"
+                             Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                              IsIndeterminate="{Binding IsIndeterminate}"
                              Value="{Binding Progress}"
                              Maximum="{Binding MaxProgress}"/>

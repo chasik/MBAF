@@ -110,7 +110,7 @@ namespace mba_application.ViewModels.Import
         public virtual ObservableCollection<Client> Clients { get; set; }
         public virtual ObservableCollection<ImportType> ImportTypes { get; set; }
 
-        public virtual ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
+        public ObservableCollection<SheetInfo> WorkSheetsInBook { get; set; }
 
         private ChartHitInfo SelectedHitInfo;
         private DateTime MouseDownTime, MouseUpTime;
