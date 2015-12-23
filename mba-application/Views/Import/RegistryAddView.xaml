@@ -92,7 +92,7 @@
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120"/>
+                        <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <dxdo:DocumentPanel Grid.Row="0" Grid.Column="0">
@@ -117,7 +117,7 @@
                                 
                                 <dxe:ListBoxEdit.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="110"/>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="114"/>
                                     </ItemsPanelTemplate>
                                 </dxe:ListBoxEdit.ItemsPanel>
                                 
@@ -269,7 +269,7 @@
                     <dxdo:DocumentPanel Caption="Информация" ItemHeight="1.08*">
                         <Grid>
                             <dxdo:DocumentGroup CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere"
-                                                d:DataContext="{d:DesignInstance importViewModels:ImportDesignTimeViewModel}"
+                                                d:DataContext="{d:DesignInstance Type=importViewModels:ImportDesignTimeViewModel, IsDesignTimeCreatable=True}"
                                                 ItemsSource="{Binding WorkSheetsInBook}"
                                                 SelectedTabIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>

@@ -4,15 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
-             xmlns:Dialogs="clr-namespace:mba_application.ViewModels.Dialogs"
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              mc:Ignorable="d" d:DesignHeight="280" d:DesignWidth="400">
     
     <UserControl.Resources>
-        <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter"/>
+        <converters:ClientImageNameToPathConverter x:Key="ClientImageNameToPathConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -25,11 +22,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <!--TextBlock Grid.Row="0" Text="Поиск..."/>
-        <dxe:SearchControl x:Name="searchControl" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0"
-                           FilterCondition="Contains" FilterByColumnsMode="Default">
-        </dxe:SearchControl-->
 
         <TextBlock Grid.Row="3" Text="Выбор клиента..."/>
         <dxe:ComboBoxEdit Grid.Row="4" ShowSizeGrip="False"
@@ -44,13 +36,13 @@
                             <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="6,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                   FontSize="12" FontWeight="Bold"
+                                   FontSize="16" FontWeight="Bold"
                                    Text="{Binding Path=InnerId}" />
-                        <TextBlock Grid.Column="0" Margin="40,0,6,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                   FontSize="12" FontWeight="Bold"
+                        <TextBlock Grid.Column="0" Margin="46,0,4,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                   TextWrapping="Wrap" FontSize="12" FontWeight="Bold"
                                    Text="{Binding Path=Name}" />
                         <Image Grid.Column="1" Margin="10,5,0,5" HorizontalAlignment="Right"
-                               Source="{Binding Path=Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
+                               Source="{Binding Path=Image, Converter={StaticResource ClientImageNameToPathConverter}}"/>
                     </Grid>
                 </DataTemplate>
             </dxe:ComboBoxEdit.ItemTemplate>
