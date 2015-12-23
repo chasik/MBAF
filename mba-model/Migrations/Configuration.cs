@@ -92,11 +92,11 @@ namespace mba_model.Migrations
             context.Clients.AddOrUpdate(
                 c => c.Id,
                 new Client { Id = 1, ParentId = null, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ОАО \"Уральский банк реконструкции и развития\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 2, ParentId = null, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 2, ParentId = null, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "205-mts-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 3, ParentId = null, InnerId = 206, Name = "Росгосстрах Банк", FullName = "ПАО \"Росгосстрах Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 4, ParentId = null, InnerId = 212, Name = "Совкомбанк", FullName = "ООО Инвестиционный коммерческий банк \"Совкомбанк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 5, ParentId = null, InnerId = 214, Name = "Восточный Экспресс Банк", FullName = "ПАО \"Восточный Экспресс Банк\"", Image = "214-vost-express-bank.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 6, ParentId = null, InnerId = 217, Name = "Домашние деньги", FullName = "ООО \"Домашние деньги\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 6, ParentId = null, InnerId = 217, Name = "Домашние деньги", FullName = "ООО \"Домашние деньги\"", Image = "217-dom-dengi.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 7, ParentId = null, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "219-renesans-credit.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 8, ParentId = null, InnerId = 220, Name = "Связной Банк", FullName = "ЗАО \"Связной Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 9, ParentId = null, InnerId = 221, Name = "ВТБ24", FullName = "ПАО \"ВТБ24\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
@@ -112,7 +112,7 @@ namespace mba_model.Migrations
                 new Client { Id = 19, ParentId = null, InnerId = 243, Name = "Акционерный коммерческий банк содействия коммерции и бизнесу", FullName = "ОАО \"Акционерный коммерческий банк содействия коммерции и бизнесу\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 20, ParentId = null, InnerId = 245, Name = "СКБ-банк", FullName = "ОАО \"СКБ-банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 21, ParentId = null, InnerId = 246, Name = "БИНБАНК кредитные карты", FullName = "АО \"БИНБАНК кредитные карты\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 22, ParentId = null, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "ClientMTSbank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 22, ParentId = null, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "248-mts-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 23, ParentId = null, InnerId = 249, Name = "Банк Москвы", FullName = "Банк Москвы", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 24, ParentId = null, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "250-renesans-credit.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 25, ParentId = null, InnerId = 251, Name = "Сбербанк", FullName = "ПАО «Сбербанк России»", Image = "251-sber-bank.png", Created = DateTime.Now, CreatedBy = 1 },
@@ -183,7 +183,7 @@ namespace mba_model.Migrations
 
             context.SaveChanges();
 
-            Role adminRole = context.Roles.Find(1);
+            var adminRole = context.Roles.Find(1);
 
             adminRole.Users.Add(context.Users.Find(1));
             adminRole.Users.Add(context.Users.Find(2));

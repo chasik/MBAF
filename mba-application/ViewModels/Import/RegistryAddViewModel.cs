@@ -5,6 +5,7 @@ using System.Windows.Media.Animation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using DevExpress.Mvvm;
@@ -15,7 +16,7 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.Charts;
-
+using DevExpress.XtraPrinting.Native;
 using mba_application.MBAComponents;
 using mba_application.MBAImportService;
 using mba_application.ViewModels.Dialogs;
@@ -73,13 +74,11 @@ namespace mba_application.ViewModels.Import
                 }
             }
             sheetInfo.RelatedClients = new ObservableCollection<RelatedClientInfo>();
+
             temporaryClients.Sort((one, two) => { if (one.RelatedPercent > two.RelatedPercent) return -1; else return 1; });
-            foreach (var item in temporaryClients)
-            {
-                if (item.RelatedPercent > 0)
-                    sheetInfo.RelatedClients.Add(item);
-            }
+            temporaryClients.Where(c => c.RelatedPercent > 99).ForEach(c => sheetInfo.RelatedClients.Add(c));
             temporaryClients.Clear();
+
             if (sheetInfo.RelatedClients.Count > 0)
                 sheetInfo.SelectedRelatedClient = sheetInfo.RelatedClients[0];
         }
@@ -144,20 +143,22 @@ namespace mba_application.ViewModels.Import
             if (sender is ChartControl)
                 chart = sender as ChartControl;
             else 
-                chart = (sender as SimpleDiagram2D).Parent as ChartControl;
+                chart = ((SimpleDiagram2D) sender).Parent as ChartControl;
 
-            ChartHitInfo hitInfo = chart.CalcHitInfo(e.GetPosition(chart));
+            var hitInfo = chart.CalcHitInfo(e.GetPosition(chart));
 
-            if (hitInfo == null || hitInfo.SeriesPoint == null || (_mouseUpTime - _mouseDownTime).TotalMilliseconds > 180)
+            if (hitInfo?.SeriesPoint == null || (_mouseUpTime - _mouseDownTime).TotalMilliseconds > 180)
                 return;
 
             if (_selectedHitInfo != null)
             {
-                var dist = PieSeries.GetExplodedDistance(_selectedHitInfo.SeriesPoint);
+                PieSeries.GetExplodedDistance(_selectedHitInfo.SeriesPoint);
                 var selectedStoryBoard = new Storyboard();
-                var selectedAnimation = new DoubleAnimation();
-                selectedAnimation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
-                selectedAnimation.To = 0;
+                var selectedAnimation = new DoubleAnimation
+                {
+                    Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400)),
+                    To = 0
+                };
                 selectedStoryBoard.Children.Add(selectedAnimation);
                 Storyboard.SetTarget(selectedAnimation, _selectedHitInfo.SeriesPoint);
                 Storyboard.SetTargetProperty(selectedAnimation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
@@ -166,9 +167,11 @@ namespace mba_application.ViewModels.Import
 
             var distance = PieSeries.GetExplodedDistance(hitInfo.SeriesPoint);
             var storyBoard = new Storyboard();
-            var animation = new DoubleAnimation();
-            animation.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
-            animation.To = distance > 0 ? 0 : 0.4;
+            var animation = new DoubleAnimation
+            {
+                Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400)),
+                To = distance > 0 ? 0 : 0.4
+            };
             storyBoard.Children.Add(animation);
             Storyboard.SetTarget(animation, hitInfo.SeriesPoint);
             Storyboard.SetTargetProperty(animation, new PropertyPath(PieSeries.ExplodedDistanceProperty));
@@ -177,12 +180,12 @@ namespace mba_application.ViewModels.Import
             _selectedHitInfo = hitInfo;
         }
 
-        public void DocumentLoaded(object _spreadSheet)
+        public void DocumentLoaded(object spreadSheet)
         {
-            if (!(_spreadSheet is SpreadsheetControl))
+            if (!(spreadSheet is SpreadsheetControl))
                 return;
-            var WorkBook = (_spreadSheet as SpreadsheetControl).Document;
-            foreach (var itemWorkSheet in WorkBook.Worksheets)
+            var workBook = ((SpreadsheetControl) spreadSheet).Document;
+            foreach (var itemWorkSheet in workBook.Worksheets)
             {
                 var sheetInfo = new SheetInfo { WorkSheet = itemWorkSheet, GoodColumns = GoodColumns };
 
@@ -207,11 +210,7 @@ namespace mba_application.ViewModels.Import
 
             var selectedColumn = spreadSheet.Selection.LeftColumnIndex;
 
-            foreach (var item in currentSheetInfo.ColumnHeaderList)
-            {
-                if ((int) item.RangeInWorksheet.Left == selectedColumn)
-                    currentSheetInfo.SelectedColumnHeaderValue = item;
-            }
+            currentSheetInfo.SelectedColumnHeaderValue = currentSheetInfo.ColumnHeaderList.FirstOrDefault(chi => (int) chi.RangeInWorksheet.Left == selectedColumn);
         }
 
         public void ShowClientChooseDialog()
@@ -247,7 +246,7 @@ namespace mba_application.ViewModels.Import
                     x => true
                 )
             };
-            UICommand cancelCommand = new UICommand()
+            var cancelCommand = new UICommand()
             {
                 Id = MessageBoxResult.Cancel,
                 Caption = "Отменить",
@@ -316,7 +315,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         {
             get
             {
-                List<ColumnHeader> chList = new List<ColumnHeader>(ColumnHeaders);
+                var chList = new List<ColumnHeader>(ColumnHeaders);
                 return chList.ToArray();
             }
         }
@@ -330,34 +329,9 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public SheetInfo()
         {
             SelectedColumnMatches = new ObservableCollection<GoodColumnWithPercentMathces>();
-            rangeRows = new List<RowInfo>();
+            _rangeRows = new List<RowInfo>();
             SummRowsInfo = new Dictionary<string, int>();
             ColumnHeaderList = new List<ColumnHeaderValue>();
-        }
-
-        [Command]
-        public void SelectionChangedAtColumnsList(object eventArgs)
-        {
-            if (Math.Abs(WorkSheet.Selection.LeftColumnIndex - SelectedColumnHeaderValue.RangeInWorksheet.Left) > 0)
-                WorkSheet.ScrollTo(SelectedColumnHeaderValue.HeaderTableRowIndex, (int)SelectedColumnHeaderValue.RangeInWorksheet.Left);
-
-            WorkSheet.Columns[(int)SelectedColumnHeaderValue.RangeInWorksheet.Left].AutoFit();
-
-            WorkSheet.Selection = WorkSheet.Range.FromLTRB(
-                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Left,
-                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Top,
-                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Right,
-                    (int)SelectedColumnHeaderValue.RangeInWorksheet.Bottom
-                );
-
-            SelectedColumnMatches.Clear();
-            foreach (var item in SelectedColumnHeaderValue.GoodColumnWithPercentMatches)
-            {
-                SelectedColumnMatches.Add(item);
-            }
-
-            var listBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
-            listBox?.ScrollIntoView(SelectedColumnHeaderValue);
         }
 
         [Command]
@@ -373,16 +347,15 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public void RelatedClientSelectedIndexChanged(object eventArgs)
         {
             var loadedListBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
+            if (loadedListBox == null)
+                return;
             foreach (var columnHeader in ColumnHeaderList)
             {
                 ColumnHeader tmpColumnHeader = null;
-                foreach (var item in ((loadedListBox.SelectedItem as RelatedClientInfo).Client.ColumnHeaderClients))
-                {
-                    if (columnHeader.Caption != item.ColumnHeader.Name)
-                        continue;
-                    tmpColumnHeader = item.ColumnHeader;
-                    break;
-                }
+                var client = ((RelatedClientInfo) loadedListBox.SelectedItem).Client;
+
+                client?.ColumnHeaderClients?.Where(chc => chc.ColumnHeader.Name == columnHeader.Caption).ForEach(chc => tmpColumnHeader = chc.ColumnHeader);
+
                 columnHeader.RelatedColumnHeader = tmpColumnHeader;
             }
         }
@@ -390,7 +363,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         public void AddNewRow()
         {
             CurrentRowInfo = new RowInfo(ColumnsCount);
-            rangeRows.Add(CurrentRowInfo);
+            _rangeRows.Add(CurrentRowInfo);
         }
         internal bool GetStatisticForRow()
         {
@@ -401,7 +374,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
             {
                 //CurrentRowInfo.RowInfoStr += "Тип: " + cellType.Key.ToString() + " - " + cellType.Value.Percent.ToString() + "% (" + cellType.Value.Count + "/" + cellType.Value.ColumnsCount + ") || ";
                 //CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " " + cellType.Value.Percent.ToString() + "% || ";
-                CurrentRowInfo.RowInfoStr += cellType.Key.ToString() + " || ";
+                CurrentRowInfo.RowInfoStr += cellType.Key + " || ";
 
                 // есть ли признаки, указывающие на то, что данная строка "шапка"
                 if ((cellType.Key == CellValueType.Text && cellType.Value.Percent > 95 && countTypes < 3 && ColumnsCount > 2)
@@ -427,21 +400,21 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
             return null;
         }
 
-        internal void CompareWithGoodColumns(ColumnHeaderValue _columnHeader)
+        internal void CompareWithGoodColumns(ColumnHeaderValue columnHeader)
         {
             foreach (var item in GoodColumns)
             {
-                var percent = (float)Math.Round((new MatchsMaker(item.Name, _columnHeader.Caption)).Score * 100);
-                if (percent == 0)
+                var percent = (float)Math.Round((new MatchsMaker(item.Name, columnHeader.Caption)).Score * 100);
+                if (Math.Abs(percent) < 0.01F)
                     percent = 0.01F;
-                _columnHeader.GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces { GoodColumnId = item.Id, GoodColumnName = item.Name, Percent = percent });
-                if (percent <= _columnHeader.BestValue.Percent)
+                columnHeader.GoodColumnWithPercentMatches.Add(new GoodColumnWithPercentMathces { GoodColumnId = item.Id, GoodColumnName = item.Name, Percent = percent });
+                if (percent <= columnHeader.BestValue.Percent)
                     continue;
-                _columnHeader.BestValue.Percent = percent;
-                _columnHeader.BestValue.GoodColumnId = item.Id;
-                _columnHeader.BestValue.GoodColumnName = item.Name;
+                columnHeader.BestValue.Percent = percent;
+                columnHeader.BestValue.GoodColumnId = item.Id;
+                columnHeader.BestValue.GoodColumnName = item.Name;
             }
-            _columnHeader.GoodColumnWithPercentMatches.Sort((one, two) => { if (one.Percent > two.Percent) return -1; else return 1; });
+            columnHeader.GoodColumnWithPercentMatches.Sort((one, two) => { if (one.Percent > two.Percent) return -1; else return 1; });
         }
 
         internal void ParseWorkSheet()
@@ -480,7 +453,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
             }
         }
 
-        private List<RowInfo> rangeRows;
+        private readonly List<RowInfo> _rangeRows;
         internal int ColumnsCount { get; set; }
         public RowInfo CurrentRowInfo { get; private set; }
         public Dictionary<string, int> SummRowsInfo { get; set; }
@@ -519,11 +492,11 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
     public class RowInfo
     {
         public Dictionary<CellValueType, RowStruct> CellTypesDictionary;
-        private int columnsCount;
+        private int _columnsCount;
         public string RowInfoStr;
-        public RowInfo(int _columnsCount)
+        public RowInfo(int columnsCount)
         {
-            columnsCount = _columnsCount;
+            _columnsCount = columnsCount;
             CellTypesDictionary = new Dictionary<CellValueType, RowStruct>();
         }
         internal void AddCell(Cell cell)
@@ -535,7 +508,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
             if (CellTypesDictionary.ContainsKey(cellType))
                 CellTypesDictionary[cellType].Count += 1;
             else
-                CellTypesDictionary.Add(cellType, new RowStruct(columnsCount));
+                CellTypesDictionary.Add(cellType, new RowStruct(_columnsCount));
         }
     }
 }

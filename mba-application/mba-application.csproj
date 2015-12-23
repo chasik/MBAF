@@ -90,6 +90,8 @@
     </Compile>
     <Compile Include="MBAComponents\cDefinForVaxVoIP.cs" />
     <Compile Include="MBAComponents\Employee.cs" />
+    <Compile Include="MBAComponents\MBABehaviors\ColumnHeaderBehavior.cs" />
+    <Compile Include="MBAComponents\MBABehaviors\ColumnHeadersFlowPanelBehavior.cs" />
     <Compile Include="MBAComponents\MBAConverters\MenuImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\ClientImageNameToPathConverter.cs" />
     <Compile Include="MBAComponents\MBAConverters\PhoneConverters.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
     <Compile Include="ViewModels\Chat\ChatToolViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\ClientChooseViewModel.cs" />
+    <Compile Include="ViewModels\Import\ImportDesignTimeViewModel.cs" />
     <Compile Include="ViewModels\Import\RegistryAddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Manager\ManagerAutoTasksViewModel.cs" />
@@ -387,7 +390,7 @@
     <Resource Include="Resources\Images\mba-logo-big.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\ClientMTSbank.png" />
+    <Resource Include="Resources\Images\248-mts-bank.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\menu-item-processing-task.png" />
@@ -522,6 +525,12 @@
   <ItemGroup>
     <Resource Include="Resources\Images\214-vost-express-bank.png" />
     <Resource Include="Resources\Images\236-vost-express-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\205-mts-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\217-dom-dengi.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

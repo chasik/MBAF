@@ -46,9 +46,9 @@ namespace mba_application.MBAComponents
                     treeListView.Nodes.Add(node);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
             }
         }
         private void InitFolder(TreeListNode treeListNode)
@@ -80,15 +80,15 @@ namespace mba_application.MBAComponents
                     treeListNode.Nodes.Add(node);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
             }
         }
 
         private void InitFolders(TreeListNode treeListNode)
         {
-            FileSystemItem item = treeListNode.Content as FileSystemItem;
+            var item = treeListNode.Content as FileSystemItem;
             if (item == null) return;
 
             try
@@ -106,9 +106,9 @@ namespace mba_application.MBAComponents
                     node.IsExpandButtonVisible = HasFiles(s) ? DefaultBoolean.True : DefaultBoolean.False;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
             }
         }
 

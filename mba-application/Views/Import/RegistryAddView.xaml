@@ -15,9 +15,13 @@
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
              xmlns:selectors="clr-namespace:mba_application.MBAComponents.MBATemlpateSelectors"
              xmlns:dialogs="clr-namespace:mba_application.Views.Dialogs"
+             xmlns:behaviors="clr-namespace:mba_application.MBAComponents.MBABehaviors"
              xmlns:importViewModels="clr-namespace:mba_application.ViewModels.Import"
-             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" 
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type importViewModels:RegistryAddViewModel}}">
+             mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="1000">
+
+    <UserControl.DataContext>
+        <dxmvvm:ViewModelSource Type="{x:Type importViewModels:RegistryAddViewModel}" />
+    </UserControl.DataContext>
     
     <dxmvvm:Interaction.Behaviors>
         <dx:DialogService DialogWindowStartupLocation="CenterOwner">
@@ -38,7 +42,7 @@
     
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:ClientImageNameToPathConverter x:Key="clientImageNameToPathConverter"/>
+            <converters:ClientImageNameToPathConverter x:Key="ClientImageNameToPathConverter"/>
             <Style x:Key="ColumnHeaderAnalysis">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding BestValue.IsGoodPercent}" Value="True">
@@ -51,12 +55,16 @@
             </Style>
 
 
-            <DataTemplate x:Key="columnHeaderDefaultTemplate">
+            <DataTemplate x:Key="ColumnHeaderDefaultTemplate">
                 <StackPanel Orientation="Vertical" Margin="2" Background="LightGreen">
+                    <dxmvvm:Interaction.Behaviors>
+                        <behaviors:ColumnHeaderBehavior/>
+                    </dxmvvm:Interaction.Behaviors>
+
                     <StackPanel Orientation="Horizontal">
                         <CheckBox></CheckBox>
                         <TextBlock Text="{Binding BestValue.PercentString}" Style="{StaticResource ColumnHeaderAnalysis}" 
-                                    Grid.Column="0" Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
+                                    Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
                         <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
                     </StackPanel>
                     <!--StackPanel Orientation="Horizontal">
@@ -70,15 +78,15 @@
                 </StackPanel>
             </DataTemplate>
 
-            <DataTemplate x:Key="columnHeaderWithRelationTemplate">
+            <DataTemplate x:Key="ColumnHeaderWithRelationTemplate">
                 <dxlc:LayoutItem>
-                    <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
+                    <TextBlock Text="{Binding Path=Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
                 </dxlc:LayoutItem>
             </DataTemplate>
 
             <selectors:ColumnHeaderTemplateSelector x:Key="ColumnHeaderTemplateSelector"
-                                                    ColumnHeaderDefaultTemplate="{StaticResource columnHeaderDefaultTemplate}"
-                                                    ColumnHeaderWithRelationTemplate="{StaticResource columnHeaderWithRelationTemplate}"/>
+                                                    ColumnHeaderDefaultTemplate="{StaticResource ColumnHeaderDefaultTemplate}"
+                                                    ColumnHeaderWithRelationTemplate="{StaticResource ColumnHeaderWithRelationTemplate}"/>
 
 
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
@@ -114,7 +122,7 @@
                                 </dxe:ListBoxEdit.ItemsPanel>
                                 
                                 <dxe:ListBoxEdit.ItemTemplate>
-                                    <DataTemplate>
+                                    <DataTemplate DataType="{x:Type importViewModels:RelatedClientInfo}">
                                         <Grid Width="100" Margin="4,0,4,0">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="50"/>
@@ -122,7 +130,7 @@
                                                 <RowDefinition Height="20"/>
                                             </Grid.RowDefinitions>
                                             <Image Grid.Row="0" HorizontalAlignment="Right"
-                                                   Source="{Binding Path=Client.Image, Converter={StaticResource clientImageNameToPathConverter}}"/>
+                                                   Source="{Binding Path=Client.Image, Converter={StaticResource ClientImageNameToPathConverter}}"/>
                                             <TextBlock Grid.Row="1" FontSize="8" TextAlignment="Right"
                                                        Text="{Binding Path=RelatedColumnHeaderPercentStr}"/>
                                             <TextBlock Grid.Row="1" FontSize="10" Margin="0,10,0,0"
@@ -184,7 +192,7 @@
                                     <dxc:SimpleDiagram2D HorizontalAlignment="Left">
                                         <dxc:SimpleDiagram2D.Series>
                                             <dxc:PieSeries2D SweepDirection="Clockwise" Rotation="-90" HoleRadiusPercent="0"
-                                                             LabelsResolveOverlappingMinIndent="4"
+                                                             LabelsVisibility="True" LabelsResolveOverlappingMinIndent="4"
                                                              ArgumentDataMember="GoodColumnName"
                                                              ValueDataMember="Percent"
                                                              ToolTipPointPattern="{}{A}"
@@ -197,7 +205,7 @@
                                                 </dxc:PieSeries2D.PointAnimation>
 
                                                 <dxc:PieSeries2D.Label>
-                                                    <dxc:SeriesLabel Visible="True" dxc:PieSeries.LabelPosition="TwoColumns"
+                                                    <dxc:SeriesLabel dxc:PieSeries.LabelPosition="TwoColumns"
                                                                      ResolveOverlappingMode="JustifyAllAroundPoint"
                                                                      TextPattern="{}{V}% {A}"/>
                                                 </dxc:PieSeries2D.Label>
@@ -212,15 +220,18 @@
 
 
                     <dxlc:FlowLayoutControl Grid.Row="1" Grid.Column="0" Orientation="Horizontal" BreakFlowToFit="True"
+                                            MaximizedElement="{Binding SelectedColumnHeaderValue}"
                                             ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
-                                            ItemsSource="{Binding ColumnHeaderList}"/>
+                                            ItemsSource="{Binding ColumnHeaderList}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <behaviors:ColumnHeadersFlowPanelBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                    </dxlc:FlowLayoutControl>
                     <!--dxe:ListBoxEdit x:Name="ColumnsList" SelectionMode="Single" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                                      ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
                                      SelectedItem="{Binding SelectedColumnHeaderValue}"
                                      ItemsSource="{Binding ColumnHeaderList}">
                         <dxmvvm:Interaction.Triggers>
-                            <dxmvvm:EventToCommand EventName="SelectedIndexChanged" PassEventArgsToCommand="True"
-                                                   Command="{Binding Path=SelectionChangedAtColumnsListCommand}"/>
                             <dxmvvm:EventToCommand EventName="Loaded" PassEventArgsToCommand="True"
                                                    Command="{Binding Path=ListBoxLoadedCommand}"/>
                         </dxmvvm:Interaction.Triggers>
@@ -243,11 +254,11 @@
                         <dxg:TreeListControl.View>
                             <dxg:TreeListView x:Name="FileExplorerView" AllowPerPixelScrolling="True" ShowTotalSummary="True" AutoWidth="True" 
                                               ShowNodeImages="True" ImageFieldName="Image">
-                                <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:Interaction.Behaviors>
                                     <dxmvvm:EventToCommand EventName="RowDoubleClick" 
 									                       Command="{Binding DblClickExplorerCommand}"
 									                       CommandParameter="{Binding FocusedNode, ElementName=FileExplorerView}"/>
-                                </dxmvvm:Interaction.Triggers>
+                                </dxmvvm:Interaction.Behaviors>
                             </dxg:TreeListView>
                         </dxg:TreeListControl.View>
                     </dxg:TreeListControl>
@@ -258,6 +269,7 @@
                     <dxdo:DocumentPanel Caption="Информация" ItemHeight="1.08*">
                         <Grid>
                             <dxdo:DocumentGroup CaptionLocation="Top" CaptionOrientation="Horizontal" ClosePageButtonShowMode="NoWhere"
+                                                d:DataContext="{d:DesignInstance importViewModels:ImportDesignTimeViewModel}"
                                                 ItemsSource="{Binding WorkSheetsInBook}"
                                                 SelectedTabIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
                                 <dxdo:DocumentGroup.ItemCaptionTemplate>
@@ -287,14 +299,14 @@
                     <dxsps:SpreadsheetControl x:Name="SpreadSheetDocument" AllowDrop="True"
                                               DocumentSource="{Binding SourceFilePath}"
                                               ActiveSheetIndex="{Binding SelectedWorkSheetIndex, Mode=TwoWay}">
-                        <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:Interaction.Behaviors>
                             <dxmvvm:EventToCommand EventName="DocumentLoaded" 
-								                    Command="{Binding DocumentLoadedCommand}"
-								                    CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
+								                   Command="{Binding DocumentLoadedCommand}"
+								                   CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
                             <dxmvvm:EventToCommand EventName="SelectionChanged"
                                                    Command="{Binding SpreadSheetSelectionChangedCommand}"
                                                    CommandParameter="{Binding ElementName=SpreadSheetDocument}"/>
-                        </dxmvvm:Interaction.Triggers>
+                        </dxmvvm:Interaction.Behaviors>
                     </dxsps:SpreadsheetControl>
                 </dxdo:LayoutPanel>
             </dxdo:LayoutGroup>
