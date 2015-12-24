@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm.UI.Interactivity;
 using DevExpress.Xpf.LayoutControl;
+using mba_application.ViewModels.Import;
 
 namespace mba_application.MBAComponents.MBABehaviors
 {
@@ -10,12 +11,12 @@ namespace mba_application.MBAComponents.MBABehaviors
             base.OnAttached();
             AssociatedObject.MouseEnter += AssociatedObject_MouseEnter;
             AssociatedObject.PreviewMouseLeftButtonDown += AssociatedObject_PreviewMouseLeftButtonDown;
+            AssociatedObject.DataContextChanged += AssociatedObject_DataContextChanged;
         }
-        protected override void OnDetaching()
+
+        private static void AssociatedObject_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            AssociatedObject.MouseEnter -= AssociatedObject_MouseEnter;
-            AssociatedObject.PreviewMouseLeftButtonDown -= AssociatedObject_PreviewMouseLeftButtonDown;
-            base.OnDetaching();
+
         }
 
         private static void AssociatedObject_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -26,6 +27,13 @@ namespace mba_application.MBAComponents.MBABehaviors
         private static void AssociatedObject_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
 
+        }
+
+        protected override void OnDetaching()
+        {
+            AssociatedObject.MouseEnter -= AssociatedObject_MouseEnter;
+            AssociatedObject.PreviewMouseLeftButtonDown -= AssociatedObject_PreviewMouseLeftButtonDown;
+            base.OnDetaching();
         }
     }
 }

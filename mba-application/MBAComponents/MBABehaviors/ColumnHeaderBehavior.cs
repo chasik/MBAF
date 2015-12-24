@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using DevExpress.Mvvm.UI.Interactivity;
+using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 using mba_application.ViewModels.Import;
 
@@ -13,7 +14,15 @@ namespace mba_application.MBAComponents.MBABehaviors
             base.OnAttached();
             AssociatedObject.MouseEnter += AssociatedObject_MouseEnter;
             AssociatedObject.PreviewMouseLeftButtonDown += AssociatedObject_PreviewMouseLeftButtonDown;
+            AssociatedObject.Loaded += AssociatedObject_Loaded;
         }
+
+        private static void AssociatedObject_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var stackPanel = (StackPanel)sender;
+            ((ColumnHeaderValue)stackPanel.DataContext).ParentFrameworkElement = stackPanel;
+        }
+
         protected override void OnDetaching()
         {
             AssociatedObject.MouseEnter -= AssociatedObject_MouseEnter;
@@ -23,13 +32,15 @@ namespace mba_application.MBAComponents.MBABehaviors
 
         private static void AssociatedObject_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            if (e.Source is CheckEdit)
+                return;
             var stackPanel = (StackPanel) sender;
             var flowLayout = (FlowLayoutControl) stackPanel.Parent;
-            flowLayout.MaximizedElement = (StackPanel) sender;
 
             var sheetInfo = (SheetInfo) flowLayout.DataContext;
             var workSheet = sheetInfo.WorkSheet;
-            var selectedColumn = sheetInfo.SelectedColumnHeaderValue = (ColumnHeaderValue) stackPanel.DataContext;
+
+            var selectedColumn = sheetInfo.SelectedColumnHeaderValue = (ColumnHeaderValue)stackPanel.DataContext;
             var selectedColumnMatches = sheetInfo.SelectedColumnMatches;
 
             if (Math.Abs(workSheet.Selection.LeftColumnIndex - selectedColumn.RangeInWorksheet.Left) > 0)
@@ -45,13 +56,7 @@ namespace mba_application.MBAComponents.MBABehaviors
                 );
 
             selectedColumnMatches.Clear();
-            foreach (var item in selectedColumn.GoodColumnWithPercentMatches)
-            {
-                selectedColumnMatches.Add(item);
-            }
-
-            //var listBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
-            //listBox?.ScrollIntoView(SelectedColumnHeaderValue);
+            selectedColumn.GoodColumnWithPercentMatches.ForEach(gcwp => selectedColumnMatches.Add(gcwp));
         }
 
         private static void AssociatedObject_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)

@@ -54,6 +54,18 @@
     <Reference Include="DevExpress.Images.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Scheduler.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Spreadsheet.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Themes.DXStyle.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisLight.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2016Black.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="GongSolutions.Wpf.DragDrop, Version=0.1.4.3, Culture=neutral, PublicKeyToken=d19974ea350ccea1, processorArchitecture=MSIL">
       <HintPath>..\packages\gong-wpf-dragdrop.0.1.4.3\lib\net40\GongSolutions.Wpf.DragDrop.dll</HintPath>
@@ -541,6 +553,33 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\221-vtb-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\206-rosgosstrah-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\212-sovkom-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\220-svyaznoi-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\223-homecredit-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\231-promsvjaz-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\413-viruch-denga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\258-kedr-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\225-uralskij-bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\246-binbank-credit-cards.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

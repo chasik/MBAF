@@ -9,6 +9,12 @@ namespace mba_application.ViewModels.Import
     {
         public ImportDesignTimeViewModel()
         {
+            var columnHeaderList = new List<ColumnHeaderValue>
+            {
+                new ColumnHeaderValue {Caption = "TEST COLUMN HEADER"},
+                new ColumnHeaderValue {Caption = "TEST COLUMN HEADER 2"}
+            };
+
             var sheet1 = new SheetInfo
             {
                 RelatedClients = new ObservableCollection<RelatedClientInfo>
@@ -22,11 +28,8 @@ namespace mba_application.ViewModels.Import
                         Client = new Client { Id = 25, ParentId = null, InnerId = 251, Name = "Сбербанк", FullName = "ПАО «Сбербанк России»", Image = "251-sber-bank.png"}
                     }
                 },
-                ColumnHeaderList = new List<ColumnHeaderValue>
-                {
-                    new ColumnHeaderValue {Caption = "TEST COLUMN HEADER"},
-                    new ColumnHeaderValue {Caption = "TEST COLUMN HEADER 2"}
-                }
+                ColumnHeaderList = columnHeaderList,
+                SelectedColumnHeaderValue = columnHeaderList[0]
             };
             WorkSheetsInBook = new ObservableCollection<SheetInfo> {sheet1, new SheetInfo()};
         }

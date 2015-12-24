@@ -93,17 +93,17 @@ namespace mba_model.Migrations
                 c => c.Id,
                 new Client { Id = 1, ParentId = null, InnerId = 202, Name = "Уральский Банк Реконструкции и Развития", FullName = "ОАО \"Уральский банк реконструкции и развития\"", Image = "202-uralskij-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 2, ParentId = null, InnerId = 205, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "205-mts-bank.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 3, ParentId = null, InnerId = 206, Name = "Росгосстрах Банк", FullName = "ПАО \"Росгосстрах Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 4, ParentId = null, InnerId = 212, Name = "Совкомбанк", FullName = "ООО Инвестиционный коммерческий банк \"Совкомбанк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 3, ParentId = null, InnerId = 206, Name = "Росгосстрах Банк", FullName = "ПАО \"Росгосстрах Банк\"", Image = "206-rosgosstrah-bank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 4, ParentId = null, InnerId = 212, Name = "Совкомбанк", FullName = "ООО Инвестиционный коммерческий банк \"Совкомбанк\"", Image = "212-sovkom-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 5, ParentId = null, InnerId = 214, Name = "Восточный Экспресс Банк", FullName = "ПАО \"Восточный Экспресс Банк\"", Image = "214-vost-express-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 6, ParentId = null, InnerId = 217, Name = "Домашние деньги", FullName = "ООО \"Домашние деньги\"", Image = "217-dom-dengi.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 7, ParentId = null, InnerId = 219, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "219-renesans-credit.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 8, ParentId = null, InnerId = 220, Name = "Связной Банк", FullName = "ЗАО \"Связной Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 8, ParentId = null, InnerId = 220, Name = "Связной Банк", FullName = "ЗАО \"Связной Банк\"", Image = "220-svyaznoi-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 9, ParentId = null, InnerId = 221, Name = "ВТБ24", FullName = "ПАО \"ВТБ24\"", Image = "221-vtb-24.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 10, ParentId = null, InnerId = 223, Name = "Хоум Кредит энд Финанс Банк", FullName = "ООО \"Хоум Кредит энд Финанс Банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 11, ParentId = null, InnerId = 225, Name = "Уральский банк реконструкции и развития", FullName = "ОАО \"Уральский банк реконструкции и развития\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 10, ParentId = null, InnerId = 223, Name = "Хоум Кредит энд Финанс Банк", FullName = "ООО \"Хоум Кредит энд Финанс Банк\"", Image = "223-homecredit-bank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 11, ParentId = null, InnerId = 225, Name = "Уральский банк реконструкции и развития", FullName = "ОАО \"Уральский банк реконструкции и развития\"", Image = "225-uralskij-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 12, ParentId = null, InnerId = 227, Name = "ОТП Банк", FullName = "АО \"ОТП Банк\"", Image = "227-otp-bank.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 13, ParentId = null, InnerId = 231, Name = "Промсвязьбанк", FullName = "ПАО \"Промсвязьбанк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 13, ParentId = null, InnerId = 231, Name = "Промсвязьбанк", FullName = "ПАО \"Промсвязьбанк\"", Image = "231-promsvjaz-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 14, ParentId = null, InnerId = 234, Name = "УБРиР", FullName = "ПАО КБ \"УБРиР\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 15, ParentId = null, InnerId = 236, Name = "Восточный Экспресс Банк", FullName = "ПАО КБ \"Восточный Экспресс Банк\"", Image = "236-vost-express-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 16, ParentId = null, InnerId = 238, Name = "Ханты-Мансийский банк Открытие", FullName = "ПАО \"Ханты-Мансийский банк Открытие\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
@@ -111,7 +111,7 @@ namespace mba_model.Migrations
                 new Client { Id = 18, ParentId = null, InnerId = 242, Name = "Лето Банк", FullName = "ПАО \"Лето Банк\"", Image = "242-leto-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 19, ParentId = null, InnerId = 243, Name = "Акционерный коммерческий банк содействия коммерции и бизнесу", FullName = "ОАО \"Акционерный коммерческий банк содействия коммерции и бизнесу\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 20, ParentId = null, InnerId = 245, Name = "СКБ-банк", FullName = "ОАО \"СКБ-банк\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 21, ParentId = null, InnerId = 246, Name = "БИНБАНК кредитные карты", FullName = "АО \"БИНБАНК кредитные карты\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 21, ParentId = null, InnerId = 246, Name = "БИНБАНК кредитные карты", FullName = "АО \"БИНБАНК кредитные карты\"", Image = "246-binbank-credit-cards.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 22, ParentId = null, InnerId = 248, Name = "МТС-Банк", FullName = "ОАО \"МТС-Банк\"", Image = "248-mts-bank.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 23, ParentId = null, InnerId = 249, Name = "Банк Москвы", FullName = "Банк Москвы", Image = "249-bank-of-moscow.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 24, ParentId = null, InnerId = 250, Name = "Ренессанс Кредит", FullName = "ООО КБ \"Ренессанс Кредит\"", Image = "250-renesans-credit.png", Created = DateTime.Now, CreatedBy = 1 },
@@ -122,8 +122,8 @@ namespace mba_model.Migrations
                 new Client { Id = 29, ParentId = null, InnerId = 255, Name = "МОСКОВСКИЙ КРЕДИТНЫЙ БАНК", FullName = "ОАО \"МОСКОВСКИЙ КРЕДИТНЫЙ БАНК\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 30, ParentId = null, InnerId = 256, Name = "Амант", FullName = "ООО \"Амант\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
                 new Client { Id = 31, ParentId = null, InnerId = 257, Name = "РОСТ БАНК", FullName = "АО \"РОСТ БАНК\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 32, ParentId = null, InnerId = 258, Name = "Кедр", FullName = "КБ \"Кедр\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 },
-                new Client { Id = 33, ParentId = null, InnerId = 413, Name = "Выручай-Деньги", FullName = "ООО МФО \"Выручай-Деньги\"", Image = "ClientDefault.png", Created = DateTime.Now, CreatedBy = 1 }
+                new Client { Id = 32, ParentId = null, InnerId = 258, Name = "Кедр", FullName = "КБ \"Кедр\"", Image = "258-kedr-bank.png", Created = DateTime.Now, CreatedBy = 1 },
+                new Client { Id = 33, ParentId = null, InnerId = 413, Name = "Выручай-Деньги", FullName = "ООО МФО \"Выручай-Деньги\"", Image = "413-viruch-denga.png", Created = DateTime.Now, CreatedBy = 1 }
 
                 );
             #endregion

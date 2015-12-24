@@ -12,13 +12,13 @@
              xmlns:vm="clr-namespace:mba_application.ViewModels"
              xmlns:converters="clr-namespace:mba_application.MBAComponents.MBAConverters"
 
-             Title="MBA Finance" Height="600" Width="1000" SnapsToDevicePixels="True" UseLayoutRounding="True"
-    
-             DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}" AllowDrop="True">
+             Title="MBA Finance" Height="600" Width="1000" SnapsToDevicePixels="True"
+             WindowState="Maximized" AllowDrop="True" UseLayoutRounding="True"
+             DataContext="{dxmvvm:ViewModelSource Type={x:Type vm:MainViewModel}}">
 
     <dx:DXWindow.Resources>
-        <converters:MenuImageNameToPathConverter x:Key="menuImageNameToPathConverter" x:Shared="False"/>
-        <converters:ToolsNameToContentTemplate x:Key="toolsNameToContentTemplate" x:Shared="False"/>
+        <converters:MenuImageNameToPathConverter x:Key="MenuImageNameToPathConverter" x:Shared="False"/>
+        <converters:ToolsNameToContentTemplate x:Key="ToolsNameToContentTemplate" x:Shared="False"/>
     </dx:DXWindow.Resources>
 
     <dxmvvm:Interaction.Behaviors>
@@ -43,7 +43,7 @@
                                 <Setter Property="DisplayMode" Value="ImageAndText"/>
                                 <Setter Property="IsVisible" Value="{Binding ShowGroup}"/>
                                 <Setter Property="Header" Value="{Binding ParentPermission.ScreenName}"/>
-                                <Setter Property="ImageSource" Value="{Binding ParentPermission.Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
+                                <Setter Property="ImageSource" Value="{Binding ParentPermission.Image, Converter={StaticResource MenuImageNameToPathConverter}}"/>
                                 <Setter Property="ItemsSource" Value="{Binding Items}"/>
                             </Style>
                             <Style TargetType="{x:Type dxnb:NavBarItem}">
@@ -60,7 +60,7 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Image Grid.Column="0" Width="24" Height="24" Margin="20,2,10,2"
-													Source="{Binding Image, Converter={StaticResource menuImageNameToPathConverter}}"/>
+													Source="{Binding Image, Converter={StaticResource MenuImageNameToPathConverter}}"/>
                                                 <TextBlock Grid.Column="1" Text="{Binding ScreenName}" VerticalAlignment="Center"/>
                                             </Grid>
                                         </DataTemplate>
@@ -88,10 +88,10 @@
                                 <Setter Property="DisplayMode" Value="ImageAndText"/>
                                 <Setter Property="DisplaySource" Value="Content"/>
                                 <Setter Property="Header" Value="{Binding HeaderName}"/>
-                                <Setter Property="ImageSource" Value="{Binding ImageName, Converter={StaticResource menuImageNameToPathConverter}}"/>
+                                <Setter Property="ImageSource" Value="{Binding ImageName, Converter={StaticResource MenuImageNameToPathConverter}}"/>
                                 
                                 <!-- Коневеритируем поле Name для Permission из базы в соответствующий ContentTemplate -->
-                                <Setter Property="ContentTemplate" Value="{Binding ContentTemplateName, Converter={StaticResource toolsNameToContentTemplate}}"/>
+                                <Setter Property="ContentTemplate" Value="{Binding ContentTemplateName, Converter={StaticResource ToolsNameToContentTemplate}}"/>
                             </Style>
                         </dxnb:NavBarControl.Resources>
                     </dxnb:NavBarControl>

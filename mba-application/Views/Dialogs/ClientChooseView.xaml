@@ -26,7 +26,7 @@
         <TextBlock Grid.Row="3" Text="Выбор клиента..."/>
         <dxe:ComboBoxEdit Grid.Row="4" ShowSizeGrip="False"
                           ApplyItemTemplateToSelectedItem="True" IsTextEditable="False"
-                          DisplayMember="Name" ValueMember="Id"
+                          DisplayMember="Name" ValueMember="Id" ScrollViewer.CanContentScroll="False"
                           ItemsSource="{Binding Path=Clients}" SelectedItem="{Binding Path=SelectedClient}">
             <dxe:ComboBoxEdit.ItemTemplate>
                 <DataTemplate>

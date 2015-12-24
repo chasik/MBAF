@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Windows.Controls;
 using DevExpress.Mvvm;
 using DevExpress.Spreadsheet;
 using DevExpress.Xpf.Grid;
@@ -75,8 +75,12 @@ namespace mba_application.ViewModels.Import
             }
             sheetInfo.RelatedClients = new ObservableCollection<RelatedClientInfo>();
 
-            temporaryClients.Sort((one, two) => { if (one.RelatedPercent > two.RelatedPercent) return -1; else return 1; });
-            temporaryClients.Where(c => c.RelatedPercent > 99).ForEach(c => sheetInfo.RelatedClients.Add(c));
+            temporaryClients.Sort((one, two) =>
+            {
+                if (one.RelatedPercent > two.RelatedPercent) return -1;
+                return 1;
+            });
+            temporaryClients.Where(c => c.RelatedPercent > 0).ForEach(c => sheetInfo.RelatedClients.Add(c));
             temporaryClients.Clear();
 
             if (sheetInfo.RelatedClients.Count > 0)
@@ -91,6 +95,7 @@ namespace mba_application.ViewModels.Import
         private void ImportService_ClientsCompleted(object sender, ClientsCompletedEventArgs e)
         {
             Clients = new ObservableCollection<Client>(e.Result);
+            SourceFilePath = "D:\\251_Batch_251040_received_30.11.2015.xlsx";
         }
 
         private void ImportService_GoodColumnsCompleted(object sender, GoodColumnsCompletedEventArgs e)
@@ -192,25 +197,24 @@ namespace mba_application.ViewModels.Import
                 sheetInfo.ParseWorkSheet();
 
                 var columnHeaders = new List<string>();
-                foreach (var item in sheetInfo.ColumnHeaderList)
-                { 
-                    columnHeaders.Add(item.Caption);
-                }
+
+                sheetInfo.ColumnHeaderList.ForEach(ch => columnHeaders.Add(ch.Caption));
+
                 WorkSheetsInBook.Add(sheetInfo);
                 ImportService.AddColumnHeadersAsync(columnHeaders.ToArray(), sheetInfo);
            }
         }
 
-        public void SpreadSheetSelectionChanged(object _spreadSheet)
+        public void SpreadSheetSelectionChanged(object spreadSheetObject)
         {
-            if (WorkSheetsInBook.Count < 1)
+            if (spreadSheetObject == null || WorkSheetsInBook.Count < 1)
                 return;
-            var spreadSheet = (SpreadsheetControl) _spreadSheet;
+            var spreadSheet = (SpreadsheetControl) spreadSheetObject;
             var currentSheetInfo = WorkSheetsInBook[SelectedWorkSheetIndex];
 
             var selectedColumn = spreadSheet.Selection.LeftColumnIndex;
 
-            currentSheetInfo.SelectedColumnHeaderValue = currentSheetInfo.ColumnHeaderList.FirstOrDefault(chi => (int) chi.RangeInWorksheet.Left == selectedColumn);
+            currentSheetInfo.SelectedColumnHeaderValue = currentSheetInfo.ColumnHeaderList.FirstOrDefault(chi => (int)chi.RangeInWorksheet.Left == selectedColumn);
         }
 
         public void ShowClientChooseDialog()
@@ -310,7 +314,8 @@ namespace mba_application.ViewModels.Import
             set { SetProperty(() => SelectedColumnMatches, value); }
         }
 
-public List<ColumnHeader> ColumnHeaders { get; set; }
+        public List<ColumnHeader> ColumnHeaders { get; set; }
+
         public ColumnHeader[] ColumnHeadersToArray
         {
             get
@@ -335,15 +340,6 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
         }
 
         [Command]
-        public void ListBoxLoaded(object eventArgs)
-        {
-            var loadedListBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
-
-            if (loadedListBox?.SelectedIndex == -1)
-                loadedListBox.SelectedIndex = 0;
-        }
-
-        [Command]
         public void RelatedClientSelectedIndexChanged(object eventArgs)
         {
             var loadedListBox = (eventArgs as RoutedEventArgs)?.Source as ListBoxEdit;
@@ -358,6 +354,12 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
 
                 columnHeader.RelatedColumnHeader = tmpColumnHeader;
             }
+        }
+
+        [Command]
+        public void RelatedClientMouseLeftButtonDown(object eventArgs)
+        {
+            SelectedColumnHeaderValue = null;
         }
 
         public void AddNewRow()
@@ -392,12 +394,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
 
         internal RelatedClientInfo RelatedClientsContainClient(Client client, ICollection<RelatedClientInfo> clientList)
         {
-            foreach (var item in clientList)
-            {
-                if (client.Id == item.Client.Id)
-                    return item;
-            }
-            return null;
+            return clientList.FirstOrDefault(c => c.Client.Id == client.Id);
         }
 
         internal void CompareWithGoodColumns(ColumnHeaderValue columnHeader)
@@ -419,36 +416,36 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
 
         internal void ParseWorkSheet()
         {
-            bool headerTableFound = false;
+            var headerTableFound = false;
             var usedRange = WorkSheet.GetUsedRange();
             ColumnsCount = usedRange.RightColumnIndex - usedRange.LeftColumnIndex;
 
-            for (int rowIndex = usedRange.TopRowIndex; rowIndex < usedRange.BottomRowIndex; rowIndex++)
+            for (var rowIndex = usedRange.TopRowIndex; rowIndex < usedRange.BottomRowIndex; rowIndex++)
             {
                 AddNewRow();
-                for (int columnIndex = usedRange.LeftColumnIndex; columnIndex <= usedRange.RightColumnIndex; columnIndex++)
+                for (var columnIndex = usedRange.LeftColumnIndex; columnIndex <= usedRange.RightColumnIndex; columnIndex++)
                     CurrentRowInfo.AddCell(WorkSheet.Cells[rowIndex, columnIndex]);
 
-                if (!headerTableFound && GetStatisticForRow()) // метод взращает bool со значение true если "диагностирует" что данная строка - шапка
+                if (headerTableFound || !GetStatisticForRow())
+                    continue;
+
+                headerTableFound = true;
+                for (var headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex <= usedRange.RightColumnIndex; headerColumnIndex++)
                 {
-                    headerTableFound = true;
-                    for (var headerColumnIndex = usedRange.LeftColumnIndex; headerColumnIndex <= usedRange.RightColumnIndex; headerColumnIndex++)
-                    {
-                        if (WorkSheet.Cells[rowIndex, headerColumnIndex].Value.Type != CellValueType.Text)
-                            continue;
-                        var cellValue = WorkSheet.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower();
-                        var columnRange = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex };
+                    if (WorkSheet.Cells[rowIndex, headerColumnIndex].Value.Type != CellValueType.Text)
+                        continue;
+                    var cellValue = WorkSheet.Cells[rowIndex, headerColumnIndex].Value.ToString().ToLower();
+                    var columnRange = new Thickness { Left = headerColumnIndex, Top = usedRange.TopRowIndex, Right = headerColumnIndex, Bottom = usedRange.BottomRowIndex };
 
-                        var pattern = new Regex("[:_,.\\*/\n]|[ ]{2,}");
-                        cellValue = pattern.Replace(cellValue, " ");
+                    var pattern = new Regex("[:_,.\\*/\n]|[ ]{2,}");
+                    cellValue = pattern.Replace(cellValue, " ");
 
-                        var columnHeaderValue = new ColumnHeaderValue { HeaderTableRowIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
+                    var columnHeaderValue = new ColumnHeaderValue { HeaderTableRowIndex = rowIndex, Caption = cellValue, RangeInWorksheet = columnRange };
 
-                        if (ColumnHeaderList.Exists(c => c.Caption == columnHeaderValue.Caption))
-                            continue;
-                        CompareWithGoodColumns(columnHeaderValue);
-                        ColumnHeaderList.Add(columnHeaderValue);
-                    }
+                    if (ColumnHeaderList.Exists(c => c.Caption == columnHeaderValue.Caption))
+                        continue;
+                    CompareWithGoodColumns(columnHeaderValue);
+                    ColumnHeaderList.Add(columnHeaderValue);
                 }
             }
         }
@@ -461,6 +458,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
 
     public class ColumnHeaderValue : BindableBase
     {
+        public FrameworkElement ParentFrameworkElement { get; set; }
         public Thickness RangeInWorksheet { get; set; }
         public int HeaderTableRowIndex { get; set; }
         public string Caption { get; set; }
@@ -492,7 +490,7 @@ public List<ColumnHeader> ColumnHeaders { get; set; }
     public class RowInfo
     {
         public Dictionary<CellValueType, RowStruct> CellTypesDictionary;
-        private int _columnsCount;
+        private readonly int _columnsCount;
         public string RowInfoStr;
         public RowInfo(int columnsCount)
         {

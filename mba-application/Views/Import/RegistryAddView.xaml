@@ -62,7 +62,7 @@
                     </dxmvvm:Interaction.Behaviors>
 
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox></CheckBox>
+                        <dxe:CheckEdit></dxe:CheckEdit>
                         <TextBlock Text="{Binding BestValue.PercentString}" Style="{StaticResource ColumnHeaderAnalysis}" 
                                     Width="40" Padding="4,1,4,0" HorizontalAlignment="Stretch" TextAlignment="Center"/>
                         <TextBlock Text="{Binding Caption, Mode=OneWay}" Width="320" FontWeight="Bold" Padding="6,0,6,0"/>
@@ -91,23 +91,19 @@
 
             <UserControl x:Key="ExcelSheetInfo" x:Shared="False">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <dxdo:DocumentPanel Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <dxdo:DocumentPanel Grid.Column="1" Grid.Row="0">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" MinHeight="120"/>
-                                <RowDefinition Height="38"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="100"/>
                             </Grid.RowDefinitions>
 
-                            <dxe:ListBoxEdit Grid.Row="0" Grid.Column="0"
+                            <dxe:ListBoxEdit Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch" 
+                                             ScrollViewer.CanContentScroll="False" 
                                              ItemsSource="{Binding Path=RelatedClients}" 
                                              SelectedItem="{Binding Path=SelectedRelatedClient}">
                                 <dxmvvm:Interaction.Behaviors>
@@ -117,7 +113,7 @@
                                 
                                 <dxe:ListBoxEdit.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="114"/>
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Stretch"/>
                                     </ItemsPanelTemplate>
                                 </dxe:ListBoxEdit.ItemsPanel>
                                 
@@ -129,6 +125,10 @@
                                                 <RowDefinition Height="40"/>
                                                 <RowDefinition Height="20"/>
                                             </Grid.RowDefinitions>
+                                            <dxmvvm:Interaction.Behaviors>
+                                                <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" PassEventArgsToCommand="True"
+                                                                       Command="{Binding Path=DataContext.RelatedClientMouseLeftButtonDownCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxe:ListBoxEdit}}}"/>
+                                            </dxmvvm:Interaction.Behaviors>
                                             <Image Grid.Row="0" HorizontalAlignment="Right"
                                                    Source="{Binding Path=Client.Image, Converter={StaticResource ClientImageNameToPathConverter}}"/>
                                             <TextBlock Grid.Row="1" FontSize="8" TextAlignment="Right"
@@ -175,12 +175,12 @@
                             
                             </dxe:ListBoxEdit>
 
-                            <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch"
+                            <Button Grid.Row="1" Grid.Column="0"
                                     Command="{Binding Path=DataContext.ShowClientChooseDialogCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=2 }}">
                                 <TextBlock Text="Добавить банк" TextWrapping="Wrap" TextAlignment="Center"/>
                             </Button>
 
-                            <dxc:ChartControl Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
+                            <!--dxc:ChartControl Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="0" SelectionMode="Single" SeriesSelectionMode="Argument"
                                               AnimationMode="OnLoad" ToolTipEnabled="True">
                                 <dxmvvm:Interaction.Behaviors>
                                     <dxmvvm:EventToCommand EventName="MouseLeftButtonDown" PassEventArgsToCommand="True"
@@ -213,29 +213,19 @@
                                         </dxc:SimpleDiagram2D.Series>
                                     </dxc:SimpleDiagram2D>
                                 </dxc:ChartControl.Diagram>
-                            </dxc:ChartControl>
+                            </-->
                         
                         </Grid>
                     </dxdo:DocumentPanel>
 
-
-                    <dxlc:FlowLayoutControl Grid.Row="1" Grid.Column="0" Orientation="Horizontal" BreakFlowToFit="True"
-                                            MaximizedElement="{Binding SelectedColumnHeaderValue}"
+                    <dxlc:FlowLayoutControl Grid.Column="0" Grid.Row="0" Orientation="Horizontal" BreakFlowToFit="True"
+                                            MaximizedElement="{Binding Path=SelectedColumnHeaderValue.ParentFrameworkElement}"
                                             ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
-                                            ItemsSource="{Binding ColumnHeaderList}">
+                                            ItemsSource="{Binding Path=ColumnHeaderList}">
                         <dxmvvm:Interaction.Behaviors>
                             <behaviors:ColumnHeadersFlowPanelBehavior/>
                         </dxmvvm:Interaction.Behaviors>
                     </dxlc:FlowLayoutControl>
-                    <!--dxe:ListBoxEdit x:Name="ColumnsList" SelectionMode="Single" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                                     ItemTemplateSelector="{StaticResource ColumnHeaderTemplateSelector}"
-                                     SelectedItem="{Binding SelectedColumnHeaderValue}"
-                                     ItemsSource="{Binding ColumnHeaderList}">
-                        <dxmvvm:Interaction.Triggers>
-                            <dxmvvm:EventToCommand EventName="Loaded" PassEventArgsToCommand="True"
-                                                   Command="{Binding Path=ListBoxLoadedCommand}"/>
-                        </dxmvvm:Interaction.Triggers>
-                    </-->
                     
                 </Grid>
             </UserControl>
